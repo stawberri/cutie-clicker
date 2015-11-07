@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+}
+
+#cutie {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: url(img/unclicked.png) center center no-repeat;
+  width: 100%; height: 100%;
+  max-width: 500px; max-height: 500px;
+  background-size: contain;
+}
+
+#cutie.clicked {
+  background: url(img/clicked.png) center center no-repeat;
+  width: 100%; height: 100%;
+  max-width: 500px; max-height: 500px;
+  background-size: contain;
+}
+
+#clicker {
+  z-index: 1;
+  position: fixed;
+  display: block;
+  width: 100%; height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+}
