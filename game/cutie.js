@@ -1,10 +1,13 @@
 var clicker = document.getElementById('clicker');
 var cutie = document.getElementById('cutie');
 
-clicker.onmousedown = function() {
+var clickstart = function() {
   cutie.className = 'clicked';
 };
 
-clicker.onmouseup = function() {
+var clickend = function() {
   cutie.className = '';
 };
+
+clicker.ontouchstart = clicker.onmousedown = clickstart;
+clicker.ontouchend = clicker.onmouseup = clickend;
