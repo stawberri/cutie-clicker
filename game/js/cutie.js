@@ -1,3 +1,4 @@
+// Duct taped together simple clicker game
 var clicker = document.getElementById('clicker');
 var cutie = document.getElementById('cutie');
 
