@@ -1,24 +1,28 @@
-// Duct taped together simple clicker game
-var clicker = $('#cutie-clicker');
-var cutie = $('#cutie');
+!function() {
 
-var clickstart = function() {
-  cutie.addClass('clicked');
+  // Duct taped together simple clicker game
+  var clicker = $('#cutie-clicker');
+  var cutie = $('#cutie');
 
-  // Set clicks to either clicks + 1, or just 1.
-  cc.ls.d.write('clicks', cc.ls.d.clicks ? cc.ls.d.clicks + 1 : 1);
-  // Update click counter
-  $('#click-counter').html(cc.ls.d.clicks);
-};
-// populate click counter
-$('#click-counter').html(cc.ls.d.clicks ? cc.ls.d.clicks : 0);
+  var clickstart = function() {
+    cutie.addClass('clicked');
 
-var clickend = function() {
-  cutie.removeClass('clicked');
-};
+    // Set clicks to either clicks + 1, or just 1.
+    cc.ls.d.write('clicks', cc.ls.d.clicks ? cc.ls.d.clicks + 1 : 1);
+    // Update click counter
+    $('#click-counter').html(cc.ls.d.clicks);
+  };
+  // populate click counter
+  $('#click-counter').html(cc.ls.d.clicks ? cc.ls.d.clicks : 0);
 
-clicker.on('touchstart', clickstart);
-clicker.on('mousedown', clickstart);
+  var clickend = function() {
+    cutie.removeClass('clicked');
+  };
 
-clicker.on('touchend', clickend);
-clicker.on('mouseup', clickend);
+  clicker.on('touchstart', clickstart);
+  clicker.on('mousedown', clickstart);
+
+  clicker.on('touchend', clickend);
+  clicker.on('mouseup', clickend);
+
+}();
