@@ -1,14 +1,21 @@
 // Duct taped together simple clicker game
-var clicker = document.getElementById('clicker');
-var cutie = document.getElementById('cutie');
+
+var clicker = $('#clicker');
+var cutie = $('#cutie');
 
 var clickstart = function() {
-  cutie.className = 'clicked';
+  cutie.addClass('clicked');
 };
 
 var clickend = function() {
-  cutie.className = '';
+  cutie.removeClass('clicked');
 };
 
-clicker.ontouchstart = clicker.onmousedown = clickstart;
-clicker.ontouchend = clicker.onmouseup = clickend;
+clicker.on('touchstart', clickstart);
+clicker.on('mousedown', clickstart);
+
+clicker.on('touchend', clickend);
+clicker.on('mouseup', clickend);
+
+// Hacky changelog display messages
+$('#changes').load('game/changes.html');

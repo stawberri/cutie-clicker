@@ -3,9 +3,6 @@ window.cc = window.cc ? cc : {};
 
 // Create init function
 cc.init = function() {
-  // Empty out body to remove JavaScript disabled message (for now)
-  $('body').html('');
-
   // Start game!
   $('body').load('game/cutie.html');
 };
