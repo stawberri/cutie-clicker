@@ -1,5 +1,4 @@
 // Duct taped together simple clicker game
-
 var clicker = $('#cutie-clicker');
 var cutie = $('#cutie');
 
@@ -23,6 +22,3 @@ clicker.on('mousedown', clickstart);
 
 clicker.on('touchend', clickend);
 clicker.on('mouseup', clickend);
-
-// populate click counter
-$('#click-counter').html(cc.ls.d.clicks ? cc.ls.d.clicks : 0);
