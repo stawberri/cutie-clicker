@@ -1,14 +1,10 @@
-/* Full height content enabler */
+/* Basic styles */
 html, body {
-  margin: 0;
   width: 100%; height: 100%;
-}
-
-/* Basic body styles */
-body {
+  margin: 0;
   color: #000;
-  font-size: 16px;
   background: #fff;
+  font-size: 10px;
   font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
 }
@@ -50,8 +46,7 @@ body>.layer {
 #layer-ui {}
 
   /* Giant button */
-  #clicker {
-    z-index: 1;
+  #cutie-clicker {
     position: absolute;
     display: block;
     width: 100%; height: 100%;
@@ -60,3 +55,20 @@ body>.layer {
     outline: none;
     padding: 0;
   }
+
+  /* Cutie bar */
+  #cutie-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%; height: 120px;
+  }
+
+    /* Temporary click counter */
+    #click-counter {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      font-size: 10rem;
+      text-align: center;
+      margin: 0;
+    }
