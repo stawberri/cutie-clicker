@@ -61,14 +61,15 @@ body>.layer {
     position: absolute;
     bottom: 0;
     width: 100%; height: 120px;
+    pointer-events: none;
   }
 
     /* Temporary click counter */
     #click-counter {
-      width: 100%;
       position: absolute;
-      bottom: 0px;
+      bottom: 0px; left: 50%;
+      transform: translateX(-50%);
       font-size: 10rem;
-      text-align: center;
       margin: 0;
+      pointer-events: auto;
     }
