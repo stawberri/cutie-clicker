@@ -6,7 +6,8 @@ var cutie = $('#cutie');
 var clickstart = function() {
   cutie.addClass('clicked');
 
-  // start tracking clicks
+  // Set clicks to either clicks + 1, or just 1.
+  cc.ls.d.write('clicks', cc.ls.d.clicks ? cc.ls.d.clicks + 1 : 1);
 };
 
 var clickend = function() {

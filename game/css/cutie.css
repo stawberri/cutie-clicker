@@ -1,36 +1,62 @@
 /* Full height content enabler */
-
 html, body {
   margin: 0;
-  height: 100%;
-}
-
-/* Development cutie display */
-#cutie {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: url(../cuties/119/0.png) center center no-repeat;
   width: 100%; height: 100%;
-  max-width: 500px; max-height: 500px;
-  background-size: contain;
 }
 
-  #cutie.clicked {
-    background: url(../cuties/119/1.png) center center no-repeat;
-    width: 100%; height: 100%;
-    max-width: 500px; max-height: 500px;
-    background-size: contain;
+/* Basic body styles */
+body {
+  color: #000;
+  font-size: 16px;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+/* Main game display layers */
+body>.layer {
+  position: absolute;
+  height: 100%; width: 100%;
+}
+
+/* Cutie layer */
+#layer-cutie {}
+
+  /* Cutie viewport */
+  #cutie-view {
+    position: absolute;
+    height: calc(100% - 120px); width: 100%;
   }
 
-/* Giant button */
-#clicker {
-  z-index: 1;
-  position: fixed;
-  display: block;
-  width: 100%; height: 100%;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 0;
-}
+    /* Development cutie display */
+    #cutie {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background: url(../cuties/119/0.png) center center no-repeat;
+      background-size: contain;
+      width: 100%; height: 100%;
+      max-width: 500px; max-height: 500px;
+    }
+
+      #cutie.clicked {
+        background: url(../cuties/119/1.png) center center no-repeat;
+        width: 100%; height: 100%;
+        max-width: 500px; max-height: 500px;
+        background-size: contain;
+      }
+
+/* UI layer */
+#layer-ui {}
+
+  /* Giant button */
+  #clicker {
+    z-index: 1;
+    position: absolute;
+    display: block;
+    width: 100%; height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+  }
