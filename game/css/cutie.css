@@ -5,11 +5,6 @@ html, body {
   height: 100%;
 }
 
-/* Placeholder background text */
-#changes {
-  margin: 0;
-}
-
 /* Development cutie display */
 #cutie {
   position: fixed;
