@@ -36,9 +36,9 @@ cc.init = function() {
     // Check sessionStorage version
     switch(cc.ss.v) {
       default:
-        cc.ls.write('d', {})
+        cc.ss.write('d', {})
 
-        cc.ls.write('v', 1);
+        cc.ss.write('v', 1);
       case 1:
     }
 
