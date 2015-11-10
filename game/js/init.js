@@ -8,6 +8,9 @@ window.cc = window.cc ? cc : {};
     // Keep track of pending tasks
     var pendingActions = [];
 
+    // Make done no longer run the start check
+    var disableActionCheck = false;
+
     // Switch site to loading mode
     $('html').addClass('loading');
     var loadingMessageIntervalId = setInterval(function() {
@@ -33,17 +36,18 @@ window.cc = window.cc ? cc : {};
         pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
 
         // Are we ready to start?
-        if(pendingActions.length <= 0) {
-          // Add one last action. Super hacky, but shouldn't break anything.
+        if(pendingActions.length <= 0 && !disableActionCheck) {
+          // This happened once, so it can't happen again
+          disableActionCheck = true;
+
           // Data update script. This is here because it pretty much requires everything.
-          addAction('&#9850;', function() { // ♺
+          addAction('&#9850;', function(done) { // ♺
             $.getScript('game/js/update.js').done(function() {
+              // Remove this item
+              done();
+
               // Remove loading message timer thingie
               clearInterval(loadingMessageIntervalId);
-
-              // Manually remove this item
-              pendingActions.length = 0;
-              $('#site-game-loading').html('');
 
               // Clear body
               $('body').html('');
@@ -55,6 +59,10 @@ window.cc = window.cc ? cc : {};
             });
           });
         }
+      }
+      // Make this function accessible everywhere
+      cc.init.addAction = function(action, runFunction) {
+        return addAction(action, runFunction);
       }
 
       // Add actionRemover to pending actions
@@ -69,30 +77,33 @@ window.cc = window.cc ? cc : {};
     // This action ensures that all actions have time to start
     addAction('&#10003;', function(done) { // ✓
 
-      // Existing instance checker -- not async, so blocks execution of stuff below
+      // Existing instance checker
       addAction('&#10063;', function(done) { // ❏
-        // Use this method of "checking" to see if localStorage works
-        try {
-          // Retrieve opposite of flag
-          var flag = window.localStorage.getItem('cc-instchk') || '0';
-          flag = flag == '0' ? '1' : '0';
-          // Update flag
-          window.localStorage.setItem('cc-instchk', flag);
+        // Allow code below to run too
+        setTimeout(function() {
+          // Use this method of "checking" to see if localStorage works
+          try {
+            // Retrieve opposite of flag
+            var flag = window.localStorage.getItem('cc-instchk') || '0';
+            flag = flag == '0' ? '1' : '0';
+            // Update flag
+            window.localStorage.setItem('cc-instchk', flag);
 
-          // Watch flag for changes
-          $(window).on('storage', function(ev) {
-            console.log(ev.key);
-            if(ev.originalEvent.key == 'cc-instchk' && ev.originalEvent.storageArea == window.localStorage) {
-              // It changed! Exit!
-              window.location = 'about:blank';
-            }
-          });
+            // Watch flag for changes
+            $(window).on('storage', function(ev) {
+              console.log(ev.key);
+              if(ev.originalEvent.key == 'cc-instchk' && ev.originalEvent.storageArea == window.localStorage) {
+                // It changed! Exit!
+                window.location = 'about:blank';
+              }
+            });
 
-          done();
-        } catch(e) {
-          // Looks like it failed, and there's no need to check for multiple instances.
-          done();
-        }
+            done();
+          } catch(e) {
+            // Looks like it failed, and there's no need to check for multiple instances.
+            done();
+          }
+        }, 0);
       });
 
       // lz-string (data compression library)
@@ -102,13 +113,7 @@ window.cc = window.cc ? cc : {};
 
       // Rhaboo (data storage library)
       addAction('&#9923;', function(done) { // ⛃
-        $.getScript('lib/rhaboo.min.js').done(function() {
-          // Create localStorage and sessionStorage data (respectively)
-          cc.ls = Rhaboo.persistent('cc-ls');
-          cc.ss = Rhaboo.perishable('cc-ss');
-
-          done();
-        });
+        $.getScript('lib/rhaboo.min.js').done(done);
       });
 
       // schemeNumber (accurate numbers library)
