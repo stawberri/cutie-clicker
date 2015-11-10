@@ -34,15 +34,26 @@ window.cc = window.cc ? cc : {};
 
         // Are we ready to start?
         if(pendingActions.length <= 0) {
-          // Remove loading message timer thingie
-          clearInterval(loadingMessageIntervalId);
-          // Clear body
-          $('body').html('');
-          // Remove all classes from html
-          $('html').removeClass();
+          // Add one last action. Super hacky, but shouldn't break anything.
+          // Data update script. This is here because it pretty much requires everything.
+          addAction('&#9850;', function() { // ♺
+            $.getScript('game/js/update.js').done(function() {
+              // Remove loading message timer thingie
+              clearInterval(loadingMessageIntervalId);
 
-          // Load page
-          $('body').load('game/cutie.html');
+              // Manually remove this item
+              pendingActions.length = 0;
+              $('#site-game-loading').html('');
+
+              // Clear body
+              $('body').html('');
+              // Remove all classes from html
+              $('html').removeClass();
+
+              // Load page
+              $('body').load('game/cutie.html');
+            });
+          });
         }
       }
 
@@ -86,31 +97,24 @@ window.cc = window.cc ? cc : {};
 
       // lz-string (data compression library)
       addAction('&#11075;', function(done) { // ⭃
-        $.getScript('lib/lz-string.min.js').done(function() {
+        $.getScript('lib/lz-string.min.js').done(done);
+      });
 
-          // Rhaboo (data storage library)
-          addAction('&#9923;', function(done) { // ⛃
-            $.getScript('lib/rhaboo.min.js').done(function() {
-              // Create localStorage and sessionStorage data (respectively)
-              cc.ls = Rhaboo.persistent('cc-ls');
-              cc.ss = Rhaboo.perishable('cc-ss');
-
-              // Data update script
-              addAction('&#9850;', function(done) { // ♺
-                $.getScript('game/js/update.js').done(function() {
-                  done();
-                });
-              });
-
-              done();
-            });
-          });
+      // Rhaboo (data storage library)
+      addAction('&#9923;', function(done) { // ⛃
+        $.getScript('lib/rhaboo.min.js').done(function() {
+          // Create localStorage and sessionStorage data (respectively)
+          cc.ls = Rhaboo.persistent('cc-ls');
+          cc.ss = Rhaboo.perishable('cc-ss');
 
           done();
         });
       });
 
-
+      // schemeNumber (accurate numbers library)
+      addAction('&#9320;', function(done) { // ⑨
+        $.getScript('lib/schemeNumber.min.js').done(done);
+      });
 
       done();
     });
