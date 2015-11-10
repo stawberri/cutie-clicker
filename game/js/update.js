@@ -2,20 +2,9 @@
   // Current data version
   var dataStorageVersion = 2;
 
-  // Load data
+  // Process persistent data
   cc.init.addAction('&#9921;', function(done) { // ⛁
     cc.ls = Rhaboo.persistent('cc-ls');
-    cc.ss = Rhaboo.perishable('cc-ss');
-
-    done();
-  });
-
-  // Data update processing
-  cc.init.addAction('&#9728;', function(done) { // ☀
-    // Throw out sessionStorage if version doesn't match
-    if(cc.ss.v != dataStorageVersion) {
-        cc.ss.write('d', {})
-    }
 
     // Check localStorage version
     switch(cc.ls.v) {
@@ -28,8 +17,24 @@
       case dataStorageVersion:
     }
 
-    // Update versions
+    // Update version
     cc.ls.write('v', dataStorageVersion);
+
+    done();
+  });
+
+  // Process perishable data
+  cc.init.addAction('&#9728;', function(done) { // ☀
+    cc.ss = Rhaboo.perishable('cc-ss');
+
+    // Throw out sessionStorage if version doesn't match
+    if(cc.ss.v != dataStorageVersion) {
+        cc.ss.write('d', {})
+    }
+
+    // Update versions
     cc.ss.write('v', dataStorageVersion);
+
+    done();
   });
 }();
