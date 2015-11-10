@@ -122,6 +122,9 @@ window.cc = window.cc ? cc : {};
       // schemeNumber (accurate numbers library)
       addScript('&#9320;', 'lib/schemeNumber.min.js'); // ⑨
 
+      // cc.util
+      addScript('&#9939;', 'game/js/util.js'); // ⛓
+
       done();
     });
   };
