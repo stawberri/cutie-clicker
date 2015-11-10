@@ -41,7 +41,7 @@ window.cc = window.cc ? cc : {};
           disableActionCheck = true;
 
           // Data update script. This is here because it pretty much requires everything.
-          addAction('&#9850;', function(done) { // ♺
+          addAction('&#9853;', function(done) { // ♽
             $.getScript('game/js/update.js').done(function() {
               // Remove this item
               done();
@@ -75,7 +75,7 @@ window.cc = window.cc ? cc : {};
     }
 
     // This action ensures that all actions have time to start
-    addAction('&#10003;', function(done) { // ✓
+    addAction('&#9852;', function(done) { // ♼
 
       // Existing instance checker
       addAction('&#10063;', function(done) { // ❏
