@@ -60,10 +60,6 @@ window.cc = window.cc ? cc : {};
           });
         }
       }
-      // Make this function accessible everywhere
-      cc.init.addAction = function(action, runFunction) {
-        return addAction(action, runFunction);
-      }
 
       // Add actionRemover to pending actions
       pendingActions.push(actionRemover);
@@ -72,6 +68,17 @@ window.cc = window.cc ? cc : {};
       actionRemover.msg = action;
 
       return runFunction(actionRemover);
+    }
+    // Make this function accessible everywhere
+    cc.init.addAction = function(action, runFunction) {
+      return addAction(action, runFunction);
+    }
+
+    // Helper function because I do this a million times below
+    function addScript(action, script) {
+      addAction(action, function(done) {
+        $.getScript(script).done(done);
+      });
     }
 
     // This action ensures that all actions have time to start
@@ -107,19 +114,13 @@ window.cc = window.cc ? cc : {};
       });
 
       // lz-string (data compression library)
-      addAction('&#11075;', function(done) { // ⭃
-        $.getScript('lib/lz-string.min.js').done(done);
-      });
+      addScript('&#11075;', 'lib/lz-string.min.js'); // ⭃
 
       // Rhaboo (data storage library)
-      addAction('&#9923;', function(done) { // ⛃
-        $.getScript('lib/rhaboo.min.js').done(done);
-      });
+      addScript('&#9923;', 'lib/rhaboo.min.js'); // ⛃
 
       // schemeNumber (accurate numbers library)
-      addAction('&#9320;', function(done) { // ⑨
-        $.getScript('lib/schemeNumber.min.js').done(done);
-      });
+      addScript('&#9320;', 'lib/schemeNumber.min.js'); // ⑨
 
       done();
     });

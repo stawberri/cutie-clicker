@@ -1,6 +1,6 @@
 !function() {
   // Current data version
-  var dataStorageVersion = 1;
+  var dataStorageVersion = 2;
 
   // Load data
   cc.init.addAction('&#9921;', function(done) { // ⛁
@@ -21,7 +21,10 @@
     switch(cc.ls.v) {
       default: // there isn't a version
         cc.ls.write('d', {});
-      break;
+      case 1:
+        if(cc.ls.d.clicks) {
+          cc.ls.d.write('clicks', LZString.compress(String(cc.ls.d.clicks)));
+        }
       case dataStorageVersion:
     }
 
