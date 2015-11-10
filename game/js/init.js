@@ -35,7 +35,7 @@ window.cc = window.cc ? cc : {};
     // This action ensures that all actions have time to start
     addAction('&#10003;', function(done) { // ✓
 
-      // Existing instance checker
+      // Existing instance checker -- not async, so blocks execution of stuff below
       addAction('&#10063;', function(done) { // ❏
         // Use this method of "checking" to see if localStorage works
         try {
@@ -61,37 +61,35 @@ window.cc = window.cc ? cc : {};
         }
       });
 
-      // Rhaboo (data storage library)
-      addAction('&#9923;', function(done) { // ⛃
-        $.getScript('lib/rhaboo.min.js').done(function() {
-          // Create localStorage and sessionStorage data (respectively)
-          cc.ls = Rhaboo.persistent('cc-ls');
-          cc.ss = Rhaboo.perishable('cc-ss');
+      // lz-string (data compression library)
+      addAction('&#11075;', function(done) { // ⭃
+        $.getScript('lib/lz-string.min.js').done(function() {
 
-          // Check localStorage version
-          switch(cc.ls.v) {
-            default:
-              cc.ls.write('d', {})
+          // Rhaboo (data storage library)
+          addAction('&#9923;', function(done) { // ⛃
+            $.getScript('lib/rhaboo.min.js').done(function() {
+              // Create localStorage and sessionStorage data (respectively)
+              cc.ls = Rhaboo.persistent('cc-ls');
+              cc.ss = Rhaboo.perishable('cc-ss');
 
-              cc.ls.write('v', 1);
-            case 1:
-          }
+              // Data update script
+              addAction('&#9850;', function(done) { // ♺
+                $.getScript('game/js/update.js').done(function() {
+                  done();
+                });
+              });
 
-          // Check sessionStorage version
-          switch(cc.ss.v) {
-            default:
-              cc.ss.write('d', {})
-
-              cc.ss.write('v', 1);
-            case 1:
-          }
+              done();
+            });
+          });
 
           done();
         });
       });
 
-      done();
 
+
+      done();
     });
   };
 
