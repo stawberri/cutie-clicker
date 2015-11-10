@@ -1,5 +1,4 @@
 !function() {
-
   // Duct taped together simple clicker game
   var clicker = $('#cutie-clicker');
   var cutie = $('#cutie');

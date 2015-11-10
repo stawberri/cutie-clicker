@@ -80,6 +80,10 @@ window.cc = window.cc ? cc : {};
         $.getScript(script).done(done);
       });
     }
+    // Make this accessible everywhere as well
+    cc.init.addScript = function(action, script) {
+      return addScript(action, script);
+    }
 
     // This action ensures that all actions have time to start
     addAction('&#9852;', function(done) { // ♼
