@@ -1,0 +1,49 @@
+/* Whole page styles */
+
+.site, .site body {
+  width: 100%; height: 100%;
+  margin: 0;
+  color: #000;
+  background: #fff;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Normally invisible things */
+.site #nojs,
+.site #site-content-shield,
+.site #site-game-loading {
+  display: none;
+}
+
+/* Content shield */
+.site.loading #site-content-shield,
+.site.nojs #site-content-shield {
+  display: block;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, .69);
+}
+
+/* Game loading messages */
+.site.loading #site-game-loading {
+  display: block;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 69px;
+}
+
+/* No-Javascript warning */
+.site.nojs #nojs {
+  display: block;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 69px;
+  text-decoration: none;
+  display: block;
+  padding: 42px;
+  outline: none;
+}

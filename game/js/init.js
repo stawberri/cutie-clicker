@@ -7,6 +7,21 @@ window.cc = window.cc ? cc : {};
   cc.init = function() {
     // Keep track of pending tasks
     var pendingActions = [];
+
+    // Switch site to loading mode
+    $('html').addClass('loading');
+    var loadingMessageIntervalId = setInterval(function() {
+      // Make a new array of all the action messages
+      var actionMsgs = $.map(pendingActions, function(action) {
+        // If it's undefined, it just skips over this.
+        return action.msg;
+      });
+
+      // Set loading message to those messages
+      $('#site-game-loading').html(actionMsgs.join(' '));
+    }, 100);
+
+    // This function actually uses pendingActions above
     function addAction(action, runFunction) {
       // Create a default function that just returns argument
       runFunction = runFunction || function(arg) {
@@ -19,6 +34,14 @@ window.cc = window.cc ? cc : {};
 
         // Are we ready to start?
         if(pendingActions.length <= 0) {
+          // Remove loading message timer thingie
+          clearInterval(loadingMessageIntervalId);
+          // Clear body
+          $('body').html('');
+          // Remove all classes from html
+          $('html').removeClass();
+
+          // Load page
           $('body').load('game/cutie.html');
         }
       }
@@ -26,8 +49,8 @@ window.cc = window.cc ? cc : {};
       // Add actionRemover to pending actions
       pendingActions.push(actionRemover);
 
-      // Set actionName to action parameter
-      actionRemover.actionName = action;
+      // Set message to action parameter
+      actionRemover.msg = action;
 
       return runFunction(actionRemover);
     }
