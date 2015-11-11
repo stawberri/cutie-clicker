@@ -3,7 +3,11 @@
   var clicker = $('#cutie-clicker');
   var cutie = $('#cutie');
 
+  var surpriseTimeout;
+
   var clickstart = function() {
+    clearTimeout(surpriseTimeout);
+
     cutie.addClass('clicked');
 
     // Update click counter and display
@@ -13,7 +17,9 @@
   $('#click-counter').html(cc.stats.clicks());
 
   var clickend = function() {
-    cutie.removeClass('clicked');
+    surpriseTimeout = setTimeout(function() {
+      cutie.removeClass('clicked');
+    }, 250);
   };
 
   clicker.on('touchstart', clickstart);
