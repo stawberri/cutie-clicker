@@ -10,13 +10,14 @@
       return number || '0';
     } else {
       // Setter
-      var number = SchemeNumber(value);
-      var returnValue = number = String(number);
+      var number = String(value);
+      number = SchemeNumber(value);
+      var uncompressedNumber = number = String(number);
       number = LZString.compress(number);
       parent.write(name, number);
 
-      // This returns the string before it was compressed
-      return returnValue;
+      // This returns number before it was compressed
+      return uncompressedNumber;
     }
   }
 }();

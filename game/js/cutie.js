@@ -7,8 +7,7 @@
     cutie.addClass('clicked');
 
     // Update click counter and display
-    cc.stats.clicks.add(1);
-    $('#click-counter').html(cc.stats.clicks());
+    $('#click-counter').html(cc.stats.clicks.add(1));
   };
   // Populate click counter
   $('#click-counter').html(cc.stats.clicks());
