@@ -129,6 +129,9 @@ window.cc = window.cc ? cc : {};
       // cc.util
       addScript('&#9939;', 'game/js/util.js'); // ⛓
 
+      // cc.stats
+      addScript('&#127918;', 'game/js/stats.js'); // 🎮
+
       done();
     });
   };

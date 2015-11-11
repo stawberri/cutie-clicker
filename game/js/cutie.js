@@ -7,12 +7,11 @@
     cutie.addClass('clicked');
 
     // Update click counter and display
-    var clicksPlusOne = String(SchemeNumber.fn['+'](cc.util.rhanum(cc.ls.d, 'clicks'), '1'));
-    $('#click-counter').html(clicksPlusOne);
-    cc.util.rhanum(cc.ls.d, 'clicks', clicksPlusOne);
+    cc.stats.clicks.add(1);
+    $('#click-counter').html(cc.stats.clicks());
   };
-  // populate click counter
-  $('#click-counter').html(cc.util.rhanum(cc.ls.d, 'clicks'));
+  // Populate click counter
+  $('#click-counter').html(cc.stats.clicks());
 
   var clickend = function() {
     cutie.removeClass('clicked');
