@@ -3,7 +3,7 @@
 
   // Gets / Sets a LZ compressed SchemeNumber number from Rhaboo
   cc.util.rhanum = function(parent, name, value) {
-    if($.type(value) == 'undefined') {
+    if($.type(value) === 'undefined') {
       // getter
       var number = parent[name];
       number = LZString.decompress(number);
