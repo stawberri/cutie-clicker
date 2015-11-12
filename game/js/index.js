@@ -1,5 +1,3 @@
-// This script corresponds with cutie.html. Not to be confused with cuties.js
-
 !function() {
   // Duct taped together simple clicker game
   var clicker = $('#cutie-clicker');

@@ -132,6 +132,9 @@ window.cc = window.cc ? cc : {};
       // cc.stats
       addScript('&#127918;', 'game/js/stats.js'); // 🎮
 
+      // cc.cuties
+      addScript('&#9829;', 'game/js/cuties.js') // ♥
+
       done();
     });
   };
