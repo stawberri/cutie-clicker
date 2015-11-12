@@ -24,7 +24,7 @@
     populateClickCounter();
   });
 
-  clicker.on('mouseup touchstart', function(ev) {
+  clicker.on('mouseup touchend', function(ev) {
     ev.preventDefault();
 
     surpriseTimeout = setTimeout(function() {
