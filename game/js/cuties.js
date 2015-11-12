@@ -40,10 +40,11 @@
       var cutieBase = cc.cuties[cutieType];
 
       // Create a proto on cutieBase with cc.cuties.proto, or use a previously created one
-      cutieBase.proto = cutieBase.proto || Object.create(cc.cuties.proto, cutieBase.prototype || {});
-      var cutie = Object.create(cutieBase.proto, {});
-      cutieBase.call(cutie, dataObject);
+      cutieBase.proto = cutieBase.proto || $.extend(Object.create(cc.cuties.proto), cutieBase.prototype);
+      var cutie = $.extend(Object.create(cutieBase.proto), {constructor: cutieBase});
+      cutie.constructor.call(cutie, dataObject);
 
+      // These are only really good to be used as private variables. Too risky otherwise.
       cutie.data = dataObject;
       cutie.base = cutieBase;
 
