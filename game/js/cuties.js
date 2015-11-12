@@ -161,8 +161,8 @@
 
   // Cutie object prototype
   cc.cuties.proto = {
-    // Get / set love
-    love: function(value) {
+    // Get / set love - low level, doesn't trigger events
+    lv: function(value) {
       if($.type(value) === 'undefined') {
         // Get - default to 0
         return cc.util.rhanum(this.data, 'lv') || cc.util.rhanum(this.data, 'lv', '0');
@@ -171,8 +171,8 @@
         return cc.util.rhanum(this.data, 'lv', value);
       }
     },
-    // Get / set excitement
-    excitement: function(value) {
+    // Get / set excitement - low level, doesn't trigger events
+    xp: function(value) {
       if($.type(value) === 'undefined') {
         // Get - default to 0
         return cc.util.rhanum(this.data, 'xp') || cc.util.rhanum(this.data, 'xp', '0');
