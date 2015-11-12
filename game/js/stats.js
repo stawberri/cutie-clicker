@@ -5,11 +5,13 @@
 
   // Modify click counter
   cc.stats.clicks = function(value) {
-    if($.type(value) !== 'undefined') {
+    if($.type(value) === 'undefined') {
+      // Getter - Default to 0 clicks
+      return cc.util.rhanum(cc.ls.d, 'clicks') || cc.util.rhanum(cc.ls.d, 'clicks', 0);
+    } else {
       // Setter
       return cc.util.rhanum(cc.ls.d, 'clicks', value);
     }
-    return cc.util.rhanum(cc.ls.d, 'clicks') || cc.util.rhanum(cc.ls.d, 'clicks', 0);
   }
     // Adder helper function
     cc.stats.clicks.add = function(value) {
