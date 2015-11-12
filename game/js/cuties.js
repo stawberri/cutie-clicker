@@ -79,6 +79,57 @@
     return cc.cuties(newIndex);
   }
 
+  // Grab current array
+  function current() {
+    return data().current || data().write('current', []).current;
+  }
+
+  // Left and Right cuties are pretty simple
+  cc.cuties.l = function(index) {
+    if(index) {
+      // Setter
+      current().write(1, index);
+    }
+    if($.type(current()[1]) === 'number') return cc.cuties(current()[1]);
+  }
+  cc.cuties.r = function(index) {
+    if(index) {
+      // Setter
+      current().write(2, index);
+    }
+    if($.type(current()[2]) === 'number') return cc.cuties(current()[2]);
+  }
+
+  // Middle is a little more complex
+  cc.cuties.m = function(index) {
+    if(index) {
+      // Setter
+      current().write(0, index);
+    }
+
+    if($.type(current()[0]) === 'number') {
+      return cc.cuties(current()[0]);
+    } else {
+      // This can't empty.
+      if($.type(current()[2]) === 'number') {
+        // Grab right cutie
+        var newIndex = current()[2];
+        // Empty out right cutie
+        cc.cuties.r();
+        return cc.cuties.m(newIndex);
+      } else if($.type(current()[1]) === 'number') {
+        // Grab left cutie
+        var newIndex = current()[1];
+        // Empty out left cutie
+        cc.cuties.l();
+        return cc.cuties.m(newIndex);
+      } else {
+        // Grab first cutie
+        return cc.cuties.m(0);
+      }
+    }
+  }
+
   // Cutie object prototype
   cc.cuties.proto = {
   };
