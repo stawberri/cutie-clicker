@@ -3,6 +3,9 @@
   var clicker = $('#cutie-clicker');
   var cutie = $('#cutie');
 
+  // LET'S JUST TEST IT
+  var middlecutie = cc.cuties.m();
+
   var surpriseTimeout;
 
   clicker.on('mousedown', function() {

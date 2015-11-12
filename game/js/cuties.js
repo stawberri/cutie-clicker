@@ -86,14 +86,14 @@
 
   // Left and Right cuties are pretty simple
   cc.cuties.l = function(index) {
-    if(index) {
+    if($.type(index) !== 'undefined') {
       // Setter
       current().write(1, index);
     }
     if($.type(current()[1]) === 'number') return cc.cuties(current()[1]);
   }
   cc.cuties.r = function(index) {
-    if(index) {
+    if($.type(index) !== 'undefined') {
       // Setter
       current().write(2, index);
     }
@@ -102,7 +102,7 @@
 
   // Middle is a little more complex
   cc.cuties.m = function(index) {
-    if(index) {
+    if($.type(index) !== 'undefined') {
       // Setter
       current().write(0, index);
     }
