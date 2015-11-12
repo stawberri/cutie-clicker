@@ -42,6 +42,7 @@
       // Create a proto on cutieBase with cc.cuties.proto, or use a previously created one
       cutieBase.proto = cutieBase.proto || $.extend(Object.create(cc.cuties.proto), cutieBase.prototype);
       var cutie = $.extend(Object.create(cutieBase.proto), {constructor: cutieBase});
+      cc.cuties.construct.call(cutie, dataObject);
       cutie.constructor.call(cutie, dataObject);
 
       // These are only really good to be used as private variables. Too risky otherwise.
@@ -131,7 +132,32 @@
     }
   }
 
+  // Cutie object constructor
+  cc.cuties.construct = function() {
+
+  }
+
   // Cutie object prototype
   cc.cuties.proto = {
+    // Get / set love
+    love: function(value) {
+      if($.type(value) === 'undefined') {
+        // Get - default to 0
+        return cc.util.ranum(this.data, 'lv') || cc.util.ranum(this.data, 'lv', '0');
+      } else {
+        // Set
+        return cc.util.ranum(this.data, 'lv', value);
+      }
+    },
+    // Get / set excitement
+    excitement: function(value) {
+      if($.type(value) === 'undefined') {
+        // Get - default to 0
+        return cc.util.ranum(this.data, 'xp') || cc.util.ranum(this.data, 'xp', '0');
+      } else {
+        // Set
+        return cc.util.ranum(this.data, 'xp', value);
+      }
+    },
   };
 }();
