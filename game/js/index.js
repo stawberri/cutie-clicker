@@ -5,6 +5,10 @@
 
   var surpriseTimeout;
 
+  var lastInterval = 0;
+  var lastTime = $.now();
+  var lastxp = '1';
+
   clicker.on('mousedown touchstart', function(ev) {
     ev.preventDefault();
 
@@ -17,7 +21,21 @@
 
     // Award excitement
     cc.cuties.m(function(cutie) {
-      cutie.excitement(1);
+      var now = $.now();
+      var interval = now - lastTime;
+      var xp = 1;
+
+      if(lastInterval*.96 > interval) {
+        xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('2', lastxp, String(lastInterval/interval))));
+      } else if (interval < lastInterval * 2) {
+        xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.25', lastxp, String(lastInterval/interval))));
+      }
+
+      cutie.excitement(xp);
+
+      lastInterval = interval;
+      lastTime = now;
+      lastxp = xp;
     })
 
     // Display
