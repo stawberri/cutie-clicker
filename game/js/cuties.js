@@ -219,7 +219,7 @@
     },
     // Target xp for love up
     targetxp: function() {
-      return String(SchemeNumber.fn.expt(this.lv(), '2'));
+      return this.lv();
     },
     // Love Up processing!
     loveup: function() {
