@@ -1,4 +1,4 @@
-function() {
+!function() {
   var cutie = '119';
 
   cc.cuties[cutie] = function(data) {
@@ -7,4 +7,4 @@ function() {
   cc.cuties[cutie].prototype = {
     rarity: 0
   };
-}
+}();
