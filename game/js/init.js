@@ -55,7 +55,9 @@ window.cc = window.cc ? cc : {};
               $('html').removeClass();
 
               // Load page
-              $('body').load('game/index.html');
+              $('body').load('game/index.html', function() {
+                $.getScript('game/js/index.js');
+              });
             });
           });
         }
