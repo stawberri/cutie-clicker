@@ -1,4 +1,10 @@
 function() {
-  cc.cuties['119'] = function(data) {
+  var cutie = '119';
+
+  cc.cuties[cutie] = function(data) {
+  };
+
+  cc.cuties[cutie].prototype = {
+    rarity: 0
   };
 }
