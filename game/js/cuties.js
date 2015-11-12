@@ -71,9 +71,9 @@
 
     var options = $.merge(otherOptions || {}, {cutie: String(cutie)});
 
-    var newIndex = list().length;
+    var newIndex = cc.cuties.list().length;
 
-    list().write(newIndex, options);
+    cc.cuties.list().write(newIndex, options);
 
     // Return cutie object
     return cc.cuties(newIndex);
