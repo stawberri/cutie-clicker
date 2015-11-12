@@ -154,16 +154,16 @@
         var newIndex = current()[2];
         // Empty out right cutie
         cc.cuties.r(null);
-        return cc.cuties.m(newIndex);
+        return cc.cuties.m(newIndex, callback);
       } else if($.type(current()[1]) === 'number') {
         // Grab left cutie
         var newIndex = current()[1];
         // Empty out left cutie
         cc.cuties.l(null);
-        return cc.cuties.m(newIndex);
+        return cc.cuties.m(newIndex, callback);
       } else {
         // Grab first cutie
-        return cc.cuties.m(0);
+        return cc.cuties.m(0, callback);
       }
     }
   }
