@@ -3,9 +3,6 @@
   var clicker = $('#cutie-clicker');
   var cutie = $('#cutie');
 
-  // LET'S JUST TEST IT
-  var middlecutie = cc.cuties.m();
-
   var surpriseTimeout;
 
   clicker.on('mousedown', function() {
@@ -13,8 +10,16 @@
 
     cutie.addClass('clicked');
 
-    // Update click counter and display
-    $('#click-counter').html(cc.stats.clicks.add(1));
+    // Update click counter
+    cc.stats.clicks.add(1);
+
+    // Award excitement
+    cc.cuties.m(function(cutie) {
+      cutie.excitement(1);
+    })
+
+    // Display
+    populateClickCounter();
   });
 
   clicker.on('mouseup', function() {
@@ -23,7 +28,16 @@
     }, 250);
   });
 
-  // Populate click counter
-  $('#click-counter').html(cc.stats.clicks());
+  function populateClickCounter() {
+    cc.cuties.m(function(cutie) {
+      var msg = '';
+      msg += cutie.lv() + 'LV ';
+      msg += cutie.xp() + '/' + cutie.targetxp() + 'XP ';
+      msg += cc.stats.clicks() + 'C ';
+      $('#click-counter').html(msg);
+    });
+  }
+
+  populateClickCounter();
 
 }();

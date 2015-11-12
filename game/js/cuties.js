@@ -6,7 +6,7 @@
     cutie: '119'
   }
 
-  cc.cuties = function(dataIndex) {
+  cc.cuties = function(dataIndex, callback) {
     var cutieData = cc.cuties.list();
 
     // Check lower bound
@@ -16,7 +16,7 @@
 
     // Need to make a starter cutie?
     if(dataIndex == 0 && cutieData.length == 0) {
-      return cc.cuties.add(starterCutie);
+      return cc.cuties(cc.cuties.add(starterCutie), callback);
     }
 
     // Check upper bound
@@ -27,30 +27,35 @@
     var dataObject = cutieData[dataIndex];
     var cutieType = dataObject.cutie;
 
-    // Is script loaded yet?
-    if(cc.cuties[cutieType]) {
-      return cutieProcessor();
-    } else {
-      $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
-        return cutieProcessor();
-      });
+    if($.type(callback) === 'function') {
+
+      function cutieProcessor(callback) {
+        var cutieBase = cc.cuties[cutieType];
+
+        // Create a proto on cutieBase with cc.cuties.proto, or use a previously created one
+        cutieBase.proto = cutieBase.proto || $.extend(Object.create(cc.cuties.proto), cutieBase.prototype);
+        var cutie = $.extend(Object.create(cutieBase.proto), {constructor: cutieBase});
+        cc.cuties.construct.call(cutie, dataObject);
+        cutie.constructor.call(cutie, dataObject);
+
+        // These are only really good to be used as private variables. Too risky otherwise.
+        cutie.data = dataObject;
+        cutie.base = cutieBase;
+
+        callback(cutie);
+      }
+
+      // Is script loaded yet?
+      if(cc.cuties[cutieType]) {
+        cutieProcessor(callback);
+      } else {
+        $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
+          cutieProcessor(callback);
+        });
+      }
     }
 
-    function cutieProcessor() {
-      var cutieBase = cc.cuties[cutieType];
-
-      // Create a proto on cutieBase with cc.cuties.proto, or use a previously created one
-      cutieBase.proto = cutieBase.proto || $.extend(Object.create(cc.cuties.proto), cutieBase.prototype);
-      var cutie = $.extend(Object.create(cutieBase.proto), {constructor: cutieBase});
-      cc.cuties.construct.call(cutie, dataObject);
-      cutie.constructor.call(cutie, dataObject);
-
-      // These are only really good to be used as private variables. Too risky otherwise.
-      cutie.data = dataObject;
-      cutie.base = cutieBase;
-
-      return cutie;
-    }
+    return cutieType;
   };
 
   // This is a function instead of a variable because we can't access data when this is being run
@@ -77,8 +82,8 @@
 
     cc.cuties.list().write(newIndex, options);
 
-    // Return cutie object
-    return cc.cuties(newIndex);
+    // Return cutie index
+    return newIndex;
   }
 
   // Remove a cute from data
@@ -109,43 +114,52 @@
   }
 
   // Left and Right cuties are pretty simple
-  cc.cuties.l = function(index) {
-    if($.type(index) !== 'undefined') {
+  cc.cuties.l = function(index, callback) {
+    if($.type(index) === 'function') {
+      // Called with only a callback
+      callback = index;
+    } else if($.type(index) !== 'undefined') {
       // Setter
       current().write(1, index);
     }
-    if($.type(current()[1]) === 'number') return cc.cuties(current()[1]);
+    if($.type(current()[1]) === 'number') return cc.cuties(current()[1], callback);
   }
-  cc.cuties.r = function(index) {
-    if($.type(index) !== 'undefined') {
+  cc.cuties.r = function(index, callback) {
+    if($.type(index) === 'function') {
+      // Called with only a callback
+      callback = index;
+    } else if($.type(index) !== 'undefined') {
       // Setter
       current().write(2, index);
     }
-    if($.type(current()[2]) === 'number') return cc.cuties(current()[2]);
+    if($.type(current()[2]) === 'number') return cc.cuties(current()[2], callback);
   }
 
   // Middle is a little more complex
-  cc.cuties.m = function(index) {
-    if($.type(index) !== 'undefined') {
+  cc.cuties.m = function(index, callback) {
+    if($.type(index) === 'function') {
+      // Called with only a callback
+      callback = index;
+    } else if($.type(index) !== 'undefined') {
       // Setter
       current().write(0, index);
     }
 
     if($.type(current()[0]) === 'number') {
-      return cc.cuties(current()[0]);
+      return cc.cuties(current()[0], callback);
     } else {
       // This can't empty.
       if($.type(current()[2]) === 'number') {
         // Grab right cutie
         var newIndex = current()[2];
         // Empty out right cutie
-        cc.cuties.r();
+        cc.cuties.r(null);
         return cc.cuties.m(newIndex);
       } else if($.type(current()[1]) === 'number') {
         // Grab left cutie
         var newIndex = current()[1];
         // Empty out left cutie
-        cc.cuties.l();
+        cc.cuties.l(null);
         return cc.cuties.m(newIndex);
       } else {
         // Grab first cutie
@@ -180,6 +194,37 @@
         // Set
         return cc.util.rhanum(this.data, 'xp', value);
       }
+    },
+    // Incremenets love
+    love: function(value) {
+      if(value) {
+        value = String(value);
+        this.lv(SchemeNumber.fn['+'](this.lv(), value));
+      }
+      return this.lv();
+    },
+    // Incremenets excitement
+    excitement: function(value) {
+      if(value) {
+        value = String(value);
+        this.xp(SchemeNumber.fn['+'](this.xp(), value));
+      }
+
+      // For now, instantly loveup if excitement goes over target
+      if(SchemeNumber.fn['>'](this.xp(), this.targetxp())) {
+        this.loveup();
+      }
+
+      return this.xp();
+    },
+    // Target xp for love up
+    targetxp: function() {
+      return String(SchemeNumber.fn.expt('2', this.lv()));
+    },
+    // Love Up processing!
+    loveup: function() {
+      this.xp('0');
+      this.love('1');
     }
   };
 }();
