@@ -180,6 +180,6 @@
         // Set
         return cc.util.rhanum(this.data, 'xp', value);
       }
-    },
+    }
   };
 }();
