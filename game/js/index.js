@@ -31,9 +31,8 @@
   function populateClickCounter() {
     cc.cuties.m(function(cutie) {
       var msg = '';
-      msg += cutie.lv() + 'LV ';
+      msg += 'LV ' + cutie.lv() + ' - ';
       msg += cutie.xp() + '/' + cutie.targetxp() + 'XP ';
-      msg += cc.stats.clicks() + 'C ';
       $('#click-counter').html(msg);
     });
   }
