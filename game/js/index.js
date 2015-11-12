@@ -5,7 +5,9 @@
 
   var surpriseTimeout;
 
-  clicker.on('mousedown', function() {
+  clicker.on('mousedown touchstart', function(ev) {
+    ev.preventDefault();
+
     clearTimeout(surpriseTimeout);
 
     cutie.addClass('clicked');
@@ -22,21 +24,13 @@
     populateClickCounter();
   });
 
-  clicker.on('touchstart'), function(ev) {
-    clicker.trigger('mousedown');
+  clicker.on('mouseup touchstart', function(ev) {
     ev.preventDefault();
-  }
 
-  clicker.on('mouseup', function() {
     surpriseTimeout = setTimeout(function() {
       cutie.removeClass('clicked');
     }, 250);
   });
-
-  clicker.on('touchend'), function(ev) {
-    clicker.trigger('mouseup');
-    ev.preventDefault();
-  }
 
   function populateClickCounter() {
     cc.cuties.m(function(cutie) {
