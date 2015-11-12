@@ -11,7 +11,7 @@
 
     // Check lower bound
     if(dataIndex < 0) {
-      return null;
+      return;
     }
 
     // Need to make a starter cutie?
@@ -21,7 +21,7 @@
 
     // Check upper bound
     if(dataIndex >= cutieData.length) {
-      return null;
+      return;
     }
 
     var dataObject = cutieData[dataIndex];
@@ -79,6 +79,28 @@
 
     // Return cutie object
     return cc.cuties(newIndex);
+  }
+
+  // Remove a cute from data
+  cc.cuties.remove = function(index) {
+    // Bounds check
+    if(index < 0 || index >= cc.cuties.list().length) {
+      return;
+    }
+
+    // This is the easy part
+    cc.cuties.list().splice(index, 1);
+
+    // Check current list and decrement (or remove) if necessary
+    $.each(current(), function(currentIndex, currentValue) {
+      if(currentValue == index) {
+        // Removed a current cutie
+        current().write(currentIndex, undefined);
+      } else if (currentValue < index) {
+        // Removed a cutie that comes before current cutie
+        current().write(currentIndex, currentValue - 1);
+      }
+    });
   }
 
   // Grab current array
@@ -143,20 +165,20 @@
     love: function(value) {
       if($.type(value) === 'undefined') {
         // Get - default to 0
-        return cc.util.ranum(this.data, 'lv') || cc.util.ranum(this.data, 'lv', '0');
+        return cc.util.rhanum(this.data, 'lv') || cc.util.rhanum(this.data, 'lv', '0');
       } else {
         // Set
-        return cc.util.ranum(this.data, 'lv', value);
+        return cc.util.rhanum(this.data, 'lv', value);
       }
     },
     // Get / set excitement
     excitement: function(value) {
       if($.type(value) === 'undefined') {
         // Get - default to 0
-        return cc.util.ranum(this.data, 'xp') || cc.util.ranum(this.data, 'xp', '0');
+        return cc.util.rhanum(this.data, 'xp') || cc.util.rhanum(this.data, 'xp', '0');
       } else {
         // Set
-        return cc.util.ranum(this.data, 'xp', value);
+        return cc.util.rhanum(this.data, 'xp', value);
       }
     },
   };
