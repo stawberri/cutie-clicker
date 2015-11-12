@@ -1,3 +1,5 @@
+// This provides general utility stuff.
+
 !function() {
   cc.util = {};
 

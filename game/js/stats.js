@@ -1,3 +1,5 @@
+// This script provides helper stuff to deal with player stats.
+
 !function() {
   cc.stats = {};
 
