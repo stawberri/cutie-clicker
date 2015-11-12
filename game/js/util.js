@@ -8,8 +8,13 @@
     if($.type(value) === 'undefined') {
       // Getter
       var number = parent[name];
-      number = LZString.decompress(number);
-      return number || '0';
+
+      if($.type(number) !== 'string') {
+        // Something weird happened.
+        return;
+      }
+
+      return LZString.decompress(number);
     } else {
       // Setter
       var number = String(value);

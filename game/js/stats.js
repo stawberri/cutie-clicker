@@ -6,10 +6,10 @@
   // Modify click counter
   cc.stats.clicks = function(value) {
     if($.type(value) === 'undefined') {
-      // getter
-      return cc.util.rhanum(cc.ls.d, 'clicks');
+      // Getter - Default to 0 clicks
+      return cc.util.rhanum(cc.ls.d, 'clicks') || cc.util.rhanum(cc.ls.d, 'clicks', 0);
     } else {
-      // setter
+      // Setter
       return cc.util.rhanum(cc.ls.d, 'clicks', value);
     }
   }
