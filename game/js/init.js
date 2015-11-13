@@ -5,6 +5,9 @@ window.cc = window.cc ? cc : {};
 
   // Create init function
   cc.init = function() {
+    // Remember when we started
+    var initBeginTime = $.now();
+
     // Keep track of pending tasks
     var pendingActions = [];
 
@@ -56,7 +59,13 @@ window.cc = window.cc ? cc : {};
 
               // Load page
               $('body').load('game/index.html', function() {
-                $.getScript('game/js/index.js');
+                $.getScript('game/js/index.js').done(function() {
+                  // How long did this all take?
+                  var msSinceStart = $.now() - initBeginTime;
+
+                  // Send it to Google Analytics
+                  ga('send', 'timing', 'Game Init', 'total', msSinceStart, 'Total cc.init runtime');
+                });
               });
             });
           });
