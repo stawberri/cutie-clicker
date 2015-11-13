@@ -9,6 +9,7 @@
     // Check localStorage version
     switch(cc.ls.v) {
       default: // there isn't a version
+        cc.ls.erase('d');
         cc.ls.write('d', {});
       case 1:
         if(cc.ls.d.clicks) {
@@ -36,7 +37,8 @@
 
     // Throw out sessionStorage if version doesn't match
     if(cc.ss.v != dataStorageVersion) {
-        cc.ss.write('d', {})
+        cc.ss.erase('d');
+        cc.ss.write('d', {});
     }
 
     // Update versions
