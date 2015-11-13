@@ -31,7 +31,10 @@
         xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.25', lastxp, String(lastInterval/interval))));
       }
 
-      cutie.excitement(xp);
+      cc.stats.excitement(xp);
+
+      // automatically attempt to love up for now
+      cutie.loveup();
 
       lastInterval = interval;
       lastTime = now;
@@ -54,7 +57,7 @@
     cc.cuties.m(function(cutie) {
       var msg = '';
       msg += 'LV ' + cutie.lv() + ' - ';
-      msg += cutie.xp() + '/' + cutie.targetxp() + 'XP ';
+      msg += cc.stats.xp() + '/' + cutie.targetxp() + 'XP ';
       $('#click-counter').html(msg);
     });
   }

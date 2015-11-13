@@ -185,16 +185,6 @@
         return cc.util.rhanum(this.data, 'lv', value);
       }
     },
-    // Get / set excitement - low level, doesn't trigger events
-    xp: function(value) {
-      if($.type(value) === 'undefined') {
-        // Get - default to 0
-        return cc.util.rhanum(this.data, 'xp') || cc.util.rhanum(this.data, 'xp', '0');
-      } else {
-        // Set
-        return cc.util.rhanum(this.data, 'xp', value);
-      }
-    },
     // Incremenets love
     love: function(value) {
       if(value) {
@@ -203,28 +193,17 @@
       }
       return this.lv();
     },
-    // Incremenets excitement
-    excitement: function(value) {
-      if(value) {
-        value = String(value);
-        this.xp(SchemeNumber.fn['+'](this.xp(), value));
-      }
-
-      // For now, instantly loveup if excitement goes over target
-      if(SchemeNumber.fn['>'](this.xp(), this.targetxp())) {
-        this.loveup();
-      }
-
-      return this.xp();
-    },
-    // Target xp for love up
+    // How much excitement does this cutie require for love up?
     targetxp: function() {
       return String(SchemeNumber.fn.expt(this.lv(), '2'));
     },
     // Love Up processing!
     loveup: function() {
-      this.xp('0');
-      this.love('1');
+      // Check to see if this is valid
+      if(SchemeNumber.fn['>'](cc.stats.xp(), this.targetxp())) {
+        cc.stats.excitement('-' + cc.stats.excitement());
+        this.love('1');
+      }
     }
   };
 }();

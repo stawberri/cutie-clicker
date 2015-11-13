@@ -1,6 +1,6 @@
 !function() {
   // Current data version
-  var dataStorageVersion = 2;
+  var dataStorageVersion = 3;
 
   // Process persistent data
   cc.init.addAction('&#9921;', function(done) { // ⛁
@@ -14,6 +14,13 @@
         if(cc.ls.d.clicks) {
           cc.ls.d.write('clicks', LZString.compress(String(cc.ls.d.clicks)));
         }
+      case 2:
+        cc.cuties(0, function(cutie) {
+          if(cutie.data.xp) {
+            cc.ls.d.write('xp', cutie.data.xp);
+            cutie.data.erase('xp');
+          }
+        });
       case dataStorageVersion:
     }
 
