@@ -45,14 +45,14 @@
 
     // Adjust for annoying orientation issues
     if(window.orientation == 90) {
-      gamma = -originalBeta;
-      beta = originalGamma;
-    } else if(window.orientation == -90) {
       gamma = originalBeta;
       beta = -originalGamma;
+    } else if(window.orientation == -90) {
+      gamma = -originalBeta;
+      beta = originalGamma;
     } else {
-      gamma = -originalGamma;
-      beta = -originalBeta;
+      gamma = originalGamma;
+      beta = originalBeta;
     }
 
     // Recenter gamma and beta
