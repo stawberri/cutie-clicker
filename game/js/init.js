@@ -28,7 +28,7 @@ window.cc = window.cc ? cc : {};
     }, 100);
 
     // This function actually uses pendingActions above
-    function addAction(action, runFunction) {
+    function addAction(action, readableAction, runFunction) {
       // When did this start?
       var actionBeginTime = $.now();
 
@@ -43,7 +43,7 @@ window.cc = window.cc ? cc : {};
 
         // Calculate and record how long this action took
         var actionTotalTime = $.now() - actionBeginTime;
-        ga('send', 'timing', 'game init', action, actionTotalTime);
+        ga('send', 'timing', 'game init', readableAction, actionTotalTime);
 
         // Are we ready to start?
         if(pendingActions.length <= 0 && !disableActionCheck) {
@@ -51,7 +51,7 @@ window.cc = window.cc ? cc : {};
           disableActionCheck = true;
 
           // Data update script. This is here because it pretty much requires everything.
-          addAction('&#9853;', function(done) { // ♽
+          addAction('&#9853;', 'data update', function(done) { // ♽
             $.getScript('game/js/update.js').done(function() {
               // Remove this item
               done();
@@ -84,30 +84,31 @@ window.cc = window.cc ? cc : {};
 
       // Set message to action parameter
       actionRemover.msg = action;
+      actionRemover.internalMsg = readableAction;
 
       return runFunction(actionRemover);
     }
     // Make this function accessible everywhere
-    cc.init.addAction = function(action, runFunction) {
-      return addAction(action, runFunction);
+    cc.init.addAction = function(action, readableAction, runFunction) {
+      return addAction(action, readableAction, runFunction);
     }
 
     // Helper function because I do this a million times below
-    function addScript(action, script) {
-      addAction(action, function(done) {
+    function addScript(action, readableAction, script) {
+      addAction(action, readableAction, function(done) {
         $.getScript(script).done(done);
       });
     }
     // Make this accessible everywhere as well
-    cc.init.addScript = function(action, script) {
-      return addScript(action, script);
+    cc.init.addScript = function(action, readableAction, script) {
+      return addScript(action, readableAction, script);
     }
 
     // This action ensures that all actions have time to start
-    addAction('&#9852;', function(done) { // ♼
+    addAction('&#9852;', 'action launcher', function(done) { // ♼
 
       // Existing instance checker
-      addAction('&#10063;', function(done) { // ❏
+      addAction('&#10063;', 'instance checker', function(done) { // ❏
         // Allow code below to run too
         setTimeout(function() {
           // Use this method of "checking" to see if localStorage works
@@ -136,22 +137,22 @@ window.cc = window.cc ? cc : {};
       });
 
       // lz-string (data compression library)
-      addScript('&#11075;', 'lib/lz-string.min.js'); // ⭃
+      addScript('&#11075;', 'lz-string', 'lib/lz-string.min.js'); // ⭃
 
       // Rhaboo (data storage library)
-      addScript('&#9923;', 'lib/rhaboo.min.js'); // ⛃
+      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.min.js'); // ⛃
 
       // schemeNumber (accurate numbers library)
-      addScript('&#9320;', 'lib/schemeNumber.min.js'); // ⑨
+      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.min.js'); // ⑨
 
       // cc.util
-      addScript('&#9939;', 'game/js/util.js'); // ⛓
+      addScript('&#9939;', 'cc.util', 'game/js/util.js'); // ⛓
 
       // cc.stats
-      addScript('&#127918;', 'game/js/stats.js'); // 🎮
+      addScript('&#127918;', 'cc.stats', 'game/js/stats.js'); // 🎮
 
       // cc.cuties
-      addScript('&#9829;', 'game/js/cuties.js') // ♥
+      addScript('&#9829;', 'cc.cuties', 'game/js/cuties.js') // ♥
 
       done();
     });

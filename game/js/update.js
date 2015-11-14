@@ -3,7 +3,7 @@
   var dataStorageVersion = 3;
 
   // Process persistent data
-  cc.init.addAction('&#9921;', function(done) { // ⛁
+  cc.init.addAction('&#9921;', 'persistent data update', function(done) { // ⛁
     cc.ls = Rhaboo.persistent('cc-ls');
 
     // Check localStorage version
@@ -32,7 +32,7 @@
   });
 
   // Process perishable data
-  cc.init.addAction('&#9728;', function(done) { // ☀
+  cc.init.addAction('&#9728;', 'perishable data update', function(done) { // ☀
     cc.ss = Rhaboo.perishable('cc-ss');
 
     // Throw out sessionStorage if version doesn't match
