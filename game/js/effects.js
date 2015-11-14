@@ -42,15 +42,15 @@
     if($.now() < lastParallaxTime + 10) return;
 
     // Need to use body size, since document includes everything, and I have no idea what window is doing
-    var gamma = (ev.originalEvent.gamma / 5);
-    var beta = (ev.originalEvent.beta / 5);
+    var gamma = (ev.originalEvent.gamma / 15);
+    var beta = (ev.originalEvent.beta / 15);
 
     // Adjust for annoying orientation issues
     if(window.orientation == 90) {
       mouseX = beta;
       mouseY = -gamma;
     } else if(window.orientation == -90) {
-      mouseY = -beta;
+      mouseX = -beta;
       mouseY = gamma;
     } else {
       mouseX = gamma;
