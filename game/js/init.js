@@ -43,7 +43,7 @@ window.cc = window.cc ? cc : {};
 
         // Calculate and record how long this action took
         var actionTotalTime = $.now() - actionBeginTime;
-        ga('send', 'timing', 'Game Init', action, actionTotalTime, 'Runtime for ' + action);
+        ga('send', 'timing', 'game init', action, actionTotalTime);
 
         // Are we ready to start?
         if(pendingActions.length <= 0 && !disableActionCheck) {
@@ -71,7 +71,7 @@ window.cc = window.cc ? cc : {};
                   var msSinceStart = $.now() - initBeginTime;
 
                   // Send it to Google Analytics
-                  ga('send', 'timing', 'Game Init', 'total', msSinceStart, 'Total cc.init runtime');
+                  ga('send', 'timing', 'game init', 'total', msSinceStart);
                 });
               });
             });
