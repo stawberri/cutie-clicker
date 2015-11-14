@@ -1,5 +1,7 @@
 !function() {
-  // Duct taped together simple clicker game
+
+  // Button was clicked events
+  // Variables for button clicked events
   var clicker = $('#cutie-clicker');
   var cutie = $('#cutie');
 
@@ -8,7 +10,6 @@
   var lastInterval = 0;
   var lastTime = $.now();
   var lastxp = '1';
-
   clicker.on('mousedown touchstart', function(ev) {
     ev.preventDefault();
 
@@ -53,6 +54,7 @@
     }, 250);
   });
 
+  // Update cutie bar display
   function populateClickCounter() {
     cc.cuties.m(function(cutie) {
       var msg = '';
