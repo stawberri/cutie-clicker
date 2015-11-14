@@ -24,6 +24,12 @@ body>.layer {
   pointer-events: none;
 }
 
+/* Background layer */
+#layer-background {
+  /* Temporary */
+  background: url(http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif) no-repeat 85% 15%;
+}
+
 /* Cutie layer */
 #layer-cutie {}
 

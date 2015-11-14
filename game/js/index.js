@@ -37,30 +37,48 @@
       });
 
       // left cutie
-      cc.cuties.l(function(cutie) {
+      // massive if statement checks if it's not defined
+      if(!cc.cuties.l(function(cutie) {
         if(cutieL != cutie.cutie) {
           cutieL = cutie.cutie;
 
-          // Remove all classes from cutieM and add them back
+          // Remove all classes from cutieL and add them back
           $('#cutie-l').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
 
           // Load cutie html
           $('#cutie-l .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
         }
-      });
+      }) && cutieL) {
+        cutieL = undefined;
+
+        // Remove all classes from cutieL and add them back
+        $('#cutie-l').removeClass().addClass('cutie-view');
+
+        // Unload cutie
+        $('#cutie-l .cutie-embed').html();
+      }
 
       // right cutie
-      cc.cuties.r(function(cutie) {
+      // massive if statement checks if it's not defined
+      if(!cc.cuties.r(function(cutie) {
         if(cutieR != cutie.cutie) {
           cutieR = cutie.cutie;
 
-          // Remove all classes from cutieM and add them back
+          // Remove all classes from cutieR and add them back
           $('#cutie-r').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
 
           // Load cutie html
           $('#cutie-r .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
         }
-      });
+      }) && cutieR) {
+        cutieR = undefined;
+
+        // Remove all classes from cutieR and add them back
+        $('#cutie-r').removeClass().addClass('cutie-view');
+
+        // Unload cutie
+        $('#cutie-r .cutie-embed').html();
+      }
     });
 
   // #layer-ui
