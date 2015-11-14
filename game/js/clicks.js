@@ -32,6 +32,7 @@
 
       // automatically attempt to love up for now
       if(SchemeNumber.fn['>'](cc.stats.xp(), cutie.targetxp())) {
+        cutie.loveup();
         cc.stats.xp('0');
       }
 
