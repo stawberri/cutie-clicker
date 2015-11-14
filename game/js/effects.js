@@ -42,8 +42,8 @@
     if($.now() < lastParallaxTime + 10) return;
 
     // Need to use body size, since document includes everything, and I have no idea what window is doing
-    var mouseX = (ev.originalEvent.gamma / 90);
-    var mouseY = (ev.originalEvent.beta / 90);
+    var mouseX = (ev.originalEvent.gamma / 30);
+    var mouseY = (ev.originalEvent.beta / 30);
 
     parallax(mouseX, mouseY);
 
