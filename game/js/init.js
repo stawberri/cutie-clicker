@@ -3,6 +3,26 @@ window.cc = window.cc ? cc : {};
 
 !function() {
 
+  // Register jquery ajax handler for analytics
+  $(document).ajaxSend(function(ev, jqxhr, options) {
+    // Local root address converter for analytics
+    function localRoot(url) {
+      // This filters out non-local addresses
+      if(url.search(/(?:\w+:)?\/\//i) != -1) {
+        return;
+      }
+
+      // Add a slash to the beginning if necessary.
+      // This assumes all urls are relative to root (they should be).
+      return (url.charAt(0) == '/') ? url : '/' + url;
+    };
+
+    var localUrl = localRoot(options.url);
+    if(localUrl) {
+      ga('send', 'pageview', localUrl);
+    }
+  });
+
   // Create init function
   cc.init = function() {
     // Remember when we started
