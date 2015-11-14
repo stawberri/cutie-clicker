@@ -52,7 +52,7 @@ window.cc = window.cc ? cc : {};
 
           // Data update script. This is here because it pretty much requires everything.
           addAction('&#9853;', function(done) { // ♽
-            $.getScript('game/js/update.js?nocache=' + initBeginTime).done(function() {
+            $.getScript('game/js/update.js').done(function() {
               // Remove this item
               done();
 
@@ -65,8 +65,8 @@ window.cc = window.cc ? cc : {};
               $('html').removeClass();
 
               // Load page
-              $('body').load('game/index.html?nocache=' + initBeginTime, function() {
-                $.getScript('game/js/index.js?nocache=' + initBeginTime).done(function() {
+              $('body').load('game/index.html', function() {
+                $.getScript('game/js/index.js').done(function() {
                   // How long did this all take?
                   var msSinceStart = $.now() - initBeginTime;
 
@@ -93,15 +93,14 @@ window.cc = window.cc ? cc : {};
     }
 
     // Helper function because I do this a million times below
-    function addScript(action, script, nocache) {
+    function addScript(action, script) {
       addAction(action, function(done) {
-        // Check for nocache, which adds init time, to prevent caching!
-        $.getScript(script + (nocache ? '?nocache=' + initBeginTime : '')).done(done);
+        $.getScript(script).done(done);
       });
     }
     // Make this accessible everywhere as well
-    cc.init.addScript = function(action, script, nocache) {
-      return addScript(action, script, nocache);
+    cc.init.addScript = function(action, script) {
+      return addScript(action, script);
     }
 
     // This action ensures that all actions have time to start
@@ -137,22 +136,22 @@ window.cc = window.cc ? cc : {};
       });
 
       // lz-string (data compression library)
-      addScript('&#11075;', 'lib/lz-string.min.js?uploadtime=11.13'); // ⭃
+      addScript('&#11075;', 'lib/lz-string.min.js'); // ⭃
 
       // Rhaboo (data storage library)
-      addScript('&#9923;', 'lib/rhaboo.min.js?uploadtime=11.13'); // ⛃
+      addScript('&#9923;', 'lib/rhaboo.min.js'); // ⛃
 
       // schemeNumber (accurate numbers library)
-      addScript('&#9320;', 'lib/schemeNumber.min.js?uploadtime=11.13'); // ⑨
+      addScript('&#9320;', 'lib/schemeNumber.min.js'); // ⑨
 
       // cc.util
-      addScript('&#9939;', 'game/js/util.js', true); // ⛓
+      addScript('&#9939;', 'game/js/util.js'); // ⛓
 
       // cc.stats
-      addScript('&#127918;', 'game/js/stats.js', true); // 🎮
+      addScript('&#127918;', 'game/js/stats.js'); // 🎮
 
       // cc.cuties
-      addScript('&#9829;', 'game/js/cuties.js', true) // ♥
+      addScript('&#9829;', 'game/js/cuties.js') // ♥
 
       done();
     });
