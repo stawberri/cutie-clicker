@@ -31,7 +31,9 @@
       cc.stats.excitement(xp);
 
       // automatically attempt to love up for now
-      cutie.loveup();
+      if(SchemeNumber.fn['>'](cc.stats.xp(), cutie.targetxp())) {
+        cc.stats.xp('0');
+      }
 
       lastInterval = interval;
       lastTime = now;

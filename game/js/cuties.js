@@ -29,9 +29,9 @@
     var dataObject = cutieData[dataIndex];
     var cutieType = dataObject.cutie;
 
-    if($.type(callback) === 'function') {
+    if($.isFunction(callback)) {
 
-      function cutieProcessor(callback) {
+      function cutieProcessor() {
         var cutieBase = cc.cuties[cutieType];
 
         // Create a proto on cutieBase with cc.cuties.proto, or use a previously created one
@@ -47,27 +47,17 @@
         callback(cutie);
       }
 
-      // Is script loaded yet?
-      if(cc.cuties[cutieType]) {
-        cutieProcessor(callback);
-      } else {
-        // Is this already loading?
-        if(!loadingCuties[cutieType]) {
-          // Nope. Load it.
-          loadingCuties[cutieType] = [callback];
-          $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
-            // Run all waiting callbacks
-            $.each(loadingCuties[cutieType], function(index, call) {
-              cutieProcessor(call);
-            });
-            // Save memory
-            delete loadingCuties[cutieType];
-          });
-        } else {
-          // Yes. Record callback.
-          loadingCuties[cutieType].push(callback);
-        }
+      // Start loading if it hasn't already.
+      if(!loadingCuties[cutieType]) {
+        // It hasn't, so load it
+        loadingCuties[cutieType] = $.Deferred();
+        $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
+          // Resolve deferred.
+          loadingCuties[cutieType].resolve();
+        });
       }
+      // Add this function's cutieProcessor.
+      loadingCuties[cutieType].done(cutieProcessor);
     }
 
     return cutieType;
@@ -214,11 +204,7 @@
     },
     // Love Up processing!
     loveup: function() {
-      // Check to see if this is valid
-      if(SchemeNumber.fn['>'](cc.stats.xp(), this.targetxp())) {
-        cc.stats.excitement('-' + cc.stats.excitement());
-        this.love('1');
-      }
+      this.love('1');
     }
   };
 }();

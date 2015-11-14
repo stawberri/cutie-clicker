@@ -1,89 +1,32 @@
 !function() {
   var tickInterval = 100;
 
+  // Create a cc.render to deal with rendering type stuff
+  cc.render = {};
+
   // Create a queue that runs over and over again. Passes time to each function.
-  var tickQueue = [];
+  var tickQueue = $.Callbacks('memory unique');
   function tick(func) {
     // Add func to queue
-    tickQueue.push(func);
+    tickQueue.add(func);
   }
-  // Create function that runs queue
+  // Run queue
   function doTick() {
-    var now = $.now();
-
-    $.each(tickQueue, function(index, func) {
-      func(now);
-    });
+    tickQueue.fire($.now());
 
     setTimeout(doTick, tickInterval);
   }
   doTick();
+  // Allow other scripts loaded after this one to add tasks.
+  cc.render.tick = tick;
 
-  // #layer-cutie
-    // Load cutie renders
-    var cutieM, cutieL, cutieR;
-    tick(function() {
-      // middle cutie
-      cc.cuties.m(function(cutie) {
-        if(cutieM != cutie.cutie) {
-          cutieM = cutie.cutie;
-
-          // Remove all classes from cutieM and add them back
-          $('#cutie-m').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
-
-          // Load cutie html
-          $('#cutie-m .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
-        }
-      });
-
-      // left cutie
-      // massive if statement checks if it's not defined
-      if(!cc.cuties.l(function(cutie) {
-        if(cutieL != cutie.cutie) {
-          cutieL = cutie.cutie;
-
-          // Remove all classes from cutieL and add them back
-          $('#cutie-l').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
-
-          // Load cutie html
-          $('#cutie-l .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
-        }
-      }) && cutieL) {
-        cutieL = undefined;
-
-        // Remove all classes from cutieL and add them back
-        $('#cutie-l').removeClass().addClass('cutie-view');
-
-        // Unload cutie
-        $('#cutie-l .cutie-embed').html();
-      }
-
-      // right cutie
-      // massive if statement checks if it's not defined
-      if(!cc.cuties.r(function(cutie) {
-        if(cutieR != cutie.cutie) {
-          cutieR = cutie.cutie;
-
-          // Remove all classes from cutieR and add them back
-          $('#cutie-r').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
-
-          // Load cutie html
-          $('#cutie-r .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
-        }
-      }) && cutieR) {
-        cutieR = undefined;
-
-        // Remove all classes from cutieR and add them back
-        $('#cutie-r').removeClass().addClass('cutie-view');
-
-        // Unload cutie
-        $('#cutie-r .cutie-embed').html();
-      }
-    });
-
-  // #layer-ui
-    // Fetch clicks script to handle click button
+  // Grab stuff from other scripts
+    // Cutie rendering
+    $.getScript('game/js/cutie-display.js');
+    // Click button and associated processing
     $.getScript('game/js/clicks.js');
+    // Visual effects
+    $.getScript('game/js/effects.js');
 
     // Update cutie bar display
     tick(function() {

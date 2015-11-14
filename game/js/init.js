@@ -113,9 +113,7 @@ window.cc = window.cc ? cc : {};
       return runFunction(actionRemover);
     }
     // Make this function accessible everywhere
-    cc.init.addAction = function(action, readableAction, runFunction) {
-      return addAction(action, readableAction, runFunction);
-    }
+    cc.init.addAction = addAction;
 
     // Helper function because I do this a million times below
     function addScript(action, readableAction, script) {
@@ -124,9 +122,7 @@ window.cc = window.cc ? cc : {};
       });
     }
     // Make this accessible everywhere as well
-    cc.init.addScript = function(action, readableAction, script) {
-      return addScript(action, readableAction, script);
-    }
+    cc.init.addScript = addScript;
 
     // This action ensures that all actions have time to start
     addAction('&#9852;', 'action launcher', function(done) { // ♼
