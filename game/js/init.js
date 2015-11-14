@@ -29,6 +29,9 @@ window.cc = window.cc ? cc : {};
 
     // This function actually uses pendingActions above
     function addAction(action, runFunction) {
+      // When did this start?
+      var actionBeginTime = $.now();
+
       // Create a default function that just returns argument
       runFunction = runFunction || function(arg) {
         return arg;
@@ -37,6 +40,10 @@ window.cc = window.cc ? cc : {};
       var actionRemover = function() {
         // Remove this function from array
         pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
+
+        // Calculate and record how long this action took
+        var actionTotalTime = $.now() - actionBeginTime;
+        ga('send', 'timing', 'Game Init', action, actionTotalTime, 'Runtime for ' + action);
 
         // Are we ready to start?
         if(pendingActions.length <= 0 && !disableActionCheck) {
