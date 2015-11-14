@@ -19,7 +19,10 @@ window.cc = window.cc ? cc : {};
 
     var localUrl = localRoot(options.url);
     if(localUrl) {
-      ga('send', 'pageview', localUrl);
+      // Only track .html files (prevent bursting)
+      if(localUrl.search(/\.html(?:[#?].*)?$/i) != -1) {
+        ga('send', 'pageview', localUrl);
+      }
     }
   });
 
@@ -62,8 +65,9 @@ window.cc = window.cc ? cc : {};
         pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
 
         // Calculate and record how long this action took
+        // Disabled for now - too bursty.
         var actionTotalTime = $.now() - actionBeginTime;
-        ga('send', 'timing', 'game init', readableAction, actionTotalTime);
+        // ga('send', 'timing', 'game init', readableAction, actionTotalTime);
 
         // Are we ready to start?
         if(pendingActions.length <= 0 && !disableActionCheck) {
