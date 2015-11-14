@@ -40,8 +40,8 @@
   var tiltCenter = {gamma: 0, beta: 0};
   function tiltAdjustment(orig, orib) {
     // Begin by normalizing.
-    var originalGamma = (orig / 15);
-    var originalBeta = (orib / 15);
+    var originalGamma = (orig / 30);
+    var originalBeta = (orib / 30);
 
     // Adjust for annoying orientation issues
     if(window.orientation == 90) {
