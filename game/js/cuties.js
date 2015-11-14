@@ -6,6 +6,8 @@
     cutie: '119'
   }
 
+  // Cutie creation function
+  var loadingCuties = {};
   cc.cuties = function(dataIndex, callback) {
     var cutieData = cc.cuties.list();
 
@@ -49,9 +51,22 @@
       if(cc.cuties[cutieType]) {
         cutieProcessor(callback);
       } else {
-        $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
-          cutieProcessor(callback);
-        });
+        // Is this already loading?
+        if(!loadingCuties[cutieType]) {
+          // Nope. Load it.
+          loadingCuties[cutieType] = [callback];
+          $.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
+            // Run all waiting callbacks
+            $.each(loadingCuties[cutieType], function(index, call) {
+              cutieProcessor(call);
+            });
+            // Save memory
+            delete loadingCuties[cutieType];
+          });
+        } else {
+          // Yes. Record callback.
+          loadingCuties[cutieType].push(callback);
+        }
       }
     }
 
@@ -169,8 +184,8 @@
   }
 
   // Cutie object constructor
-  cc.cuties.construct = function() {
-
+  cc.cuties.construct = function(data) {
+    this.cutie = data.cutie;
   }
 
   // Cutie object prototype

@@ -1,0 +1,8 @@
+.cutie-119 .cutie-embed {
+  background: url(0.png) center center no-repeat;
+  background-size: contain;
+}
+
+.ce-recent-click .cutie-119 .cutie-embed {
+  background-image: url(1.png);
+}

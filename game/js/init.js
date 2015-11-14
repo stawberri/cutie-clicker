@@ -160,6 +160,8 @@ window.cc = window.cc ? cc : {};
         }, 0);
       });
 
+      // This file is for loading blocking, "Cutie Clicker will not work at all without these" scripts. Non-critical scripts go into index.js
+
       // lz-string (data compression library)
       addScript('&#11075;', 'lz-string', 'lib/lz-string.min.js'); // ⭃
 
