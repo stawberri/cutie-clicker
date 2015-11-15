@@ -180,6 +180,8 @@
 
   // Cutie object prototype
   cc.cuties.proto = {
+    // Rarity
+    rarity: 0,
     // Get / set love - low level, doesn't trigger events
     lv: function(value) {
       if($.type(value) === 'undefined') {

@@ -10,7 +10,7 @@
         cutieM = cutie.cutie;
 
         // Remove all classes from cutieM and add them back
-        $('#cutie-m').removeClass().addClass('cutie-view cutie-' + cutie.cutie);
+        $('#cutie-m').removeClass().addClass('cutie-view cutie-' + cutie.cutie + ' rarity-' + cutie.rarity);
 
         // Load cutie html
         $('#cutie-m .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html');
