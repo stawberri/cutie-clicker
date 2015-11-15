@@ -39,4 +39,25 @@
 
     return cc.stats.xp();
   };
+
+  // Modify mp. Don't access directly (except to read, maybe)
+  cc.stats.mp = function(value) {
+    if($.type(value) === 'undefined') {
+      // Get - default to 0
+      return cc.util.rhanum(cc.ls.d, 'mp') || cc.util.rhanum(cc.ls.d, 'mp', '0');
+    } else {
+      // Set
+      return cc.util.rhanum(cc.ls.d, 'mp', value);
+    }
+  };
+
+  // Friendly mp modification function. May have stuff attached to it in the future, so it's best to use this one
+  cc.stats.empathy = function(value) {
+    if(value) {
+      value = String(value);
+      cc.stats.mp(SchemeNumber.fn['+'](cc.stats.mp(), value));
+    }
+
+    return cc.stats.mp();
+  };
 }();

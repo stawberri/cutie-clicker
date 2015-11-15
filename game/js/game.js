@@ -46,22 +46,31 @@
     // Visual effects
     $.getScript('game/js/effects.js');
 
-    // Update cutie bar display
-    tick(function() {
-      cc.cuties.m(function(cutie) {
-        var msg = '';
-        msg += 'cid: ' + cutie.cutie + ' (&#' + cutie.cutie + ';)';
-        msg += '<br>';
-        msg += 'Lv: ' + cutie.lv();
-        msg += '<br>';
-        msg += 'tXP: ' + cutie.targetxp();
-        msg += '<br>';
-        msg += '-';
-        msg += '<br>';
-        msg += 'C: ' + cc.stats.clicks();
-        msg += '<br>';
-        msg += 'XP: ' + cc.stats.xp();
-        $('#click-counter').html(msg);
-      });
+  // Update stat display
+  tick(function() {
+    // Cutiebar display
+    cc.cuties.m(function(cutie) {
+      $('#cutie-stats .love').html(cutie.love());
+      $('#cutie-stats .empathy').html(cc.stats.empathy());
     });
+
+    // Temporary Background Display
+    cc.cuties.m(function(cutie) {
+      var msg = '';
+      msg += 'cid: ' + cutie.cutie + ' (&#' + cutie.cutie + ';)';
+      msg += '<br>';
+      msg += 'Lv: ' + cutie.lv();
+      msg += '<br>';
+      msg += 'tXP: ' + cutie.targetxp();
+      msg += '<br>';
+      msg += '-';
+      msg += '<br>';
+      msg += 'C: ' + cc.stats.clicks();
+      msg += '<br>';
+      msg += 'XP: ' + cc.stats.xp();
+      msg += '<br>';
+      msg += 'MP: ' + cc.stats.mp();
+      $('#click-counter').html(msg);
+    });
+  });
 }();
