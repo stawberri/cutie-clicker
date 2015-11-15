@@ -1,10 +1,10 @@
 !function() {
-  var tickInterval = 100; // 10fps
-  var drawInterval = 50; // 20fps
-
   // Create a cc.render to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
-  cc.render = {};
+  cc.render = {
+    tickInterval: 100, // 10fps
+    drawInterval: 50 // 20fps
+  };
 
   // Create a queue that runs over and over again. Passes time to each function.
     // This is for things that don't need to be updated that often.
@@ -17,7 +17,7 @@
     // Run queue
     function doTick() {
       tickQueue.fire($.now());
-      setTimeout(doTick, tickInterval);
+      setTimeout(doTick, cc.render.tickInterval);
     }
     doTick();
     // Allow other scripts loaded after this one to add tasks.
@@ -33,7 +33,7 @@
     // Run queue
     function doDraw() {
       drawQueue.fire($.now());
-      setTimeout(doDraw, drawInterval);
+      setTimeout(doDraw, cc.render.drawInterval);
     }
     doDraw();
     cc.render.draw = draw;
