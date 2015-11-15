@@ -8,6 +8,32 @@
     return classesString;
   }
 
+  // Get cutie card html
+  // Doesn't update classes automatically though.
+  function cutieCard(element, defaultClass, cutie) {
+    element = $(element);
+    defaultClass = defaultClass || '';
+
+    if(element.length < 1) {
+      return;
+    }
+
+    // Create .cutie-card if it doesn't already exist.
+    var cutieCardElement = element.find('.cutie-card');
+    if(cutieCardElement.length < 1) {
+      cutieCardElement = $('<div class="cutie-card">').appendTo(element);
+    }
+
+    if(cutie) {
+      element.removeClass().addClass(defaultClass + cutieClasses(cutie));
+
+      cutieCardElement.html('&#' + cutie.cutie + ';');
+    } else {
+      element.removeClass().addClass(defaultClass);
+      cutieCardElement.html('');
+    }
+  }
+
   // Current (main game) cuties display
     var cutieM, cutieL, cutieR;
     var cutieClassM, cutieClassL, cutieClassR;
@@ -26,7 +52,7 @@
           $('#cutie-m .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
           // Cutie Card Display
-          $('#cutie-bar-m .cutie-card').html('&#' + cutie.cutie + ';');
+          cutieCard('#cutie-bar-m', 'cutie-bar-slot', cutie);
         }
 
         var thisClass = cutieClasses(cutie);
@@ -50,7 +76,7 @@
           $('#cutie-l .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
           // Cutie Card Display
-          $('#cutie-bar-l .cutie-card').html('&#' + cutie.cutie + ';');
+          cutieCard('#cutie-bar-l', 'cutie-bar-slot', cutie);
         }
 
         var thisClass = cutieClasses(cutie);
@@ -62,16 +88,14 @@
 
       }) && cutieL) {
         cutieL = undefined;
+        cutieClassL = undefined;
 
         // Main Cutie Display
-
-        // Remove all classes from cutieL and add them back
         $('#cutie-l').removeClass().addClass('cutie-view');
         $('#cutie-l .cutie-embed').html('');
 
         // Cutie Card Display
-        $('#cutie-bar-l').removeClass().addClass('cutie-bar-slot');
-        $('#cutie-bar-l .cutie-card').html('');
+        cutieCard('#cutie-bar-l', 'cutie-bar-slot');
       }
 
       // right cutie
@@ -87,7 +111,7 @@
           $('#cutie-r .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
           // Cutie Card Display
-          $('#cutie-bar-r .cutie-card').html('&#' + cutie.cutie + ';');
+          cutieCard('#cutie-bar-r', 'cutie-bar-slot', cutie);
         }
 
         var thisClass = cutieClasses(cutie);
@@ -99,17 +123,15 @@
 
       }) && cutieR) {
         cutieR = undefined;
+        cutieClassR = undefined;
 
         // Main Cutie Display
-
-        // Remove all classes from cutieR and add them back
         $('#cutie-r').removeClass().addClass('cutie-view');
         $('#cutie-r .cutie-embed').html('');
 
 
         // Cutie Card Display
-        $('#cutie-bar-r').removeClass().addClass('cutie-bar-slot');
-        $('#cutie-bar-r .cutie-card').html('');
+        cutieCard('#cutie-bar-r', 'cutie-bar-slot');
       }
     });
 }();
