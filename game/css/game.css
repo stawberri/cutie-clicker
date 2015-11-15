@@ -65,7 +65,7 @@ body>.layer {
     }
 
     #cutie-l {
-      transform:  translateX(-420px) translateZ(-100px) translate(-50%, -50%) scale(.69);
+      transform:  translateX(-360px) translateZ(-100px) translate(-50%, -50%) scale(.69);
     }
 
     #cutie-m {
@@ -73,7 +73,7 @@ body>.layer {
     }
 
     #cutie-r {
-      transform: translateX(420px) translateZ(-100px) translate(-50%, -50%) scale(.69);
+      transform: translateX(360px) translateZ(-100px) translate(-50%, -50%) scale(.69);
     }
 
       .cutie-embed {
