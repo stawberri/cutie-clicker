@@ -50,8 +50,17 @@
     tick(function() {
       cc.cuties.m(function(cutie) {
         var msg = '';
-        msg += 'LV ' + cutie.lv() + ' - ';
-        msg += cc.stats.xp() + '/' + cutie.targetxp() + 'XP ';
+        msg += 'cid: ' + cutie.cutie + ' (&#' + cutie.cutie + ';)';
+        msg += '<br>';
+        msg += 'Lv: ' + cutie.lv();
+        msg += '<br>';
+        msg += 'tXP: ' + cutie.targetxp();
+        msg += '<br>';
+        msg += '-';
+        msg += '<br>';
+        msg += 'C: ' + cc.stats.clicks();
+        msg += '<br>';
+        msg += 'XP: ' + cc.stats.xp();
         $('#click-counter').html(msg);
       });
     });
