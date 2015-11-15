@@ -3,7 +3,7 @@
   // Also does general processing type stuff. Oops.
   cc.render = {
     tickInterval: 100, // 10fps
-    drawInterval: 50 // 20fps
+    drawInterval: 33 // 30fps
   };
 
   // Create a queue that runs over and over again. Passes time to each function.
