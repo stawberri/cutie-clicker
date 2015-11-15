@@ -2,50 +2,60 @@
 
 !function() {
   // Parallax handling
+  var parallaxMouse = {x: 0, y: 0};
   function parallax(mouseX, mouseY) {
+    parallaxMouse.x = mouseX;
+    parallaxMouse.y = mouseY;
+  }
+  cc.render.draw(function() {
+    mouseX = parallaxMouse.x;
+    mouseY = parallaxMouse.y;
+
     // Ensure range is okay
     if(mouseX < -1) mouseX = -1;
     else if(mouseX > 1) mouseX = 1;
     if(mouseY < -1) mouseY = -1;
     else if(mouseY > 1) mouseY = 1;
 
+    var xMult = $('body').width();
+    var yMult = $('body').height();
+
+    xMult *= .005 * mouseX;
+    yMult *= .005 * mouseY;
+
     cc.util.cssrule('.parallax-4')({
-      transform: 'translate(' + (-1 * mouseX) + 'px,' + (-1 * mouseY) + 'px)'
+      transform: 'translate(' + (-1 * xMult) + 'px,' + (-1 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax-3')({
-      transform: 'translate(' + (-2 * mouseX) + 'px,' + (-2 * mouseY) + 'px)'
+      transform: 'translate(' + (-2 * xMult) + 'px,' + (-2 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax-2')({
-      transform: 'translate(' + (-4 * mouseX) + 'px,' + (-4 * mouseY) + 'px)'
+      transform: 'translate(' + (-4 * xMult) + 'px,' + (-4 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax-1')({
-      transform: 'translate(' + (-8 * mouseX) + 'px,' + (-8 * mouseY) + 'px)'
+      transform: 'translate(' + (-8 * xMult) + 'px,' + (-8 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax-0')({
-      transform: 'translate(' + (-16 * mouseX) + 'px,' + (-16 * mouseY) + 'px)'
+      transform: 'translate(' + (-16 * xMult) + 'px,' + (-16 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax--0')({
-      transform: 'translate(' + (1 * mouseX) + 'px,' + (1 * mouseY) + 'px)'
+      transform: 'translate(' + (1 * xMult) + 'px,' + (1 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax--1')({
-      transform: 'translate(' + (2 * mouseX) + 'px,' + (2 * mouseY) + 'px)'
+      transform: 'translate(' + (2 * xMult) + 'px,' + (2 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax--2')({
-      transform: 'translate(' + (4 * mouseX) + 'px,' + (4 * mouseY) + 'px)'
+      transform: 'translate(' + (4 * xMult) + 'px,' + (4 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax--3')({
-      transform: 'translate(' + (8 * mouseX) + 'px,' + (8 * mouseY) + 'px)'
+      transform: 'translate(' + (8 * xMult) + 'px,' + (8 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax--4')({
-      transform: 'translate(' + (16 * mouseX) + 'px,' + (16 * mouseY) + 'px)'
+      transform: 'translate(' + (16 * xMult) + 'px,' + (16 * yMult) + 'px)'
     });
-  }
+  });
 
-  var lastParallaxTime;
   $(window).on('mousemove', function(ev) {
-    // Throttle how much this executes
-    if($.now() < lastParallaxTime + 10) return;
-
     // Need to use body size, since document includes everything, and I have no idea what window is doing
     var mouseX = (ev.pageX/($('body').width() - 1));
     var mouseY = (ev.pageY/($('body').height() - 1));
@@ -54,9 +64,6 @@
     mouseY = 2 * (mouseY - .5);
 
     parallax(mouseX, mouseY);
-
-    // Throttle based on last completion time.
-    lastParallaxTime = $.now();
   });
   var tiltCenter = {gamma: 0, beta: 0};
   function tiltAdjustment(orig, orib) {
@@ -89,14 +96,8 @@
     return {x: centeredGamma, y: centeredBeta};
   }
   $(window).on('deviceorientation', function(ev) {
-    // Throttle how much this executes
-    if($.now() < lastParallaxTime + 10) return;
+    var virtualMouse = tiltAdjustment(ev.originalEvent.gamma, ev.originalEvent.beta);
 
-    var mouse = tiltAdjustment(ev.originalEvent.gamma, ev.originalEvent.beta);
-
-    parallax(mouse.x, mouse.y);
-
-    // Throttle based on last completion time.
-    lastParallaxTime = $.now();
+    parallax(virtualMouse.x, virtualMouse.y);
   });
 }();
