@@ -9,32 +9,31 @@
   }
 
   // Current (main game) cuties display
-    // Load cutie renders
     var cutieM, cutieL, cutieR;
+    var cutieClassM, cutieClassL, cutieClassR;
     cc.render.tick(function() {
       // middle cutie
+      // There's always a cutie here, so no need to check for that.
       cc.cuties.m(function(cutie) {
+        // Has this cutie changed?
         if(cutieM != cutie.cutie) {
           cutieM = cutie.cutie;
-
 
           // Get CSS
           cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
 
-
           // Main Cutie Display
-
-          // Remove all classes from cutieM and add them back
-          $('#cutie-m').removeClass().addClass('cutie-view' + cutieClasses(cutie));
-
-          // Load cutie html
           $('#cutie-m .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
-
           // Cutie Card Display
-
-          $('#cutie-bar-m').removeClass().addClass('cutie-bar-slot' + cutieClasses(cutie));
           $('#cutie-bar-m .cutie-card').html('&#' + cutie.cutie + ';');
+        }
+
+        var thisClass = cutieClasses(cutie);
+        if(cutieClassM != thisClass) {
+          cutieClassM = thisClass;
+          $('#cutie-m').removeClass().addClass('cutie-view' + thisClass);
+          $('#cutie-bar-m').removeClass().addClass('cutie-bar-slot' + thisClass);
         }
       });
 
@@ -44,25 +43,23 @@
         if(cutieL != cutie.cutie) {
           cutieL = cutie.cutie;
 
-
           // Get CSS
           cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
 
-
           // Main Cutie Display
-
-          // Remove all classes from cutieL and add them back
-          $('#cutie-l').removeClass().addClass('cutie-view' + cutieClasses(cutie));
-
-          // Load cutie html
           $('#cutie-l .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
-
           // Cutie Card Display
-
-          $('#cutie-bar-l').removeClass().addClass('cutie-bar-slot' + cutieClasses(cutie));
           $('#cutie-bar-l .cutie-card').html('&#' + cutie.cutie + ';');
         }
+
+        var thisClass = cutieClasses(cutie);
+        if(cutieClassL != thisClass) {
+          cutieClassL = thisClass;
+          $('#cutie-l').removeClass().addClass('cutie-view' + thisClass);
+          $('#cutie-bar-l').removeClass().addClass('cutie-bar-slot' + thisClass);
+        }
+
       }) && cutieL) {
         cutieL = undefined;
 
@@ -70,13 +67,9 @@
 
         // Remove all classes from cutieL and add them back
         $('#cutie-l').removeClass().addClass('cutie-view');
-
-        // Unload cutie
         $('#cutie-l .cutie-embed').html('');
 
-
         // Cutie Card Display
-
         $('#cutie-bar-l').removeClass().addClass('cutie-bar-slot');
         $('#cutie-bar-l .cutie-card').html('');
       }
@@ -90,21 +83,20 @@
           // Get CSS
           cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
 
-
           // Main Cutie Display
-
-          // Remove all classes from cutieR and add them back
-          $('#cutie-r').removeClass().addClass('cutie-view' + cutieClasses(cutie));
-
-          // Load cutie html
           $('#cutie-r .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
 
-
           // Cutie Card Display
-
-          $('#cutie-bar-r').removeClass().addClass('cutie-bar-slot' + cutieClasses(cutie));
           $('#cutie-bar-r .cutie-card').html('&#' + cutie.cutie + ';');
         }
+
+        var thisClass = cutieClasses(cutie);
+        if(cutieClassR != thisClass) {
+          cutieClassR = thisClass;
+          $('#cutie-r').removeClass().addClass('cutie-view' + thisClass);
+          $('#cutie-bar-r').removeClass().addClass('cutie-bar-slot' + thisClass);
+        }
+
       }) && cutieR) {
         cutieR = undefined;
 
@@ -112,13 +104,10 @@
 
         // Remove all classes from cutieR and add them back
         $('#cutie-r').removeClass().addClass('cutie-view');
-
-        // Unload cutie
         $('#cutie-r .cutie-embed').html('');
 
 
         // Cutie Card Display
-
         $('#cutie-bar-r').removeClass().addClass('cutie-bar-slot');
         $('#cutie-bar-r .cutie-card').html('');
       }
