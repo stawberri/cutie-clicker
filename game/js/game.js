@@ -1,6 +1,6 @@
 !function() {
   var tickInterval = 100; // 10fps
-  var drawInterval = 40; // 25fps
+  var drawInterval = 50; // 20fps
 
   // Create a cc.render to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
