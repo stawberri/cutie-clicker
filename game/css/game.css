@@ -55,7 +55,6 @@ body>.layer {
   #cuties {
     position: absolute;
     height: calc(100% - 120px); width: 100%;
-    perspective: 690px;
   }
 
     .cutie-view {
@@ -65,7 +64,7 @@ body>.layer {
     }
 
     #cutie-l {
-      transform:  translateX(-360px) translateZ(-100px) translate(-50%, -50%) scale(.69);
+      transform:  translateX(-360px) translate(-50%, -50%) scale(.69);
     }
 
     #cutie-m {
@@ -73,7 +72,7 @@ body>.layer {
     }
 
     #cutie-r {
-      transform: translateX(360px) translateZ(-100px) translate(-50%, -50%) scale(.69);
+      transform: translateX(360px) translate(-50%, -50%) scale(.69);
     }
 
       .cutie-embed {
