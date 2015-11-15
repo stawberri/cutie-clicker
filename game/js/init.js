@@ -89,8 +89,8 @@ window.cc = window.cc ? cc : {};
               $('html').removeClass();
 
               // Load page
-              $('body').load('game/index.html', function() {
-                $.getScript('game/js/index.js').done(function() {
+              $('body').load('game/game.html', function() {
+                $.getScript('game/js/game.js').done(function() {
                   // How long did this all take?
                   var msSinceStart = $.now() - initBeginTime;
 

@@ -34,7 +34,7 @@ body>.layer {
 }
 
 /* Background layer */
-#layer-background {
+#layer-background>div {
   /* Temporary */
   background: url(http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif) no-repeat 85% 15%;
 }
