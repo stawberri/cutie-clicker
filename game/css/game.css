@@ -96,8 +96,8 @@ body>.layer {
     border: none;
     outline: none;
     padding: 0;
-    cursor: pointer;
     pointer-events: auto;
+    cursor: grab;
   }
 
   /* Cutie bar */
@@ -119,6 +119,7 @@ body>.layer {
         width: 69px;
         font-size: 1.8rem;
         white-space: nowrap;
+        color: rgba(0, 0, 0, .69);
       }
 
       #cutie-stats .love {

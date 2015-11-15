@@ -5,16 +5,18 @@
   box-sizing: border-box;
   width: 240px; height: 240px;
   border-radius: 50%;
-  border: 12px solid rgba(0, 0, 0, .3);
+  border: 12px dashed rgba(0, 0, 0, .1);
   font-size: 69px;
-  padding-top: 57px;
-  text-align: center;
   overflow: hidden;
-  background: rgba(0, 0, 0, .1);
+  background: rgba(0, 0, 0, .069);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rarity-0 .cutie-card {
   border-color: #7F00FF;
+  border-style: solid;
   background: rgba(127, 0, 255, .2);
   color: #7F00FF;
 }
