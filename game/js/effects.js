@@ -23,35 +23,35 @@
     xMult *= .005 * mouseX;
     yMult *= .005 * mouseY;
 
-    cc.util.cssrule('.parallax-4')({
+    cc.util.cssrule('.parallax-0')({
+      transform: 'translate(' + (1 * xMult) + 'px,' + (1 * yMult) + 'px)'
+    });
+    cc.util.cssrule('.parallax--0')({
       transform: 'translate(' + (-1 * xMult) + 'px,' + (-1 * yMult) + 'px)'
     });
-    cc.util.cssrule('.parallax-3')({
+    cc.util.cssrule('.parallax-1')({
+      transform: 'translate(' + (2 * xMult) + 'px,' + (2 * yMult) + 'px)'
+    });
+    cc.util.cssrule('.parallax--1')({
       transform: 'translate(' + (-2 * xMult) + 'px,' + (-2 * yMult) + 'px)'
     });
     cc.util.cssrule('.parallax-2')({
-      transform: 'translate(' + (-4 * xMult) + 'px,' + (-4 * yMult) + 'px)'
-    });
-    cc.util.cssrule('.parallax-1')({
-      transform: 'translate(' + (-8 * xMult) + 'px,' + (-8 * yMult) + 'px)'
-    });
-    cc.util.cssrule('.parallax-0')({
-      transform: 'translate(' + (-16 * xMult) + 'px,' + (-16 * yMult) + 'px)'
-    });
-    cc.util.cssrule('.parallax--0')({
-      transform: 'translate(' + (1 * xMult) + 'px,' + (1 * yMult) + 'px)'
-    });
-    cc.util.cssrule('.parallax--1')({
-      transform: 'translate(' + (2 * xMult) + 'px,' + (2 * yMult) + 'px)'
-    });
-    cc.util.cssrule('.parallax--2')({
       transform: 'translate(' + (4 * xMult) + 'px,' + (4 * yMult) + 'px)'
     });
-    cc.util.cssrule('.parallax--3')({
+    cc.util.cssrule('.parallax--2')({
+      transform: 'translate(' + (-4 * xMult) + 'px,' + (-4 * yMult) + 'px)'
+    });
+    cc.util.cssrule('.parallax-3')({
       transform: 'translate(' + (8 * xMult) + 'px,' + (8 * yMult) + 'px)'
     });
-    cc.util.cssrule('.parallax--4')({
+    cc.util.cssrule('.parallax--3')({
+      transform: 'translate(' + (-8 * xMult) + 'px,' + (-8 * yMult) + 'px)'
+    });
+    cc.util.cssrule('.parallax-4')({
       transform: 'translate(' + (16 * xMult) + 'px,' + (16 * yMult) + 'px)'
+    });
+    cc.util.cssrule('.parallax--4')({
+      transform: 'translate(' + (-16 * xMult) + 'px,' + (-16 * yMult) + 'px)'
     });
   });
 
