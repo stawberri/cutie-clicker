@@ -6,10 +6,14 @@
   width: 240px; height: 240px;
   border-radius: 50%;
   border: 12px dashed rgba(0, 0, 0, .1);
-  font-size: 10rem;
   overflow: hidden;
   background: rgba(0, 0, 0, .069);
+}
+
+.cutie-card .glyph {
+  width: 100%; height: 100%;
   display: flex;
+  font-size: 10rem;
   align-items: center;
   justify-content: center;
 }

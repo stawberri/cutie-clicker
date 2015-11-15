@@ -24,13 +24,27 @@
       cutieCardElement = $('<div class="cutie-card">').appendTo(element);
     }
 
+    // Create background, glyph, and foreground using the same methodology
+    var backgroundElement = cutieCardElement.find('.background');
+    if(backgroundElement.length < 1) {
+      backgroundElement = $('<div class="background">').appendTo(cutieCardElement);
+    }
+    var glyphElement = cutieCardElement.find('.glyph');
+    if(glyphElement.length < 1) {
+      glyphElement = $('<div class="glyph">').appendTo(cutieCardElement);
+    }
+    var foregroundElement = cutieCardElement.find('.foreground');
+    if(foregroundElement.length < 1) {
+      foregroundElement = $('<div class="foreground">').appendTo(cutieCardElement);
+    }
+
     if(cutie) {
       element.removeClass().addClass(defaultClass + cutieClasses(cutie));
 
-      cutieCardElement.html('&#' + cutie.cutie + ';');
+      glyphElement.html('&#' + cutie.cutie + ';');
     } else {
       element.removeClass().addClass(defaultClass);
-      cutieCardElement.html('');
+      glyphElement.html('');
     }
   }
 
