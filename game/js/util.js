@@ -68,4 +68,10 @@
       return memoRuleFunctions[selector] = addRule;
     }
   };
+
+  // Load a css file
+  var loadedCss = {};
+  cc.util.getcss = function(url) {
+    return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', url);
+  };
 }();
