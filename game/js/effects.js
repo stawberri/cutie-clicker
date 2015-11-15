@@ -9,14 +9,35 @@
     if(mouseY < -1) mouseY = -1;
     else if(mouseY > 1) mouseY = 1;
 
-    cc.util.cssrule('.parallax-1')({
-      transform: 'translate(' + (-10 * mouseX) + 'px,' + (-10 * mouseY) + 'px)'
+    cc.util.cssrule('.parallax-4')({
+      transform: 'translate(' + (-1 * mouseX) + 'px,' + (-1 * mouseY) + 'px)'
     });
-    cc.util.cssrule('.parallax--1')({
-      transform: 'translate(' + (10 * mouseX) + 'px,' + (10 * mouseY) + 'px)'
+    cc.util.cssrule('.parallax-3')({
+      transform: 'translate(' + (-2 * mouseX) + 'px,' + (-2 * mouseY) + 'px)'
     });
     cc.util.cssrule('.parallax-2')({
+      transform: 'translate(' + (-4 * mouseX) + 'px,' + (-4 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax-1')({
       transform: 'translate(' + (-8 * mouseX) + 'px,' + (-8 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax-0')({
+      transform: 'translate(' + (-16 * mouseX) + 'px,' + (-16 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax--0')({
+      transform: 'translate(' + (1 * mouseX) + 'px,' + (1 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax--1')({
+      transform: 'translate(' + (2 * mouseX) + 'px,' + (2 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax--2')({
+      transform: 'translate(' + (4 * mouseX) + 'px,' + (4 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax--3')({
+      transform: 'translate(' + (8 * mouseX) + 'px,' + (8 * mouseY) + 'px)'
+    });
+    cc.util.cssrule('.parallax--4')({
+      transform: 'translate(' + (16 * mouseX) + 'px,' + (16 * mouseY) + 'px)'
     });
   }
 
