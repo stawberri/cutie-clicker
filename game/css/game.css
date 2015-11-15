@@ -130,6 +130,7 @@ body>.layer {
         #cutie-stats .love::after {
           content: '♥';
           padding-left: 5px;
+          color: #FFCC00;
         }
 
       #cutie-stats .empathy {
@@ -139,6 +140,7 @@ body>.layer {
         #cutie-stats .empathy::before {
           content: '♠';
           padding-right: 5px;
+          color: #0D98BA;
         }
 
     /* Cutie Bar Cards */
