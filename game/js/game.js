@@ -50,7 +50,7 @@
     tick(function() {
       cc.cuties.m(function(cutie) {
         var msg = '';
-        msg += 'id: ' + cutie.cutie;
+        msg += 'cid: ' + cutie.cutie + ' (&#' + cutie.cutie + ';)';
         msg += '<br>';
         msg += 'Lv: ' + cutie.lv();
         msg += '<br>';
