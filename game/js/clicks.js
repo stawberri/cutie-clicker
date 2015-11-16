@@ -5,7 +5,6 @@
   // Clicking
     var recentClickTimeout;
     var lastInterval = 0;
-    var lastTime = $.now();
     var lastxp = '1';
 
     $('#cutie-clicker').on('mousedown touchstart', function(ev) {
@@ -19,7 +18,7 @@
       // Award excitement
       cc.cuties.m(function(cutie) {
         var now = $.now();
-        var interval = now - lastTime;
+        var interval = now - (cc.ls.d.tempClickStreakTime || cc.ls.d.write('tempClickStreakTime', now).tempClickStreakTime);
         var xp = 1;
 
         if(cc.ls.d.tempClickStreakPassive) {
@@ -49,7 +48,7 @@
         }
 
         lastInterval = interval;
-        lastTime = now;
+        cc.ls.d.write('tempClickStreakTime', now);
         lastxp = xp;
 
         // Add event classes
