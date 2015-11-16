@@ -107,6 +107,19 @@ body>.layer,
 #layer-ui {
 }
 
+  /* Temp MP buttons */
+  #temp-mp-button-1 {
+    position: absolute;
+    top: 250px; left: 50px;
+    pointer-events: auto;
+  }
+
+  #temp-mp-button-2 {
+    position: absolute;
+    top: 325px; left: 57px;
+    pointer-events: auto;
+  }
+
   /* Giant button */
   #cutie-clicker {
     position: absolute;
