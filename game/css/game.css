@@ -112,7 +112,6 @@ body>.layer,
     -webkit-appearance: none;
     position: absolute;
     top: 75px; right: 50px;
-    height: 50px;
     pointer-events: auto;
   }
 
@@ -121,7 +120,6 @@ body>.layer,
     position: absolute;
     top: 140px; right: 50px;
     pointer-events: auto;
-    height: 220px;
   }
 
   /* Giant button */
