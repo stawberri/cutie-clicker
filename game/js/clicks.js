@@ -70,7 +70,7 @@
   // XP Drain
   cc.render.tick(function(now) {
     // How long has it been since this was last calculated?
-    var sinceThen = now - (cc.ls.d.lastXpDrain || cc.ls.d.write('lastXpDrain', now).lastXpDrain);
+    var sinceThen = now - (cc.util.rhanum(cc.ls.d, 'lastXpDrain') || cc.util.rhanum(cc.ls.d, 'lastXpDrain', now));
     if(sinceThen < 1) return;
 
     // Reset xp to zero if it's less than zero
@@ -98,7 +98,7 @@
     cc.stats.empathy(drainAmount);
 
     // Update time
-    cc.ls.d.write('lastXpDrain', now);
+    cc.util.rhanum(cc.ls.d, 'lastXpDrain', now);
   });
 
   // Temp buttons
