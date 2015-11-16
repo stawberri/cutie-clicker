@@ -58,7 +58,7 @@ body>.layer,
                       linear-gradient(90deg, rgba(0, 0, 0, .015) 2px, transparent 2px),
                       linear-gradient(rgba(0, 0, 0, .03) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(0, 0, 0, .03) 1px, transparent 1px);
-    background-size:100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-size:240px 240px, 240px 240px, 60px 60px, 60px 60px;
     background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
   }
 
