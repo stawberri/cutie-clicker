@@ -73,16 +73,12 @@
     var sinceThen = now - (cc.ls.d.lastXpDrain || cc.ls.d.write('lastXpDrain', now).lastXpDrain);
     if(sinceThen < 1) return;
 
-    // Update time but don't run if xp is 0
-    if(SchemeNumber.fn['<'](cc.stats.excitement(), '1')) {
-      // Give a second of leeway so we don't keep running this
-      if(sinceThen > 1000) {
-        cc.ls.d.write('lastXpDrain', now);
-      }
-      return;
+    // Reset xp to zero if it's less than zero
+    if(SchemeNumber.fn['<'](cc.stats.xp(), '0')) {
+      cc.stats.xp('0');
     }
 
-    // Prevent divide by zero
+    // Prevent divide by zero (or having xp without any cuties)
     if(String(cc.cuties.list().length) < 1) { return; }
 
     // How much should we drain per ms?
