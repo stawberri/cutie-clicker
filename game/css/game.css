@@ -111,6 +111,7 @@ body>.layer,
   #temp-mp-button-1 {
     position: absolute;
     top: 250px; left: 50px;
+    height: 50px;
     pointer-events: auto;
   }
 
@@ -118,6 +119,7 @@ body>.layer,
     position: absolute;
     top: 325px; left: 57px;
     pointer-events: auto;
+    height: 220px;
   }
 
   /* Giant button */
