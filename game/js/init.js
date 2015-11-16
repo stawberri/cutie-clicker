@@ -1,6 +1,3 @@
-// Initalize cutie clicker main object
-window.cc = window.cc ? cc : {};
-
 !function() {
 
   // Register jquery ajax handler for analytics
