@@ -18,7 +18,7 @@
       // Award excitement
       cc.cuties.m(function(cutie) {
         var now = $.now();
-        var interval = now - (cc.ls.d.tempClickStreakTime || cc.ls.d.write('tempClickStreakTime', now).tempClickStreakTime);
+        var interval = now - (cc.util.rhanum(cc.ls.d, 'tempClickStreakTime') || cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now));
         var xp = 1;
 
         if(cc.ls.d.tempClickStreakPassive) {
@@ -48,7 +48,7 @@
         }
 
         lastInterval = interval;
-        cc.ls.d.write('tempClickStreakTime', now);
+        cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now);
         lastxp = xp;
 
         // Add event classes
@@ -73,21 +73,25 @@
     var sinceThen = now - (cc.util.rhanum(cc.ls.d, 'lastXpDrain') || cc.util.rhanum(cc.ls.d, 'lastXpDrain', now));
     if(sinceThen < 1) return;
 
-    // Reset xp to zero if it's less than zero
-    if(SchemeNumber.fn['<'](cc.stats.xp(), '0')) {
+    // Reset xp to zero if it's less than or equal to zero
+    // And then update time and stop because there's nothing left to drain
+    if(SchemeNumber.fn['<='](cc.stats.xp(), '0')) {
       cc.stats.xp('0');
+      cc.util.rhanum(cc.ls.d, 'lastXpDrain', now);
+      return;
     }
 
-    // Prevent divide by zero (or having xp without any cuties)
-    if(String(cc.cuties.list().length) < 1) { return; }
+    var drainAmount = 0;
 
-    // How much should we drain per ms?
-    var drainAmount = SchemeNumber.fn['/'](String(cc.cuties.list().length), '1000');
+    // Prevent divide by zero (make sure we have cuties before doing anything)
+    if(String(cc.cuties.list().length) != 0) {
+      drainAmount += SchemeNumber.fn['/'](String(cc.cuties.list().length), '1000');
+    }
 
     // Make it relative to time passed
     drainAmount = SchemeNumber.fn.floor(SchemeNumber.fn['*'](drainAmount, String(sinceThen)));
 
-    // If drainAmount is greater than available xp, make them equal
+    // If drainAmount is greater than available xp, make them equal.
     drainAmount = SchemeNumber.fn.min(drainAmount, cc.stats.excitement());
 
     // Stop if we're draining less than 1 xp.

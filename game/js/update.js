@@ -12,9 +12,6 @@
         cc.ls.erase('d');
         cc.ls.write('d', {});
       case 1:
-        if(cc.ls.d.clicks) {
-          cc.ls.d.write('clicks', LZString.compress(String(cc.ls.d.clicks)));
-        }
       case 2:
         cc.cuties(0, function(cutie) {
           if(cutie.data.xp) {

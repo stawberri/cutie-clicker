@@ -10,6 +10,11 @@
       var number = parent[name];
 
       if($.type(number) !== 'string') {
+        if($.type(number) === 'number') {
+          // Looks like this was stored as just a number before.
+          return String(number);
+        }
+
         // Something weird happened.
         return;
       }
