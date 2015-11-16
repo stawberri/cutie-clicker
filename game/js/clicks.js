@@ -102,7 +102,7 @@
   });
 
   // Temp buttons
-  $('#temp-mp-button-1').click(function() {
+  $('#cutie-bar-l, #temp-mp-button-1').click(function() {
     if(SchemeNumber.fn['>='](cc.stats.empathy(), 1000)) {
       cc.stats.empathy('-1000');
       var xpGain = Math.floor((Math.random() * 351) + 750);
@@ -119,7 +119,7 @@
   if(cc.ls.d.tempClickStreakPassive) {
     $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
   }
-  $('#temp-mp-button-2').click(function() {
+  $('#cutie-bar-r, #temp-mp-button-2').click(function() {
     cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive && SchemeNumber.fn['>='](cc.stats.empathy(), 1));
     if(cc.ls.d.tempClickStreakPassive) {
       $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');

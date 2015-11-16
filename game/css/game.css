@@ -111,14 +111,14 @@ body>.layer,
   #temp-mp-button-1 {
     -webkit-appearance: none;
     position: absolute;
-    top: 75px; right: 50px;
+    bottom: 50px; left: 50px;
     pointer-events: auto;
   }
 
   #temp-mp-button-2 {
     -webkit-appearance: none;
     position: absolute;
-    top: 140px; right: 50px;
+    bottom: 50px; right: 50px;
     pointer-events: auto;
   }
 
