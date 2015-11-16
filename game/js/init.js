@@ -26,6 +26,12 @@ window.cc = window.cc ? cc : {};
   //   }
   // });
 
+  // Move people to https://cc.aideen.pw/ if they aren't already there.
+  // Disabled for now since this would clear players' saves.
+  // if(location.protocol != 'file:' && location.protocol + location.host != 'https:cc.aideen.pw') {
+  //   location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash)
+  // }
+
   // Create init function
   cc.init = function() {
     // Remember when we started
