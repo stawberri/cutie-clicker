@@ -25,9 +25,9 @@
         if(cc.ls.d.tempClickStreakPassive) {
           if(SchemeNumber.fn['>='](cc.stats.empathy(), 1)) {
             if(lastInterval*.96 > interval) {
-              xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('2', lastxp, String(lastInterval/interval))));
+              xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('3', lastxp, String(lastInterval/interval))));
             } else if (interval < lastInterval * 2) {
-              xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.25', lastxp, String(lastInterval/interval))));
+              xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, String(lastInterval/interval))));
             }
 
             cc.stats.empathy('-1');
