@@ -40,13 +40,19 @@ body>.layer,
 #layer-background {
 }
 
-  /* Temporary click counter */
+  /* Temporary stuff */
+  #temp-background {
+    position: absolute;
+    width: 104%; height: 104%;
+    left: -2%; top: -2%;
+    background: radial-gradient(farthest-corner at 50% 0, rgba(204,241,255,0) 50%, rgba(204,241,255,.69) 100%);
+  }
+
   #click-counter {
     position: absolute;
     width: calc(100% - 100px); height: calc(100% - 100px);
     padding: 50px;
     font-size: 1.6em;
-    background: url(http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif) no-repeat 85% 15%;
   }
 
 /* Cutie layer */
