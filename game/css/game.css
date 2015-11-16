@@ -26,6 +26,7 @@ body {
   position: absolute;
   width: 100%; height: 100%;
   top: 0; left: 0;
+  transition: transform .033s;
 }
 
 /* Main game display layers */
@@ -211,6 +212,21 @@ body>.layer,
       #cutie-bar-m .cutie-card {
         transform: translate(-50%, -50%) scale(0.40);
       }
+
+        #xp-gauge {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+        }
+
+          #xp-gauge .bar {
+            position: absolute;
+            width: 100%; height: 100%;
+            top: 100%; left: 0;
+            outline: #FF42D0 5px solid;
+            background: rgba(255, 125, 222, .69);
+            transition: top .3s;
+          }
 
     #cutie-bar-r {
       transform: translateX(85px) translateX(-50%);

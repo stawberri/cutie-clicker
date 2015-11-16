@@ -47,11 +47,15 @@
     $.getScript('game/js/effects.js');
 
   // Update stat display
-  tick(function() {
+  draw(function() {
     // Cutiebar display
     cc.cuties.m(function(cutie) {
       $('#cutie-stats .love').html(cutie.love());
       $('#cutie-stats .empathy').html(cc.stats.empathy());
+
+      var xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
+      xpPercentage = SchemeNumber.fn['-']('100', xpPercentage);
+      $('#xp-gauge .bar').css('top', xpPercentage + '%');
     });
 
     // Temporary Background Display
