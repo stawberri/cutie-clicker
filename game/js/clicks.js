@@ -83,6 +83,9 @@
       return;
     }
 
+    // Prevent divide by zero
+    if(String(cc.cuties.list().length) < 1) { return; }
+
     // How much should we drain per ms?
     var drainAmount = SchemeNumber.fn['/'](String(cc.cuties.list().length), '1000');
 
