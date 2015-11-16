@@ -111,7 +111,7 @@ body>.layer,
   #temp-mp-button-1 {
     -webkit-appearance: none;
     position: absolute;
-    top: 250px; left: 50px;
+    top: calc(100px + 14rem); left: 50px;
     height: 50px;
     pointer-events: auto;
   }
@@ -119,7 +119,7 @@ body>.layer,
   #temp-mp-button-2 {
     -webkit-appearance: none;
     position: absolute;
-    top: 325px; left: 57px;
+    top: calc(165px + 14rem); left: 50px;
     pointer-events: auto;
     height: 220px;
   }
