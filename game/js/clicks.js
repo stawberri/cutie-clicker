@@ -82,7 +82,7 @@
     }
 
     // How much should we drain per ms?
-    var drainAmount = SchemeNumber.fn['/'](String(cc.cuties.list().length), '3000');
+    var drainAmount = SchemeNumber.fn['/'](String(cc.cuties.list().length), '1000');
 
     // Make it relative to time passed
     drainAmount = SchemeNumber.fn.floor(SchemeNumber.fn['*'](drainAmount, String(sinceThen)));
