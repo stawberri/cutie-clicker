@@ -33,10 +33,10 @@
             cc.stats.empathy('-1');
 
             $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
-            $('#cutie-bar-r .cutie-card').html('<div class="glyph" style="font-size:5rem;">&diams; ' + xp + '</div>');
+            $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
           } else {
             $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#9745;)<br>&#9888; 0 &clubs;<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
-            $('#temp-mp-button-2').html('<div class="glyph" style="font-size:5rem;">&#9888; 0 &clubs;</div>');
+            $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; 0 &clubs;');
           }
         }
 
@@ -112,10 +112,10 @@
 
       var yay = (xpGain > 1000) ? '!!!' : '!'
       $('#temp-mp-button-1').html('1000 MP -> (750 ~ 1100) XP<br>&diams; ' + xpGain + yay)
-      $('#cutie-bar-l .cutie-card').html('<div class="glyph" style="font-size:5rem;">&diams; ' + xpGain + yay + '</div>')
+      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xpGain + yay)
     } else {
       $('#temp-mp-button-1').html('1000 MP -> (750 ~ 1100) XP<br>&#9888;: ' + cc.stats.empathy() + ' &clubs;')
-      $('#cutie-bar-l .cutie-card').html('<div class="glyph" style="font-size:5rem;">&#9888; ' + cc.stats.empathy() + ' &clubs;</div>')
+      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;')
 
     }
   });
@@ -129,6 +129,7 @@
       $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
     } else {
       $('#temp-mp-button-2').html('1 C + 1 MP = XP+++ (&#10060;)');
+      $('#cutie-bar-r .cutie-card .glyph').html('');
     }
   });
 }();
