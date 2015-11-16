@@ -65,19 +65,13 @@
     // Temporary Background Display
     cc.cuties.m(function(cutie) {
       var msg = '';
-      msg += 'cid: ' + cutie.cutie + ' (&#' + cutie.cutie + ';)';
-      msg += '<br>';
       msg += 'Lv: ' + cutie.lv();
       msg += '<br>';
-      msg += 'tXP: ' + cutie.targetxp();
-      msg += '<br>';
-      msg += '-';
-      msg += '<br>';
-      msg += 'C: ' + cc.stats.clicks();
-      msg += '<br>';
-      msg += 'XP: ' + cc.stats.xp();
+      msg += 'XP: ' + cc.stats.xp() + '/' + cutie.targetxp();
       msg += '<br>';
       msg += 'MP: ' + cc.stats.mp();
+      msg += '<br>';
+      msg += 'C: ' + cc.stats.clicks();
       $('#click-counter').html(msg);
     });
   });
