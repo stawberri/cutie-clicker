@@ -45,7 +45,8 @@ body>.layer,
     position: absolute;
     width: 104%; height: 104%;
     left: -2%; top: -2%;
-    background: radial-gradient(farthest-corner at 50% 0, rgba(204,241,255,0) 50%, rgba(204,241,255,.69) 100%);
+    background: linear-gradient(rgba(255,255,255, .8) 0%, rgba(255, 255, 255, 0) 100%),
+                radial-gradient(farthest-corner at 50% 0, rgba(204,241,255,0) 50%, rgba(204,241,255,.69) 100%);
   }
 
   #click-counter {
