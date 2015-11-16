@@ -50,7 +50,7 @@
     } catch(err) {
       ga('send', 'exception', {
         exDescription: err.message,
-        exFatal: true
+        exFatal: false
       });
       sessionStorage.clear();
       location.reload();
