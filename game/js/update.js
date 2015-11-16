@@ -33,17 +33,27 @@
 
   // Process perishable data
   cc.init.addAction('&#9728;', 'perishable data update', function(done) { // ☀
-    cc.ss = Rhaboo.perishable('cc-ss');
+  // I have no idea why this fails, but~
+    try {
+      cc.ss = Rhaboo.perishable('cc-ss');
 
-    // Throw out sessionStorage if version doesn't match
-    if(cc.ss.v != dataStorageVersion) {
-        cc.ss.erase('d');
-        cc.ss.write('d', {});
+      // Throw out sessionStorage if version doesn't match
+      if(cc.ss.v != dataStorageVersion) {
+          cc.ss.erase('d');
+          cc.ss.write('d', {});
+      }
+
+      // Update versions
+      cc.ss.write('v', dataStorageVersion);
+
+      done();
+    } catch(err) {
+      ga('send', 'exception', {
+        exDescription: err.message,
+        exFatal: true
+      });
+      sessionStorage.clear();
+      location.reload();
     }
-
-    // Update versions
-    cc.ss.write('v', dataStorageVersion);
-
-    done();
   });
 }();
