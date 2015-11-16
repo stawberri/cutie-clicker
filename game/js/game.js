@@ -53,7 +53,11 @@
       $('#cutie-stats .love').html(cutie.love());
       $('#cutie-stats .empathy').html(cc.stats.empathy());
 
-      var xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
+      var xpPercentage = 0;
+      // Prevent divide by zero and other weird issues like that
+      if(SchemeNumber.fn['>'](cutie.targetxp(), '0')) {
+        xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
+      }
       xpPercentage = SchemeNumber.fn['-']('100', xpPercentage);
       $('#xp-gauge .bar').css('top', xpPercentage + '%');
     });
