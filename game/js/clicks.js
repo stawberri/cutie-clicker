@@ -41,12 +41,6 @@
 
         cc.stats.excitement(xp);
 
-        // automatically attempt to love up for now
-        if(SchemeNumber.fn['>='](cc.stats.xp(), cutie.targetxp())) {
-          cutie.loveup();
-          cc.stats.xp('0');
-        }
-
         lastInterval = interval;
         cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now);
         lastxp = xp;
@@ -103,6 +97,17 @@
 
     // Update time
     cc.util.rhanum(cc.ls.d, 'lastXpDrain', now);
+  });
+
+  // Lv Up
+  cc.render.tick(function(now) {
+    cc.cuties.m(function(cutie) {
+      // automatically attempt to love up for now
+      if(SchemeNumber.fn['>='](cc.stats.xp(), cutie.targetxp())) {
+        cutie.loveup();
+        cc.stats.xp('0');
+      }
+    });
   });
 
   // Temp buttons
