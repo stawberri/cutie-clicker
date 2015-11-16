@@ -109,6 +109,7 @@ body>.layer,
 
   /* Temp MP buttons */
   #temp-mp-button-1 {
+    -webkit-appearance: none;
     position: absolute;
     top: 250px; left: 50px;
     height: 50px;
@@ -116,6 +117,7 @@ body>.layer,
   }
 
   #temp-mp-button-2 {
+    -webkit-appearance: none;
     position: absolute;
     top: 325px; left: 57px;
     pointer-events: auto;
