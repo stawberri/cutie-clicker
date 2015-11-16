@@ -29,7 +29,8 @@ body {
 }
 
 /* Main game display layers */
-body>.layer {
+body>.layer,
+#layers-under-ui>.layer {
   position: absolute;
   height: 100%; width: 100%;
   pointer-events: none;
