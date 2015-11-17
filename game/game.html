@@ -99,14 +99,12 @@
       1000+10% &spades; -> (750 ~ 1100) &diams;
     </button>
   </div>
-  <div class="parallax--2">
-    <button id="temp-emergency-reset"
-      onclick="if(confirm('Are you sure you want to reset everything and lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
-      style="pointer-events:auto;position:absolute;top:-2%;left:50%;transform:translateX(-50%);"
-    >
-      RESET (&hearts;, &diams;, &spades;, &clubs; &#8656; 0)
-    </button>
-  </div>
+  <button id="temp-emergency-reset"
+    onclick="if(confirm('Are you sure you want to reset everything and lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
+    style="pointer-events:auto;position:absolute;top:0;right:0;transform:translateX(-50%);"
+  >
+    RESET (&hearts;, &diams;, &spades;, &clubs; &#8656; 0)
+  </button>
 </div>
 
 <div id="layer-effects" class="layer">
