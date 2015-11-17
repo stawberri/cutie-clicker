@@ -195,8 +195,13 @@
     // Incremenets love
     love: function(value) {
       if(value) {
-        value = String(value);
+        SchemeNumber.fn.round(String(value));
         this.lv(SchemeNumber.fn['+'](this.lv(), value));
+
+        // Ensure that this can't be less than 0
+        if(SchemeNumber.fn['negative?'](this.lv())) {
+          this.lv('0');
+        }
       }
       return this.lv();
     },
