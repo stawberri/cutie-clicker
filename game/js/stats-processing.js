@@ -37,17 +37,25 @@
       if(cc.ls.d.burst) {
         // Bursting is a special case.
 
+        // Quick functionality restorer
+        if(cutie.targetBpMet()) {
+          // Exit burst mode
+          cc.ls.d.erase('burst');
 
-      } else {
-        // Are we ready to burst?
-        if(SchemeNumber.fn['>='](cc.stats.xp(), cutie.targetxp())) {
-
+          // Just do what it used to do for now
           cutie.loveup();
-          cc.stats.empathy(cc.stats.excitement());
-          cc.stats.xp('0');
+          cc.stats.xpToMp(cc.stats.excitement());
 
           // Google analytics for fun data
           // ga('send', 'event', 'cuties', 'lv up', cutie.cutie, Number(cutie.love()));
+        }
+
+      } else {
+        // Are we ready to burst?
+        if(cutie.targetXpMet()) {
+
+          // Enter burst mode!
+          cc.ls.d.write('burst', {});
         }
       }
     });

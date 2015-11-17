@@ -180,8 +180,23 @@
 
   // Cutie object prototype
   cc.cuties.proto = {
+    // Stuff that probably will be overridden
+
     // Rarity
     rarity: 0,
+
+    // How much excitement does this cutie require for love up?
+    targetxp: function() {
+      return String(SchemeNumber.fn.expt(this.lv(), '2'));
+    },
+    targetbp: function() {
+      return '0';
+    },
+
+
+    // Stuff that probably won't be overidden
+
+
     // Get / set love - low level, doesn't trigger events
     lv: function(value) {
       if($.type(value) === 'undefined') {
@@ -195,7 +210,7 @@
     // Incremenets love
     love: function(value) {
       if(value) {
-        SchemeNumber.fn.round(String(value));
+        value = SchemeNumber.fn.round(String(value));
         this.lv(SchemeNumber.fn['+'](this.lv(), value));
 
         // Ensure that this can't be less than 0
@@ -205,13 +220,46 @@
       }
       return this.lv();
     },
-    // How much excitement does this cutie require for love up?
-    targetxp: function() {
-      return String(SchemeNumber.fn.expt(this.lv(), '2'));
+    // Are we excited enough?
+    targetXpMet: function() {
+      return SchemeNumber.fn['>='](cc.stats.xp(), this.targetxp());
     },
     // Love Up processing!
     loveup: function() {
       this.love('1');
+    },
+    // Get / Set burst points
+    bp: function(value) {
+      // This has no meaning outside of bursting
+      if(cc.ls.d.burst) {
+        if($.type(value) === 'undefined') {
+          // Get - default to 0
+          return cc.util.rhanum(cc.ls.d.burst, this.cutie) || cc.util.rhanum(cc.ls.d.burst, this.cutie, '0');
+        } else {
+          // Set
+          return cc.util.rhanum(cc.ls.d.burst, this.cutie, value);
+        }
+      }
+    },
+    // Mod burst points
+    burstPoints: function(value) {
+      // This has no meaning outside of bursting
+      if(cc.ls.d.burst) {
+        if(value) {
+          value = SchemeNumber.fn.round(String(value));
+          this.bp(SchemeNumber.fn['+'](this.bp(), value));
+
+          // Ensure that this can't be less than 0
+          if(SchemeNumber.fn['negative?'](this.bp())) {
+            this.bp('0');
+          }
+        }
+        return this.lv();
+      }
+    },
+    // Did we burst enough?
+    targetBpMet: function() {
+      return SchemeNumber.fn['>='](this.bp(), this.targetbp());
     }
   };
 }();
