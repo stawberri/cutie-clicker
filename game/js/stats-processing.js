@@ -24,31 +24,31 @@
     // Make it relative to time passed
     drainAmount = SchemeNumber.fn.floor(SchemeNumber.fn['*'](drainAmount, String(sinceThen)));
 
-    // If drainAmount is greater than available xp, make them equal.
-    drainAmount = SchemeNumber.fn.min(drainAmount, cc.stats.excitement());
-
-    // Stop if we're draining less than 1 xp.
-    if(SchemeNumber.fn['<'](drainAmount, '1')) { return; }
-
-    // Drain xp, award mp.
-    cc.stats.excitement(SchemeNumber.fn['*']('-1', drainAmount));
-    cc.stats.empathy(drainAmount);
+    // Return if draining fails
+    if(!cc.stats.xpToMp(drainAmount)) { return; }
 
     // Update time
     cc.util.rhanum(cc.ls.d, 'lastXpDrain', now);
   });
 
-  // Lv Up
+  // Lv Up & Bursting
   cc.render.tick(function(now) {
     cc.cuties.m(function(cutie) {
-      // automatically attempt to love up for now
-      if(SchemeNumber.fn['>='](cc.stats.xp(), cutie.targetxp())) {
-        cutie.loveup();
-        cc.stats.empathy(cc.stats.excitement());
-        cc.stats.xp('0');
+      if(cc.ls.d.burst) {
+        // Bursting is a special case.
 
-        // Google analytics for fun data
-        ga('send', 'event', 'cuties', 'lv up', cutie.cutie, Number(cutie.love()));
+
+      } else {
+        // Are we ready to burst?
+        if(SchemeNumber.fn['>='](cc.stats.xp(), cutie.targetxp())) {
+
+          cutie.loveup();
+          cc.stats.empathy(cc.stats.excitement());
+          cc.stats.xp('0');
+
+          // Google analytics for fun data
+          // ga('send', 'event', 'cuties', 'lv up', cutie.cutie, Number(cutie.love()));
+        }
       }
     });
   });

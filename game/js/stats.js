@@ -87,7 +87,7 @@
     return actualCost;
   }
 
-  // returns true if we have enough mp
+  // Returns true if we have enough mp
   cc.stats.mpcost = function(baseCost, deduct) {
     var calculatedCost = cc.stats.mpcostcalc(baseCost);
 
@@ -102,6 +102,21 @@
     }
 
     // Return true, since we have enough
+    return true;
+  }
+
+  // Converts xp to mp
+  cc.stats.xpToMp = function(amount) {
+    // If amount is greater than available xp, make them equal.
+    var drainAmount = SchemeNumber.fn.min(String(amount), cc.stats.excitement());
+
+    // If it's less than 1, something weird happened
+    if(SchemeNumber.fn['<'](drainAmount, '1')) { return false; }
+
+    // Remove xp, award mp.
+    cc.stats.excitement(SchemeNumber.fn['*']('-1', drainAmount));
+    cc.stats.empathy(drainAmount);
+
     return true;
   }
 }();
