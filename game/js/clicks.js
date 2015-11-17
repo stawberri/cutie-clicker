@@ -107,6 +107,9 @@
         cutie.loveup();
         cc.stats.empathy(cc.stats.excitement());
         cc.stats.xp('0');
+
+        // Google analytics for fun data
+        ga('send', 'event', 'cuties', 'lv up', cutie.cutie, Number(cutie.love()));
       }
     });
   });
