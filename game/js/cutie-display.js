@@ -49,6 +49,7 @@
   }
 
   // Current (main game) cuties display
+  // Cutie cards and main display
     var cutieM, cutieL, cutieR;
     var cutieClassM, cutieClassL, cutieClassR;
     cc.render.tick(function() {

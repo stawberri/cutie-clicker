@@ -11,7 +11,17 @@
     </div>
     <div class="parallax--1">
       <!-- Completely temporary click counter -->
-      <p id="click-counter"></p>
+      <p id="click-counter">
+        &#128432; = click
+        <br>
+        &hearts; = Lv
+        <br>
+        &diams; = XP
+        <br>
+        <span style="opacity: .3;">&clubs; = HP</span>
+        <br>
+        &spades; = MP
+      </p>
     </div>
   </div>
 
@@ -81,20 +91,20 @@
   <!-- Temporary MP usage buttons -->
   <div class="parallax-2"><div class="parallax--1">
     <button id="temp-mp-button-2">
-      1 C + 1+0.01% MP = XP+++ (&#10060;)
+      1 &#128432; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#10060;)
     </button>
   </div></div>
   <div class="parallax-2">
     <button id="temp-mp-button-1">
-      1000+10% MP -> (750 ~ 1100) XP
+      1000+10% &spades; -> (750 ~ 1100) &diams;
     </button>
   </div>
   <div class="parallax--2">
     <button id="temp-emergency-reset"
-      onclick="if(confirm('Are you sure you want to lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
+      onclick="if(confirm('Are you sure you want to reset everything and lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
       style="pointer-events:auto;position:absolute;top:-2%;left:50%;transform:translateX(-50%);"
     >
-      COMPLETE RESET FOR TESTERS
+      RESET (&hearts;, &diams;, &spades;, &clubs; &#8656; 0)
     </button>
   </div>
 </div>

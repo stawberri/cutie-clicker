@@ -41,39 +41,12 @@
   // Grab stuff from other scripts
     // Cutie rendering
     $.getScript('game/js/cutie-display.js');
-    // Click button and associated processing
-    $.getScript('game/js/clicks.js');
+    // Input processing
+    $.getScript('game/js/input.js');
     // Visual effects
     $.getScript('game/js/effects.js');
-
-  // Update stat display
-  draw(function() {
-    // Cutiebar display
-    cc.cuties.m(function(cutie) {
-      $('#cutie-stats .love').html(cutie.love());
-      $('#cutie-stats .empathy').html(cc.stats.empathy());
-
-      var xpPercentage = 0;
-      // Prevent divide by zero and other weird issues like that
-      if(SchemeNumber.fn['>'](cutie.targetxp(), '0')) {
-        xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
-      }
-      xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));
-      xpPercentage = SchemeNumber.fn['-']('100', xpPercentage);
-      $('#xp-gauge .bar').css('top', xpPercentage + '%');
-    });
-
-    // Temporary Background Display
-    cc.cuties.m(function(cutie) {
-      var msg = '';
-      msg += 'Lv: ' + cutie.lv();
-      msg += '<br>';
-      msg += 'XP: ' + cc.stats.xp() + '/' + cutie.targetxp();
-      msg += '<br>';
-      msg += 'MP: ' + cc.stats.mp();
-      msg += '<br>';
-      msg += 'C: ' + cc.stats.clicks();
-      $('#click-counter').html(msg);
-    });
-  });
+    // Stats processing
+    $.getScript('game/js/stats-processing.js');
+    // Stats display
+    $.getScript('game/js/stats-display.js');
 }();
