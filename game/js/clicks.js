@@ -1,5 +1,5 @@
 // Outsource click processing to this script to keep index.js cleaner
-// Also does xp drain
+// Also does xp drain and general xp stuff processing
 
 !function() {
   // Clicking

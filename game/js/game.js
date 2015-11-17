@@ -58,6 +58,7 @@
       if(SchemeNumber.fn['>'](cutie.targetxp(), '0')) {
         xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
       }
+      xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));
       xpPercentage = SchemeNumber.fn['-']('100', xpPercentage);
       $('#xp-gauge .bar').css('top', xpPercentage + '%');
     });
