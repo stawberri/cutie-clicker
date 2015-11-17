@@ -21,17 +21,17 @@
       var xp = 1;
 
       if(cc.ls.d.tempClickStreakPassive) {
-        if(cc.stats.mpcost(1, true)) {
+        if(cc.stats.mpcost('10', true)) {
           if(lastInterval*.96 > interval) {
             xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('3', lastxp, String(lastInterval/interval))));
           } else if (interval < lastInterval * 2) {
             xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, String(lastInterval/interval))));
           }
 
-          $('#temp-mp-button-2').html('1 &bull; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+          $('#temp-mp-button-2').html('1 &bull; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
         } else {
-          $('#temp-mp-button-2').html('1 &bull; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&#9888; 0 &clubs;<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+          $('#temp-mp-button-2').html('1 &bull; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&#9888; 0 &clubs;<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; 0 &clubs;');
         }
       }
@@ -77,9 +77,9 @@
   $('#cutie-bar-r, #temp-mp-button-2').click(function() {
     cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
     if(cc.ls.d.tempClickStreakPassive) {
-      $('#temp-mp-button-2').html('1 &bull; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+      $('#temp-mp-button-2').html('1 &bull; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
     } else {
-      $('#temp-mp-button-2').html('1 &bull; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#10060;)');
+      $('#temp-mp-button-2').html('1 &bull; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#10060;)');
       $('#cutie-bar-r .cutie-card .glyph').html('');
     }
   });
@@ -89,6 +89,6 @@
     cc.ls.d.write('tempClickStreakPassive', true);
   }
   if(cc.ls.d.tempClickStreakPassive) {
-    $('#temp-mp-button-2').html('1 &bull; + 1+0.01% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+    $('#temp-mp-button-2').html('1 &bull; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
   }
 }();
