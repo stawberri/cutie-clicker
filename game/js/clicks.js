@@ -22,14 +22,12 @@
         var xp = 1;
 
         if(cc.ls.d.tempClickStreakPassive) {
-          if(SchemeNumber.fn['>='](cc.stats.empathy(), 1)) {
+          if(cc.stats.mpcost(1, true)) {
             if(lastInterval*.96 > interval) {
               xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('3', lastxp, String(lastInterval/interval))));
             } else if (interval < lastInterval * 2) {
               xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, String(lastInterval/interval))));
             }
-
-            cc.stats.empathy('-1');
 
             $('#temp-mp-button-2').html('1 C + 1+0.01% MP = XP+++ (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
             $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
@@ -134,7 +132,7 @@
     $('#temp-mp-button-2').html('1 C + 1+0.01% MP = XP+++ (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
   }
   $('#cutie-bar-r, #temp-mp-button-2').click(function() {
-    cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive && SchemeNumber.fn['>='](cc.stats.empathy(), 1));
+    cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
     if(cc.ls.d.tempClickStreakPassive) {
       $('#temp-mp-button-2').html('1 C + 1+0.01% MP = XP+++ (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
     } else {
