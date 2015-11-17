@@ -187,7 +187,7 @@
 
     // How much excitement does this cutie require for love up?
     targetxp: function() {
-      return String(SchemeNumber.fn.expt(this.lv(), '2'));
+      return String(SchemeNumber.fn.expt(this.love(), '2'));
     },
     targetbp: function() {
       return '0';
@@ -204,7 +204,7 @@
         return cc.util.rhanum(this.data, 'lv') || cc.util.rhanum(this.data, 'lv', '0');
       } else {
         // Set
-        return cc.util.rhanum(this.data, 'lv', value);
+        return cc.util.rhanum(this.data, 'lv', String(value));
       }
     },
     // Incremenets love
@@ -222,7 +222,7 @@
     },
     // Are we excited enough?
     targetXpMet: function() {
-      return SchemeNumber.fn['>='](cc.stats.xp(), this.targetxp());
+      return SchemeNumber.fn['>='](cc.stats.excitement(), this.targetxp());
     },
     // Love Up processing!
     loveup: function() {
@@ -237,7 +237,7 @@
           return cc.util.rhanum(cc.ls.d.burst, this.cutie) || cc.util.rhanum(cc.ls.d.burst, this.cutie, '0');
         } else {
           // Set
-          return cc.util.rhanum(cc.ls.d.burst, this.cutie, value);
+          return cc.util.rhanum(cc.ls.d.burst, this.cutie, String(value));
         }
       }
     },
@@ -254,12 +254,12 @@
             this.bp('0');
           }
         }
-        return this.lv();
+        return this.bp();
       }
     },
     // Did we burst enough?
     targetBpMet: function() {
-      return SchemeNumber.fn['>='](this.bp(), this.targetbp());
+      return SchemeNumber.fn['>='](this.burstPoints(), this.targetbp());
     }
   };
 }();

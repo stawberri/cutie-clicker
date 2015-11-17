@@ -26,7 +26,7 @@
       return cc.util.rhanum(cc.ls.d, 'xp') || cc.util.rhanum(cc.ls.d, 'xp', '0');
     } else {
       // Set
-      return cc.util.rhanum(cc.ls.d, 'xp', value);
+      return cc.util.rhanum(cc.ls.d, 'xp', String(value));
     }
   };
 
@@ -52,7 +52,7 @@
       return cc.util.rhanum(cc.ls.d, 'mp') || cc.util.rhanum(cc.ls.d, 'mp', '0');
     } else {
       // Set
-      return cc.util.rhanum(cc.ls.d, 'mp', value);
+      return cc.util.rhanum(cc.ls.d, 'mp', String(value));
     }
   };
 
@@ -74,17 +74,17 @@
   // mp cost calculation. Doesn't actually subtract mp
   cc.stats.mpcostcalc = function(baseCost, negative) {
     // This doesn't actually calculate a percentage, but a fraction.
-    // So 1 mp base cost -> 1% mp cost would actually be 0.01.
-    var costAsPercentageMult = '0.0001'; // 10,000 mp base cost = 100%
+    // So 1 mp base cost -> 1% mp cost would actually be 1/100.
+    var costAsPercentageMult = '1/10000'; // 10,000 mp base cost = 100%
     var baseCost = String(baseCost);
-    var percentageCost = SchemeNumber.fn.ceiling(SchemeNumber.fn['*'](baseCost, costAsPercentageMult, cc.stats.mp()));
+    var percentageCost = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*'](baseCost, costAsPercentageMult, cc.stats.empathy())));
 
     var actualCost = SchemeNumber.fn.max(baseCost, percentageCost);
     if(negative) {
       actualCost = SchemeNumber.fn['*']('-1', actulCost);
     }
 
-    return actualCost;
+    return String(actualCost);
   }
 
   // Returns true if we have enough mp
@@ -92,7 +92,7 @@
     var calculatedCost = cc.stats.mpcostcalc(baseCost);
 
     // Return false if there isn't enough
-    if(SchemeNumber.fn['<'](cc.stats.mp(), calculatedCost)) {
+    if(SchemeNumber.fn['<'](cc.stats.empathy(), calculatedCost)) {
       return false;
     }
 

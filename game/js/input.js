@@ -3,7 +3,7 @@
 !function() {
   // Clicking
   var recentClickTimeout;
-  var lastInterval = 0;
+  var lastInterval = '1';
   var lastxp = '1';
 
   $('#cutie-clicker').on('mousedown touchstart', function(ev) {
@@ -17,15 +17,15 @@
     // Award excitement
     cc.cuties.m(function(cutie) {
       var now = $.now();
-      var interval = now - (cc.util.rhanum(cc.ls.d, 'tempClickStreakTime') || cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now));
-      var xp = 1;
+      var interval = String(now - (cc.util.rhanum(cc.ls.d, 'tempClickStreakTime') || cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now - 1)));
+      var xp = '1';
 
       if(cc.ls.d.tempClickStreakPassive) {
         if(cc.stats.mpcost('10', true)) {
           if(lastInterval - 100 > interval) {
-            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('3', lastxp, String(lastInterval/interval))));
-          } else if (interval < lastInterval + 400) {
-            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.9', lastxp, String(lastInterval/interval))));
+            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('5', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
+          } else if (interval < lastInterval + 100) {
+            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
           }
 
           $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
