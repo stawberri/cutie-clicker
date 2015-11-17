@@ -89,6 +89,14 @@
       1000+10% MP -> (750 ~ 1100) XP
     </button>
   </div>
+  <div class="parallax--2">
+    <button id="temp-emergency-reset"
+      onclick="if(confirm('Are you sure you want to lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
+      style="pointer-events:auto;position:absolute;top:-2%;left:50%;transform:translateX(-50%);"
+    >
+      COMPLETE RESET FOR TESTERS
+    </button>
+  </div>
 </div>
 
 <div id="layer-effects" class="layer">
