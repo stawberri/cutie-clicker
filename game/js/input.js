@@ -32,7 +32,7 @@
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
         } else {
           $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&#9888; 0 &clubs;<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
-          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; 0 &clubs;');
+          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;');
         }
       }
 
