@@ -52,7 +52,7 @@
   // Cutie cards and main display
     var cutieM, cutieL, cutieR;
     var cutieClassM, cutieClassL, cutieClassR;
-    cc.render.tick(function() {
+    cc.loop.tick(function() {
       // middle cutie
       // There's always a cutie here, so no need to check for that.
       cc.cuties.m(function(cutie) {

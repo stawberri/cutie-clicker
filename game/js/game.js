@@ -1,7 +1,7 @@
 !function() {
-  // Create a cc.render to deal with rendering type stuff
+  // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
-  cc.render = {
+  cc.loop = {
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps
   };
@@ -17,11 +17,11 @@
     // Run queue
     function doTick() {
       tickQueue.fire($.now());
-      setTimeout(doTick, cc.render.tickInterval);
+      setTimeout(doTick, cc.loop.tickInterval);
     }
     doTick();
     // Allow other scripts loaded after this one to add tasks.
-    cc.render.tick = tick;
+    cc.loop.tick = tick;
 
   // Same thing for rendering
     // This is for stuff that actually relies on Javascript to be updated.
@@ -33,10 +33,10 @@
     // Run queue
     function doDraw() {
       drawQueue.fire($.now());
-      setTimeout(doDraw, cc.render.drawInterval);
+      setTimeout(doDraw, cc.loop.drawInterval);
     }
     doDraw();
-    cc.render.draw = draw;
+    cc.loop.draw = draw;
 
   // Grab stuff from other scripts
     // Cutie rendering

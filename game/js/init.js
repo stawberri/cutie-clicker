@@ -1,36 +1,21 @@
 !function() {
-
-  // Register jquery ajax handler for analytics
-  // $(document).ajaxSend(function(ev, jqxhr, options) {
-  //   // Local root address converter for analytics
-  //   function localRoot(url) {
-  //     // This filters out non-local addresses
-  //     if(url.search(/(?:\w+:)?\/\//i) != -1) {
-  //       return;
-  //     }
-
-  //     // Add a slash to the beginning if necessary.
-  //     // This assumes all urls are relative to root (they should be).
-  //     return (url.charAt(0) == '/') ? url : '/' + url;
-  //   };
-
-  //   var localUrl = localRoot(options.url);
-  //   if(localUrl) {
-  //     // Only track .html files (prevent bursting)
-  //     if(localUrl.search(/\.html(?:[#?].*)?$/i) != -1) {
-  //       ga('send', 'pageview', localUrl);
-  //     }
-  //   }
-  // });
-
   // Move people to https://cc.aideen.pw/ if they aren't already there.
   // Disabled for now since this would clear players' saves.
   // if(location.protocol != 'file:' && location.protocol + location.host != 'https:cc.aideen.pw') {
   //   location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash)
   // }
 
+  // Create a temporary version variable, then load real one
+  var cc = {v: String($.now())};
+  $.get('version.txt', {_: cc.v}, function(data) {
+    cc.v = $.trim(data);
+  }, 'text');
+
   // Create init function
   cc.init = function() {
+    if(cc.init.once) return;
+    cc.init.once = true;
+
     // Remember when we started
     var initBeginTime = $.now();
 
@@ -52,6 +37,16 @@
       // Set loading message to those messages
       $('#site-game-loading').html(actionMsgs.join(' '));
     }, 100);
+
+    // Create getScript function
+    cc.getScript = function(url, callback) {
+      return $.get(url, {_: cc.v}, function(data) {
+        eval(data);
+        if($.isFunction(callback)) {
+          callback();
+        }
+      }, 'text');
+    };
 
     // This function actually uses pendingActions above
     function addAction(action, readableAction, runFunction) {
@@ -163,13 +158,13 @@
       // This file is for loading blocking, "Cutie Clicker will not work at all without these" scripts. Non-critical scripts go into index.js
 
       // lz-string (data compression library)
-      addScript('&#11075;', 'lz-string', 'lib/lz-string.min.js', true); // ⭃
+      addScript('&#11075;', 'lz-string', 'lib/lz-string.2015.11.9.js', true); // ⭃
 
       // Rhaboo (data storage library)
-      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.min.js', true); // ⛃
+      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.2015.11.8.js', true); // ⛃
 
       // schemeNumber (accurate numbers library)
-      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.min.js', true); // ⑨
+      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.2015.11.9.js', true); // ⑨
 
       // cc.util
       addScript('&#9939;', 'cc.util', 'game/js/util.js'); // ⛓
@@ -184,7 +179,36 @@
     });
   };
 
+  // Register jquery ajax handler for analytics
+  // $(document).ajaxSend(function(ev, jqxhr, options) {
+  //   // Local root address converter for analytics
+  //   function localRoot(url) {
+  //     // This filters out non-local addresses
+  //     if(url.search(/(?:\w+:)?\/\//i) != -1) {
+  //       return;
+  //     }
+
+  //     // Add a slash to the beginning if necessary.
+  //     // This assumes all urls are relative to root (they should be).
+  //     return (url.charAt(0) == '/') ? url : '/' + url;
+  //   };
+
+  //   var localUrl = localRoot(options.url);
+  //   if(localUrl) {
+  //     // Only track .html files (prevent bursting)
+  //     if(localUrl.search(/\.html(?:[#?].*)?$/i) != -1) {
+  //       ga('send', 'pageview', localUrl);
+  //     }
+  //   }
+  // });
+
+  // Make cc global for debugging
+  if(location.protocol == 'file:') {
+    window.cc = cc;
+  }
+
+  window.launchcc = cc.init;
 }();
 
 // Run it to simplify calling code (for now)
-cc.init(cc)
+launchcc();

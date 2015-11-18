@@ -7,7 +7,7 @@
     parallaxMouse.x = mouseX;
     parallaxMouse.y = mouseY;
   }
-  cc.render.draw(function() {
+  cc.loop.draw(function() {
     mouseX = parallaxMouse.x;
     mouseY = parallaxMouse.y;
 

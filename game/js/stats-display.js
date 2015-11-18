@@ -2,7 +2,7 @@
 
 !function() {
   // Update stat display
-  cc.render.draw(function() {
+  cc.loop.draw(function() {
     // Cutiebar display
     cc.cuties.m(function(cutie) {
       $('#cutie-stats .love').html(cutie.love());

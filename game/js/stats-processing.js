@@ -1,7 +1,7 @@
 // A file for processing stat changes and things like that
 !function() {
   // XP Drain from number of cuties
-  cc.render.tick(function(now) {
+  cc.loop.tick(function(now) {
     // Make sure we have cuties before doing anything
     if(String(cc.cuties.list().length) != 0) {
       // How long has it been since this was last calculated?
@@ -30,7 +30,7 @@
   });
 
   // Lv Up & Bursting
-  cc.render.tick(function(now) {
+  cc.loop.tick(function(now) {
     cc.cuties.m(function(cutie) {
       if(cc.ls.d.burst) {
         // Bursting is a special case.
