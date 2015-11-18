@@ -51,7 +51,7 @@
       if(!loadingCuties[cutieType]) {
         // It hasn't, so load it
         loadingCuties[cutieType] = $.Deferred();
-        cc.getScript('game/cuties/' + cutieType + '/cutie.js').done(function() {
+        cc.getScript('cuties/' + cutieType + '/cutie.js').done(function() {
           // Resolve deferred.
           loadingCuties[cutieType].resolve();
         });

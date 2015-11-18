@@ -40,6 +40,11 @@
 
     // Create getScript function
     cc.getScript = function(url, callback) {
+      // Add game if it's not there. Use $ to add libraries.
+      if(url.search(/^\/?game\//i) < 0) {
+        url = 'game/' + url;
+      }
+
       return $.get(url, {_: cc.v}, function(data) {
         eval(data);
         if($.isFunction(callback)) {
@@ -74,7 +79,7 @@
 
           // Data update script. This is here because it pretty much requires everything.
           addAction('&#9853;', 'data update', function(done) { // ♽
-            cc.getScript('game/js/update.js').done(function() {
+            cc.getScript('js/update.js').done(function() {
               // Remove this item
               done();
 
@@ -87,8 +92,8 @@
               $('html').removeClass();
 
               // Load page
-              $('body').load('game/game.html', function() {
-                cc.getScript('game/js/game.js').done(function() {
+              $('body').load(cc.util.l('game.html'), function() {
+                cc.getScript('js/game.js').done(function() {
                   // How long did this all take?
                   var msSinceStart = $.now() - initBeginTime;
 
@@ -167,13 +172,13 @@
       addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.2015.11.9.js', true); // ⑨
 
       // cc.util
-      addScript('&#9939;', 'cc.util', 'game/js/util.js'); // ⛓
+      addScript('&#9939;', 'cc.util', 'js/util.js'); // ⛓
 
       // cc.stats
-      addScript('&#127918;', 'cc.stats', 'game/js/stats.js'); // 🎮
+      addScript('&#127918;', 'cc.stats', 'js/stats.js'); // 🎮
 
       // cc.cuties
-      addScript('&#9829;', 'cc.cuties', 'game/js/cuties.js') // ♥
+      addScript('&#9829;', 'cc.cuties', 'js/cuties.js') // ♥
 
       done();
     });

@@ -1,6 +1,6 @@
 !function() {
-  cc.util.getcss('game/css/game.css');
-  cc.util.getcss('game/css/cutie-card.css');
+  cc.util.getcss('css/game.css');
+  cc.util.getcss('css/cutie-card.css');
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
@@ -60,15 +60,15 @@
 
   // Grab stuff from other scripts
     // Cutie rendering
-    cc.getScript('game/js/cutie-display.js');
+    cc.getScript('js/cutie-display.js');
     // Input processing
-    cc.getScript('game/js/input.js');
+    cc.getScript('js/input.js');
     // Visual effects
-    cc.getScript('game/js/effects.js');
+    cc.getScript('js/effects.js');
     // Stats processing
-    cc.getScript('game/js/stats-processing.js');
+    cc.getScript('js/stats-processing.js');
     // Stats display
-    cc.getScript('game/js/stats-display.js');
+    cc.getScript('js/stats-display.js');
 
   // Check for updates (the one thing this script does)
   // Don't do this locally.

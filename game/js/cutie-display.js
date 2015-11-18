@@ -61,10 +61,10 @@
           cutieM = cutie.cutie;
 
           // Get CSS
-          cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
+          cc.util.getcss('cuties/' + cutie.cutie + '/cutie.css');
 
           // Main Cutie Display
-          $('#cutie-m .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
+          $('#cutie-m .cutie-embed').load(cc.util.l('cuties/' + cutie.cutie + '/cutie.html #cutie'));
 
           // Cutie Card Display
           cutieCard('#cutie-bar-m', 'cutie-bar-slot', cutie);
@@ -85,10 +85,10 @@
           cutieL = cutie.cutie;
 
           // Get CSS
-          cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
+          cc.util.getcss('cuties/' + cutie.cutie + '/cutie.css');
 
           // Main Cutie Display
-          $('#cutie-l .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
+          $('#cutie-l .cutie-embed').load(cc.util.l('cuties/' + cutie.cutie + '/cutie.html #cutie'));
 
           // Cutie Card Display
           cutieCard('#cutie-bar-l', 'cutie-bar-slot', cutie);
@@ -120,10 +120,10 @@
           cutieR = cutie.cutie;
 
           // Get CSS
-          cc.util.getcss('game/cuties/' + cutie.cutie + '/cutie.css');
+          cc.util.getcss('cuties/' + cutie.cutie + '/cutie.css');
 
           // Main Cutie Display
-          $('#cutie-r .cutie-embed').load('game/cuties/' + cutie.cutie + '/cutie.html #cutie');
+          $('#cutie-r .cutie-embed').load(cc.util.l('cuties/' + cutie.cutie + '/cutie.html #cutie'));
 
           // Cutie Card Display
           cutieCard('#cutie-bar-r', 'cutie-bar-slot', cutie);

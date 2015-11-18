@@ -74,11 +74,26 @@
     }
   };
 
+  // Gets rid of caching and adds 'game/' to the front of url if it's not already there so I can stop typing it
+  cc.util.l = function(url) {
+    if(url.search(/^\/?game\//i) < 0) {
+      // Need to add game
+      url = 'game/' + url;
+    }
+
+    if(url.search(/ /) < 0) {
+      // No spaces. Add a ? or a ; intelligently.
+      return url + ((url.search(/\?/) < 0) ? '?' : ';') + '_=' + cc.v;
+    } else {
+      // There's a space.
+      return url.replace(/ /, ((url.search(/\?/) < 0) ? '?' : ';') + '_=' + cc.v + ' ');
+    }
+  }
+
   // Load a css file
   var loadedCss = {};
   cc.util.getcss = function(url) {
     // Disable caching (add ? or ; on based on whether there's already a ? or not)
-    url += ((url.search(/\?/) >= 0) ? ';' : '?') + '_=' + cc.v;
-    return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', url);
+    return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', cc.util.l(url));
   };
 }();
