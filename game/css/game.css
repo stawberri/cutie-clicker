@@ -231,12 +231,15 @@ body>.layer,
       transform: translateX(85px) translateX(-50%);
     }
 
+#layer-burst {
+}
+
   #burst-ui {
   }
 
     #burst-xp-gauge {
       position: absolute;
-      left: 50%; bottom: 150px;
+      left: 50%; bottom: 130px;
       width: 50%; height: 3px;
       transform: translate(-50%, -50%);
       background-color: rgba(255, 255, 255, .69);
