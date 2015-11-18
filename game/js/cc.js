@@ -1,21 +1,15 @@
-!function() {
-  // Create cutie clicker main object containing a getScript that evals code in this scope.
+$.get('version.txt', {_: $.now()}, function(d) {
   var cc = {
-    getScript: function(script, callback) {
-      return $.get(script, undefined, function(data) {
-        eval(data);
-        if($.isFunction(callback)) {
-          callback();
-        }
+    v: $.trim(d),
+    getScript: function(s, c) {
+      return $.get(s, {_: cc.v}, function(d) {
+        eval(d);
+        c&&c();
       }, 'text');
     }
-  };
-
-  // Start game
-  cc.getScript('game/js/init.js?cc-time=' + $.now());
-
-  // Allow file urls to access cc
+  }
+  cc.getScript('game/js/init.js');
   if(location.protocol == 'file:') {
     window.cc = cc;
   }
-}();
+}, 'text');
