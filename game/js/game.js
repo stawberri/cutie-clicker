@@ -40,13 +40,13 @@
 
   // Grab stuff from other scripts
     // Cutie rendering
-    $.getScript('game/js/cutie-display.js');
+    cc.getScript('game/js/cutie-display.js');
     // Input processing
-    $.getScript('game/js/input.js');
+    cc.getScript('game/js/input.js');
     // Visual effects
-    $.getScript('game/js/effects.js');
+    cc.getScript('game/js/effects.js');
     // Stats processing
-    $.getScript('game/js/stats-processing.js');
+    cc.getScript('game/js/stats-processing.js');
     // Stats display
-    $.getScript('game/js/stats-display.js');
+    cc.getScript('game/js/stats-display.js');
 }();

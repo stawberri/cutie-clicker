@@ -1,3 +1,5 @@
+// Update storage data
+
 !function() {
   // Current data version
   var dataStorageVersion = 3;

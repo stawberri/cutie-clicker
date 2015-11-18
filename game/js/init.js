@@ -79,7 +79,7 @@
 
           // Data update script. This is here because it pretty much requires everything.
           addAction('&#9853;', 'data update', function(done) { // ♽
-            $.getScript('game/js/update.js').done(function() {
+            cc.getScript('game/js/update.js').done(function() {
               // Remove this item
               done();
 
@@ -93,7 +93,7 @@
 
               // Load page
               $('body').load('game/game.html', function() {
-                $.getScript('game/js/game.js').done(function() {
+                cc.getScript('game/js/game.js').done(function() {
                   // How long did this all take?
                   var msSinceStart = $.now() - initBeginTime;
 
@@ -119,9 +119,10 @@
     cc.init.addAction = addAction;
 
     // Helper function because I do this a million times below
-    function addScript(action, readableAction, script) {
+    function addScript(action, readableAction, script, library) {
       addAction(action, readableAction, function(done) {
-        $.getScript(script).done(done);
+        // Decide which getScript to use based on whether or not this is an external library
+        (library ? $ : cc).getScript(script).done(done);
       });
     }
     // Make this accessible everywhere as well
@@ -162,13 +163,13 @@
       // This file is for loading blocking, "Cutie Clicker will not work at all without these" scripts. Non-critical scripts go into index.js
 
       // lz-string (data compression library)
-      addScript('&#11075;', 'lz-string', 'lib/lz-string.min.js'); // ⭃
+      addScript('&#11075;', 'lz-string', 'lib/lz-string.min.js', true); // ⭃
 
       // Rhaboo (data storage library)
-      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.min.js'); // ⛃
+      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.min.js', true); // ⛃
 
       // schemeNumber (accurate numbers library)
-      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.min.js'); // ⑨
+      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.min.js', true); // ⑨
 
       // cc.util
       addScript('&#9939;', 'cc.util', 'game/js/util.js'); // ⛓
@@ -186,4 +187,4 @@
 }();
 
 // Run it to simplify calling code (for now)
-cc.init()
+cc.init(cc)
