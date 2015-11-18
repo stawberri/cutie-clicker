@@ -207,8 +207,6 @@
     window.cc = cc;
   }
 
-  window.launchcc = cc.init;
+  // Go!
+  cc.init();
 }();
-
-// Run it to simplify calling code (for now)
-launchcc();

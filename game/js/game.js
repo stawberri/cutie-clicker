@@ -2,6 +2,7 @@
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
   cc.loop = {
+    taskInterval: 60000, // 60 seconds
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps
   };
@@ -38,6 +39,22 @@
     doDraw();
     cc.loop.draw = draw;
 
+
+  // Same thing for tasks
+    // This runs least frequently
+    var taskQueue = $.Callbacks('memory unique');
+    function task(func) {
+      // Add func to queue
+      taskQueue.add(func);
+    }
+    // Run queue
+    function doTask() {
+      taskQueue.fire($.now());
+      setTimeout(doTask, cc.loop.taskInterval);
+    }
+    doTask();
+    cc.loop.task = task;
+
   // Grab stuff from other scripts
     // Cutie rendering
     cc.getScript('game/js/cutie-display.js');
@@ -49,4 +66,16 @@
     cc.getScript('game/js/stats-processing.js');
     // Stats display
     cc.getScript('game/js/stats-display.js');
+
+  // Check for updates (the one thing this script does)
+  task(function(now) {
+    $.get('version.txt', {_: now}, function(data) {
+      if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
+        // There's an update!
+        $('#update-available').click(function() {
+          location.reload();
+        }).addClass('yes');
+      }
+    }, 'text');
+  });
 }();
