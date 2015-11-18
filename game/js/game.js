@@ -68,7 +68,8 @@
     cc.getScript('game/js/stats-display.js');
 
   // Check for updates (the one thing this script does)
-  task(function(now) {
+  // Don't do this locally.
+  cc.f||task(function(now) {
     $.get('version.txt', {_: now}, function(data) {
       if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
         // There's an update!

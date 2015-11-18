@@ -204,6 +204,7 @@
 
   // Make cc global for debugging
   if(location.protocol == 'file:') {
+    cc.f = true;
     window.cc = cc;
   }
 
