@@ -262,17 +262,17 @@ body>.layer,
 
       @keyframes burst-xp-gauge-curren-rot {
         from {
-          transform: translate(-80%, -49%) translate(-0.5%, -0.5%) rotate(0deg) translate(0.5%, 0.5%);
+          transform: translate(-80%, -49%) rotate(0deg);
         }
         to {
-          transform: translate(-80%, -49%) translate(-0.5%, -0.5%) rotate(90deg) translate(0.5%, 0.5%);
+          transform: translate(-80%, -49%) rotate(360deg);
         }
       }
       #burst-xp-gauge .curren {
         position: absolute;
         top: 50%; left: -50px;
         visibility: hidden;
-        animation: 5s burst-xp-gauge-curren-rot linear infinite;
+        animation: 20s burst-xp-gauge-curren-rot linear infinite;
         color: #c71585;
         font-size: 1200%;
         opacity: 0;
@@ -317,18 +317,18 @@ body>.layer,
 
   @keyframes update-available-button-span-spin {
     0% {
-      transform: translateY(10%) rotate(0deg) translateY(-10%);
+      transform: rotate(0deg);
     }
     69% {
-      transform: translateY(10%) rotate(0deg) translateY(-10%);
+      transform: rotate(0deg);
     }
 
     100% {
-      transform: translateY(10%) rotate(120deg) translateY(-10%);
+      transform: rotate(360deg);
     }
   }
 
   #update-available.yes button span {
     display: inline-block;
-    animation: 1s update-available-button-span-spin cubic-bezier(.45,.1,.5,1.33) infinite;
+    animation: 3s update-available-button-span-spin cubic-bezier(.45,.1,.5,1.33) infinite;
   }

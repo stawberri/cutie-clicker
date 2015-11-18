@@ -1,4 +1,7 @@
 !function() {
+  cc.util.getcss('game/css/game.css');
+  cc.util.getcss('game/css/cutie-card.css');
+
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
   cc.loop = {

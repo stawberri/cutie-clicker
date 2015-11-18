@@ -77,6 +77,8 @@
   // Load a css file
   var loadedCss = {};
   cc.util.getcss = function(url) {
+    // Disable caching (add ? or ; on based on whether there's already a ? or not)
+    url += ((url.search(/\?/) >= 0) ? ';' : '?') + '_=' + cc.v;
     return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', url);
   };
 }();
