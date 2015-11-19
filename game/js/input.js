@@ -23,9 +23,11 @@
       if(cc.ls.d.tempClickStreakPassive) {
         if(cc.stats.mpcost('10', true)) {
           if(lastInterval - 100 > interval) {
-            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('5', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
+            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('2', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
+            xp = String(SchemeNumber.fn.floor(SchemeNumber.fn['+'](xp, SchemeNumber.fn['/'](cutie.targetxp(), '5000'))));
           } else if (interval < lastInterval + 100) {
             xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
+            xp = String(SchemeNumber.fn.floor(SchemeNumber.fn['+'](xp, SchemeNumber.fn['/'](cutie.targetxp(), '5000'))));
           }
 
           $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
