@@ -232,6 +232,7 @@ body>.layer,
     }
 
 #layer-burst {
+  display: none;
 }
 
   #burst-ui {
@@ -240,10 +241,8 @@ body>.layer,
     #burst-xp-gauge {
       position: absolute;
       left: 50%; bottom: 130px;
-      width: 50%; height: 3px;
+      width: 69%; height: 3px;
       transform: translate(-50%, -50%);
-      background-color: rgba(255, 255, 255, .69);
-      border: 1px #fff solid;
     }
 
       #burst-xp-gauge .bar {
@@ -257,7 +256,7 @@ body>.layer,
       #burst-xp-gauge .heart {
         position: absolute;
         top: 50%; left: 0;
-        transform: translate(-96%, -42%) scaleY(.9);
+        transform: translate(-100%, -42%) scaleY(.9);
         color: #ccc;
         font-size: 500%;
         transition: color .1s;
@@ -265,20 +264,19 @@ body>.layer,
 
       @keyframes burst-xp-gauge-curren-rot {
         from {
-          transform: translate(-80%, -49%) rotate(0deg);
+          transform: translate(-82%, -49%) rotate(0deg);
         }
         to {
-          transform: translate(-80%, -49%) rotate(360deg);
+          transform: translate(-82%, -49%) rotate(360deg);
         }
       }
       #burst-xp-gauge .curren {
         position: absolute;
         top: 50%; left: -50px;
-        visibility: hidden;
         animation: 20s burst-xp-gauge-curren-rot linear infinite;
-        color: #c71585;
         font-size: 1200%;
         opacity: 0;
+        color: #c71585;
         transition: opacity .2s, left .2s;
       }
 
@@ -286,7 +284,6 @@ body>.layer,
         color: #ffcc00;
       }
       .burst-ok #burst-xp-gauge .curren {
-        visibility: visible;
         opacity: .69;
         left: 0;
       }
