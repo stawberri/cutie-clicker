@@ -1,7 +1,17 @@
 // This script processes general input tasks
 
 !function() {
-  // Clicking
+  // Cutie bar main button
+  $('#cutie-bar-m').click(function(ev) {
+    ev.preventDefault();
+
+    if(cc.burstReady) {
+      // Burst if burst is ready
+      cc.ls.d.write('burst', {});
+    }
+  });
+
+  // Main click handler
   var recentClickTimeout;
   var lastInterval = '1';
   var lastxp = '1';

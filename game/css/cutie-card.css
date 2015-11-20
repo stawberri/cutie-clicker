@@ -7,7 +7,7 @@
   border-radius: 50%;
   border: 12px dashed rgba(0, 0, 0, .3);
   overflow: hidden;
-  background: rgba(0, 0, 0, .069);
+  background: #eee;
   color: rgba(0, 0, 0, .3);
 }
 
@@ -24,6 +24,6 @@
 .rarity-0 .cutie-card {
   border-color: #7F00FF;
   border-style: solid;
-  background: rgba(127, 0, 255, .2);
+  background: #DBB8FF;
   color: #7F00FF;
 }

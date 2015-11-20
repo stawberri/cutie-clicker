@@ -198,6 +198,10 @@ body>.layer,
         transform: translate(-50%, -50%) scale(0.27);
       }
 
+      .cutie-bar-slot:active .cutie-card {
+        transform: translate(-50%, -50%) scale(0.24);
+      }
+
     #cutie-bar-l {
       transform: translateX(-85px) translateX(-50%);
     }
@@ -206,10 +210,49 @@ body>.layer,
       width: 100px; height: 100px;
       top: 0;
       transform: translateX(-50%);
+      border-radius: 50%;
+      transition: box-shadow .69s;
     }
 
+    .ce-burst-ready #cutie-bar-m {
+      box-shadow: 0 0 20px 1px #ffcc00;
+    }
+
+    .ce-burst-ready #cutie-bar-m:active {
+      box-shadow: inset 0 0 10px #ffcc00;
+    }
+
+      @keyframes cutie-bar-m-burst-me {
+        0% {
+          transform: translate(-50%, -85%) rotate(0deg);
+        }
+
+        100% {
+          transform: translate(-50%, -85%) rotate(360deg);
+        }
+      }
+
+      #cutie-bar-m .burst-me {
+        pointer-events: none;
+        position: absolute;
+        top: 50%; left: 50%;
+        font-size: 10rem;
+        animation: 1s cutie-bar-m-burst-me linear infinite;
+        color: #ffcc00;
+        opacity: 0;
+        transition: opacity .69s;
+      }
+
+        .ce-burst-ready #cutie-bar-m .burst-me {
+          opacity: .69;
+        }
+
       #cutie-bar-m .cutie-card {
-        transform: translate(-50%, -50%) scale(0.40);
+        transform: translate(-50%, -50%) scale(0.41);
+      }
+
+      #cutie-bar-m:active .cutie-card {
+        transform: translate(-50%, -50%) scale(0.37);
       }
 
         #xp-gauge {
@@ -224,7 +267,22 @@ body>.layer,
             bottom: 0; left: 0;
             outline: #FF42D0 5px solid;
             background: rgba(255, 125, 222, .69);
-            transition: height .3s;
+            transition: height .3s, background-color .69s;
+          }
+
+          @keyframes ce-burst-ready-xp-gauge-bar-pulsate {
+            0% {
+              background-color: rgba(255, 245, 150, .69);
+            }
+
+            100% {
+              background-color: rgba(255, 245, 100, .69);
+            }
+          }
+
+          .ce-burst-ready #xp-gauge .bar {
+            outline-color: #ffcc00;
+            animation: 2s ce-burst-ready-xp-gauge-bar-pulsate alternate infinite;
           }
 
     #cutie-bar-r {

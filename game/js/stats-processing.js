@@ -33,7 +33,10 @@
   cc.loop.tick(function(now) {
     cc.cuties.m(function(cutie) {
       if(cc.ls.d.burst) {
-        // Bursting is a special case.
+        // We're in burst mode!
+
+        // Set burst to not ready just in case.
+        cc.burstReady = false;
 
         // Quick functionality restorer
         if(cutie.targetBpMet()) {
@@ -49,12 +52,10 @@
         }
 
       } else {
-        // Are we ready to burst?
-        if(cutie.targetXpMet()) {
+        // Not in burst mode. Figure out if we're ready for it.
 
-          // Enter burst mode!
-          cc.ls.d.write('burst', {});
-        }
+        // Are we ready to burst?
+        cc.burstReady = cutie.targetXpMet();
       }
     });
   });
