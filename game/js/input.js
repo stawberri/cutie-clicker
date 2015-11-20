@@ -3,7 +3,7 @@
 !function() {
   // Cutie bar main button
   $('#cutie-bar-m').on('mousedown touchstart', function(ev) {
-    if(cc.burstReady) {
+    if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
       ev.preventDefault();
 
       // Burst if burst is ready

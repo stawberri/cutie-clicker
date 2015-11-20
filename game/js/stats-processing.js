@@ -58,7 +58,7 @@
   // Lv Up & Bursting
   cc.loop.tick(function(now) {
     cc.cuties.m(function(cutie) {
-      if(cc.ls.d.burst) {
+      if(cc.ls.d.burst && !cc.burstEnd && !cc.ls.d.postBurst) {
         // When xp runs out
         if(cc.stats.noxp()) {
           // If current cutie doesn't lv up, no one lvs up.

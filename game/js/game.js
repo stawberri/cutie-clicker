@@ -22,10 +22,10 @@
     function doTick() {
       if(cc.burstStart) {
         // We hafta start bursting!
+        cc.ls.d.write('preBurst', true);
+
         cc.burstReady = false;
         delete cc.burstStart;
-        // This variable is saved because it might
-        cc.ls.d.write('preBurst', true);
 
         // Get cutie to find burst time
         cc.cuties.m(function(cutie) {
@@ -33,8 +33,8 @@
         });
         return;
       } else if(cc.ls.d.preBurst) {
-        cc.ls.d.erase('preBurst');
         cc.ls.d.write('burst', {});
+        cc.ls.d.erase('preBurst');
 
         // Special - reset xp drain timer so any initial drain doesn't cause a huge leap
         cc.util.rhanum(cc.ls.d, 'lastXpDrain', $.now());
@@ -51,8 +51,8 @@
         delete cc.burstEnd;
         return;
       } else if(cc.ls.d.postBurst) {
-        cc.ls.d.erase('postBurst');
         cc.ls.d.erase('burst');
+        cc.ls.d.erase('postBurst');
       }
       tickQueue.fire($.now());
       setTimeout(doTick, cc.loop.tickInterval);
