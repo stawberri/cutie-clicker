@@ -29,6 +29,7 @@
   });
 
   // Bursting stuff
+  oldBurstLayerClasses = '';
   cc.loop.draw(function() {
     // Notify game that bursting is ready if it is
     if(cc.burstReady) {
@@ -59,7 +60,10 @@
           burstLayerClasses += ' burst-ok';
         }
       }
-      $('#layer-burst').removeClass().addClass(burstLayerClasses);
+      if(oldBurstLayerClasses != burstLayerClasses) {
+        $('#layer-burst').removeClass().addClass(burstLayerClasses);
+        oldBurstLayerClasses = burstLayerClasses;
+      }
     });
   })
 }();
