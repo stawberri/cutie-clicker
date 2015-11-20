@@ -214,12 +214,32 @@ body>.layer,
       transition: box-shadow .69s;
     }
 
+    @keyframes ce-burst-ready-cutie-bar-m {
+      90% {
+        transform: translateX(-50%) scale(1);
+      }
+
+      95% {
+        transform: translateX(-50%) scale(1.2);
+      }
+
+      98% {
+        transform: translateX(-50%) scale(.8);
+      }
+
+      100% {
+        transform: translateX(-50%) scale(1);
+      }
+    }
+
     .ce-burst-ready #cutie-bar-m {
       box-shadow: 0 0 20px 1px #ffcc00;
+      animation: 3s ce-burst-ready-cutie-bar-m infinite;
     }
 
     .ce-burst-ready #cutie-bar-m:active {
       box-shadow: inset 0 0 10px #ffcc00;
+      animation: none;
     }
 
       @keyframes cutie-bar-m-burst-me {

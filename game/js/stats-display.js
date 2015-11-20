@@ -15,6 +15,9 @@
       if(SchemeNumber.fn['>'](cutie.targetxp(), '0')) {
         // Note: This is inexact! Don't save it!
         xpPercentage = SchemeNumber.fn['*']('100', SchemeNumber.fn['/'](cc.stats.excitement(), cutie.targetxp()));
+      } else {
+        // Assume that targetxp is 0.
+        xpPercentage = '100';
       }
       // Cap it at 0 and 100
       xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));
