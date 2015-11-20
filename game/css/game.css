@@ -311,6 +311,8 @@ body>.layer,
 
 #layer-burst {
   display: none;
+  pointer-events: auto;
+  background: #000;
 }
 
 #layer-burst.burst-pre,
@@ -318,7 +320,6 @@ body>.layer,
 #layer-burst.burst-post-win,
 #layer-burst.burst-post-fail {
   display: block;
-  background: #000;
 }
 
   #burst-cover {
@@ -352,7 +353,7 @@ body>.layer,
         top: 0; left: 0;
         height: 100%; width: 0;
         background-color: #ccc;
-        transition: width .3s, background-color .3s;
+        transition: width .3s linear, background-color .3s;
       }
 
       #burst-xp-gauge .heart {

@@ -20,6 +20,40 @@
     }
     // Run queue
     function doTick() {
+      if(cc.burstStart) {
+        // We hafta start bursting!
+        cc.burstReady = false;
+        delete cc.burstStart;
+        // This variable is saved because it might
+        cc.ls.d.write('preBurst', true);
+
+        // Get cutie to find burst time
+        cc.cuties.m(function(cutie) {
+          setTimeout(doTick, Math.max(cutie.preBurstPause(), cc.loop.tickInterval));
+        });
+        return;
+      } else if(cc.ls.d.preBurst) {
+        cc.ls.d.erase('preBurst');
+        cc.ls.d.write('burst', {});
+
+        // Special - reset xp drain timer so any initial drain doesn't cause a huge leap
+        cc.util.rhanum(cc.ls.d, 'lastXpDrain', $.now());
+      } else if(cc.burstEnd) {
+        if(cc.burstEnd > 0) {
+          // Passed
+          cc.ls.d.write('postBurst', 1);
+          setTimeout(doTick, 300);
+        } else {
+          // Failed
+          cc.ls.d.write('postBurst', -1);
+          setTimeout(doTick, 300);
+        }
+        delete cc.burstEnd;
+        return;
+      } else if(cc.ls.d.postBurst) {
+        cc.ls.d.erase('postBurst');
+        cc.ls.d.erase('burst');
+      }
       tickQueue.fire($.now());
       setTimeout(doTick, cc.loop.tickInterval);
     }

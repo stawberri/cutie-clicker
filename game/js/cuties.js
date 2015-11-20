@@ -47,17 +47,22 @@
         callback(cutie);
       }
 
-      // Start loading if it hasn't already.
-      if(!loadingCuties[cutieType]) {
-        // It hasn't, so load it
-        loadingCuties[cutieType] = $.Deferred();
-        cc.getScript('cuties/' + cutieType + '/cutie.js').done(function() {
-          // Resolve deferred.
-          loadingCuties[cutieType].resolve();
-        });
+      if($.type(cc.cuties[cutieType]) !== 'undefined') {
+        // Run callback synchroniously if possible
+        cutieProcessor();
+      } else {
+        // Start loading if it hasn't already.
+        if(!loadingCuties[cutieType]) {
+          // It hasn't, so load it
+          loadingCuties[cutieType] = $.Deferred();
+          cc.getScript('cuties/' + cutieType + '/cutie.js').done(function() {
+            // Resolve deferred.
+            loadingCuties[cutieType].resolve();
+          });
+        }
+        // Add this function's cutieProcessor.
+        loadingCuties[cutieType].done(cutieProcessor);
       }
-      // Add this function's cutieProcessor.
-      loadingCuties[cutieType].done(cutieProcessor);
     }
 
     return cutieType;
@@ -91,6 +96,17 @@
     return newIndex;
   }
 
+  // Fix deleted indices
+  function fixDeletedIndex(deletedIndex, indexToFix) {
+      if(indexToFix < deletedIndex) {
+        // Index to fix comes before deleted index
+        return indexToFix;
+      } else if (indexToFix > deletedIndex) {
+        // Removed a cutie that comes before current cutie
+        return indexToFix - 1;
+      }
+  }
+
   // Remove a cute from data
   cc.cuties.remove = function(index) {
     // Bounds check
@@ -101,16 +117,20 @@
     // This is the easy part
     cc.cuties.list().splice(index, 1);
 
-    // Check current list and decrement (or remove) if necessary
+    // Check current() list and decrement (or remove) if necessary
     $.each(current(), function(currentIndex, currentValue) {
-      if(currentValue == index) {
-        // Removed a current cutie
-        current().write(currentIndex, undefined);
-      } else if (currentValue < index) {
-        // Removed a cutie that comes before current cutie
-        current().write(currentIndex, currentValue - 1);
-      }
+      current().write(currentIndex, fixDeletedIndex(index, currentValue));
     });
+
+    // If burst object exists, that needs to be fixed as well, but creating a completely new object, annoyingly
+    if(cc.ls.d.burst) {
+      var newBurst = {};
+      $.each(cc.ls.d.burst, function(key, value) {
+        var newKey = String(fixDeletedIndex(index, Number(key)));
+        newBurst[newKey] = value;
+      });
+      cc.ls.d.write('burst', newBurst);
+    }
   }
 
   // Grab current array
@@ -187,10 +207,44 @@
 
     // How much excitement does this cutie require for love up?
     targetxp: function() {
-      return String(SchemeNumber.fn.expt(this.love(), '2'));
+      return String(SchemeNumber.fn['+']('3', SchemeNumber.fn.expt(this.love(), '2')));
     },
+    // Same for bp!
     targetbp: function() {
       return '0';
+    },
+    // How long do we have to wait before bursting?
+    preBurstPause: function() {
+      return 100;
+    },
+    // xpdrain calculation function, run if cutie is equipped in the middle
+    xpDrain: function() {
+      if(!cc.ls.d.burst) {
+        // Normal mode
+
+      } else {
+        // Burst mode
+
+        // Convert one third of targetxp to mp
+        var xpDrain = SchemeNumber.fn.ceiling(SchemeNumber.fn['/'](this.targetxp(), '1'));
+
+        return xpDrain;
+      }
+    },
+
+
+    // These handler functions are run if this cutie is equipped at all
+
+    // on tick function.
+    tick: function(now) {
+      if(cc.ls.d.burst) {
+        // Burst mode
+
+        // Convert all extra xp to mp
+        if(SchemeNumber.fn['>'](cc.stats.excitement(), this.targetxp())) {
+          cc.stats.xpToMp(SchemeNumber.fn['-'](cc.stats.excitement(), this.targetxp()));
+        }
+      }
     },
 
 
@@ -221,8 +275,9 @@
       return this.lv();
     },
     // Are we excited enough?
-    targetXpMet: function() {
-      return SchemeNumber.fn['>='](cc.stats.excitement(), this.targetxp());
+    targetXpMet: function(value) {
+      value = value || cc.stats.excitement();
+      return SchemeNumber.fn['>='](value, this.targetxp());
     },
     // Love Up processing!
     loveup: function() {
@@ -234,10 +289,10 @@
       if(cc.ls.d.burst) {
         if($.type(value) === 'undefined') {
           // Get - default to 0
-          return cc.util.rhanum(cc.ls.d.burst, this.cutie) || cc.util.rhanum(cc.ls.d.burst, this.cutie, '0');
+          return cc.util.rhanum(cc.ls.d.burst, String(this.index())) || cc.util.rhanum(cc.ls.d.burst, String(this.index()), '0');
         } else {
           // Set
-          return cc.util.rhanum(cc.ls.d.burst, this.cutie, String(value));
+          return cc.util.rhanum(cc.ls.d.burst, String(this.index()), String(value));
         }
       }
     },
@@ -258,8 +313,17 @@
       }
     },
     // Did we burst enough?
-    targetBpMet: function() {
-      return SchemeNumber.fn['>='](this.burstPoints(), this.targetbp());
+    targetBpMet: function(value) {
+      value = value || this.burstPoints();
+      return SchemeNumber.fn['>='](value, this.targetbp());
+    },
+    // Index of cutie in cutie list. DO NOT SAVE without accounting for deletion.
+    index: function() {
+      return $.inArray(this.data, cc.cuties.list());
+    },
+    // Current slot. Even more so than above.
+    slot: function() {
+      return $.inArray(this.index(), current());
     }
   };
 }();

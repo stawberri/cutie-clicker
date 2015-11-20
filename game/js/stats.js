@@ -45,6 +45,11 @@
     return cc.stats.xp();
   };
 
+  // Find out if we have no xp
+  cc.stats.noxp = function() {
+    return SchemeNumber.fn['<='](cc.stats.excitement(), '0');
+  }
+
   // Modify mp. Don't access directly (except to read, maybe)
   cc.stats.mp = function(value) {
     if($.type(value) === 'undefined') {

@@ -2,12 +2,12 @@
 
 !function() {
   // Cutie bar main button
-  $('#cutie-bar-m').click(function(ev) {
-    ev.preventDefault();
-
+  $('#cutie-bar-m').on('mousedown touchstart', function(ev) {
     if(cc.burstReady) {
+      ev.preventDefault();
+
       // Burst if burst is ready
-      cc.ls.d.write('burst', {});
+      cc.burstStart = true;
     }
   });
 
@@ -20,6 +20,9 @@
     ev.preventDefault();
 
     clearTimeout(recentClickTimeout);
+
+    // Request fullscreen
+    (document.requestFullscreen || document.msRequestFullscreen || document.mozRequestFullScreen || document.webkitRequestFullscreen || $.noop).call();
 
     // Update click counter
     cc.stats.clicks.add(1);

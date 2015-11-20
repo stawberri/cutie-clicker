@@ -21,16 +21,45 @@
       }
       // Cap it at 0 and 100
       xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));
+
       // Display them as sizes
       $('.cv-xp-percentage-height').css('height', xpPercentage.toFixed(3) + '%');
       $('.cv-xp-percentage-width').css('width', xpPercentage.toFixed(3) + '%');
-
-      // Notify game that bursting is ready if it is
-      if(cc.burstReady) {
-        $('body').addClass('ce-burst-ready');
-      } else {
-        $('body').removeClass('ce-burst-ready');
-      }
     });
   });
+
+  // Bursting stuff
+  cc.loop.draw(function() {
+    // Notify game that bursting is ready if it is
+    if(cc.burstReady) {
+      $('body').addClass('ce-burst-ready');
+    } else {
+      $('body').removeClass('ce-burst-ready');
+    }
+
+    // Figure out classes for #layer-burst
+    cc.cuties.m(function(cutie) {
+      // Stages
+      var burstLayerClasses = 'layer';
+      if(cc.ls.d.preBurst) {
+        burstLayerClasses += ' burst-pre';
+      }
+      if(cc.ls.d.postBurst) {
+        if(cc.ls.d.postBurst > 1) {
+          burstLayerClasses += ' burst-post-win';
+        } else {
+          burstLayerClasses += ' burst-post-fail';
+        }
+      }
+      if(cc.ls.d.burst) {
+        burstLayerClasses += ' burst-active';
+
+        // Target
+        if(cutie.targetBpMet()) {
+          burstLayerClasses += ' burst-ok';
+        }
+      }
+      $('#layer-burst').removeClass().addClass(burstLayerClasses);
+    });
+  })
 }();
