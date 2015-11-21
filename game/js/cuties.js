@@ -196,6 +196,7 @@
   // Cutie object constructor
   cc.cuties.construct = function(data) {
     this.cutie = data.cutie;
+    this.glyph = '&#' + data.cutie + ';';
   }
 
   // Cutie object prototype

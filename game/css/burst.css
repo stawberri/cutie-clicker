@@ -71,7 +71,7 @@
       }
       #burst-xp-gauge .curren {
         position: absolute;
-        top: -64px; left: 100px;
+        top: -64px; left: -64px;
         animation: 20s burst-xp-gauge-curren-rot linear infinite;
         font-size: 12rem;
         opacity: 0;

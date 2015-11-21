@@ -1,6 +1,24 @@
 // This script handles displaying cuties and stuff like that.
 
 !function() {
+  // Set game title
+  var oldTitle = '';
+  cc.loop.draw(function(now) {
+    cc.cuties.m(function(cutie) {
+      var title = 'Cutie Clicker';
+
+      if(cc.ls.d.burst) {
+        title = cutie.glyph + ' Clicker';
+      }
+
+      if(oldTitle !== title) {
+        $('head title').html(title);
+        oldTitle = title;
+      }
+    });
+  });
+
+
   // Get classes to apply to cutie
   function cutieClasses(cutie) {
     var classesString = ' cutie-' + cutie.cutie;
@@ -41,7 +59,7 @@
     if(cutie) {
       element.removeClass().addClass(defaultClass + cutieClasses(cutie));
 
-      glyphElement.html('&#' + cutie.cutie + ';');
+      glyphElement.html(cutie.glyph);
     } else {
       element.removeClass().addClass(defaultClass);
       glyphElement.html('');
