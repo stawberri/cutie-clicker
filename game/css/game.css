@@ -3,10 +3,22 @@ html {
   width: 100%; height: 100%;
   margin: 0;
   color: #000;
-  background: #fff;
+  background: #000;
   font-size: 10px;
   font-family: Arial, Helvetica, sans-serif;
   overflow: auto;
+}
+
+@keyframes body-game-start {
+  0% {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 body {
@@ -15,6 +27,8 @@ body {
   min-width: 960px; min-height: 540px;
   margin: 0;
   overflow: hidden;
+  animation: .69s body-game-start forwards;
+  background: #000;
 }
 
 /* Parallax */
@@ -34,6 +48,12 @@ body>.layer,
   position: absolute;
   height: 100%; width: 100%;
   pointer-events: none;
+}
+
+#layers-under-ui {
+  position: absolute;
+  width: 100%; height: 100%;
+  background: #fff;
 }
 
 /* Background layer */
@@ -211,7 +231,6 @@ body>.layer,
       top: 0;
       transform: translateX(-50%);
       border-radius: 50%;
-      transition: box-shadow .69s;
     }
 
     @keyframes ce-burst-ready-cutie-bar-m {
@@ -235,6 +254,7 @@ body>.layer,
     .ce-burst-ready #cutie-bar-m {
       box-shadow: 0 0 20px 1px #ffcc00;
       animation: 3s ce-burst-ready-cutie-bar-m infinite;
+      transition: box-shadow .69s;
     }
 
     .ce-burst-ready #cutie-bar-m:active {
@@ -260,11 +280,11 @@ body>.layer,
         animation: 1s cutie-bar-m-burst-me linear infinite;
         color: #ffcc00;
         opacity: 0;
-        transition: opacity .69s;
       }
 
         .ce-burst-ready #cutie-bar-m .burst-me {
           opacity: .69;
+          transition: opacity .69s;
         }
 
       #cutie-bar-m .cutie-card {
@@ -285,8 +305,8 @@ body>.layer,
             position: absolute;
             width: 100%; height: 0;
             bottom: 0; left: 0;
-            outline: #FF42D0 5px solid;
-            background: rgba(255, 125, 222, .69);
+            outline: #c71585 5px solid;
+            background: rgba(255, 170, 222, .69);
             transition: height .3s, background-color .69s;
           }
 
@@ -387,7 +407,7 @@ body>.layer,
         color: #ffcc00;
       }
       .burst-ok #burst-xp-gauge .curren {
-        opacity: .69;
+        opacity: 1;
         left: 0;
       }
       .burst-ok #burst-xp-gauge .bar {

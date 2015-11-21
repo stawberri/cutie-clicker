@@ -97,7 +97,7 @@
 
       // Only drain based on number of cuties when not in burst mode
       if(!cc.ls.d.burst) {
-        drainAmount = SchemeNumber.fn['+'](drainAmount, SchemeNumber.fn['*'](String(cc.cuties.list().length), '1'));
+        drainAmount = SchemeNumber.fn['+'](drainAmount, SchemeNumber.fn['*'](String(cc.cuties.list().length), '1/9'));
       }
 
       // Make it relative to time passed (convert to milliseconds too)

@@ -34,19 +34,13 @@
       var xp = '1';
 
       if(cc.ls.d.tempClickStreakPassive) {
-        if(cc.stats.mpcost('10', true)) {
-          if(lastInterval - 100 > interval) {
-            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('2', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
-            xp = String(SchemeNumber.fn.floor(SchemeNumber.fn['+'](xp, SchemeNumber.fn['/'](cutie.targetxp(), '200'))));
-          } else if (interval < lastInterval + 100) {
-            xp = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*']('.5', lastxp, SchemeNumber.fn['/'](lastInterval, interval))));
-            xp = String(SchemeNumber.fn.floor(SchemeNumber.fn['+'](xp, SchemeNumber.fn['/'](cutie.targetxp(), '200'))));
-          }
+        if(cc.stats.mpcost('3', true)) {
+          xp = String(SchemeNumber.fn['+'](Math.floor(1 + Math.random() * 4), SchemeNumber.fn.floor(SchemeNumber.fn['*'](cutie.love(), .01 + Math.random() * 0.08))));
 
-          $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&diams; ' + xp + '<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+          $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)<br>&diams; ' + xp);
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
         } else {
-          $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br>&#9888; 0 &clubs;<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+          $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)<br>&#9888; 0 &clubs;');
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;');
         }
       }
@@ -92,9 +86,9 @@
   $('#cutie-bar-r, #temp-mp-button-2').click(function() {
     cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
     if(cc.ls.d.tempClickStreakPassive) {
-      $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+      $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)');
     } else {
-      $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#10060;)');
+      $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#10060;)');
       $('#cutie-bar-r .cutie-card .glyph').html('');
     }
   });
@@ -104,6 +98,6 @@
     cc.ls.d.write('tempClickStreakPassive', true);
   }
   if(cc.ls.d.tempClickStreakPassive) {
-    $('#temp-mp-button-2').html('1 &lowast; + 10+0.1% &spades; = &diams;&diams;&diams;&diams; (&#9745;)<br><br><img src="http://zippy.gfycat.com/AmpleDescriptiveBlackfootedferret.gif" width="150px">');
+    $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)');
   }
 }();

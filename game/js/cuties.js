@@ -205,11 +205,7 @@
     // Rarity
     rarity: 0,
 
-    // How much excitement does this cutie require for love up?
-    targetxp: function() {
-      return String(SchemeNumber.fn['+']('3', SchemeNumber.fn.expt(this.love(), '2')));
-    },
-    // Same for bp!
+    // Target bp for lv up?
     targetbp: function() {
       return '0';
     },
@@ -222,11 +218,15 @@
       if(!cc.ls.d.burst) {
         // Normal mode
 
+        // Drain 1% of current xp
+        var xpDrain = String(SchemeNumber.fn.floor(SchemeNumber.fn['*'](cc.stats.excitement(), '1/10')));
+
+        return xpDrain;
       } else {
         // Burst mode
 
         // Convert one third of targetxp to mp
-        var xpDrain = SchemeNumber.fn.ceiling(SchemeNumber.fn['/'](this.targetxp(), '1'));
+        var xpDrain = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['/'](this.targetxp(), '1')));
 
         return xpDrain;
       }
@@ -237,6 +237,36 @@
 
     // on tick function.
     tick: function(now) {
+    },
+
+
+    // Stuff that might be overwritten, but probably won't be
+
+    // How much excitement does this cutie require for love up?
+    targetxp: function() {
+      var target = '3';
+      switch(this.rarity) {
+        case 1:
+          target = '33';
+        break;
+        case 2:
+          target = '333';
+        break;
+        case 3:
+          target = '3333';
+        break;
+        case 4:
+          target = '33333';
+        break;
+        case 5:
+          target = '333333';
+        break;
+        case 6:
+          target = '3333333';
+        break;
+      }
+
+      return String(SchemeNumber.fn['*'](target, SchemeNumber.fn['+'](this.love(), '1')));
     },
 
 

@@ -1,6 +1,6 @@
 /* Whole page styles */
 
-.site, .site body {
+.site .site body {
   width: 100%; height: 100%;
   margin: 0;
   color: #000;
@@ -11,28 +11,48 @@
 
 /* Normally invisible things */
 .site #nojs,
-.site #site-content-shield,
 .site #site-game-loading {
   display: none;
 }
 
 /* Content shield */
+.site #site-content-shield {
+  opacity: 0;
+  transition: opacity .69s;
+  pointer-events: none;
+}
+
 .site.loading #site-content-shield,
 .site.nojs #site-content-shield {
   display: block;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(255, 255, 255, .69);
+  background: #000;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* Game loading messages */
+@keyframes site-loading-site-game-loading {
+  0% {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 3px #fff;
+  }
+
+  100% {
+    color: rgba(255, 255, 255, .5);
+    text-shadow: 0 0 10px #fff;
+  }
+}
+
 .site.loading #site-game-loading {
   display: block;
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
   font-size: 69px;
+  animation: .3s site-loading-site-game-loading infinite alternate;
 }
 
 /* No-Javascript warning */
