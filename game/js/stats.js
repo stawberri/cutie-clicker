@@ -124,4 +124,11 @@
 
     return true;
   }
+
+  // XP Drain reset function for easy calling.
+  // The function that uses this value is actually in stats-processing.js
+  cc.stats.resetXpDrain = function(time) {
+    time = time || $.now();
+    cc.util.rhanum(cc.ls.d, 'lastXpDrain', time);
+  };
 }();

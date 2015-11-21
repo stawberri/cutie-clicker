@@ -237,14 +237,6 @@
 
     // on tick function.
     tick: function(now) {
-      if(cc.ls.d.burst) {
-        // Burst mode
-
-        // Convert all extra xp to mp
-        if(SchemeNumber.fn['>'](cc.stats.excitement(), this.targetxp())) {
-          cc.stats.xpToMp(SchemeNumber.fn['-'](cc.stats.excitement(), this.targetxp()));
-        }
-      }
     },
 
 

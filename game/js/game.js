@@ -36,8 +36,8 @@
         cc.ls.d.write('burst', {});
         cc.ls.d.erase('preBurst');
 
-        // Special - reset xp drain timer so any initial drain doesn't cause a huge leap
-        cc.util.rhanum(cc.ls.d, 'lastXpDrain', $.now());
+        // There was a processing pause, so reset drain timer
+        cc.stats.resetXpDrain();
       } else if(cc.burstEnd) {
         if(cc.burstEnd > 0) {
           // Passed
@@ -53,6 +53,9 @@
       } else if(cc.ls.d.postBurst) {
         cc.ls.d.erase('burst');
         cc.ls.d.erase('postBurst');
+
+        // There was a processing pause, so reset drain timer
+        cc.stats.resetXpDrain();
       }
       tickQueue.fire($.now());
       setTimeout(doTick, cc.loop.tickInterval);
