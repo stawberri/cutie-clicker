@@ -1,6 +1,10 @@
 !function() {
+  cc.util.getcss('css/ui.css');
   cc.util.getcss('css/game.css');
+  cc.util.getcss('css/burst.css');
+  cc.util.getcss('css/render.css');
   cc.util.getcss('css/cutie-card.css');
+  cc.util.getcss('css/effects.css');
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.

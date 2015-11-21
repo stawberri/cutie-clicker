@@ -1,0 +1,10 @@
+/* Parallax */
+.parallax-0, .parallax--0,
+.parallax-1, .parallax--1,
+.parallax-2, .parallax--2,
+.parallax-3, .parallax--3,
+.parallax-4, .parallax--4 {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+}
