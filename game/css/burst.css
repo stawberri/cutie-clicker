@@ -4,10 +4,10 @@
   background: #000;
 }
 
-#layer-burst.burst-pre,
-#layer-burst.burst-active,
-#layer-burst.burst-post-win,
-#layer-burst.burst-post-fail {
+.burst-pre #layer-burst,
+.burst-active #layer-burst,
+.burst-post-win #layer-burst,
+.burst-post-fail #layer-burst {
   display: block;
 }
 

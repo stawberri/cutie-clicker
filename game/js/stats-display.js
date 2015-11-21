@@ -33,7 +33,6 @@
   });
 
   // Bursting stuff
-  oldBurstLayerClasses = '';
   cc.loop.draw(function() {
     // Notify game that bursting is ready if it is
     if(cc.burstReady) {
@@ -45,29 +44,38 @@
     // Figure out classes for #layer-burst
     cc.cuties.m(function(cutie) {
       // Stages
-      var burstLayerClasses = 'layer';
+      var burstClasses = '';
+      var nonBurstClasses = ''
       if(cc.ls.d.preBurst) {
-        burstLayerClasses += ' burst-pre';
+        burstClasses += ' burst-pre';
+      } else {
+        nonBurstClasses += ' burst-pre';
       }
       if(cc.ls.d.postBurst) {
         if(cc.ls.d.postBurst > 0) {
-          burstLayerClasses += ' burst-post-win';
+          burstClasses += ' burst-post-win';
+          nonBurstClasses += ' burst-post-fail';
         } else {
-          burstLayerClasses += ' burst-post-fail';
+          burstClasses += ' burst-post-fail';
+          nonBurstClasses += ' burst-post-win';
         }
+      } else {
+        nonBurstClasses += ' burst-post-win burst-post-fail';
       }
       if(cc.ls.d.burst) {
-        burstLayerClasses += ' burst-active';
+        burstClasses += ' burst-active';
 
         // Target
         if(cutie.targetBpMet()) {
-          burstLayerClasses += ' burst-ok';
+          burstClasses += ' burst-ok';
+        } else {
+          nonBurstClasses += ' burst-ok';
         }
+      } else {
+        nonBurstClasses += ' burst-active burst-ok'
       }
-      if(oldBurstLayerClasses != burstLayerClasses) {
-        $('#layer-burst').removeClass().addClass(burstLayerClasses);
-        oldBurstLayerClasses = burstLayerClasses;
-      }
+
+      $('body').addClass(burstClasses).removeClass(nonBurstClasses);
     });
   })
 }();
