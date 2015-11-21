@@ -98,7 +98,7 @@
         }
       #burst-xp-gauge .plus {
         position: absolute;
-        top: -23px; left: -50px;
+        top: -23px; left: -53px;
         transform: scaleY(.9);
         color: #fff;
         font-size: 4rem;
