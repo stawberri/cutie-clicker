@@ -46,7 +46,7 @@
         burstLayerClasses += ' burst-pre';
       }
       if(cc.ls.d.postBurst) {
-        if(cc.ls.d.postBurst > 1) {
+        if(cc.ls.d.postBurst > 0) {
           burstLayerClasses += ' burst-post-win';
         } else {
           burstLayerClasses += ' burst-post-fail';

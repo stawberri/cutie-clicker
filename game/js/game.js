@@ -46,7 +46,7 @@
         if(cc.burstEnd > 0) {
           // Passed
           cc.ls.d.write('postBurst', 1);
-          setTimeout(doTick, 300);
+          setTimeout(doTick, 1000);
         } else {
           // Failed
           cc.ls.d.write('postBurst', -1);
