@@ -85,6 +85,7 @@
       cursor: pointer;
       background: none;
       pointer-events: auto;
+      border-radius: 50%;
     }
 
       .cutie-bar-slot .cutie-card {
@@ -105,7 +106,6 @@
       width: 100px; height: 100px;
       top: 0;
       transform: translateX(-50%);
-      border-radius: 50%;
     }
 
     @keyframes ce-burst-ready-cutie-bar-m {
