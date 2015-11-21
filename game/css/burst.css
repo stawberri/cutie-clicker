@@ -78,6 +78,24 @@
         color: #c71585;
         transition: opacity .2s, left .2s;
       }
+        #burst-xp-gauge.rarity-0 .curren {
+          color: #7f00ff;
+        }
+        #burst-xp-gauge.rarity-1 .curren {
+          color: #007fff;
+        }
+        #burst-xp-gauge.rarity-2 .curren {
+          color: #00ff7f;
+        }
+        #burst-xp-gauge.rarity-3 .curren {
+          color: #7fff00;
+        }
+        #burst-xp-gauge.rarity-4 .curren {
+          color: #ff7f00;
+        }
+        #burst-xp-gauge.rarity-5 .curren {
+          color: #ff007f;
+        }
       #burst-xp-gauge .plus {
         position: absolute;
         top: -23px; left: -50px;
@@ -87,6 +105,30 @@
         opacity: 0;
         text-shadow: 0 0 25px #ffcc00;
       }
+      #burst-xp-gauge .glyph {
+        position: absolute;
+        top: -1px; left: 2px;
+        color: #fff;
+        font-size: 2rem;
+      }
+        #burst-xp-gauge.rarity-0 .glyph {
+          text-shadow: 0 0 3px #7f00ff, 0 0 3px #7f00ff, 0 0 3px #7f00ff;
+        }
+        #burst-xp-gauge.rarity-1 .glyph {
+          text-shadow: 0 0 3px #007fff, 0 0 3px #007fff, 0 0 3px #007fff;
+        }
+        #burst-xp-gauge.rarity-2 .glyph {
+          text-shadow: 0 0 3px #00ff7f, 0 0 3px #00ff7f, 0 0 3px #00ff7f;
+        }
+        #burst-xp-gauge.rarity-3 .glyph {
+          text-shadow: 0 0 3px #7fff00, 0 0 3px #7fff00, 0 0 3px #7fff00;
+        }
+        #burst-xp-gauge.rarity-4 .glyph {
+          text-shadow: 0 0 3px #ff7f00, 0 0 3px #ff7f00, 0 0 3px #ff7f00;
+        }
+        #burst-xp-gauge.rarity-5 .glyph {
+          text-shadow: 0 0 3px #ff007f, 0 0 3px #ff007f, 0 0 3px #ff007f;
+        }
 
       .burst-ok #burst-xp-gauge .heart {
         color: #ffcc00;

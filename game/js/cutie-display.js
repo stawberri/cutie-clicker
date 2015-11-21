@@ -86,6 +86,10 @@
 
           // Cutie Card Display
           cutieCard('#cutie-bar-m', 'cutie-bar-slot', cutie);
+
+          // Burst mode
+          $('#burst-xp-gauge').removeClass().addClass('rarity-' + cutie.rarity);
+          $('#burst-xp-gauge .glyph').html(cutie.glyph);
         }
 
         var thisClass = cutieClasses(cutie);
