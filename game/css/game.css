@@ -9,7 +9,7 @@ html {
   font-size: 10px;
   font-family: Arial, Helvetica, sans-serif;
   overflow: auto;
-  -webkit-text-size-adjust: 100%;
+  /*-webkit-text-size-adjust: 100%;*/
 }
 
 @keyframes body-game-start {
