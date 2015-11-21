@@ -27,7 +27,7 @@
     outline: none;
     padding: 0;
     pointer-events: auto;
-    cursor: grab;
+    cursor: pointer;
   }
 
   /* Cutie bar */
@@ -82,7 +82,6 @@
       padding: 0;
       outline: none;
       border: none;
-      cursor: pointer;
       background: none;
       pointer-events: auto;
       border-radius: 50%;

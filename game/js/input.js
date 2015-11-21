@@ -37,10 +37,10 @@
         if(cc.stats.mpcost('3', true)) {
           xp = String(SchemeNumber.fn['+'](Math.floor(1 + Math.random() * 4), SchemeNumber.fn.floor(SchemeNumber.fn['*'](cutie.love(), .01 + Math.random() * 0.08))));
 
-          $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)<br>&diams; ' + xp);
+          $('#temp-mp-button-2').html('3+0.03% &spades;/<i class="fa fa-hand-pointer-o"></i> = <i class="fa fa-angle-double-up"></i> &diams;/<i class="fa fa-hand-pointer-o"></i> (&#9745;)<br>&diams; ' + xp);
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
         } else {
-          $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)<br>&#9888; 0 &clubs;');
+          $('#temp-mp-button-2').html('3+0.03% &spades;/<i class="fa fa-hand-pointer-o"></i> = <i class="fa fa-angle-double-up"></i> &diams;/<i class="fa fa-hand-pointer-o"></i> (&#9745;)<br>&#9888; 0 &clubs;');
           $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;');
         }
       }
@@ -86,9 +86,9 @@
   $('#cutie-bar-r, #temp-mp-button-2').click(function() {
     cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
     if(cc.ls.d.tempClickStreakPassive) {
-      $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)');
+      $('#temp-mp-button-2').html('3+0.03% &spades;/<i class="fa fa-hand-pointer-o"></i> = <i class="fa fa-angle-double-up"></i> &diams;/<i class="fa fa-hand-pointer-o"></i> (&#9745;)');
     } else {
-      $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#10060;)');
+      $('#temp-mp-button-2').html('3+0.03% &spades;/<i class="fa fa-hand-pointer-o"></i> = <i class="fa fa-angle-double-up"></i> &diams;/<i class="fa fa-hand-pointer-o"></i> (&#10060;)');
       $('#cutie-bar-r .cutie-card .glyph').html('');
     }
   });
@@ -98,6 +98,6 @@
     cc.ls.d.write('tempClickStreakPassive', true);
   }
   if(cc.ls.d.tempClickStreakPassive) {
-    $('#temp-mp-button-2').html('3+0.03% &spades;/&lowast; = &#9652; &diams;/&lowast; (&#9745;)');
+    $('#temp-mp-button-2').html('3+0.03% &spades;/<i class="fa fa-hand-pointer-o"></i> = <i class="fa fa-angle-double-up"></i> &diams;/<i class="fa fa-hand-pointer-o"></i> (&#9745;)');
   }
 }();
