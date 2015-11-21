@@ -212,7 +212,7 @@
     },
     // How long do we have to wait before bursting?
     preBurstPause: function() {
-      return 100;
+      return 300;
     },
     // xpdrain calculation function, run if cutie is equipped in the middle
     xpDrain: function() {
