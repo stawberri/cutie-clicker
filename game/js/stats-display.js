@@ -23,8 +23,12 @@
       xpPercentage = SchemeNumber.fn.max('0', SchemeNumber.fn.min('100', xpPercentage));
 
       // Display them as sizes
-      $('.cv-xp-percentage-height').css('height', xpPercentage.toFixed(3) + '%');
-      $('.cv-xp-percentage-width').css('width', xpPercentage.toFixed(3) + '%');
+      cc.util.cssrule('.cv-xp-percentage-height')({
+        height: xpPercentage.toFixed(3) + '%'
+      });
+      cc.util.cssrule('.cv-xp-percentage-width')({
+        width: xpPercentage.toFixed(3) + '%'
+      });
     });
   });
 
