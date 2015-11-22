@@ -145,7 +145,6 @@
 
             // Watch flag for changes
             $(window).on('storage', function(ev) {
-              console.log(ev.key);
               if(ev.originalEvent.key == 'cc-instchk' && ev.originalEvent.storageArea == window.localStorage) {
                 // It changed! Exit!
                 window.location = 'about:blank';
