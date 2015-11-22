@@ -1,16 +1,6 @@
 // This script processes general input tasks
 
 !function() {
-  // Cutie bar main button
-  $('#cutie-bar-m').on('mousedown touchstart', function(ev) {
-    if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
-      ev.preventDefault();
-
-      // Burst if burst is ready
-      cc.burstStart = true;
-    }
-  });
-
   // Main click handler
   var recentClickTimeout;
   var lastInterval = '1';
@@ -66,6 +56,18 @@
       $('body').removeClass('ce-recent-click');
     }, 250);
   });
+
+
+  // Cutie bar main button
+  $('#cutie-bar-m').on('mousedown touchstart', function(ev) {
+    if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
+      ev.preventDefault();
+
+      // Burst if burst is ready
+      cc.burstStart = true;
+    }
+  });
+
 
   // Temp buttons
   $('#cutie-bar-l, #temp-mp-button-1').click(function() {

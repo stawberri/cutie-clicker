@@ -98,4 +98,11 @@
     // Disable caching (add ? or ; on based on whether there's already a ? or not)
     return loadedCss[url] = loadedCss[url] || $('<link rel="stylesheet">').appendTo('head').attr('href', cc.util.l(url));
   };
+
+  // Transfer mouse events over to cutie-clicker
+  cc.util.transferclicks = function(element) {
+    $(element).on('mousedown mouseup touchstart touchend', function(ev) {
+      $('#cutie-clicker').trigger(ev.type);
+    });
+  }
 }();
