@@ -7,10 +7,8 @@
   // Menu opening
   $('#cutie-bar-m').click(function() {
     // Nice and simple
-    if(!cc.preBurst && !cc.burstReady) {
-      data.write('active', !data.active);
-      $('body').toggleClass('menu-active');
-    }
+    data.write('active', !data.active);
+    $('body').toggleClass('menu-active');
   });
 
   // Update class with variable
