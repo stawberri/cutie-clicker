@@ -53,7 +53,7 @@
 #menu-pane {
   flex: 1 1 auto;
   overflow: auto;
-  padding-top: 40px;
+  padding-top: 50px;
 }
 
   #menu-content {
