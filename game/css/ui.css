@@ -171,7 +171,8 @@
         transform: translate(-50%, -50%) scale(0.41);
       }
 
-      #cutie-bar-m:active .cutie-card {
+      #cutie-bar-m:active .cutie-card,
+      #cutie-bar-m.fake-click .cutie-card {
         transform: translate(-50%, -50%) scale(0.37);
       }
 

@@ -19,10 +19,12 @@
 
 .menu-active .cutie-bar-slot {
   top: 0px;
+  pointer-events: none;
 }
 
 .menu-active #cutie-bar-m {
   top: 10px;
+  pointer-events: auto;
 }
 
 .menu-active #xp-gauge {
@@ -44,20 +46,51 @@
 }
 
 #menu-top {
+  display: flex;
   width: 100%; height: 60px;
   border-bottom: 1px solid #ccc;
   flex: 0 0 auto;
-  background: #fff;
+  flex-flow: row nowrap;
+  align-items: stretch;
 }
 
+  #menu-close-button {
+    border: none;
+    outline: none;
+    background: none;
+    flex: 0 0 auto;
+    width: 250px;
+  }
+
+  .menu-side {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: stretch;
+  }
+
+    .menu-side button {
+      border: none;
+      outline: none;
+      background: none;
+      padding: 0;
+      color: #aaa;
+      font-size: 4rem;
+      cursor: pointer;
+      flex: 1 0 auto;
+    }
+
+      .menu-side button:active span {
+        transform: scale(.9);
+      }
+
 #menu-pane {
+  position: relative;
   flex: 1 1 auto;
   overflow: auto;
   padding-top: 50px;
 }
 
   #menu-content {
-    position: relative;
     margin: 0 auto;
     width: 960px;
     overflow: hidden;
