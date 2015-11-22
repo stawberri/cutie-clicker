@@ -24,13 +24,6 @@
     background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
   }
 
-  #click-counter {
-    position: absolute;
-    width: calc(100% - 100px); height: calc(100% - 100px);
-    padding: 50px;
-    font-size: 1.6em;
-  }
-
 /* Cutie layer */
 #layer-cutie {}
 
