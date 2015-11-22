@@ -12,9 +12,24 @@
       $('body').toggleClass('menu-active');
     }
   });
-  // Load menu open state
-  if(data.active) {
-    $('body').addClass('menu-active');
-  }
+
+  // Update class with variable
+  cc.loop.tick(function() {
+    if(data.active) {
+      if(cc.ls.d.burst) {
+        // If burst mode is active, deactivate menu
+        data.active = false;
+        $('body').removeClass('menu-active');
+      } else if(!$('body').hasClass('menu-active')) {
+        // Burst mode isn't active, but menu isn't open for some reason.
+        $('body').addClass('menu-active');
+      }
+    } else {
+      if($('body').hasClass('menu-active')) {
+        // Menu shouldn't be active.
+        $('body').removeClass('menu-active');
+      }
+    }
+  });
 
 }();
