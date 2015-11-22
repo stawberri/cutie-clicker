@@ -5,6 +5,7 @@
   cc.util.getcss('css/render.css');
   cc.util.getcss('css/cutie-card.css');
   cc.util.getcss('css/effects.css');
+  cc.util.getcss('css/menu.css');
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
@@ -110,6 +111,8 @@
     cc.getScript('js/stats-processing.js');
     // Stats display
     cc.getScript('js/stats-display.js');
+    // Menu
+    cc.getScript('js/menu.js');
 
   // Check for updates (the one thing this script does)
   // Don't do this locally.

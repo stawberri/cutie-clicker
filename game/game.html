@@ -64,6 +64,28 @@
   <!-- Click detection button -->
   <button id="cutie-clicker"></button>
 
+
+
+  <!-- Temporary MP usage buttons -->
+  <div class="parallax-2"><div class="parallax--1">
+    <button id="temp-mp-button-2">
+      <span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#10060;)
+    </button>
+  </div></div>
+  <div class="parallax-2">
+    <button id="temp-mp-button-1">
+      <span class="cv-mp-cost" data-cost="1000"></span> &spades; -> (750 ~ 1100) &diams;
+    </button>
+  </div>
+  <button id="temp-emergency-reset"
+    onclick="if(confirm('Are you sure you want to reset everything and lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
+    style="pointer-events:auto;position:absolute;top:0;right:0;transform:translateX(-50%);"
+  >RESET (&hearts;, &diams;, &spades;, &clubs; &#8656; 0)</button>
+
+
+  <!-- Menu -->
+  <div id="menu"></div>
+
   <!-- Cutie bar -->
   <div id="cutie-bar">
     <div id="cutie-stats">
@@ -99,24 +121,6 @@
       </div>
     </button>
   </div>
-
-  <!-- Temporary MP usage buttons -->
-  <div class="parallax-2"><div class="parallax--1">
-    <button id="temp-mp-button-2">
-      <span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#10060;)
-    </button>
-  </div></div>
-  <div class="parallax-2">
-    <button id="temp-mp-button-1">
-      <span class="cv-mp-cost" data-cost="1000"></span> &spades; -> (750 ~ 1100) &diams;
-    </button>
-  </div>
-  <button id="temp-emergency-reset"
-    onclick="if(confirm('Are you sure you want to reset everything and lose all of your game data?')){localStorage.clear();sessionStorage.clear();location.reload();}"
-    style="pointer-events:auto;position:absolute;top:0;right:0;transform:translateX(-50%);"
-  >
-    RESET (&hearts;, &diams;, &spades;, &clubs; &#8656; 0)
-  </button>
 </div>
 
 <div id="layer-effects" class="layer">
