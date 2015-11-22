@@ -32,6 +32,22 @@
     });
   });
 
+  // Cost calculation class
+  cc.loop.draw(function() {
+    $('.cv-mp-cost').each(function(index, element) {
+      // Grab data-cost
+      var dataCost = $(this).attr('data-cost');
+      if($.type(dataCost) === 'undefined') {
+        return;
+      }
+      // Set converted cost
+      var cost = cc.stats.mpcostcalc(dataCost);
+      if($(this).html() != cost) {
+        $(this).html(cost);
+      }
+    });
+  });
+
   // Bursting stuff
   cc.loop.draw(function() {
     // Notify game that bursting is ready if it is

@@ -84,9 +84,12 @@
     var baseCost = String(baseCost);
     var percentageCost = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['*'](baseCost, costAsPercentageMult, cc.stats.empathy())));
 
+    // Percentage cost can't be greater than 100%
+    percentageCost = SchemeNumber.fn.min(percentageCost, cc.stats.empathy());
+
     var actualCost = SchemeNumber.fn.max(baseCost, percentageCost);
     if(negative) {
-      actualCost = SchemeNumber.fn['*']('-1', actulCost);
+      actualCost = SchemeNumber.fn['*']('-1', actualCost);
     }
 
     return String(actualCost);

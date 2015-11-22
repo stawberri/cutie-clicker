@@ -65,7 +65,9 @@
             ruleString += rule + ':' + value + ';';
           });
           ruleString += '}';
-          element.html(ruleString);
+          if(element.html() != ruleString) {
+            element.html(ruleString);
+          }
           return addRule;
         }
       }
