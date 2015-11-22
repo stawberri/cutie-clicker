@@ -14,8 +14,8 @@
 
 .menu-active #menu {
   top: 0;
-  pointer-events: auto;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .menu-active #cutie-bar {
@@ -23,7 +23,7 @@
 }
 
 .menu-active #cutie-stats {
-  top: 60px;
+  opacity: 0;
 }
 
 .menu-active .cutie-bar-slot {
@@ -32,4 +32,12 @@
 
 .menu-active #cutie-bar-m {
   top: 10px;
+}
+
+.menu-active #xp-gauge {
+  opacity: 0;
+}
+
+.ce-burst-ready.menu-active #xp-gauge {
+  opacity: 1;
 }

@@ -43,7 +43,7 @@
     #cutie-stats {
       position: absolute;
       width: 100%;
-      transition: top .3s;
+      transition: opacity .3s;
     }
 
       #cutie-stats .love,
@@ -179,6 +179,7 @@
           position: absolute;
           top: 0; left: 0;
           width: 100%; height: 100%;
+          transition: opacity .3s;
         }
 
           #xp-gauge .bar {
