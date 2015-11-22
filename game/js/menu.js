@@ -8,15 +8,24 @@
   $('#cutie-bar-m').click(function() {
     // Nice and simple
     data.write('active', !data.active);
-    $('body').toggleClass('menu-active');
+  }).on('mousedown touchstart', function(ev) {
+    if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
+      ev.preventDefault();
+
+      // Burst if burst is ready
+      cc.burstStart = true;
+    }
   });
 
   // Update class with variable
   cc.loop.tick(function() {
     if(data.active) {
-      if(cc.ls.d.burst) {
+      if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
+        // Burst if burst is ready
+        cc.burstStart = true;
+      } else if(cc.ls.d.burst || cc.ls.d.preBurst || cc.burstStart) {
         // If burst mode is active, deactivate menu
-        data.active = false;
+        data.write('active', false);
         $('body').removeClass('menu-active');
       } else if(!$('body').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.

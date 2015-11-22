@@ -58,17 +58,6 @@
   });
 
 
-  // Cutie bar main button
-  $('#cutie-bar-m').on('mousedown touchstart', function(ev) {
-    if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
-      ev.preventDefault();
-
-      // Burst if burst is ready
-      cc.burstStart = true;
-    }
-  });
-
-
   // Temp buttons
   $('#cutie-bar-l, #temp-mp-button-1').click(function() {
     if(cc.stats.mpcost('1000', true)) {

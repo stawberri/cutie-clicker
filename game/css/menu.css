@@ -31,10 +31,6 @@
   opacity: 0;
 }
 
-.ce-burst-ready.menu-active #xp-gauge {
-  opacity: 1;
-}
-
 #menu {
   display: flex;
   position: absolute;
