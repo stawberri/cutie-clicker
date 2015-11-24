@@ -27,14 +27,17 @@
         // If burst mode is active, deactivate menu
         data.write('active', false);
         $('html').removeClass('menu-active');
+        $('html, body').scrollTop(0);
       } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
         $('html').addClass('menu-active');
+        $('html, body').scrollTop(scrollData().top);
       }
     } else {
       if($('html').hasClass('menu-active')) {
         // Menu shouldn't be active.
         $('html').removeClass('menu-active');
+        $('html, body').scrollTop(0);
       }
     }
   });
@@ -64,4 +67,20 @@
     });
   });
 
+  // Scroll data fetcher. Only top for now!
+  function scrollData(top) {
+    if(top) {
+      cc.util.rhanum(data, 'scrolltop', top);
+    }
+
+    return {
+      top: cc.util.rhanum(data, 'scrolltop') ||  cc.util.rhanum(data, 'scrolltop', '0')
+    }
+  }
+
+  // Scroll handler!
+  $(window).scroll(function(ev) {
+    // Save scroll position
+    cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
+  });
 }();
