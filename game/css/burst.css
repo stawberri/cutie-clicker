@@ -1,4 +1,14 @@
+/* Counteract menu */
+html.burst-pre.menu-active,
+html.burst-active.menu-active,
+html.burst-post-win.menu-active,
+html.burst-post-fail.menu-active {
+  overflow: hidden;
+}
+
 #layer-burst {
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
   display: none;
   pointer-events: auto;
   background: #000;
