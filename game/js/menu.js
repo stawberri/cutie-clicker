@@ -80,7 +80,9 @@
 
   // Scroll handler!
   $(window).scroll(function(ev) {
-    // Save scroll position
-    cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
+    if(data.active) {
+      // Save scroll position
+      cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
+    }
   });
 }();
