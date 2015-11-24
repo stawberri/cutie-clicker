@@ -26,15 +26,15 @@
       } else if(cc.ls.d.burst || cc.ls.d.preBurst || cc.burstStart) {
         // If burst mode is active, deactivate menu
         data.write('active', false);
-        $('body').removeClass('menu-active');
-      } else if(!$('body').hasClass('menu-active')) {
+        $('html').removeClass('menu-active');
+      } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
-        $('body').addClass('menu-active');
+        $('html').addClass('menu-active');
       }
     } else {
-      if($('body').hasClass('menu-active')) {
+      if($('html').hasClass('menu-active')) {
         // Menu shouldn't be active.
-        $('body').removeClass('menu-active');
+        $('html').removeClass('menu-active');
       }
     }
   });
@@ -53,7 +53,7 @@
 
     // Have to detect if player releases mouse anywhere.
     // Still doesn't work if they release it ouside of window
-    $('body').one('mouseup touchend', function(ev) {
+    $('html').one('mouseup touchend', function(ev) {
       ev.preventDefault();
       $('#cutie-bar-m').removeClass('fake-click');
 

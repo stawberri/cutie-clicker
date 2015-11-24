@@ -42,7 +42,7 @@
       lastxp = xp;
 
       // Add event classes
-      $('body').addClass('ce-recent-click ce-mousedown');
+      $('html').addClass('ce-recent-click ce-mousedown');
     });
   });
 
@@ -50,10 +50,10 @@
     ev.preventDefault();
 
     // Add event classes
-    $('body').removeClass('ce-mousedown');
+    $('html').removeClass('ce-mousedown');
 
     recentClickTimeout = setTimeout(function() {
-      $('body').removeClass('ce-recent-click');
+      $('html').removeClass('ce-recent-click');
     }, 250);
   });
 

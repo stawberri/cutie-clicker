@@ -17,8 +17,8 @@
     if(mouseY < -1) mouseY = -1;
     else if(mouseY > 1) mouseY = 1;
 
-    var xMult = $('body').width();
-    var yMult = $('body').height();
+    var xMult = $('html').width();
+    var yMult = $('html').height();
 
     xMult *= .005 * mouseX;
     yMult *= .005 * mouseY;
@@ -57,8 +57,8 @@
 
   $(window).on('mousemove', function(ev) {
     // Need to use body size, since document includes everything, and I have no idea what window is doing
-    var mouseX = (ev.pageX/($('body').width() - 1));
-    var mouseY = (ev.pageY/($('body').height() - 1));
+    var mouseX = (ev.pageX/($('html').width() - 1));
+    var mouseY = (ev.pageY/($('html').height() - 1));
 
     mouseX = 2 * (mouseX - .5);
     mouseY = 2 * (mouseY - .5);

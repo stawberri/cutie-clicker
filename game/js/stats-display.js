@@ -52,9 +52,9 @@
   cc.loop.draw(function() {
     // Notify game that bursting is ready if it is
     if(cc.burstReady) {
-      $('body').addClass('ce-burst-ready');
+      $('html').addClass('ce-burst-ready');
     } else {
-      $('body').removeClass('ce-burst-ready');
+      $('html').removeClass('ce-burst-ready');
     }
 
     // Figure out classes for #layer-burst
@@ -91,7 +91,7 @@
         nonBurstClasses += ' burst-active burst-ok'
       }
 
-      $('body').addClass(burstClasses).removeClass(nonBurstClasses);
+      $('html').addClass(burstClasses).removeClass(nonBurstClasses);
     });
   })
 }();
