@@ -72,4 +72,5 @@ html { background: #000; } body { display: none; }
   display: block;
   padding: 42px;
   outline: none;
+  color: #aaa;
 }
