@@ -28,7 +28,7 @@ body {
   min-width: 960px; min-height: 540px;
   margin: 0;
   overflow: hidden;
-  animation: .3s body-game-start forwards;
+  animation: .3s body-game-start;
   background: #000;
 }
 
