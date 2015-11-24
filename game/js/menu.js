@@ -27,17 +27,17 @@
         // If burst mode is active, deactivate menu
         data.write('active', false);
         $('html').removeClass('menu-active');
-        $('html, body').scrollTop(0);
+        $(window).scrollTop(0);
       } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
         $('html').addClass('menu-active');
-        $('html, body').scrollTop(scrollData().top);
+        $(window).scrollTop(scrollData().top);
       }
     } else {
       if($('html').hasClass('menu-active')) {
         // Menu shouldn't be active.
         $('html').removeClass('menu-active');
-        $('html, body').scrollTop(0);
+        $(window).scrollTop(0);
       }
     }
   });
