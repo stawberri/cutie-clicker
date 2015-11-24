@@ -64,6 +64,7 @@
       };
 
       var actionRemover = function() {
+        return;
         // Remove this function from array
         pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
 
@@ -78,7 +79,7 @@
           disableActionCheck = true;
 
           // Data update script. This is here because it pretty much requires everything.
-          addAction('&#9853;', 'data update', function(done) { // ♽
+          addAction('<span class="fa fa-battery-full"></span>', 'data update', function(done) {
             cc.getScript('js/update.js').done(function() {
               // Remove this item
               done();
@@ -129,10 +130,10 @@
     cc.init.addScript = addScript;
 
     // This action ensures that all actions have time to start
-    addAction('&#9852;', 'action launcher', function(done) { // ♼
+    addAction('<span class="fa fa-battery-empty"></span>', 'action launcher', function(done) {
 
       // Existing instance checker
-      addAction('&#10063;', 'instance checker', function(done) { // ❏
+      addAction('<span class="fa fa-clone"></span>', 'instance checker', function(done) {
         // Allow code below to run too
         setTimeout(function() {
           // Use this method of "checking" to see if localStorage works
@@ -162,22 +163,22 @@
       // This file is for loading blocking, "Cutie Clicker will not work at all without these" scripts. Non-critical scripts go into index.js
 
       // lz-string (data compression library)
-      addScript('&#11075;', 'lz-string', 'lib/lz-string.2015.11.9.js', true); // ⭃
+      addScript('<span class="fa fa-compress"></span>', 'lz-string', 'lib/lz-string.2015.11.9.js', true);
 
       // Rhaboo (data storage library)
-      addScript('&#9923;', 'rhaboo', 'lib/rhaboo.2015.11.8.js', true); // ⛃
+      addScript('<span class="fa fa-server"></span>', 'rhaboo', 'lib/rhaboo.2015.11.8.js', true);
 
       // schemeNumber (accurate numbers library)
-      addScript('&#9320;', 'schemeNumber', 'lib/schemeNumber.2015.11.9.js', true); // ⑨
+      addScript('<span class="fa fa-calculator"></span>', 'schemeNumber', 'lib/schemeNumber.2015.11.9.js', true);
 
       // cc.util
-      addScript('&#9939;', 'cc.util', 'js/util.js'); // ⛓
+      addScript('<span class="fa fa-cogs"></span>', 'cc.util', 'js/util.js');
 
       // cc.stats
-      addScript('&#127918;', 'cc.stats', 'js/stats.js'); // 🎮
+      addScript('<span class="fa fa-bar-chart"></span>', 'cc.stats', 'js/stats.js');
 
       // cc.cuties
-      addScript('&#9829;', 'cc.cuties', 'js/cuties.js') // ♥
+      addScript('<span class="fa fa-users"></span>', 'cc.cuties', 'js/cuties.js')
 
       done();
     });
