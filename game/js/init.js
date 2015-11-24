@@ -64,7 +64,6 @@
       };
 
       var actionRemover = function() {
-        return;
         // Remove this function from array
         pendingActions.splice(pendingActions.indexOf(actionRemover), 1);
 
