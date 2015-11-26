@@ -245,27 +245,8 @@
 
     // How much excitement does this cutie require for love up?
     targetxp: function() {
-      var target = '3';
-      switch(this.rarity) {
-        case 1:
-          target = '33';
-        break;
-        case 2:
-          target = '333';
-        break;
-        case 3:
-          target = '3333';
-        break;
-        case 4:
-          target = '33333';
-        break;
-        case 5:
-          target = '333333';
-        break;
-        case 6:
-          target = '3333333';
-        break;
-      }
+      // This ranges from 3 for rarity 0 to 9 for rarity 6
+      var target = 3 + this.rarity;
 
       return String(SchemeNumber.fn['*'](target, SchemeNumber.fn['+'](this.love(), '1')));
     },
