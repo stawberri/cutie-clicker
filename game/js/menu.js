@@ -17,6 +17,18 @@
     }
   });
 
+  // Set up a thing to scroll back to initial menu position on load
+  var scrollBackTimeout;
+  function scrollToSaved() {
+    if(data.active) {
+      $(window).scrollTop(scrollData().top);
+      if(Math.abs($(window).scrollTop() - scrollData().top) > 50) {
+        // We're not within 50px of our target location.
+        setTimeout(scrollToSaved, 1);
+      }
+    }
+  }
+
   // Update class with variable
   cc.loop.tick(function() {
     if(data.active) {
@@ -31,7 +43,7 @@
       } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
         $('html').addClass('menu-active');
-        $(window).scrollTop(scrollData().top);
+        scrollToSaved();
       }
     } else {
       if($('html').hasClass('menu-active')) {
