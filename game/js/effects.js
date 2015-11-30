@@ -96,6 +96,8 @@
     return {x: centeredGamma, y: centeredBeta};
   }
   $(window).on('deviceorientation', function(ev) {
+    parallax(0, 0);
+    return;
     var virtualMouse = tiltAdjustment(ev.originalEvent.gamma, ev.originalEvent.beta);
 
     parallax(virtualMouse.x, virtualMouse.y);
