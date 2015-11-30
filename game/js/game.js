@@ -12,7 +12,7 @@
   cc.loop = {
     taskInterval: 60000, // 60 seconds
     tickInterval: 100, // 10fps
-    drawInterval: 33 // 30fps
+    drawInterval: 50 // 20fps
   };
 
   // Create a queue that runs over and over again. Passes time to each function.
