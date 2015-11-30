@@ -2,14 +2,28 @@
 
 !function() {
   // Parallax handling
-  var parallaxMouse = {x: 0, y: 0};
+  var parallaxWithMouse = true;
+  var parallaxData = {x: 0, y: 0};
   function parallax(mouseX, mouseY) {
-    parallaxMouse.x = mouseX;
-    parallaxMouse.y = mouseY;
+    parallaxData.x = mouseX;
+    parallaxData.y = mouseY;
+  }
+  function parallaxTilt(gamma, beta) {
+    parallaxData.gamma = gamma;
+    parallaxData.beta = beta;
   }
   cc.loop.draw(function() {
-    mouseX = parallaxMouse.x;
-    mouseY = parallaxMouse.y;
+    var mouseX, mouseY;
+
+    // Tilt or mouse?
+    if(parallaxWithMouse) {
+      mouseX = parallaxData.x;
+      mouseY = parallaxData.y;
+    } else {
+      var adjustedData = tiltAdjustment(parallaxData.gamma, parallaxData.beta);
+      mouseX = adjustedData.x;
+      mouseY = adjustedData.y;
+    }
 
     // Ensure range is okay
     if(mouseX < -1) mouseX = -1;
@@ -55,7 +69,7 @@
     });
   });
 
-  $(window).on('mousemove', function(ev) {
+  $(window).on('mousemove.parallax', function(ev) {
     // Need to use body size, since document includes everything, and I have no idea what window is doing
     var mouseX = (ev.pageX/($('html').width() - 1));
     var mouseY = (ev.pageY/($('html').height() - 1));
@@ -96,10 +110,14 @@
     return {x: centeredGamma, y: centeredBeta};
   }
   $(window).on('deviceorientation', function(ev) {
-    parallax(0, 0);
-    return;
-    var virtualMouse = tiltAdjustment(ev.originalEvent.gamma, ev.originalEvent.beta);
+    if(parallaxWithMouse) {
+      // Remove mousemove handler
+      parallaxWithMouse = false;
+      $(window).off('mousemove.parallax');
+      delete parallaxData.x;
+      delete parallaxData.y;
+    }
 
-    parallax(virtualMouse.x, virtualMouse.y);
+    parallaxTilt(ev.originalEvent.gamma, ev.originalEvent.beta);
   });
 }();
