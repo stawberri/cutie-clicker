@@ -4,7 +4,6 @@
   // Parallax handling
   var parallaxWithMouse = true;
   var parallaxData = {x: 0, y: 0};
-  var lastTiltCalculation;
   function parallax(mouseX, mouseY) {
     parallaxData.x = mouseX;
     parallaxData.y = mouseY;
@@ -13,7 +12,7 @@
     parallaxData.gamma = gamma;
     parallaxData.beta = beta;
   }
-  cc.loop.draw(function(now) {
+  cc.loop.draw(function() {
     var mouseX, mouseY;
 
     // Tilt or mouse?
@@ -21,12 +20,6 @@
       mouseX = parallaxData.x;
       mouseY = parallaxData.y;
     } else {
-      // Throttle tilt calculations
-      if(now - lastTiltCalculation < 100) {
-        return;
-      } else {
-        lastTiltCalculation = now;
-      }
       var adjustedData = tiltAdjustment(parallaxData.gamma, parallaxData.beta);
       mouseX = adjustedData.x;
       mouseY = adjustedData.y;
