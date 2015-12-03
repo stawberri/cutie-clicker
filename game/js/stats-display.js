@@ -62,7 +62,7 @@
       // Stages
       var burstClasses = '';
       var nonBurstClasses = ''
-      if(cc.ls.d.preBurst) {
+      if(cc.burstStart || cc.ls.d.preBurst) {
         burstClasses += ' burst-pre';
       } else {
         nonBurstClasses += ' burst-pre';

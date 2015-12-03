@@ -12,6 +12,9 @@
     if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
       ev.preventDefault();
 
+      // Immediately trigger effect.
+      $('html').addClass('burst-pre');
+
       // Burst if burst is ready
       cc.burstStart = true;
     }
