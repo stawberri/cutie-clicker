@@ -22,14 +22,20 @@
 
   // Set up a thing to scroll back to initial menu position on load
   var scrollBackTimeout;
+  var scrollAttempts = 10;
   function scrollToSaved() {
     if(data.active) {
       $(window).scrollTop(scrollData().top);
       if(Math.abs($(window).scrollTop() - scrollData().top) > 50) {
         // We're not within 50px of our target location.
-        setTimeout(scrollToSaved, 1);
+        if(scrollAttempts > 0) {
+          scrollAttempts--;
+          setTimeout(scrollToSaved, 100);
+          return;
+        }
       }
     }
+    scrollAttempts = 10;
   }
 
   // Update class with variable
