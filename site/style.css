@@ -1,5 +1,5 @@
 /* Important "make sure to override these" styles */
-html { background: #000; } body { display: none; }
+body { display: none; }
 
 /* Whole page styles */
 .site, .site body {
@@ -21,34 +21,31 @@ html { background: #000; } body { display: none; }
 /* Content shield */
 .site #site-content-shield {
   opacity: 0;
-  transition: opacity .69s;
+  transition: opacity .3s;
   pointer-events: none;
 }
 
-.site.loading #site-content-shield {
+.site.loading #site-content-shield,
+.site.nojs #site-content-shield {
   display: block;
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: #000;
+  background: #fff;
   opacity: 1;
   pointer-events: auto;
-}
-
-.site.nojs #site-content-shield {
-  background: rgba(255, 255, 255, .3);
 }
 
 /* Game loading messages */
 @keyframes site-loading-site-game-loading {
   0% {
-    color: rgba(255, 255, 255, 1);
-    text-shadow: 0 0 3px #fff;
+    color: rgba(0, 0, 0, 1);
+    text-shadow: 0 0 3px #000;
   }
 
   100% {
-    color: rgba(255, 255, 255, .5);
-    text-shadow: 0 0 10px #fff;
+    color: rgba(0, 0, 0, .42);
+    text-shadow: 0 0 10px #000;
   }
 }
 

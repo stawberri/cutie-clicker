@@ -8,8 +8,8 @@ html.menu-active {
 }
 
 .menu-active #layers-under-ui {
-  transform: scale(.95);
-  opacity: .69;
+  transform: scale(.85);
+  opacity: 0;
 }
 
 .menu-active body>.layer,
