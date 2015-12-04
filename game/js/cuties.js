@@ -219,14 +219,14 @@
       if(!cc.ls.d.burst) {
         // Normal mode
 
-        // Drain 1% of current xp
+        // Drain 10% of current xp per second
         var xpDrain = String(SchemeNumber.fn.floor(SchemeNumber.fn['*'](cc.stats.excitement(), '1/10')));
 
         return xpDrain;
       } else {
         // Burst mode
 
-        // Convert one third of targetxp to mp
+        // Drain entire targetxp in one second
         var xpDrain = String(SchemeNumber.fn.ceiling(SchemeNumber.fn['/'](this.targetxp(), '1')));
 
         return xpDrain;
