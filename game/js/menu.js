@@ -123,6 +123,9 @@
       state = state || {};
     }
 
+    // Remove menu state class
+    $('html').removeClass('menu-script-' + data.script);
+
     // Empty out menu contents
     $('#menu-content').html('');
 
@@ -130,6 +133,9 @@
     data.write('script', scriptname);
     // Set state
     data.write('state', state);
+
+    // Add menu state class
+    $('html').addClass('menu-script-' + data.script);
 
     if($.type(cc.menu[scriptname]) !== 'undefined') {
       // It's loaded already, so just run its init function.
@@ -171,4 +177,24 @@
 
   // Load menu right now
   cc.menu();
+
+  // Menu buttons
+  $('#menu-top-stats').click(function() {
+    cc.menu('stats');
+  });
+  $('#menu-top-cuties').click(function() {
+    cc.menu('cuties');
+  });
+  $('#menu-top-items').click(function() {
+    cc.menu('items');
+  });
+  $('#menu-top-store').click(function() {
+    cc.menu('store');
+  });
+  $('#menu-top-tbd').click(function() {
+    cc.menu('tbd');
+  });
+  $('#menu-top-misc').click(function() {
+    cc.menu('misc');
+  });
 }();

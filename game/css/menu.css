@@ -103,6 +103,25 @@ html.menu-active {
         transform: scale(.9);
       }
 
+    .menu-script-stats #menu-top-stats {
+      color: #7f00ff;
+    }
+    .menu-script-cuties #menu-top-cuties {
+      color: #007fff;
+    }
+    .menu-script-items #menu-top-items {
+      color: #00ff7f;
+    }
+    .menu-script-store #menu-top-store {
+      color: #7fff00;
+    }
+    .menu-script-tbd #menu-top-tbd {
+      color: #ff7f00;
+    }
+    .menu-script-misc #menu-top-misc {
+      color: #ff007f;
+    }
+
 #menu-pane {
   padding-top: 30px;
   background: #fff;
