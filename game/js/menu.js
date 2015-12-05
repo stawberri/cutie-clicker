@@ -106,4 +106,69 @@
       cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
     }
   });
+
+  // Menu switcher
+  // Based off of cutie function
+  cc.menu = function(scriptname, state) {
+    if($.type(scriptname) === 'undefined' && $.type(data.script) !== 'undefined') {
+      // Keep current script
+      scriptname = data.script;
+      state = data.state;
+    } else if($.type(scriptname) === 'undefined') {
+      // No script name defined, so set it to default
+      scriptname = 'stats';
+      state = state || {};
+    } else {
+      // Script name is defined, but make sure state is too.
+      state = state || {};
+    }
+
+    // Empty out menu contents
+    $('#menu-content').html('');
+
+    // Swap over current menu
+    data.write('script', scriptname);
+    // Set state
+    data.write('state', state);
+
+    if($.type(cc.menu[scriptname]) !== 'undefined') {
+      // It's loaded already, so just run its init function.
+      cc.menu[scriptname]($('#menu-content'), data.state);
+    } else {
+      // It hasn't loaded yet, so get it loaded.
+      cc.getScript('menu/' + scriptname + '/menu.js').done(function() {
+        // Go ahead and run its init function
+        cc.menu[scriptname]($('#menu-content'), data.state);
+      }).fail(function() {console.log(arguments)});
+    }
+  }
+
+  // Make some variables available for scripts
+  // These are functions so that they can update
+  cc.menu.script = function() {
+    return data.script;
+  }
+  cc.menu.state = function() {
+    return data.state;
+  }
+
+  // Pass tasks, ticks, and draws to menu
+  cc.loop.task(function(now) {
+    if($.type(cc.menu[data.script]) !== 'undefined') {
+      $.isFunction(cc.menu[data.script].task) && cc.menu[data.script].task(now, $('#menu-content'), data.state);
+    }
+  });
+  cc.loop.tick(function(now) {
+    if($.type(cc.menu[data.script]) !== 'undefined') {
+      $.isFunction(cc.menu[data.script].tick) && cc.menu[data.script].tick(now, $('#menu-content'), data.state);
+    }
+  });
+  cc.loop.draw(function(now) {
+    if($.type(cc.menu[data.script]) !== 'undefined') {
+      $.isFunction(cc.menu[data.script].draw) && cc.menu[data.script].draw(now, $('#menu-content'), data.state);
+    }
+  });
+
+  // Load menu right now
+  cc.menu();
 }();

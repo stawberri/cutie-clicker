@@ -23,9 +23,9 @@
       // Tilt parallax disabled for now.
       return;
 
-      var adjustedData = tiltAdjustment(parallaxData.gamma, parallaxData.beta);
-      mouseX = adjustedData.x;
-      mouseY = adjustedData.y;
+      // var adjustedData = tiltAdjustment(parallaxData.gamma, parallaxData.beta);
+      // mouseX = adjustedData.x;
+      // mouseY = adjustedData.y;
     }
 
     // Ensure range is okay
