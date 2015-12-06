@@ -2,7 +2,7 @@
 
 !function() {
   // Current data version
-  var dataStorageVersion = 3;
+  var dataStorageVersion = 4;
 
   // Process persistent data
   cc.init.addAction('<span class="fa fa-database"></span>', 'persistent data update', function(done) {
@@ -13,6 +13,9 @@
       default: // there isn't a version
         cc.ls.erase('d');
         cc.ls.write('d', {});
+        // Default contains a break, since presumably defaults are set properly in their code
+      break;
+
       case 1:
       case 2:
         cc.cuties(0, function(cutie) {
