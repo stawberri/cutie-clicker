@@ -1,0 +1,6 @@
+.menu-script-store #menu-top-store {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #7fff00,
+               0 0 6px #7fff00,
+               0 0 9px #7fff00;
+}
