@@ -130,7 +130,7 @@
         // Allow code below to run too
         setTimeout(function() {
           try {
-            if(window.localStorage.getItem('cc-redirecthttps')) {
+            if(window.localStorage.getItem('cc-redirecthttps') && location.protocol + location.host != 'https:cc.aideen.pw') {
               location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
             } else {
               done();
