@@ -104,37 +104,37 @@ html.menu-active {
       }
 
     .menu-script-stats #menu-top-stats {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #7f00ff,
                    0 0 6px #7f00ff,
                    0 0 9px #7f00ff;
     }
     .menu-script-cuties #menu-top-cuties {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #007fff,
                    0 0 6px #007fff,
                    0 0 9px #007fff;
     }
     .menu-script-items #menu-top-items {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #00ff7f,
                    0 0 6px #00ff7f,
                    0 0 9px #00ff7f;
     }
     .menu-script-store #menu-top-store {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #7fff00,
                    0 0 6px #7fff00,
                    0 0 9px #7fff00;
     }
     .menu-script-tbd #menu-top-tbd {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #ff7f00,
                    0 0 6px #ff7f00,
                    0 0 9px #ff7f00;
     }
     .menu-script-misc #menu-top-misc {
-      color: #fff;
+      color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #ff007f,
                    0 0 6px #ff007f,
                    0 0 9px #ff007f;
