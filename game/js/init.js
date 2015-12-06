@@ -125,6 +125,22 @@
     // This action ensures that all actions have time to start
     addAction('<span class="fa fa-battery-empty"></span>', 'action launcher', function(done) {
 
+      // HTTPS Redirector
+      addAction('<span class="fa fa-share"></span>', 'https redirector', function(done) {
+        // Allow code below to run too
+        setTimeout(function() {
+          try {
+            if(window.localStorage.getItem('cc-redirecthttps')) {
+              location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
+            } else {
+              done();
+            }
+          } catch(e) {
+            done();
+          }
+        }, 0);
+      });
+
       // Existing instance checker
       addAction('<span class="fa fa-clone"></span>', 'instance checker', function(done) {
         // Allow code below to run too
