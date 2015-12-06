@@ -2,7 +2,7 @@
 
 !function() {
   // Parallax handling
-  var parallaxWithMouse = true;
+  var lastTiltTime = 0;
   var parallaxData = {x: 0, y: 0};
   function parallax(mouseX, mouseY) {
     parallaxData.x = mouseX;
@@ -12,11 +12,11 @@
     parallaxData.gamma = gamma;
     parallaxData.beta = beta;
   }
-  cc.loop.draw(function() {
+  cc.loop.draw(function(now) {
     var mouseX, mouseY;
 
     // Tilt or mouse?
-    if(parallaxWithMouse) {
+    if(now > lastTiltTime + 6900) {
       mouseX = parallaxData.x;
       mouseY = parallaxData.y;
     } else {
@@ -110,14 +110,7 @@
     return {x: centeredGamma, y: centeredBeta};
   }
   $(window).on('deviceorientation', function(ev) {
-    if(parallaxWithMouse) {
-      // Remove mousemove handler
-      parallaxWithMouse = false;
-      $(window).off('mousemove.parallax');
-      delete parallaxData.x;
-      delete parallaxData.y;
-    }
-
+    lastTiltTime = $.now();
     parallaxTilt(ev.originalEvent.gamma, ev.originalEvent.beta);
   });
 }();
