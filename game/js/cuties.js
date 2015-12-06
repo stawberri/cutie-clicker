@@ -109,6 +109,9 @@
       } else if (indexToFix > deletedIndex) {
         // Removed a cutie that comes before current cutie
         return indexToFix - 1;
+      } else {
+        // Removed this cutie.
+        return;
       }
   }
 
@@ -128,15 +131,45 @@
       current().write(currentIndex, fixDeletedIndex(index, currentValue));
     });
 
+    // Check selections and do the same thing for each selection
+    $.each(cc.cuties.selections(), function(selectionKey, selectionArray) {
+      var toSplice = [];
+      $.each(selectionArray, function(currentIndex, currentValue) {
+        var fixedIndex = fixDeletedIndex(index, currentValue);
+        if($.type(fixedIndex) === 'undefined') {
+          // Cutie was removed
+          toSplice.push(currentIndex);
+        } else {
+          // It's fine.
+          selectionArray.write(currentIndex, fixedIndex);
+        }
+      });
+
+      // Remove removed cuties
+      $.each(toSplice, function(spliceIndex, spliceValue) {
+        selectionArray.splice(spliceValue, 1);
+      });
+    });
+
     // If burst object exists, that needs to be fixed as well, but creating a completely new object, annoyingly
     if(cc.ls.d.burst) {
       var newBurst = {};
       $.each(cc.ls.d.burst, function(key, value) {
-        var newKey = String(fixDeletedIndex(index, Number(key)));
-        newBurst[newKey] = value;
+        var fixedIndex = fixDeletedIndex(index, Number(key));
+        if($.type(fixedIndex) !== 'undefined') {
+          // Only bother adding new cutie in if it wasn't removed.
+          var newKey = String(fixDeletedIndex(index, Number(key)));
+          newBurst[newKey] = value;
+        }
       });
       cc.ls.d.write('burst', newBurst);
     }
+  }
+
+  // Selections object
+  // Contains arrays that are meant for selecting groups of cuties.
+  cc.cuties.selections = function() {
+    return data().selections || data().write('selections', {}).selections;
   }
 
   // Grab current array
