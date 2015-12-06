@@ -16,7 +16,7 @@
     var mouseX, mouseY;
 
     // Tilt or mouse?
-    if(now > lastTiltTime + 6900) {
+    if(now > lastTiltTime + 1000) {
       mouseX = parallaxData.x;
       mouseY = parallaxData.y;
     } else {
@@ -83,7 +83,7 @@
   var tiltCenter = {gamma: 0, beta: 0};
   function tiltAdjustment(orig, orib) {
     // Don't do anything if gamma and beta haven't changed much
-    if(Math.abs(orig - lastTilt.gamma) < 5 && Math.abs(orib - lastTilt.beta) < 5) {
+    if(Math.abs(orig - lastTilt.gamma) < 1 && Math.abs(orib - lastTilt.beta) < 1) {
       return;
     } else {
       lastTilt.gamma = orig;
