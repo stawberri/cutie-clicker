@@ -11,6 +11,7 @@
   function parallaxTilt(gamma, beta) {
     parallaxData.gamma = gamma;
     parallaxData.beta = beta;
+    lastTiltTime = $.now();
   }
   cc.loop.draw(function(now) {
     var mouseX, mouseY;
@@ -79,17 +80,8 @@
 
     parallax(mouseX, mouseY);
   });
-  var lastTilt = {gamma: 0, beta: 0};
   var tiltCenter = {gamma: 0, beta: 0};
   function tiltAdjustment(orig, orib) {
-    // Don't do anything if gamma and beta haven't changed much
-    if(Math.abs(orig - lastTilt.gamma) < 1 && Math.abs(orib - lastTilt.beta) < 1) {
-      return;
-    } else {
-      lastTilt.gamma = orig;
-      lastTilt.beta = orib;
-    }
-
     // Begin by normalizing.
     var originalGamma = (orig / 30);
     var originalBeta = (orib / 30);
@@ -116,12 +108,21 @@
     if(centeredBeta < -1) tiltCenter.beta = beta + 1;
     else if(centeredBeta > 1) tiltCenter.beta = beta - 1;
 
-    // Update last tilt time.
-    lastTiltTime = $.now();
-
     return {x: centeredGamma, y: centeredBeta};
   }
+  var lastTilt = {gamma: 0, beta: 0};
   $(window).on('deviceorientation', function(ev) {
-    parallaxTilt(ev.originalEvent.gamma, ev.originalEvent.beta);
+    var gamma = ev.originalEvent.gamma;
+    var beta = ev.originalEvent.beta;
+
+    // Don't do anything if gamma and beta haven't changed much
+    if(Math.abs(gamma - lastTilt.gamma) < 1 && Math.abs(beta - lastTilt.beta) < 1) {
+      return;
+    } else {
+      lastTilt.gamma = orig;
+      lastTilt.beta = orib;
+    }
+
+    parallaxTilt(gamma, beta);
   });
 }();
