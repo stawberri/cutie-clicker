@@ -28,8 +28,14 @@
         if(cc.stats.noxp()) {
           // If current cutie doesn't lv up, no one lvs up.
           if(cutie.targetBpMet()) {
+            var burstArray = cc.ls.d.burst;
+
+            // Exit burst mode
+            // Called first to hopefully reduce weird issues.
+            cc.burstEnd = 1;
+
             // Check every cutie's bptargets and lv them up if necessary
-            $.each(cc.ls.d.burst, function(key, value) {
+            $.each(burstArray, function(key, value) {
               cc.cuties(Number(key), function(innerCutie) {
                 // Has targetbp been met?
                 if(innerCutie.targetBpMet()) {
@@ -41,16 +47,13 @@
                 }
               });
             });
-
-
-            // Exit burst mode
-            cc.burstEnd = 1;
           } else {
-            // Current cutie doesn't lv up
-
-
             // Exit burst mode
             cc.burstEnd = -1;
+
+            // Current cutie doesn't lv up
+
+            // Post-burst processing should go here
           }
         }
       } else {
