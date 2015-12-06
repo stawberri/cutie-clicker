@@ -7,7 +7,7 @@
   // Menu opening
   $('#cutie-bar-m').click(function() {
     // Nice and simple
-    data.write('active', !data.active);
+    cc.menu.open();
   }).on('mousedown touchstart', function(ev) {
     if(cc.burstReady && !cc.burstStart && !cc.ls.d.preBurst) {
       ev.preventDefault();
@@ -156,6 +156,15 @@
   }
   cc.menu.state = function() {
     return data.state;
+  }
+
+  // Easy to use function to open / close / toggle menu
+  cc.menu.open = function(open) {
+    if($.type(open) === 'boolean') {
+      data.write('active', open);
+    } else {
+      data.write('active', !data.active);
+    }
   }
 
   // Pass tasks, ticks, and draws to menu

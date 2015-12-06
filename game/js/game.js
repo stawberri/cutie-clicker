@@ -56,15 +56,17 @@
         delete cc.burstEnd;
         return;
       } else if(cc.ls.d.postBurst) {
+        burstState = cc.ls.d.postBurst;
+
         cc.ls.d.erase('burst');
         cc.ls.d.erase('postBurst');
 
         // There was a processing pause, so reset drain timer
         cc.stats.resetXpDrain();
 
-        // Open menu in a little bit
+        // Wait a bit, then activate menu
         setTimeout(function() {
-          cc.ls.d.menu.write('active', true);
+          cc.menu.open(true);
         }, 300);
       }
       tickQueue.fire($.now());
