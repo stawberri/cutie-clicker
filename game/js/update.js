@@ -14,7 +14,8 @@
         // Move people to https://cc.aideen.pw/ if they aren't already there.
         // This is here and not in init, because this ensures players won't lose data.
         if(location.protocol != 'file:' && location.protocol + location.host != 'https:cc.aideen.pw') {
-          location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash)
+          location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
+          return;
         }
 
         cc.ls.erase('d');
