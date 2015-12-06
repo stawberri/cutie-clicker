@@ -1,1 +1,1 @@
-[Play Cutie Clicker](http://cc.aideen.pw/)
+[Play Cutie Clicker](https://cc.aideen.pw/)

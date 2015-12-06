@@ -11,21 +11,30 @@
     // Check localStorage version
     switch(cc.ls.v) {
       default: // there isn't a version
+        // Move people to https://cc.aideen.pw/ if they aren't already there.
+        // This is here and not in init, because this ensures players won't lose data.
+        if(location.protocol != 'file:' && location.protocol + location.host != 'https:cc.aideen.pw') {
+          location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash)
+        }
+
         cc.ls.erase('d');
         cc.ls.write('d', {});
+
         // Default contains a break, since presumably defaults are set properly in their code
       break;
 
       case 1:
       case 2:
-        cc.cuties(0, function(cutie) {
-          if(cutie.data.xp) {
-            cc.ls.d.write('xp', cutie.data.xp);
-            cutie.data.erase('xp');
-          }
-        });
+        if(cc.ls.d.cuties) {
+          cc.cuties(0, function(cutie) {
+            if(cutie.data.xp) {
+              cc.ls.d.write('xp', cutie.data.xp);
+              cutie.data.erase('xp');
+            }
+          });
+        }
       case 3:
-        if(cc.ls.d.menu.script == 'stats') {
+        if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
           cc.ls.d.menu.write('script', 'home');
         }
       case dataStorageVersion:
