@@ -116,7 +116,7 @@
     var beta = ev.originalEvent.beta;
 
     // Don't do anything if gamma and beta haven't changed much
-    if(Math.abs(gamma - lastTilt.gamma) < 1 && Math.abs(beta - lastTilt.beta) < 1) {
+    if(Math.abs(gamma - lastTilt.gamma) < 3 && Math.abs(beta - lastTilt.beta) < 3) {
       return;
     } else {
       lastTilt.gamma = gamma;
