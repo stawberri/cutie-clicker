@@ -38,6 +38,18 @@
     scrollAttempts = 10;
   }
 
+  // Set up a function to scroll to top
+  // affectSave defaults to true.
+  function scrollToDefault(affectSave) {
+    if(affectSave !== false) {
+      cc.util.rhanum(data, 'scrolltop', '0');
+    }
+
+    if(data.active) {
+      $(window).scrollTop(0);
+    }
+  }
+
   // Update class with variable
   cc.loop.tick(function() {
     if(data.active) {
@@ -47,8 +59,8 @@
       } else if(cc.ls.d.burst || cc.ls.d.preBurst || cc.burstStart) {
         // If burst mode is active, deactivate menu
         data.write('active', false);
-        $('html').removeClass('menu-active');
         $(window).scrollTop(0);
+        $('html').removeClass('menu-active');
       } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
         $('html').addClass('menu-active');
@@ -57,8 +69,8 @@
     } else {
       if($('html').hasClass('menu-active')) {
         // Menu shouldn't be active.
-        $('html').removeClass('menu-active');
         $(window).scrollTop(0);
+        $('html').removeClass('menu-active');
       }
     }
   });
@@ -128,6 +140,9 @@
 
     // Empty out menu contents
     $('#menu-content').html('');
+
+    // Scroll to top
+    scrollToDefault();
 
     // Swap over current menu
     data.write('script', scriptname);
