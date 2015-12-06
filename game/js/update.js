@@ -21,6 +21,10 @@
             cutie.data.erase('xp');
           }
         });
+      case 3:
+        if(cc.ls.d.menu.script == 'stats') {
+          cc.ls.d.menu.write('script', 'home');
+        }
       case dataStorageVersion:
     }
 

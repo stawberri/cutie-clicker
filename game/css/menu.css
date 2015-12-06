@@ -103,7 +103,7 @@ html.menu-active {
         transform: scale(.9);
       }
 
-    .menu-script-stats #menu-top-stats {
+    .menu-script-home #menu-top-home {
       color: rgba(255, 255, 255, .85);
       text-shadow: 0 0 3px #7f00ff,
                    0 0 6px #7f00ff,

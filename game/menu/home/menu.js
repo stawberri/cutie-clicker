@@ -1,5 +1,5 @@
 !function() {
-  var script = 'stats';
+  var script = 'home';
   var dir = 'menu/' + script + '/';
 
   cc.menu[script] = function(element, state) {

@@ -116,7 +116,7 @@
       state = data.state;
     } else if($.type(scriptname) === 'undefined') {
       // No script name defined, so set it to default
-      scriptname = 'stats';
+      scriptname = 'home';
       state = state || {};
     } else {
       // Script name is defined, but make sure state is too.
@@ -188,8 +188,8 @@
   cc.menu();
 
   // Menu buttons
-  $('#menu-top-stats').click(function() {
-    cc.menu('stats');
+  $('#menu-top-home').click(function() {
+    cc.menu('home');
   });
   $('#menu-top-cuties').click(function() {
     cc.menu('cuties');
