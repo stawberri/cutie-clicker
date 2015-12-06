@@ -46,12 +46,16 @@
       } else if(cc.burstEnd) {
         if(cc.burstEnd > 0) {
           // Passed
+          cc.cuties.m(function(cutie) {
+            setTimeout(doTick, Math.max(cutie.burstSuccess(), cc.loop.tickInterval));
+          });
           cc.ls.d.write('postBurst', 1);
-          setTimeout(doTick, 1000);
         } else {
           // Failed
+          cc.cuties.m(function(cutie) {
+            setTimeout(doTick, Math.max(cutie.burstFailure(), cc.loop.tickInterval));
+          });
           cc.ls.d.write('postBurst', -1);
-          setTimeout(doTick, 300);
         }
         delete cc.burstEnd;
         return;

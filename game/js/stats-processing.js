@@ -23,42 +23,19 @@
   // Lv Up & Bursting
   cc.loop.tick(function(now) {
     cc.cuties.m(function(cutie) {
-      if(cc.ls.d.burst && !cc.burstEnd && !cc.ls.d.postBurst) {
+      if(cc.ls.d.burst) {
         // When xp runs out
         if(cc.stats.noxp()) {
-          // If current cutie doesn't lv up, no one lvs up.
           if(cutie.targetBpMet()) {
-            var burstArray = cc.ls.d.burst;
-
             // Exit burst mode
             // Called first to hopefully reduce weird issues.
             cc.burstEnd = 1;
-
-            // Check every cutie's bptargets and lv them up if necessary
-            $.each(burstArray, function(key, value) {
-              cc.cuties(Number(key), function(innerCutie) {
-                // Has targetbp been met?
-                if(innerCutie.targetBpMet()) {
-                  // Just do what it used to do for now
-                  innerCutie.loveup();
-
-                  // Google analytics for fun data
-                  // ga('send', 'event', 'cuties', 'lv up', cutie.cutie, Number(cutie.love()));
-                }
-              });
-            });
           } else {
             // Exit burst mode
             cc.burstEnd = -1;
-
-            // Current cutie doesn't lv up
-
-            // Post-burst processing should go here
           }
         }
       } else {
-        // Not in burst mode. Figure out if we're ready for it.
-
         // Are we ready to burst?
         cc.burstReady = cutie.targetXpMet();
       }

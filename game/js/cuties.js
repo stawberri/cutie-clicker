@@ -290,6 +290,19 @@
       return String(SchemeNumber.fn['*'](target, SchemeNumber.fn['+'](this.love(), '1')));
     },
 
+    // What happens when bursting is successful?
+    burstSuccess: function() {
+      this.loveup();
+
+      // How long should we wait?
+      return 1000;
+    },
+
+    // What happens when bursting fails?
+    burstFailure: function() {
+      return 300;
+    },
+
 
     // Stuff that probably won't be overidden
 
