@@ -26,6 +26,7 @@ html.menu-active {
   height: calc(100% - 70px);
   pointer-events: auto;
   overflow: visible;
+  transition: top .3s;
 }
 
 .menu-active #menu-top {

@@ -22,25 +22,31 @@
 
   // Set up a thing to scroll back to initial menu position on load
   var scrollBackTimeout;
-  var scrollAttempts = 10;
+  var scrollAttempts = 10; // 1 second
   function scrollToSaved() {
     if(data.active) {
       $(window).scrollTop(scrollData().top);
-      if(Math.abs($(window).scrollTop() - scrollData().top) > 50) {
-        // We're not within 50px of our target location.
+      if(Math.abs($(window).scrollTop() - scrollData().top) > 1) {
+        // We're not within 1px of our target location.
         if(scrollAttempts > 0) {
           scrollAttempts--;
-          setTimeout(scrollToSaved, 100);
+          scrollBackTimeout = setTimeout(scrollToSaved, 100);
           return;
         }
       }
     }
+    scrollBackTimeout = false;
     scrollAttempts = 10;
   }
 
   // Set up a function to scroll to top
   // affectSave defaults to true.
   function scrollToDefault(affectSave) {
+    if(scrollBackTimeout) {
+      clearTimeout(scrollBackTimeout);
+      scrollBackTimeout = false;
+    }
+
     if(affectSave !== false) {
       cc.util.rhanum(data, 'scrolltop', '0');
     }
@@ -63,8 +69,8 @@
         $('html').removeClass('menu-active');
       } else if(!$('html').hasClass('menu-active')) {
         // Burst mode isn't active, but menu isn't open for some reason.
+        scrollBackTimeout = setTimeout(scrollToSaved, 100);
         $('html').addClass('menu-active');
-        scrollToSaved();
       }
     } else {
       if($('html').hasClass('menu-active')) {
@@ -114,8 +120,10 @@
   // Scroll handler!
   $(window).scroll(function(ev) {
     if(data.active) {
-      // Save scroll position
-      cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
+      // Save scroll position (only if we're not currently scrolling to a saved location)
+      if(!scrollBackTimeout) {
+        cc.util.rhanum(data, 'scrolltop', String($(window).scrollTop()));
+      }
     }
   });
 
@@ -126,6 +134,7 @@
       // Keep current script
       scriptname = data.script;
       state = data.state;
+      var noscroll = true;
     } else if($.type(scriptname) === 'undefined') {
       // No script name defined, so set it to default
       scriptname = 'home';
@@ -142,7 +151,9 @@
     $('#menu-content').html('');
 
     // Scroll to top
-    scrollToDefault();
+    if(!noscroll) {
+      scrollToDefault();
+    }
 
     // Swap over current menu
     data.write('script', scriptname);
