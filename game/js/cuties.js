@@ -78,6 +78,10 @@
     return data().list || data().write('list', []).list;
   }
 
+  // Keep track of when list was changed.
+  // Not contents of list, but list itself.
+  cc.cuties.listTime = $.now();
+
   // Add a cutie to data
   cc.cuties.add = function(cutie, otherOptions) {
     // allow passing in only options
@@ -91,6 +95,7 @@
     var newIndex = cc.cuties.list().length;
 
     cc.cuties.list().write(newIndex, options);
+    cc.cuties.listTime = $.now();
 
     // Return cutie index
     return newIndex;
@@ -116,6 +121,7 @@
 
     // This is the easy part
     cc.cuties.list().splice(index, 1);
+    cc.cuties.listTime = $.now();
 
     // Check current() list and decrement (or remove) if necessary
     $.each(current(), function(currentIndex, currentValue) {
