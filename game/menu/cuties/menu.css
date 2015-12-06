@@ -1,0 +1,16 @@
+.menu-script-cuties #menu-content {
+}
+
+.menu-script-cuties #menu-cuties-pane {
+  position: fixed;
+  /* Using top moves this relative to the screen */
+  transform: translateY(-50px);
+  width: 320px; height: 100%;
+  padding-top: 50px;
+  outline: 1px solid #eee;
+}
+
+.menu-script-cuties #menu-cuties-list {
+  margin-left: 320px;
+  padding: 0 20px 20px;
+}
