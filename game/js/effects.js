@@ -119,8 +119,8 @@
     if(Math.abs(gamma - lastTilt.gamma) < 1 && Math.abs(beta - lastTilt.beta) < 1) {
       return;
     } else {
-      lastTilt.gamma = orig;
-      lastTilt.beta = orib;
+      lastTilt.gamma = gamma;
+      lastTilt.beta = beta;
     }
 
     parallaxTilt(gamma, beta);
