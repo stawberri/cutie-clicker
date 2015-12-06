@@ -61,6 +61,11 @@
 
         // There was a processing pause, so reset drain timer
         cc.stats.resetXpDrain();
+
+        // Open menu in a little bit
+        setTimeout(function() {
+          cc.ls.d.menu.write('active', true);
+        }, 300);
       }
       tickQueue.fire($.now());
       setTimeout(doTick, cc.loop.tickInterval);
