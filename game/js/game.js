@@ -111,6 +111,14 @@
     doTask();
     cc.loop.task = task;
 
+
+  // Some basic stuff that isn't really worth making a whole new script for
+    // Record first play time
+    if(!cc.ls.d.playedSince) {
+      cc.util.rhanum(cc.ls.d, 'playedSince', $.now());
+    }
+
+
   // Grab stuff from other scripts
     // Cutie rendering
     cc.getScript('js/cutie-display.js');
