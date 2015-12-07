@@ -157,21 +157,27 @@
 
     // Swap over current menu
     data.write('script', scriptname);
-    // Set state
-    data.write('state', state);
+
+    // Set state to a blank state first
+    data.write('state', {});
 
     // Add menu state class
     $('html').addClass('menu-script-' + data.script);
 
+    function afterLoad() {
+      // First run its init function
+      cc.menu[scriptname]($('#menu-content'));
+
+      // Then set state
+      cc.menu.state(state);
+    }
+
     if($.type(cc.menu[scriptname]) !== 'undefined') {
-      // It's loaded already, so just run its init function.
-      cc.menu[scriptname]($('#menu-content'), data.state);
+      // It's already loaded.
+      afterLoad();
     } else {
       // It hasn't loaded yet, so get it loaded.
-      cc.getScript('menu/' + scriptname + '/menu.js').done(function() {
-        // Go ahead and run its init function
-        cc.menu[scriptname]($('#menu-content'), data.state);
-      });
+      cc.getScript('menu/' + scriptname + '/menu.js').done(afterLoad);
     }
   }
 
@@ -194,7 +200,7 @@
     return data.script;
   }
   cc.menu.state = function(newState) {
-    if(newState) {
+    if(newState && !$.isEmptyObject(newState)) {
       data.write('state', $.extend({}, data.state, newState));
 
       // Look through state and remove anything that's null or undefined.
