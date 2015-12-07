@@ -64,7 +64,7 @@
         cc.burstStart = true;
       } else if(cc.ls.d.burst || cc.ls.d.preBurst || cc.burstStart) {
         // If burst mode is active, deactivate menu
-        data.write('active', false);
+        cc.menu.open(false, true);
         $(window).scrollTop(0);
         $('html').removeClass('menu-active');
       } else if(!$('html').hasClass('menu-active')) {
@@ -144,31 +144,40 @@
       state = state || {};
     }
 
-    // Remove menu state class
-    $('html').removeClass('menu-script-' + data.script);
-
-    // Empty out menu contents
-    $('#menu-content').html('');
-
-    // Scroll to top
-    if(!noscroll) {
-      scrollToDefault();
+    if(callOnMenu('exit', [scriptname, state]) === false) {
+      return;
     }
 
-    // Swap over current menu
-    data.write('script', scriptname);
-
-    // Set state to a blank state first
-    data.write('state', {});
-
-    // Add menu state class
-    $('html').addClass('menu-script-' + data.script);
-
     function afterLoad() {
-      // First run its init function
-      cc.menu[scriptname]($('#menu-content'));
+      // Create a copy of menu-content
+      // Seems kinda unnecessary though
+      var menuContent = $('#menu-content');
+      var futureContent = menuContent.clone(true).html('');
 
-      // Then set state
+      // First run its init function
+      // Pass in the new state
+      if(cc.menu[scriptname](futureContent, state) === false) {
+        // New menu doesn't wannya switch in
+        return;
+      }
+
+      // Empty out content
+      menuContent.html('');
+
+      // Remove menu state class
+      $('html').removeClass('menu-script-' + data.script);
+
+      // Scroll to top
+      if(!noscroll) {
+        scrollToDefault();
+      }
+
+      // Set current menu and its class
+      data.write('script', scriptname);
+      $('html').addClass('menu-script-' + scriptname);
+
+      // Then replace content and set state
+      menuContent.replaceWith(futureContent);
       cc.menu.state(state);
     }
 
@@ -185,7 +194,7 @@
   function callOnMenu(func, args) {
     if($.type(cc.menu[data.script]) !== 'undefined') {
       if($.isFunction(cc.menu[data.script][func])) {
-        cc.menu[data.script][func].apply(cc.menu[data.script], args);
+        return cc.menu[data.script][func].apply(cc.menu[data.script], args);
       }
     }
   }
@@ -201,32 +210,36 @@
   }
   cc.menu.state = function(newState) {
     if(newState && !$.isEmptyObject(newState)) {
-      data.write('state', $.extend({}, data.state, newState));
+      replacementState = $.extend({}, data.state, newState);
 
       // Look through state and remove anything that's null or undefined.
       var removeKeys = [];
-      $.each(data.state, function(key, value) {
+      $.each(replacementState, function(key, value) {
         var type = $.type(value);
         if(type === 'null' || type === 'undefined') {
           removeKeys.push(key);
         }
       });
       $.each(removeKeys, function(index, value) {
-        data.state.erase(value);
+        delete replacementState[value];
       });
 
-      callOnMenu('stateChanged', [data.state]);
+      if(callOnMenu('stateChanged', [replacementState]) !== false) {
+        data.write('state', replacementState);
+      }
     }
 
     return data.state;
   }
 
   // Easy to use function to open / close / toggle menu
-  cc.menu.open = function(open) {
-    if($.type(open) === 'boolean') {
+  cc.menu.open = function(open, force) {
+    if($.type(open) !== 'boolean') {
+      open = !data.active;
+    }
+    // This ordering ensures that menuOpen is always called
+    if(callOnMenu('open', [open, force]) !== false || force) {
       data.write('active', open);
-    } else {
-      data.write('active', !data.active);
     }
   }
 
