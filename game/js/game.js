@@ -10,7 +10,7 @@
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
   cc.loop = {
-    taskInterval: 60000, // 60 seconds
+    taskInterval: 3000, // 3 seconds
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps
   };
@@ -118,6 +118,20 @@
       cc.util.rhanum(cc.ls.d, 'playedSince', $.now());
     }
 
+    // Check for updates
+    // Don't do this locally.
+    cc.f||task(function(now) {
+      var requestTime = Math.floor(now / 3000);
+      $.get('version.txt', {_: requestTime}, function(data) {
+        if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
+          // There's an update!
+          $('#update-available').click(function() {
+            location.reload();
+          }).addClass('yes');
+        }
+      }, 'text');
+    });
+
 
   // Grab stuff from other scripts
     // Cutie rendering
@@ -132,17 +146,4 @@
     cc.getScript('js/stats-display.js');
     // Menu
     cc.getScript('js/menu.js');
-
-  // Check for updates (the one thing this script does)
-  // Don't do this locally.
-  cc.f||task(function(now) {
-    $.get('version.txt', {_: now}, function(data) {
-      if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
-        // There's an update!
-        $('#update-available').click(function() {
-          location.reload();
-        }).addClass('yes');
-      }
-    }, 'text');
-  });
 }();
