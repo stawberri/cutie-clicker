@@ -194,27 +194,27 @@
   };
 
   // Register jquery ajax handler for analytics
-  // $(document).ajaxSend(function(ev, jqxhr, options) {
-  //   // Local root address converter for analytics
-  //   function localRoot(url) {
-  //     // This filters out non-local addresses
-  //     if(url.search(/(?:\w+:)?\/\//i) != -1) {
-  //       return;
-  //     }
+  $(document).ajaxSend(function(ev, jqxhr, options) {
+    // Local root address converter for analytics
+    function localRoot(url) {
+      // This filters out non-local addresses
+      if(url.search(/(?:\w+:)?\/\//i) != -1) {
+        return;
+      }
 
-  //     // Add a slash to the beginning if necessary.
-  //     // This assumes all urls are relative to root (they should be).
-  //     return (url.charAt(0) == '/') ? url : '/' + url;
-  //   };
+      // Add a slash to the beginning if necessary.
+      // This assumes all urls are relative to root (they should be).
+      return (url.charAt(0) == '/') ? url : '/' + url;
+    };
 
-  //   var localUrl = localRoot(options.url);
-  //   if(localUrl) {
-  //     // Only track .html files (prevent bursting)
-  //     if(localUrl.search(/\.html(?:[#?].*)?$/i) != -1) {
-  //       ga('send', 'pageview', localUrl);
-  //     }
-  //   }
-  // });
+    var localUrl = localRoot(options.url);
+    if(localUrl) {
+      // Only track .html files (prevent bursting)
+      if(localUrl.search(/\.html(?:[#?].*)?$/i) != -1) {
+        ga('send', 'pageview', localUrl);
+      }
+    }
+  });
 
   // Make cc global for debugging
   if(location.protocol == 'file:') {
