@@ -260,11 +260,10 @@
 
   // Menu links
   $('#menu-content').on('click.menu-link', "a", function(ev) {
-    ev.preventDefault();
-
     var destination = $(this).attr('href');
     if(destination.search(/^\$/) != -1) {
       // Menu link (starts with $)
+      ev.preventDefault();
 
       var newScript = destination.slice(1);
       var newState = $(this).data('state');
@@ -282,7 +281,12 @@
       }
     } else {
       // Non-menu link
-      window.open(destination, '_blank');
+
+      // Only preventDefault for links that don't look like javascript things
+      if(destination.search(/^(?:$|#|javascript:)/i) == -1) {
+        ev.preventDefault();
+        window.open(destination, '_blank');
+      }
     }
   });
 }();
