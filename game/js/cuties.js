@@ -293,6 +293,7 @@
     // What happens when bursting is successful?
     burstSuccess: function() {
       this.loveup();
+      cc.menu('loveup');
 
       // How long should we wait?
       return 1000;

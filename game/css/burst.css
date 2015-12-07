@@ -120,6 +120,9 @@ html.burst-post-fail.menu-active {
         top: -1px; left: 2px;
         color: #fff;
         font-size: 2rem;
+        opacity: 0;
+        text-shadow: none;
+        transition: opacity .2s, text-shadow .2s;
       }
         #burst-xp-gauge.rarity-0 .glyph {
           text-shadow: 0 0 3px #7f00ff, 0 0 3px #7f00ff, 0 0 3px #7f00ff;
@@ -149,6 +152,9 @@ html.burst-post-fail.menu-active {
       }
       .burst-ok #burst-xp-gauge .bar {
         background-color: #ffcc00;
+      }
+      .burst-ok #burst-xp-gauge .glyph {
+        opacity: 1;
       }
 
       .burst-post-win #burst-xp-gauge .heart {
