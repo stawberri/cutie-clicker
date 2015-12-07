@@ -171,16 +171,47 @@
       cc.getScript('menu/' + scriptname + '/menu.js').done(function() {
         // Go ahead and run its init function
         cc.menu[scriptname]($('#menu-content'), data.state);
-      }).fail(function() {console.log(arguments)});
+      });
+    }
+  }
+
+  // Calls a function on current menu if it exists (does nothing if it doesn't)
+  function callOnMenu(func, args) {
+    if($.type(cc.menu[data.script]) !== 'undefined') {
+      if($.isFunction(cc.menu[data.script][func])) {
+        cc.menu[data.script][func].apply(cc.menu[data.script], args);
+      }
     }
   }
 
   // Make some variables available for scripts
   // These are functions so that they can update
-  cc.menu.script = function() {
+  cc.menu.script = function(newScript) {
+    if(newScript) {
+      cc.menu(newScript);
+    }
+
     return data.script;
   }
-  cc.menu.state = function() {
+  cc.menu.state = function(newState) {
+    if(newState) {
+      data.write('state', $.extend({}, data.state, newState));
+
+      // Look through state and remove anything that's null or undefined.
+      var removeKeys = [];
+      $.each(data.state, function(key, value) {
+        var type = $.type(value);
+        if(type === 'null' || type === 'undefined') {
+          removeKeys.push(key);
+        }
+      });
+      $.each(removeKeys, function(index, value) {
+        data.state.erase(value);
+      });
+
+      callOnMenu('stateChanged', [data.state]);
+    }
+
     return data.state;
   }
 
@@ -195,19 +226,13 @@
 
   // Pass tasks, ticks, and draws to menu
   cc.loop.task(function(now) {
-    if($.type(cc.menu[data.script]) !== 'undefined') {
-      $.isFunction(cc.menu[data.script].task) && cc.menu[data.script].task(now, $('#menu-content'), data.state);
-    }
+    callOnMenu('task', [now, $('#menu-content'), data.state]);
   });
   cc.loop.tick(function(now) {
-    if($.type(cc.menu[data.script]) !== 'undefined') {
-      $.isFunction(cc.menu[data.script].tick) && cc.menu[data.script].tick(now, $('#menu-content'), data.state);
-    }
+    callOnMenu('tick', [now, $('#menu-content'), data.state]);
   });
   cc.loop.draw(function(now) {
-    if($.type(cc.menu[data.script]) !== 'undefined') {
-      $.isFunction(cc.menu[data.script].draw) && cc.menu[data.script].draw(now, $('#menu-content'), data.state);
-    }
+    callOnMenu('draw', [now, $('#menu-content'), data.state]);
   });
 
   // Load menu right now
@@ -231,5 +256,33 @@
   });
   $('#menu-top-misc').click(function() {
     cc.menu('misc');
+  });
+
+  // Menu links
+  $('#menu-content').on('click.menu-link', "a", function(ev) {
+    ev.preventDefault();
+
+    var destination = $(this).attr('href');
+    if(destination.search(/^\$/) != -1) {
+      // Menu link (starts with $)
+
+      var newScript = destination.slice(1);
+      var newState = $(this).data('state');
+
+      // Ensure newState is an object.
+      if($.type(newState) !== 'object') {
+        newState = {};
+      }
+
+      // This is true if destination isn't empty
+      if(newScript) {
+        cc.menu(newScript, newState);
+      } else {
+        cc.menu.state(newState);
+      }
+    } else {
+      // Non-menu link
+      window.open(destination, '_blank');
+    }
   });
 }();
