@@ -1,11 +1,4 @@
 !function() {
-  // Redirect to https if localStorage variable has been set
-  try {
-    if(window.localStorage.getItem('cc-redirecthttps') && location.protocol != 'https:') {
-      location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
-    }
-  } catch(e) {}
-
   // Create a temporary version variable, then load real one
   var cc = {v: String($.now())};
   $.get('version.txt', {_: cc.v}, function(data) {
