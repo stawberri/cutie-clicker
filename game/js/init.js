@@ -1,4 +1,11 @@
 !function() {
+  // Redirect to https if localStorage variable has been set
+  try {
+    if(window.localStorage.getItem('cc-redirecthttps') && location.protocol != 'https:') {
+      location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
+    }
+  } catch(e) {}
+
   // Create a temporary version variable, then load real one
   var cc = {v: String($.now())};
   $.get('version.txt', {_: cc.v}, function(data) {
@@ -124,22 +131,6 @@
 
     // This action ensures that all actions have time to start
     addAction('<span class="fa fa-battery-empty"></span>', 'action launcher', function(done) {
-
-      // HTTPS Redirector
-      addAction('<span class="fa fa-share"></span>', 'https redirector', function(done) {
-        // Allow code below to run too
-        setTimeout(function() {
-          try {
-            if(window.localStorage.getItem('cc-redirecthttps') && location.protocol + location.host != 'https:cc.aideen.pw') {
-              location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
-            } else {
-              done();
-            }
-          } catch(e) {
-            done();
-          }
-        }, 0);
-      });
 
       // Existing instance checker
       addAction('<span class="fa fa-clone"></span>', 'instance checker', function(done) {
