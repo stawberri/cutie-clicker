@@ -49,12 +49,14 @@
           cc.cuties.m(function(cutie) {
             setTimeout(doTick, Math.max(cutie.burstSuccess(), cc.loop.tickInterval));
           });
+          cc.util.rhanum(cc.ls.d, 'totalBurstSuccess', SchemeNumber.fn['+']('1', cc.util.rhanum(cc.ls.d, 'totalBurstSuccess') || 0));
           cc.ls.d.write('postBurst', 1);
         } else {
           // Failed
           cc.cuties.m(function(cutie) {
             setTimeout(doTick, Math.max(cutie.burstFailure(), cc.loop.tickInterval));
           });
+          cc.util.rhanum(cc.ls.d, 'totalBurstFail', SchemeNumber.fn['+']('1', cc.util.rhanum(cc.ls.d, 'totalBurstFail') || '0'));
           cc.ls.d.write('postBurst', -1);
         }
         delete cc.burstEnd;

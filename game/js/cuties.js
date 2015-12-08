@@ -428,6 +428,8 @@
     // Love Up processing!
     loveup: function() {
       this.love('1');
+
+      cc.util.rhanum(cc.ls.d, 'totalLv', SchemeNumber.fn['+']('1', cc.util.rhanum(cc.ls.d, 'totalLv') || '0'));
     },
     // Get / Set burst points
     bp: function(value) {

@@ -2,7 +2,7 @@
 
 !function() {
   // Current data version
-  var dataStorageVersion = 4;
+  var dataStorageVersion = 5;
 
   // Process persistent data
   cc.init.addAction('<span class="fa fa-database"></span>', 'persistent data update', function(done) {
@@ -39,6 +39,15 @@
       case 3:
         if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
           cc.ls.d.menu.write('script', 'home');
+        }
+      case 4:
+        if(!cc.ls.d.totalLv && cc.ls.d.cuties) {
+          cc.cuties(0, function(cutie) {
+            if(cutie.data.lv) {
+              cc.ls.d.write('totalLv', cutie.data.lv);
+              cc.ls.d.write('totalBurstSuccess', cutie.data.lv);
+            }
+          });
         }
       case dataStorageVersion:
     }
