@@ -83,14 +83,14 @@
   cc.cuties.listTime = $.now();
 
   // Add a cutie to data
-  cc.cuties.add = function(cutie, otherOptions) {
+  cc.cuties.add = function(cutie, options) {
     // allow passing in only options
     if($.type(cutie) === 'object') {
-      otherOptions = cutie;
-      cutie = otherOptions.cutie;
+      options = cutie;
+    } else {
+      options = options || {};
+      options.cutie = String(cutie);
     }
-
-    var options = $.merge(otherOptions || {}, {cutie: String(cutie)});
 
     var newIndex = cc.cuties.list().length;
 
@@ -172,65 +172,116 @@
     return data().selections || data().write('selections', {}).selections;
   }
 
-  // Grab current array
-  function current() {
-    return data().current || data().write('current', []).current;
-  }
+  // Equip functions
 
-  // Left and Right cuties are pretty simple
-  cc.cuties.l = function(index, callback) {
-    if($.type(index) === 'function') {
-      // Called with only a callback
-      callback = index;
-    } else if($.type(index) !== 'undefined') {
-      // Setter
-      current().write(1, index);
-    }
-    if($.type(current()[1]) === 'number') return cc.cuties(current()[1], callback);
-  }
-  cc.cuties.r = function(index, callback) {
-    if($.type(index) === 'function') {
-      // Called with only a callback
-      callback = index;
-    } else if($.type(index) !== 'undefined') {
-      // Setter
-      current().write(2, index);
-    }
-    if($.type(current()[2]) === 'number') return cc.cuties(current()[2], callback);
-  }
-
-  // Middle is a little more complex
-  cc.cuties.m = function(index, callback) {
-    if($.type(index) === 'function') {
-      // Called with only a callback
-      callback = index;
-    } else if($.type(index) !== 'undefined') {
-      // Setter
-      current().write(0, index);
+    // Grab current array
+    function current() {
+      return data().current || data().write('current', []).current;
     }
 
-    if($.type(current()[0]) === 'number') {
-      return cc.cuties(current()[0], callback);
-    } else {
-      // This can't empty.
-      if($.type(current()[2]) === 'number') {
-        // Grab right cutie
-        var newIndex = current()[2];
-        // Empty out right cutie
-        cc.cuties.r(null);
-        return cc.cuties.m(newIndex, callback);
-      } else if($.type(current()[1]) === 'number') {
-        // Grab left cutie
-        var newIndex = current()[1];
-        // Empty out left cutie
-        cc.cuties.l(null);
-        return cc.cuties.m(newIndex, callback);
+    // Left and Right cuties are pretty simple
+    cc.cuties.l = function(index, callback) {
+      if($.type(index) === 'function') {
+        // Called with only a callback
+        callback = index;
+      } else if($.type(index) !== 'undefined') {
+        // Setter
+        current().write(1, index);
+      }
+      if($.type(current()[1]) === 'number') return cc.cuties(current()[1], callback);
+    }
+    cc.cuties.r = function(index, callback) {
+      if($.type(index) === 'function') {
+        // Called with only a callback
+        callback = index;
+      } else if($.type(index) !== 'undefined') {
+        // Setter
+        current().write(2, index);
+      }
+      if($.type(current()[2]) === 'number') return cc.cuties(current()[2], callback);
+    }
+
+    // Middle is a little more complex
+    cc.cuties.m = function(index, callback) {
+      if($.type(index) === 'function') {
+        // Called with only a callback
+        callback = index;
+      } else if($.type(index) !== 'undefined') {
+        // Setter
+        current().write(0, index);
+      }
+
+      if($.type(current()[0]) === 'number') {
+        return cc.cuties(current()[0], callback);
       } else {
-        // Grab first cutie
-        return cc.cuties.m(0, callback);
+        // This can't empty.
+        if($.type(current()[2]) === 'number') {
+          // Grab right cutie
+          var newIndex = current()[2];
+          // Empty out right cutie
+          cc.cuties.r(null);
+          return cc.cuties.m(newIndex, callback);
+        } else if($.type(current()[1]) === 'number') {
+          // Grab left cutie
+          var newIndex = current()[1];
+          // Empty out left cutie
+          cc.cuties.l(null);
+          return cc.cuties.m(newIndex, callback);
+        } else {
+          // Grab first cutie
+          return cc.cuties.m(0, callback);
+        }
       }
     }
-  }
+
+  // Display Functions
+
+    // Get classes to apply to cutie
+    function cutieClasses(cutie) {
+      var classesString = ' cutie-' + cutie.cutie;
+      classesString += ' rarity-' + cutie.rarity;
+      return classesString;
+    }
+
+    // Get cutie card html
+    // Doesn't update classes automatically though.
+    function cutieCard(element, defaultClass, cutie) {
+      element = $(element);
+      defaultClass = defaultClass || '';
+
+      if(element.length < 1) {
+        return;
+      }
+
+      // Create .cutie-card if it doesn't already exist.
+      var cutieCardElement = element.find('.cutie-card');
+      if(cutieCardElement.length < 1) {
+        cutieCardElement = $('<div class="cutie-card">').appendTo(element);
+      }
+
+      // Create background, glyph, and foreground using the same methodology
+      var backgroundElement = cutieCardElement.find('.background');
+      if(backgroundElement.length < 1) {
+        backgroundElement = $('<div class="background">').appendTo(cutieCardElement);
+      }
+      var glyphElement = cutieCardElement.find('.glyph');
+      if(glyphElement.length < 1) {
+        glyphElement = $('<div class="glyph">').appendTo(cutieCardElement);
+      }
+      var foregroundElement = cutieCardElement.find('.foreground');
+      if(foregroundElement.length < 1) {
+        foregroundElement = $('<div class="foreground">').appendTo(cutieCardElement);
+      }
+
+      if(cutie) {
+        element.removeClass().addClass(defaultClass + cutieClasses(cutie));
+
+        glyphElement.html(cutie.glyph);
+      } else {
+        element.removeClass().addClass(defaultClass);
+        glyphElement.empty();
+      }
+    }
 
   // Cutie object constructor
   cc.cuties.construct = function(data) {
@@ -373,6 +424,14 @@
     targetBpMet: function(value) {
       value = value || this.burstPoints();
       return SchemeNumber.fn['>='](value, this.targetbp());
+    },
+    // Render cutie card. Uses function above.
+    renderCutieCard: function(element, defaultClass) {
+      return cutieCard(element, defaultClass, this);
+    },
+    // Same for classes
+    renderCutieClasses: function() {
+      return cutieClasses(this);
     },
     // Index of cutie in cutie list. DO NOT SAVE without accounting for deletion.
     index: function() {

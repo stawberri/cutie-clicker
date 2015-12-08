@@ -81,7 +81,7 @@
               clearInterval(loadingMessageIntervalId);
 
               // Clear body
-              $('body').html('');
+              $('body').empty();
               // Remove all classes from html
               $('html').removeClass();
 

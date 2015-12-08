@@ -80,7 +80,7 @@
       $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
     } else {
       $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#10060;)');
-      $('#cutie-bar-r .cutie-card .glyph').html('');
+      $('#cutie-bar-r .cutie-card .glyph').empty();
     }
   });
 

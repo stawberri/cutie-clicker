@@ -152,7 +152,7 @@
       // Create a copy of menu-content
       // Seems kinda unnecessary though
       var menuContent = $('#menu-content');
-      var futureContent = menuContent.clone(true).html('');
+      var futureContent = menuContent.clone(true).empty();
 
       // First run its init function
       // Pass in the new state
@@ -162,7 +162,7 @@
       }
 
       // Empty out content
-      menuContent.html('');
+      menuContent.empty();
 
       // Remove menu state class
       $('html').removeClass('menu-script-' + data.script);

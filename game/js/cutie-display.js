@@ -19,51 +19,13 @@
   });
 
 
-  // Get classes to apply to cutie
-  function cutieClasses(cutie) {
-    var classesString = ' cutie-' + cutie.cutie;
-    classesString += ' rarity-' + cutie.rarity;
-    return classesString;
+  function cutieCard(element, defaultClass, cutie) {
+    return cutie.renderCutieCard(element, defaultClass);
   }
 
-  // Get cutie card html
-  // Doesn't update classes automatically though.
-  function cutieCard(element, defaultClass, cutie) {
-    element = $(element);
-    defaultClass = defaultClass || '';
-
-    if(element.length < 1) {
-      return;
-    }
-
-    // Create .cutie-card if it doesn't already exist.
-    var cutieCardElement = element.find('.cutie-card');
-    if(cutieCardElement.length < 1) {
-      cutieCardElement = $('<div class="cutie-card">').appendTo(element);
-    }
-
-    // Create background, glyph, and foreground using the same methodology
-    var backgroundElement = cutieCardElement.find('.background');
-    if(backgroundElement.length < 1) {
-      backgroundElement = $('<div class="background">').appendTo(cutieCardElement);
-    }
-    var glyphElement = cutieCardElement.find('.glyph');
-    if(glyphElement.length < 1) {
-      glyphElement = $('<div class="glyph">').appendTo(cutieCardElement);
-    }
-    var foregroundElement = cutieCardElement.find('.foreground');
-    if(foregroundElement.length < 1) {
-      foregroundElement = $('<div class="foreground">').appendTo(cutieCardElement);
-    }
-
-    if(cutie) {
-      element.removeClass().addClass(defaultClass + cutieClasses(cutie));
-
-      glyphElement.html(cutie.glyph);
-    } else {
-      element.removeClass().addClass(defaultClass);
-      glyphElement.html('');
-    }
+  // Get classes to apply to cutie
+  function cutieClasses(cutie) {
+    return cutie.renderCutieClasses();
   }
 
   // Current (main game) cuties display
@@ -129,7 +91,7 @@
 
         // Main Cutie Display
         $('#cutie-l').removeClass().addClass('cutie-view');
-        $('#cutie-l .cutie-embed').html('');
+        $('#cutie-l .cutie-embed').empty();
 
         // Cutie Card Display
         cutieCard('#cutie-bar-l', 'cutie-bar-slot');
@@ -164,7 +126,7 @@
 
         // Main Cutie Display
         $('#cutie-r').removeClass().addClass('cutie-view');
-        $('#cutie-r .cutie-embed').html('');
+        $('#cutie-r .cutie-embed').empty();
 
 
         // Cutie Card Display
