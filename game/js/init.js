@@ -164,6 +164,10 @@
       // schemeNumber (accurate numbers library)
       addScript('<span class="fa fa-calculator"></span>', 'schemeNumber', 'lib/schemeNumber.2015.11.9.js', true);
 
+      // fastclick (mobile touch click library)
+      addScript('<span class="fa fa-hand-pointer-o"></span>', 'FastClick', 'lib/fastclick.2015.12.7.js', true);
+
+
       // cc.util
       addScript('<span class="fa fa-cogs"></span>', 'cc.util', 'js/util.js');
 

@@ -132,6 +132,9 @@
       }, 'text');
     });
 
+    // FastClick
+    FastClick.attach(document.body);
+
 
   // Grab stuff from other scripts
     // Cutie rendering
