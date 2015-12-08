@@ -117,9 +117,15 @@
 
   // Remove a cute from data
   cc.cuties.remove = function(index) {
+    var numCuties = cc.cuties.list().length;
     // Bounds check
-    if(index < 0 || index >= cc.cuties.list().length) {
+    if(index < 0 || index >= numCuties) {
       return;
+    }
+
+    // Don't allow deleting last cutie
+    if(numCuties < 2) {
+      return false;
     }
 
     // This is the easy part
