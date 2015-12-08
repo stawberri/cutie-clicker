@@ -161,8 +161,9 @@
         return;
       }
 
-      // Empty out content
+      // Empty out content and state
       menuContent.empty();
+      data.write('state', {});
 
       // Remove menu state class
       $('html').removeClass('menu-script-' + data.script);
