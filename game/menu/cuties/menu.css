@@ -16,13 +16,13 @@
 
 .menu-script-cuties #menu-cuties-main {
   margin-left: 320px;
-  padding: 40px 20px 20px;
+  padding: 40px 60px 20px;
 }
 
   .menu-script-cuties #menu-cuties-list {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
   }
 
     .menu-cuties-list-button {
@@ -57,6 +57,14 @@
         border: 3px solid;
         border-radius: 13px;
       }
+
+        .menu-cuties-list-button .visible-button .sort-data {
+          position: absolute;
+          width: 64px; height: 32px;
+          top: 10px; right: 3px;
+          font-size: 2rem;
+          text-align: center;
+        }
 
         .menu-cuties-list-button:active .visible-button {
           transform: scale(.9);

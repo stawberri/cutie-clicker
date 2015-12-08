@@ -5,7 +5,7 @@
   }
 
   var script = 'cuties', dir = 'menu/' + script + '/',
-  menu = cc.menu[script] = function(element) {
+  menu = cc.menu[script] = function(element, state) {
     cc.util.getcss(dir + 'menu.css');
     element.load(cc.util.l(dir + 'menu.html'), function() {
       // Create a template cutie card
@@ -16,11 +16,15 @@
       }
 
       lastListUpdate = 0
-      listUpdate();
+      listUpdate(state);
     });
   };
 
-  function listUpdate() {
+  menu.stateChanged = function(state) {
+    listUpdate(state);
+  }
+
+  function listUpdate(state) {
     if(lastListUpdate == cc.cuties.listTime) {
       return;
     } else {
@@ -41,6 +45,12 @@
       cc.cuties(index, function(cutie) {
         var cutieElement = cutieTemplate();
         cutie.renderCutieCard(cutieElement, 'menu-cuties-list-button');
+
+        // Sorting stuff
+        cutieElement.css('order', index);
+        cutieElement.find('.sort-data').html(function() {
+          return '# ' + (index + 1);
+        });
 
         cutieElement.appendTo(listElement);
       });

@@ -209,7 +209,7 @@
     return data.script;
   }
   cc.menu.state = function(newState) {
-    if(newState && !$.isEmptyObject(newState)) {
+    if(newState) {
       replacementState = $.extend({}, data.state, newState);
 
       // Look through state and remove anything that's null or undefined.
