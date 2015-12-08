@@ -20,7 +20,11 @@
 
 
   function cutieCard(element, defaultClass, cutie) {
-    return cutie.renderCutieCard(element, defaultClass);
+    if(cutie) {
+      return cutie.renderCutieCard(element, defaultClass);
+    } else {
+      return cc.cuties.clearCutieCard(element, defaultClass);
+    }
   }
 
   // Get classes to apply to cutie

@@ -316,6 +316,11 @@
       }
     }
 
+    // Clear a cutie card
+    cc.cuties.clearCutieCard = function(element, defaultClass) {
+      return cutieCard(element, defaultClass);
+    }
+
   // Cutie object constructor
   cc.cuties.construct = function(data) {
     this.cutie = data.cutie;
