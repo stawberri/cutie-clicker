@@ -72,8 +72,8 @@
 
   $(window).on('mousemove.parallax', function(ev) {
     // Need to use body size, since document includes everything, and I have no idea what window is doing
-    var mouseX = (ev.pageX/($('html').width() - 1));
-    var mouseY = (ev.pageY/($('html').height() - 1));
+    var mouseX = ((ev.pageX - $(window).scrollLeft())/($('html').width() - 1));
+    var mouseY = ((ev.pageY - $(window).scrollTop())/($('html').height() - 1));
 
     mouseX = 2 * (mouseX - .5);
     mouseY = 2 * (mouseY - .5);
