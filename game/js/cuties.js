@@ -192,6 +192,15 @@
         callback = index;
       } else if($.type(index) !== 'undefined') {
         // Setter
+        if(index === null) {
+          // If index is null, skip other checks.
+        } else if(current()[0] === index) {
+          // Mid has the same cutie
+          return false;
+        } else if(current()[2] === index) {
+          // Right has same cutie. Remove right cutie.
+          cc.cuties.r(null);
+        }
         current().write(1, index);
       }
       if($.type(current()[1]) === 'number') return cc.cuties(current()[1], callback);
@@ -202,6 +211,15 @@
         callback = index;
       } else if($.type(index) !== 'undefined') {
         // Setter
+        if(index === null) {
+          // If index is null, skip other checks.
+        } else if(current()[0] === index) {
+          // Mid has the same cutie
+          return false;
+        } else if(current()[1] === index) {
+          // Left has same cutie. Remove left cutie.
+          cc.cuties.l(null);
+        }
         current().write(2, index);
       }
       if($.type(current()[2]) === 'number') return cc.cuties(current()[2], callback);
@@ -214,6 +232,15 @@
         callback = index;
       } else if($.type(index) !== 'undefined') {
         // Setter
+        if(index === null) {
+          // If index is null, skip other checks.
+        } else if(current()[1] === index) {
+          // Left has same cutie. Remove left cutie.
+          cc.cuties.l(null);
+        } else if(current()[2] === index) {
+          // Right has same cutie. Remove right cutie.
+          cc.cuties.r(null);
+        }
         current().write(0, index);
       }
 
