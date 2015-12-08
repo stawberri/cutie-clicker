@@ -48,6 +48,13 @@
     });
   });
 
+  // Cutie count class
+  cc.loop.draw(function() {
+    cc.util.cssrule('.cv-cutie-count::before')({
+      content: "'" + cc.cuties.list().length + "'"
+    });
+  });
+
   // Bursting stuff
   cc.loop.draw(function() {
     // Notify game that bursting is ready if it is

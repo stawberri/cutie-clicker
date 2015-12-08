@@ -1,27 +1,56 @@
 !function() {
   var lastListUpdate = 0;
-  function cutieTemplate() {
+  var cutieTemplate = function() {
     return $();
   }
+  var backButtonTemplate = cutieTemplate;
 
   var script = 'cuties', dir = 'menu/' + script + '/',
   menu = cc.menu[script] = function(element, state) {
     cc.util.getcss(dir + 'menu.css');
     element.load(cc.util.l(dir + 'menu.html'), function() {
       // Create a template cutie card
-      var template = $('.menu-cuties-list-button');
-      $('#menu-cuties-list').empty();
+      var cutieOriginal = element.find('.menu-cuties-list-button').remove();
       cutieTemplate = function() {
-        return template.clone();
+        return cutieOriginal.clone();
       }
 
+      // Create template back button
+      var backButtonOriginal = element.find('#menu-cuties-pane-back').remove();
+      backButtonTemplate = function() {
+        return backButtonOriginal.clone();
+      }
+
+      // Run list update
       lastListUpdate = 0
-      listUpdate(state);
+
+      // Launch state change
+      cc.menu.state({});
     });
   };
 
   menu.stateChanged = function(state) {
+    // Remove old wrapper classes and add new state in
+    $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
+
+    paneChange(state);
     listUpdate(state);
+  }
+
+  function paneChange(state) {
+    var paneElement = $('#menu-cuties-pane');
+    if(paneElement.length < 1) {
+      // Pane doesn't exist for some reason.
+      return;
+    }
+
+    // Load in new pane
+    paneElement.load(cc.util.l(dir + (state.mode || 'view') + '/pane.html'), function() {
+      if(state.mode && state.mode != 'view') {
+        // Need back button
+        paneElement.prepend(backButtonTemplate());
+      }
+    });
   }
 
   function listUpdate(state) {

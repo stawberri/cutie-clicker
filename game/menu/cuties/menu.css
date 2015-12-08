@@ -5,14 +5,103 @@
                0 0 9px #007fff;
 }
 
-.menu-script-cuties #menu-content {
-}
-
 .menu-script-cuties #menu-cuties-pane {
+  display: flex;
   position: fixed;
   width: 320px; height: 100%;
   background: linear-gradient(to right, #fff 90%, #f8f8f8);
+  flex-flow: column nowrap;
 }
+
+  .menu-script-cuties #menu-cuties-pane-back {
+    flex: 0 0 auto;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
+    font-size: 3rem;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 16px;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+    .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back {
+      background: #007fff;
+    }
+    .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back .pane-title::before {
+      content: '\f090';
+    }
+
+    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-back {
+      background: #ff007f;
+    }
+    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-back .pane-title::before {
+      content: '\f06b';
+    }
+
+    .menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back {
+      background: #ff7f00;
+    }
+    .menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back .pane-title::before {
+      content: '\f1f8';
+    }
+
+  .menu-script-cuties #menu-cuties-pane-main {
+    flex: 1 1 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main {
+    }
+
+  .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main {
+    padding: 10px 20px;
+  }
+
+    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info {
+      display: flex;
+      font-size: 3rem;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+    }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info>div {
+      }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info .left {
+        flex: 1 1 auto;
+      }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info .right {
+        flex: 0 1 auto;
+        font-size: .5em;
+        text-align: right;
+      }
+
+    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a {
+      display: block;
+      text-align: center;
+      margin: 20px 0;
+      padding: 20px 0;
+      color: #fff;
+      font-size: 5rem;
+      overflow: hidden;
+    }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-equip {
+        background: #007fff;
+      }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-gift {
+        background: #ff007f;
+      }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-delete {
+        background: #ff7f00;
+      }
 
 .menu-script-cuties #menu-cuties-main {
   margin-left: 320px;
