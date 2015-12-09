@@ -105,4 +105,21 @@
       $('#cutie-clicker').trigger(ev.type);
     });
   }
+
+  // Rhanum, but for incrementing numbers
+  cc.util.rhainc = function(parent, name, inc) {
+    // If inc isn't a string, turn it into one. If it's missing, make it 1.
+    if($.type(inc) === 'undefined') {
+      inc = '1';
+    } else {
+      inc = String(inc);
+    }
+
+    // Calculate increment
+    var value = cc.util.rhanum(parent, name) || '0';
+    value = SchemeNumber.fn['+'](value, inc);
+
+    // Save value
+    cc.util.rhanum(parent, name, value);
+  }
 }();

@@ -92,10 +92,23 @@
       options.cutie = String(cutie);
     }
 
+    if(!options.cutie) {
+      return false;
+    }
+
     var newIndex = cc.cuties.list().length;
 
     cc.cuties.list().write(newIndex, options);
     cc.cuties.listTime = $.now();
+
+    // Add to total cuties
+    cc.util.rhainc(cc.ls.d, 'totalCuties');
+
+    // Add to cutie count
+    // Since this creates the cutie stats object for this cutie, we can assume that it's always defined
+    var cutieStats = cc.ls.d.cutieStats || cc.ls.d.write('cutieStats', {}).cutieStats;
+    var cutieStat = cutieStats[options.cutie] || cutieStats.write(options.cutie, {})[options.cutie];
+    cc.util.rhainc(cutieStat, 'count');
 
     // Return cutie index
     return newIndex;
@@ -430,6 +443,7 @@
       this.love('1');
 
       cc.util.rhanum(cc.ls.d, 'totalLv', SchemeNumber.fn['+']('1', cc.util.rhanum(cc.ls.d, 'totalLv') || '0'));
+      cc.util.rhainc(cc.ls.d.cutieStats[this.cutie], 'lv');
     },
     // Get / Set burst points
     bp: function(value) {

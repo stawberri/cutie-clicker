@@ -2,7 +2,7 @@
 
 !function() {
   // Current data version
-  var dataStorageVersion = 5;
+  var dataStorageVersion = 6;
 
   // Process persistent data
   cc.init.addAction('<span class="fa fa-database"></span>', 'persistent data update', function(done) {
@@ -41,12 +41,25 @@
           cc.ls.d.menu.write('script', 'home');
         }
       case 4:
-        if(!cc.ls.d.totalLv && cc.ls.d.cuties) {
+        if(cc.ls.d.cuties) {
           cc.cuties(0, function(cutie) {
             if(cutie.data.lv) {
               cc.ls.d.write('totalLv', cutie.data.lv);
               cc.ls.d.write('totalBurstSuccess', cutie.data.lv);
             }
+          });
+        }
+      case 5:
+        cc.util.rhanum(cc.ls.d, 'totalCuties', '1');
+        if(cc.ls.d.cuties) {
+          cc.cuties(0, function(cutie) {
+            cc.ls.d.write('cutieStats', {
+              '119': {
+                count: cc.ls.d.totalCuties, // 1
+                lv: cutie.data.lv,
+                burstSuccess: cutie.data.lv
+              }
+            });
           });
         }
       case dataStorageVersion:
