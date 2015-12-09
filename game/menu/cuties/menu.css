@@ -114,7 +114,7 @@
     justify-content: flex-start;
   }
 
-    .menu-cuties-list-button {
+    .menu-script-cuties .menu-cuties-list-button {
       flex: 0 0 auto;
       position: relative;
       width: 160px; height: 160px;
@@ -124,21 +124,33 @@
       cursor: pointer;
     }
 
-      .menu-cuties-list-button .card-holder {
+      .menu-script-cuties .menu-cuties-list-button .card-holder {
         position: absolute;
         width: 240px; height: 240px;
         top: -80px; left: -80px;
       }
 
-        .menu-cuties-list-button:active .card-holder {
+        .menu-script-cuties .menu-cuties-list-button:active .card-holder {
           transform: scale(1.1);
         }
 
-        .menu-cuties-list-button .cutie-card {
+        .menu-script-cuties .menu-cuties-list-button .cutie-card {
           transform: scale(.3);
         }
 
-      .menu-cuties-list-button .visible-button {
+          .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected .cutie-card {
+            box-shadow: 0 0 16px #007fff, 0 0 28px #007fff, 0 0 69px #007fff;
+          }
+
+          .menu-script-cuties .menu-cuties-mode-gift .menu-cuties-list-button .selected .cutie-card {
+            box-shadow: 0 0 16px #ff007f, 0 0 28px #ff007f, 0 0 69px #ff007f;
+          }
+
+          .menu-script-cuties .menu-cuties-mode-delete .menu-cuties-list-button .selected .cutie-card {
+            box-shadow: 0 0 16px #ff7f00, 0 0 28px #ff7f00, 0 0 69px #ff7f00;
+          }
+
+      .menu-script-cuties .menu-cuties-list-button .visible-button {
         position: absolute;
         top: 16px; left: 16px;
         width: 128px; height: 128px;
@@ -147,7 +159,7 @@
         border-radius: 13px;
       }
 
-        .menu-cuties-list-button .visible-button .sort-data {
+        .menu-script-cuties .menu-cuties-list-button .visible-button .sort-data {
           position: absolute;
           width: 64px; height: 32px;
           top: 10px; right: 3px;
@@ -155,36 +167,56 @@
           text-align: center;
         }
 
-        .menu-cuties-list-button:active .visible-button {
+        .menu-script-cuties .menu-cuties-list-button .visible-button .info {
+          position: absolute;
+          height: 28px; width: 108px;
+          left: 10px;
+          text-align: left;
+          font-size: 1.5rem;
+        }
+
+          .menu-script-cuties .menu-cuties-list-button .visible-button .info .cs {
+            text-shadow: 0 0 1px #fff;
+          }
+
+          .menu-script-cuties .menu-cuties-list-button .visible-button .info-1 {
+            top: 69px;
+          }
+
+          .menu-script-cuties .menu-cuties-list-button .visible-button .info-2 {
+            top: 95px;
+          }
+
+        .menu-script-cuties .menu-cuties-list-button:active .visible-button {
           transform: scale(.9);
         }
 
-        .rarity-0.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-0.menu-cuties-list-button .visible-button {
           border-color: #7f00ff;
           background: #e5ccff;
           color: #7f00ff;
         }
-        .rarity-1.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-1.menu-cuties-list-button .visible-button {
           border-color: #007fff;
           background: #cce5ff;
           color: #007fff;
         }
-        .rarity-2.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-2.menu-cuties-list-button .visible-button {
           border-color: #00ff7f;
           background: #ccffe5;
           color: #00ff7f;
         }
-        .rarity-3.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-3.menu-cuties-list-button .visible-button {
           border-color: #7fff00;
           background: #e5ffcc;
           color: #7fff00;
         }
-        .rarity-4.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-4.menu-cuties-list-button .visible-button {
           border-color: #ff7f00;
           background: #ffe5cc;
           color: #ff7f00;
         }
-        .rarity-5.menu-cuties-list-button .visible-button {
+        .menu-script-cuties .rarity-5.menu-cuties-list-button .visible-button {
           border-color: #ff007f;
           background: #ffcce5;
           color: #ff007f;

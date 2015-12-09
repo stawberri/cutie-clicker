@@ -191,6 +191,32 @@
     return data().selections || data().write('selections', {}).selections;
   }
 
+    // Get or set a selection.
+    cc.cuties.selection = function(name, reset) {
+      var selection;
+
+      if(reset) {
+        switch($.type(reset)) {
+          case 'array':
+          break;
+
+          case 'number':
+            reset = [reset];
+          break;
+
+          default:
+            reset = [];
+          break;
+        }
+
+        selection = cc.cuties.selections().write(name, reset)[name];
+      } else {
+        selection = cc.cuties.selections()[name] || cc.cuties.selections().write(name, [])[name];
+      }
+
+      return selection;
+    }
+
   // Equip functions
 
     // Grab current array
@@ -494,6 +520,30 @@
     // Current slot. Even more so than above.
     slot: function() {
       return $.inArray(this.index(), current());
+    },
+    // Is this cutie selected? Returns index (not boolean).
+    selected: function(name) {
+      return $.inArray(this.index(), cc.cuties.selection(name));
+    },
+    // Select this cutie
+    // If mode is not a boolean, toggles. Otherwise, sets.
+    select: function(name, mode) {
+      var index = this.selected(name);
+      var selected = index > -1;
+
+      if($.type(mode) === 'boolean' && selected === mode) {
+        // Don't hafta do anything.
+        return;
+      }
+
+      // At this point, we'll always hafta toggle.
+      var selection = cc.cuties.selection(name);
+
+      if(selected) {
+        selection.splice(index, 1);
+      } else {
+        selection.push(this.index());
+      }
     }
   };
 }();

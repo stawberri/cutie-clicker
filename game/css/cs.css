@@ -1,0 +1,54 @@
+/* Generic symbols */
+.cs::before {
+
+}
+
+/* Stats */
+  .cs-empathy::before {
+    content: '\2660';
+    color: #0d98ba;
+  }
+
+  .cs-ecchi::before {
+    content: '\2663';
+    color: #ff5349;
+  }
+
+  .cs-love::before {
+    content: '\2665';
+    color: #ffcc00;
+  }
+
+  .cs-excitement::before {
+    content: '\2666';
+    color: #c71585;
+  }
+
+  .cs-burst::before {
+    content: '\a4';
+  }
+
+  .cs-rarity::before {
+    /* Use with fa (this is fa-asterisk)! */
+    content: '\f069';
+  }
+
+/* Rarity colors */
+  .cs-r0::before {
+    color: #7f00ff;
+  }
+  .cs-r1::before {
+    color: #007fff;
+  }
+  .cs-r2::before {
+    color: #00ff7f;
+  }
+  .cs-r3::before {
+    color: #7fff00;
+  }
+  .cs-r4::before {
+    color: #ff7f00;
+  }
+  .cs-r5::before {
+    color: #ff007f;
+  }

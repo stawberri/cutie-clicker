@@ -21,6 +21,9 @@
         return backButtonOriginal.clone();
       }
 
+      // Register handlers
+      $('#menu-cuties-list').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
+
       // Run list update
       lastListUpdate = 0
 
@@ -33,6 +36,10 @@
     // Remove old wrapper classes and add new state in
     $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
 
+    // Clear selections
+    cc.cuties.selection('menu', true);
+
+    // Update pane and list
     paneChange(state);
     listUpdate(state);
   }
@@ -75,14 +82,66 @@
         var cutieElement = cutieTemplate();
         cutie.renderCutieCard(cutieElement, 'menu-cuties-list-button');
 
-        // Sorting stuff
-        cutieElement.css('order', index);
-        cutieElement.find('.sort-data').html(function() {
-          return '# ' + (index + 1);
-        });
+        // Store cutie object on cutieElement
+        cutieElement.data('cutie', cutie);
 
         cutieElement.appendTo(listElement);
       });
     });
   }
+
+  function cutieButtonClick(ev) {
+    var cutieElement = $(this);
+    var cutie = cutieElement.data('cutie');
+
+    if(cc.menu.state().mode && cc.menu.state().mode != 'view') {
+      cutie.select('menu');
+    }
+  }
+
+  menu.draw = function(now) {
+    // Update cutie card displays
+    $('.menu-cuties-list-button').each(function(index, element) {
+      var cutieElement = $(element);
+      var cutie = cutieElement.data('cutie');
+
+      // Sorting stuff
+      var sortIndex = cutie.index();
+      var lastIndex = cutieElement.data('lastIndex');
+      if(sortIndex !== lastIndex) {
+        cutieElement.css('order', sortIndex);
+        cutieElement.find('.sort-data').html(function() {
+          return '# ' + (sortIndex + 1);
+        });
+        cutieElement.data('lastIndex', sortIndex);
+      }
+
+      // Info display stuff
+      var infoOne = (function() {
+        return '<span class="cs cs-love"></span> ' + cutie.love();
+      })();
+      if(cutieElement.find('.info-1').html() != infoOne) {
+        cutieElement.find('.info-1').html(infoOne);
+      }
+      var infoTwo = (function() {
+        return '<span class="cs cs-excitement"></span> ' + cutie.targetxp();
+      })();
+      if(cutieElement.find('.info-2').html() != infoTwo) {
+        cutieElement.find('.info-2').html(infoTwo);
+      }
+
+      // Selection stuff
+      var selectionIndex = cutie.selected('menu');
+      var selected = selectionIndex > -1;
+      var lastSelected = cutieElement.data('selected');
+      if(selected !== lastSelected) {
+        if(selected) {
+          cutieElement.find('.selection-wrapper').addClass('selected selected-' + selectionIndex);
+        } else {
+          cutieElement.find('.selection-wrapper').removeClass().addClass('selection-wrapper');
+        }
+        cutieElement.data('selected', selected);
+      }
+    });
+  };
 }();

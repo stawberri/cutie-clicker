@@ -27,11 +27,11 @@
         if(cc.stats.mpcost('3', true)) {
           xp = String(SchemeNumber.fn['+'](Math.floor(1 + Math.random() * 4), SchemeNumber.fn.floor(SchemeNumber.fn['*'](cutie.love(), .01 + Math.random() * 0.08))));
 
-          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br>&diams; ' + xp);
-          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xp);
+          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br><span class="cs cs-excitement"></span> ' + xp);
+          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('<span class="cs cs-excitement"></span> ' + xp);
         } else {
-          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br>&#9888; 0 &clubs;');
-          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;');
+          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br>&#9888; 0 <span class="cs cs-empathy"></span>');
+          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>');
         }
       }
 
@@ -65,11 +65,11 @@
       cc.stats.excitement(xpGain);
 
       var yay = (xpGain > 1000) ? '!!!' : '!'
-      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> &spades; -> (750 ~ 1100) &diams;<br>&diams; ' + xpGain + yay)
-      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&diams; ' + xpGain + yay)
+      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> <span class="cs cs-empathy"></span> -> (750 ~ 1100) <span class="cs cs-excitement"></span><br><span class="cs cs-excitement"></span> ' + xpGain + yay)
+      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('<span class="cs cs-excitement"></span> ' + xpGain + yay)
     } else {
-      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> &spades; -> (750 ~ 1100) &diams;<br>&#9888;: ' + cc.stats.empathy() + ' &clubs;')
-      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' &clubs;')
+      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> <span class="cs cs-empathy"></span> -> (750 ~ 1100) <span class="cs cs-excitement"></span><br>&#9888;: ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>')
+      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>')
 
     }
   });
@@ -77,9 +77,9 @@
   $('#cutie-bar-r, #temp-mp-button-2').click(function() {
     cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
     if(cc.ls.d.tempClickStreakPassive) {
-      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
+      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
     } else {
-      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#10060;)');
+      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#10060;)');
       $('#cutie-bar-r .cutie-card .glyph').empty();
     }
   });
@@ -89,6 +89,6 @@
     cc.ls.d.write('tempClickStreakPassive', true);
   }
   if(cc.ls.d.tempClickStreakPassive) {
-    $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> &spades;/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> &diams;/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
+    $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
   }
 }();

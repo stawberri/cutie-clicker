@@ -246,13 +246,19 @@
 
   // Pass tasks, ticks, and draws to menu
   cc.loop.task(function(now) {
-    callOnMenu('task', [now, $('#menu-content'), data.state]);
+    if(data.active) {
+      callOnMenu('task', [now, $('#menu-content'), data.state]);
+    }
   });
   cc.loop.tick(function(now) {
-    callOnMenu('tick', [now, $('#menu-content'), data.state]);
+    if(data.active) {
+      callOnMenu('tick', [now, $('#menu-content'), data.state]);
+    }
   });
   cc.loop.draw(function(now) {
-    callOnMenu('draw', [now, $('#menu-content'), data.state]);
+    if(data.active) {
+      callOnMenu('draw', [now, $('#menu-content'), data.state]);
+    }
   });
 
   // Load menu right now

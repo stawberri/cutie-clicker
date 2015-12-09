@@ -6,6 +6,7 @@
   cc.util.getcss('css/cutie-card.css');
   cc.util.getcss('css/effects.css');
   cc.util.getcss('css/menu.css');
+  cc.util.getcss('css/cs.css');
 
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
