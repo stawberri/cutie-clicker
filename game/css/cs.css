@@ -28,6 +28,10 @@
     content: '\a4';
   }
 
+  .cs-sext::before {
+    content: '\2736';
+  }
+
   .cs-rarity::before {
     /* Use with fa (this is fa-asterisk)! */
     content: '\f069';
