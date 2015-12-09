@@ -122,21 +122,3 @@ body>.layer,
     padding: 5px 25px;
     pointer-events: auto;
   }
-
-  @keyframes update-available-button-span-spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    69% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  #update-available.yes button span {
-    display: inline-block;
-    animation: 3s update-available-button-span-spin cubic-bezier(.45,.1,.5,1.33) infinite;
-  }
