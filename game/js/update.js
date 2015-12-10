@@ -2,7 +2,7 @@
 
 !function() {
   // Current data version
-  var dataStorageVersion = 7;
+  var dataStorageVersion = 8;
 
   // Process persistent data
   cc.init.addAction('<span class="fa fa-database"></span>', 'persistent data update', function(done) {
@@ -32,6 +32,9 @@
       case 4:
       case 5:
       case 6:
+      case 7:
+        cc.ls.d.erase('tempClickStreakPassive');
+        cc.ls.d.erase('tempClickStreakTime');
         if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
           cc.ls.d.erase('menu');
         }
