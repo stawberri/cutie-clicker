@@ -348,10 +348,10 @@
       if(cutie) {
         element.removeClass().addClass(defaultClass + cutieClasses(cutie));
 
-        glyphElement.html(cutie.glyph);
+        glyphElement.attr('data-css-before', cutie.glyph);
       } else {
         element.removeClass().addClass(defaultClass);
-        glyphElement.empty();
+        glyphElement.attr('data-css-before', '');
       }
     }
 
@@ -363,7 +363,7 @@
   // Cutie object constructor
   cc.cuties.construct = function(data) {
     this.cutie = data.cutie;
-    this.glyph = '&#x' + data.cutie + ';&#xfe0e;';
+    this.glyph = String.fromCharCode(parseInt('0x' + data.cutie)) + '\ufe0e';
   }
 
   // Cutie object prototype

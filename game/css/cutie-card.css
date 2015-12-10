@@ -11,15 +11,19 @@
   color: rgba(0, 0, 0, .3);
 }
 
-.cutie-card .glyph {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  display: flex;
-  font-size: 10rem;
-  align-items: center;
-  justify-content: center;
-}
+  .cutie-card .glyph {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    font-size: 10rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+    .cutie-card .glyph::before {
+      content: attr(data-css-before);
+    }
 
   .rarity-0 .cutie-card {
     border-color: #7f00ff;
