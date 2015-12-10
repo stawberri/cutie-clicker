@@ -11,7 +11,7 @@
   // Create a cc.loop to deal with rendering type stuff
   // Also does general processing type stuff. Oops.
   cc.loop = {
-    taskInterval: 3000, // 3 seconds
+    taskInterval: 60000, // 60 seconds
     tickInterval: 100, // 10fps
     drawInterval: 33 // 30fps
   };
@@ -126,7 +126,7 @@
     // Check for updates
     // Don't do this locally.
     cc.f||task(function(now) {
-      var requestTime = Math.floor(now / 3000);
+      var requestTime = Math.floor(now / 60000);
       $.get('version.txt', {_: requestTime}, function(data) {
         if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
           // There's an update!
