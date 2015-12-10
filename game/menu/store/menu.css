@@ -4,3 +4,8 @@
                0 0 6px #7fff00,
                0 0 9px #7fff00;
 }
+
+.menu-script-store #menu-store-buy-cutie {
+  font-size: 3rem;
+  min-width: 300px; min-height: 150px;
+}

@@ -4,7 +4,7 @@
     cc.util.getcss(dir + 'menu.css');
     element.load(cc.util.l(dir + 'menu.html'), function() {
       $('#menu-store-buy-cutie').click(function() {
-        if(cc.stats.mpcost('100', true)) {
+        if(cc.stats.mpcost('1000', true)) {
           cc.cuties.add('77');
         }
       })
