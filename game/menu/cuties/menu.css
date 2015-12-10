@@ -27,6 +27,11 @@
     align-items: center;
   }
 
+    .menu-script-cuties #menu-cuties-pane-back:active {
+      padding-left: 14px;
+      padding-right: 20px;
+    }
+
     .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back,
     .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-footer {
       background: #007fff;
@@ -93,6 +98,18 @@
       font-size: 5rem;
       overflow: hidden;
     }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main span {
+        pointer-events: none;
+      }
+
+      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a:active {
+        transform: scale(.95);
+      }
+
+        .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a:active span {
+          transform: scale(1.3);
+        }
 
       .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-equip {
         background: #007fff;
