@@ -149,10 +149,9 @@
     }
 
     function afterLoad() {
-      // Create a copy of menu-content
-      // Seems kinda unnecessary though
+      // Create a new menu-content
       var menuContent = $('#menu-content');
-      var futureContent = menuContent.clone(true).empty();
+      var futureContent = $('<div id="menu-content">');
 
       // First run its init function
       // Pass in the new state
@@ -290,7 +289,7 @@
   });
 
   // Menu links
-  $('#menu-content').on('click.menu-link', "a", function(ev) {
+  $('#menu').on('click.menu-link', "a", function(ev) {
     var destination = $(this).attr('href');
     if(destination.search(/^\$/) != -1) {
       // Menu link (starts with $)

@@ -22,7 +22,7 @@
       }
 
       // Register handlers
-      $('#menu-cuties-list').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
+      $('#menu-cuties-main').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
 
       // Reset local state variables
       lastListUpdate = 0;
@@ -100,17 +100,22 @@
       lastListUpdate = cc.cuties.listTime;
     }
 
-    var listElement = $('#menu-cuties-list');
-    if(listElement.length < 1) {
+    var oldListElement = $('#menu-cuties-list');
+    if(oldListElement.length < 1) {
       // List doesn't exist for some reason.
       lastListUpdate = 0;
       return;
     }
 
-    listElement.empty();
+    var listElement = $('<div id="menu-cuties-list">');
 
+    var cutieDeferreds = [];
     var cutiesList = cc.cuties.list();
     $.each(cutiesList, function(index, value) {
+      // This allows waiting for all cuties to finish
+      var defer = $.Deferred();
+      cutieDeferreds.push(defer);
+
       cc.cuties(index, function(cutie) {
         var cutieElement = cutieTemplate();
         cutie.renderCutieCard(cutieElement, 'menu-cuties-list-button');
@@ -119,7 +124,14 @@
         cutieElement.data('cutie', cutie);
 
         cutieElement.appendTo(listElement);
+
+        defer.resolve();
       });
+    });
+
+    $.when.apply($, cutieDeferreds).then(function() {
+      // All cuties are done
+      oldListElement.replaceWith(listElement);
     });
   }
 
