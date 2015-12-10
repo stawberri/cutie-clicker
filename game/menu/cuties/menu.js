@@ -38,15 +38,17 @@
     // Remove old wrapper classes and add new state in
     $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
 
-    // Update pane and list
-    paneChange(state);
+    // Update list
     listUpdate(state);
 
-    lastMode = mode;
-
-    // Clear selections if necessary (based on lastMode)
-    var lastMode = state.lastMode || '';
+    // Update pane only if we need to change it.
     if(lastMode != mode) {
+      paneChange(state);
+      lastMode = mode;
+    }
+    // Clear selections if necessary (based on lastMode)
+    var lastDataMode = state.lastMode || '';
+    if(lastDataMode != mode) {
       cc.cuties.selection('menu', true);
       state.lastMode = mode;
     }
@@ -65,31 +67,50 @@
         // Need back button
         paneElement.prepend(backButtonTemplate());
 
-        if(state.mode == 'delete') {
-          deleteModeActivated();
+        switch(state.mode) {
+          case 'delete':
+            // Register button handler
+            $('#menu-cuties-pane-action-button').click(function() {
+              // Delete them all
+              var cutieIndex;
+              // While there's still more cuties to delete
+              // Fetch cutie while checking
+              while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
+                if(cutieIndex === 0) {
+                  // REPLACE THIS LATER ONCE CUTIE EQUIPS ARE POSSIBLE
+                  // Keeps cutie 0 from being deleted
+                  continue;
+                }
+
+                cc.cuties.remove(cutieIndex);
+              }
+              // Refresh state
+              cc.menu.restate();
+            });
+          break;
+
+          case 'equip':
+            // Load in current slots
+            var selection = cc.cuties.selection('menu');
+            selection.write(0, cc.cuties.m());
+            // selection.write(1, cc.cuties.l());
+            // selection.write(2, cc.cuties.r());
+
+
+            $('#menu-cuties-pane-action-button').click(function() {
+              // Set cuties
+              cc.cuties.m(selection[0]);
+              // cc.cuties.l(selection[1]);
+              // cc.cuties.r(selection[2]);
+
+              $('#menu-cuties-temp-equip-confirm').html('Cutie card #' + (selection[0] + 1) + ' equipped.');
+
+              // Refresh state
+              cc.menu.restate();
+            });
+          break;
         }
       }
-    });
-  }
-
-  function deleteModeActivated() {
-    // Register button handler
-    $('#menu-cuties-pane-action-button').click(function() {
-      // Delete them all
-      var cutieIndex;
-      // While there's still more cuties to delete
-      // Fetch cutie while checking
-      while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
-        if(cutieIndex === 0) {
-          // REPLACE THIS LATER ONCE CUTIE EQUIPS ARE POSSIBLE
-          // Keeps cutie 0 from being deleted
-          continue;
-        }
-
-        cc.cuties.remove(cutieIndex);
-      }
-      // Refresh state
-      cc.menu.restate();
     });
   }
 
@@ -138,9 +159,29 @@
   function cutieButtonClick(ev) {
     var cutieElement = $(this);
     var cutie = cutieElement.data('cutie');
+    // Adding a R here to remind myself that this is a Rhaboo state object
+    var stateR = cc.menu.state();
 
-    if(cc.menu.state().mode && cc.menu.state().mode != 'view') {
-      cutie.select('menu');
+    if(stateR.mode && stateR.mode != 'view') {
+      switch(stateR.mode) {
+        case 'delete':
+          // Can't select more than 16 people
+          if(cc.cuties.selection('menu').length > 15) {
+            return;
+          }
+          // Can't select equipped people
+          // Positions 0, 1, or 2
+          var slot = cutie.slot();
+          if(slot > -1 && slot < 3) {
+            return;
+          }
+          cutie.select('menu');
+        break;
+
+        case 'equip':
+          cc.cuties.selection('menu').write(0, cutie.index());
+        break;
+      }
     }
   }
 

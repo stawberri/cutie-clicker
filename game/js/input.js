@@ -3,43 +3,18 @@
 !function() {
   // Main click handler
   var recentClickTimeout;
-  var lastInterval = '1';
-  var lastxp = '1';
 
   $('#cutie-clicker').on('mousedown touchstart', function(ev) {
     ev.preventDefault();
 
     clearTimeout(recentClickTimeout);
 
-    // Request fullscreen
-    (document.requestFullscreen || document.msRequestFullscreen || document.mozRequestFullScreen || document.webkitRequestFullscreen || $.noop).call();
-
     // Update click counter
     cc.stats.clicks.add(1);
 
     // Award excitement
     cc.cuties.m(function(cutie) {
-      var now = $.now();
-      var interval = String(now - (cc.util.rhanum(cc.ls.d, 'tempClickStreakTime') || cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now - 1)));
-      var xp = '1';
-
-      if(cc.ls.d.tempClickStreakPassive) {
-        if(cc.stats.mpcost('3', true)) {
-          xp = String(SchemeNumber.fn['+'](Math.floor(1 + Math.random() * 4), SchemeNumber.fn.floor(SchemeNumber.fn['*'](cutie.love(), .01 + Math.random() * 0.08))));
-
-          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br><span class="cs cs-excitement"></span> ' + xp);
-          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('<span class="cs cs-excitement"></span> ' + xp);
-        } else {
-          $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)<br>&#9888; 0 <span class="cs cs-empathy"></span>');
-          $('#cutie-bar-r .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>');
-        }
-      }
-
-      cc.stats.excitement(xp);
-
-      lastInterval = interval;
-      cc.util.rhanum(cc.ls.d, 'tempClickStreakTime', now);
-      lastxp = xp;
+      cc.stats.excitement('2');
 
       // Add event classes
       $('html').addClass('ce-recent-click ce-mousedown');
@@ -56,39 +31,4 @@
       $('html').removeClass('ce-recent-click');
     }, 250);
   });
-
-
-  // Temp buttons
-  $('#cutie-bar-l, #temp-mp-button-1').click(function() {
-    if(cc.stats.mpcost('1000', true)) {
-      var xpGain = Math.floor((Math.random() * 351) + 750);
-      cc.stats.excitement(xpGain);
-
-      var yay = (xpGain > 1000) ? '!!!' : '!'
-      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> <span class="cs cs-empathy"></span> -> (750 ~ 1100) <span class="cs cs-excitement"></span><br><span class="cs cs-excitement"></span> ' + xpGain + yay)
-      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('<span class="cs cs-excitement"></span> ' + xpGain + yay)
-    } else {
-      $('#temp-mp-button-1').html('<span class="cv-mp-cost" data-cost="1000"></span> <span class="cs cs-empathy"></span> -> (750 ~ 1100) <span class="cs cs-excitement"></span><br>&#9888;: ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>')
-      $('#cutie-bar-l .cutie-card .glyph').css('fontSize', '5rem').html('&#9888; ' + cc.stats.empathy() + ' <span class="cs cs-empathy"></span>')
-
-    }
-  });
-
-  $('#cutie-bar-r, #temp-mp-button-2').click(function() {
-    cc.ls.d.write('tempClickStreakPassive', !cc.ls.d.tempClickStreakPassive);
-    if(cc.ls.d.tempClickStreakPassive) {
-      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
-    } else {
-      $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#10060;)');
-      $('#cutie-bar-r .cutie-card .glyph').empty();
-    }
-  });
-
-  // temp button 2 text fixer (if click streaks are active)
-  if($.type(cc.ls.d.tempClickStreakPassive) === 'undefined') {
-    cc.ls.d.write('tempClickStreakPassive', true);
-  }
-  if(cc.ls.d.tempClickStreakPassive) {
-    $('#temp-mp-button-2').html('<span class="cv-mp-cost" data-cost="3"></span> <span class="cs cs-empathy"></span>/<span class="fa fa-hand-pointer-o"></span> = <span class="fa fa-angle-double-up"></span> <span class="cs cs-excitement"></span>/<span class="fa fa-hand-pointer-o"></span> (&#9745;)');
-  }
 }();

@@ -234,14 +234,15 @@
           // If index is null, skip other checks.
         } else if(current()[0] === index) {
           // Mid has the same cutie
-          return false;
+          return current()[1];
         } else if(current()[2] === index) {
           // Right has same cutie. Remove right cutie.
           cc.cuties.r(null);
         }
         current().write(1, index);
       }
-      if($.type(current()[1]) === 'number') return cc.cuties(current()[1], callback);
+      if($.type(current()[1]) === 'number') cc.cuties(current()[1], callback);
+      return current()[1];
     }
     cc.cuties.r = function(index, callback) {
       if($.type(index) === 'function') {
@@ -253,14 +254,15 @@
           // If index is null, skip other checks.
         } else if(current()[0] === index) {
           // Mid has the same cutie
-          return false;
+          return current()[2];
         } else if(current()[1] === index) {
           // Left has same cutie. Remove left cutie.
           cc.cuties.l(null);
         }
         current().write(2, index);
       }
-      if($.type(current()[2]) === 'number') return cc.cuties(current()[2], callback);
+      if($.type(current()[2]) === 'number') cc.cuties(current()[2], callback);
+      return current()[2];
     }
 
     // Middle is a little more complex
@@ -283,7 +285,7 @@
       }
 
       if($.type(current()[0]) === 'number') {
-        return cc.cuties(current()[0], callback);
+        cc.cuties(current()[0], callback);
       } else {
         // This can't empty.
         if($.type(current()[2]) === 'number') {
@@ -303,6 +305,7 @@
           return cc.cuties.m(0, callback);
         }
       }
+      return current()[0];
     }
 
   // Display Functions
