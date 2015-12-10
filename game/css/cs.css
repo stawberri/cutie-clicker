@@ -5,22 +5,22 @@
 
 /* Stats */
   .cs-empathy::before {
-    content: '\2660';
+    content: '\2660\fe0e';
     color: #0d98ba;
   }
 
   .cs-ecchi::before {
-    content: '\2663';
+    content: '\2663\fe0e';
     color: #ff5349;
   }
 
   .cs-love::before {
-    content: '\2665';
+    content: '\2665\fe0e';
     color: #ffcc00;
   }
 
   .cs-excitement::before {
-    content: '\2666';
+    content: '\2666\fe0e';
     color: #c71585;
   }
 

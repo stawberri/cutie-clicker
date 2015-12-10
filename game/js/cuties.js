@@ -3,7 +3,7 @@
 !function() {
   // Default starter cutie
   var starterCutie = {
-    cutie: '119'
+    cutie: '77'
   }
 
   // Cutie creation function
@@ -363,7 +363,7 @@
   // Cutie object constructor
   cc.cuties.construct = function(data) {
     this.cutie = data.cutie;
-    this.glyph = '&#' + data.cutie + ';';
+    this.glyph = '&#x' + data.cutie + ';&#xfe0e;';
   }
 
   // Cutie object prototype

@@ -2,7 +2,7 @@
 
 !function() {
   // Current data version
-  var dataStorageVersion = 6;
+  var dataStorageVersion = 7;
 
   // Process persistent data
   cc.init.addAction('<span class="fa fa-database"></span>', 'persistent data update', function(done) {
@@ -28,39 +28,34 @@
 
       case 1:
       case 2:
-        if(cc.ls.d.cuties) {
-          cc.cuties(0, function(cutie) {
-            if(cutie.data.xp) {
-              cc.ls.d.write('xp', cutie.data.xp);
-              cutie.data.erase('xp');
-            }
-          });
-        }
       case 3:
-        if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
-          cc.ls.d.menu.write('script', 'home');
-        }
       case 4:
-        if(cc.ls.d.cuties) {
-          cc.cuties(0, function(cutie) {
-            if(cutie.data.lv) {
-              cc.ls.d.write('totalLv', cutie.data.lv);
-              cc.ls.d.write('totalBurstSuccess', cutie.data.lv);
+      case 5:
+      case 6:
+        if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
+          cc.ls.d.erase('menu');
+        }
+        cc.ls.d.erase('cutieStats');
+        if(cc.ls.d.cuties && cc.ls.d.cuties.list && cc.ls.d.cuties.list[0]) {
+          var cutie = cc.ls.d.cuties.list[0];
+
+          cutie.write('cutie', '77');
+          if(cutie.xp) {
+            cc.ls.d.write('xp', cutie.xp);
+            cutie.erase('xp');
+          }
+          cc.util.rhanum(cc.ls.d, 'totalCuties', '1');
+          cc.ls.d.write('cutieStats', {
+            '77': {
+              count: cc.ls.d.totalCuties
             }
           });
-        }
-      case 5:
-        cc.util.rhanum(cc.ls.d, 'totalCuties', '1');
-        if(cc.ls.d.cuties) {
-          cc.cuties(0, function(cutie) {
-            cc.ls.d.write('cutieStats', {
-              '119': {
-                count: cc.ls.d.totalCuties, // 1
-                lv: cutie.data.lv,
-                burstSuccess: cutie.data.lv
-              }
-            });
-          });
+          if(cutie.lv) {
+            cc.ls.d.write('totalLv', cutie.lv);
+            cc.ls.d.write('totalBurstSuccess', cutie.lv);
+            cc.ls.d.cutieStats['77'].write('lv', cutie.lv);
+            cc.ls.d.cutieStats['77'].write('burstSuccess', cutie.lv);
+          }
         }
       case dataStorageVersion:
     }

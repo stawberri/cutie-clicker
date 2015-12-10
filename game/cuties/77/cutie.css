@@ -1,11 +1,11 @@
 /* Cutie Display */
 
-#cuties .cutie-119 .cutie-embed {
+#cuties .cutie-77 .cutie-embed {
   max-width: 475px; max-height: 650px;
   background: url(normal.png) center center no-repeat;
   background-size: contain;
 }
 
-.ce-recent-click #cutie-m.cutie-119 .cutie-embed {
+.ce-recent-click #cutie-m.cutie-77 .cutie-embed {
   background-image: url(clicked.png);
 }

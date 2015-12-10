@@ -1,5 +1,5 @@
 !function() {
-  var cutie = '119';
+  var cutie = '77';
 
   cc.cuties[cutie] = function(data) {
   };
