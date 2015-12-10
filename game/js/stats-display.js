@@ -7,7 +7,6 @@
     cc.cuties.m(function(cutie) {
       // Easy to display stats
       $('#cutie-stats .love').html(cutie.love());
-      $('#cutie-stats .empathy').html(cc.stats.empathy());
 
       // Display XP
       var xpPercentage = 0;
@@ -52,6 +51,17 @@
   cc.loop.draw(function() {
     cc.util.cssrule('.cv-cutie-count::before')({
       content: "'" + cc.cuties.list().length + "'"
+    });
+    // Amount of xp drained a second
+    cc.util.cssrule('.cv-xp-drain-sec::before')({
+      content: "'" + (cc.cuties.list().length / 9).toFixed(1) + "'"
+    });
+  });
+
+  // Empathy class
+  cc.loop.draw(function() {
+    cc.util.cssrule('.cv-empathy::before')({
+      content: "'" + cc.stats.empathy() + "'"
     });
   });
 

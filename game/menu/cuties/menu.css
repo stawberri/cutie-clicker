@@ -114,8 +114,8 @@
 
     .menu-script-cuties #menu-cuties-pane-action-button {
       position: absolute;
-      left: 42%; top: 16%;
-      width: 50%; height: 69%;
+      right: 9px; top: 9px;
+      width: 190px; height: 51px;
       background: white;
       border: none; outline: none;
       border-radius: 5px;
