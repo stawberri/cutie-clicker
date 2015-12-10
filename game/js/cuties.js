@@ -197,15 +197,14 @@
 
       if(reset) {
         switch($.type(reset)) {
-          case 'array':
+          default:
+            cc.cuties.selections().erase(name);
+            return;
           break;
 
           case 'number':
             reset = [reset];
-          break;
-
-          default:
-            reset = [];
+          case 'array':
           break;
         }
 

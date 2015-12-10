@@ -1,5 +1,5 @@
 !function() {
-  var lastListUpdate = 0;
+  var lastListUpdate, lastMode;
   var cutieTemplate = function() {
     return $();
   }
@@ -24,8 +24,9 @@
       // Register handlers
       $('#menu-cuties-list').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
 
-      // Run list update
+      // Reset local state variables
       lastListUpdate = 0
+      lastMode = '';
 
       // Launch state change
       cc.menu.state({});
@@ -33,15 +34,20 @@
   };
 
   menu.stateChanged = function(state) {
-    // Remove old wrapper classes and add new state in
-    $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
+    var mode = state.mode || 'view';
+    if(mode != lastMode) {
+      // Remove old wrapper classes and add new state in
+      $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
 
-    // Clear selections
-    cc.cuties.selection('menu', true);
+      // Clear selections
+      cc.cuties.selection('menu', true);
 
-    // Update pane and list
-    paneChange(state);
-    listUpdate(state);
+      // Update pane and list
+      paneChange(state);
+      listUpdate(state);
+
+      lastMode = mode;
+    }
   }
 
   function paneChange(state) {
