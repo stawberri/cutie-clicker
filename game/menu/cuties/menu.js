@@ -25,28 +25,30 @@
       $('#menu-cuties-list').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
 
       // Reset local state variables
-      lastListUpdate = 0
+      lastListUpdate = 0;
       lastMode = '';
 
       // Launch state change
-      cc.menu.state({});
+      cc.menu.restate();
     });
   };
 
   menu.stateChanged = function(state) {
     var mode = state.mode || 'view';
-    if(mode != lastMode) {
-      // Remove old wrapper classes and add new state in
-      $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
+    // Remove old wrapper classes and add new state in
+    $('#menu-cuties-wrap').removeClass().addClass('menu-cuties-mode-' + (state.mode || 'view'));
 
-      // Clear selections
+    // Update pane and list
+    paneChange(state);
+    listUpdate(state);
+
+    lastMode = mode;
+
+    // Clear selections if necessary (based on lastMode)
+    var lastMode = state.lastMode || '';
+    if(lastMode != mode) {
       cc.cuties.selection('menu', true);
-
-      // Update pane and list
-      paneChange(state);
-      listUpdate(state);
-
-      lastMode = mode;
+      state.lastMode = mode;
     }
   }
 
@@ -62,7 +64,32 @@
       if(state.mode && state.mode != 'view') {
         // Need back button
         paneElement.prepend(backButtonTemplate());
+
+        if(state.mode == 'delete') {
+          deleteModeActivated();
+        }
       }
+    });
+  }
+
+  function deleteModeActivated() {
+    // Register button handler
+    $('#menu-cuties-pane-action-button').click(function() {
+      // Delete them all
+      var cutieIndex;
+      // While there's still more cuties to delete
+      // Fetch cutie while checking
+      while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
+        if(cutieIndex === 0) {
+          // REPLACE THIS LATER ONCE CUTIE EQUIPS ARE POSSIBLE
+          // Keeps cutie 0 from being deleted
+          continue;
+        }
+
+        cc.cuties.remove(cutieIndex);
+      }
+      // Refresh state
+      cc.menu.restate();
     });
   }
 

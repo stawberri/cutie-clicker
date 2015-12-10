@@ -225,12 +225,17 @@
         delete replacementState[value];
       });
 
+      // Interesting note: stateChanged gets a normal object that's used to update Rhaboo, not a Rhaboo object.
       if(callOnMenu('stateChanged', [replacementState]) !== false) {
         data.write('state', replacementState);
       }
     }
 
     return data.state;
+  }
+  // Let state handle what to pass stateChanged
+  cc.menu.restate = function() {
+    cc.menu.state({});
   }
 
   // Easy to use function to open / close / toggle menu
