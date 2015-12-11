@@ -9,3 +9,10 @@
 .ce-recent-click #cutie-m.cutie-77 .cutie-embed {
   background-image: url(clicked.png);
 }
+
+/* Showcase */
+.menu-script-showcase .menu-showcase-cutie.cutie-77 #menu-showcase-cutie-pic {
+  max-width: 475px; max-height: 650px;
+  background: url(cutie.png) center center no-repeat;
+  background-size: contain;
+}

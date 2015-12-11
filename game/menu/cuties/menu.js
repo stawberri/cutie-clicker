@@ -22,7 +22,7 @@
       }
 
       // Register handlers
-      $('#menu-cuties-main').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
+      element.find('#menu-cuties-main').on('click.card-button-click', '.menu-cuties-list-button', cutieButtonClick);
 
       // Reset local state variables
       lastListUpdate = 0;
