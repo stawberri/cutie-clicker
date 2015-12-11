@@ -5,6 +5,7 @@
   };
 
   cc.cuties[cutie].prototype = {
-    rarity: 0
+    rarity: 0,
+    showcaseRight: false
   };
 }();

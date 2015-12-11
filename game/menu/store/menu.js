@@ -5,7 +5,10 @@
     element.load(cc.util.l(dir + 'menu.html'), function() {
       $('#menu-store-buy-cutie').click(function() {
         if(cc.stats.mpcost('1000', true)) {
-          cc.cuties.add('77');
+          var index = cc.cuties.add('77');
+          cc.effect.lightBurst().done(function() {
+            cc.menu('showcase', {type: 'cutie', index: index});
+          });
         }
       })
     });

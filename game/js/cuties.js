@@ -314,6 +314,11 @@
     function cutieClasses(cutie) {
       var classesString = ' cutie-' + cutie.cutie;
       classesString += ' rarity-' + cutie.rarity;
+
+      if(cutie.showcaseRight) {
+        classesString += ' menu-showcase-cutie-right'
+      }
+
       return classesString;
     }
 

@@ -8,9 +8,8 @@
   }
 
   .menu-script-showcase #menu-showcase-main {
-    top: 50%; left: 50%;
-    width: 960px; height: 540px;
-    margin: -270px 0 0 -480px;
+    top: 40px; left: 40px;
+    width: calc(100% - 80px); height: calc(100% - 80px);
   }
 
     .menu-script-showcase #menu-showcase-main>div {
@@ -22,20 +21,61 @@
         width: 100%; height: 100%;
       }
 
-        .menu-script-showcase #menu-showcase-cutie-pic-area {
-          top: 0; left: 0;
-          width: 69%; height: 100%;
+        .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-pic-area,
+        .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
         }
+
+        .menu-script-showcase #menu-showcase-cutie-pic-area {
+          position: absolute;
+          top: 0; left: 0;
+          width: calc(50% + 90px); height: 100%;
+          justify-content: flex-end;
+        }
+
+          .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-pic-area {
+            width: calc(50% + 140px);
+            transition: width 1s;
+          }
+
           .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-pic-area {
             left: auto;
             right: 0;
+            justify-content: flex-start;
+          }
+
+          .menu-script-showcase #menu-showcase-cutie-pic {
+            width: 100%; height: 100%;
           }
 
         .menu-script-showcase #menu-showcase-cutie-card-area {
+          position: absolute;
           top: 0; right: 0;
-          width: 31%; height: 100%;
+          width: calc(50% - 280px); height: 100%;
+          justify-content: flex-start;
         }
+
+          .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
+            width: calc(50% - 180px);
+            transition: width 1s;
+          }
+
           .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-card-area {
             right: auto;
             left: 0;
+            justify-content: flex-end;
           }
+
+  .menu-script-showcase #menu-showcase-cover {
+    width: 100%; height: 100%;
+    pointer-events: none;
+    background: #fff;
+    opacity: 1;
+  }
+
+    .menu-script-showcase .menu-showcase-go #menu-showcase-cover {
+      opacity: 0;
+      transition: opacity .69s;
+    }
