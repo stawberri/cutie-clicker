@@ -17,7 +17,7 @@
             // Add cutie card
             cutie.renderCutieCard(element.find('#menu-showcase-cutie-card'));
 
-            // Remove cover
+            // Fade in
             element.find('#menu-showcase-wrap').removeClass('menu-showcase-go')[0].offsetHeight;
             setTimeout(function() {
               element.find('#menu-showcase-wrap').addClass('menu-showcase-go');
