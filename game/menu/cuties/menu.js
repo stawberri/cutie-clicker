@@ -175,6 +175,10 @@
           if(slot > -1 && slot < 3) {
             return;
           }
+          // Can't select favorited cuties
+          if(cutie.selected('favorite') > -1) {
+            return;
+          }
           cutie.select('menu');
         break;
 
@@ -182,6 +186,9 @@
           cc.cuties.selection('menu').write(0, cutie.index());
         break;
       }
+    } else {
+      // View state
+      cutie.select('favorite');
     }
   }
 
@@ -227,6 +234,19 @@
           cutieElement.find('.selection-wrapper').removeClass().addClass('selection-wrapper');
         }
         cutieElement.data('selected', selected);
+      }
+
+      // Favorite stuff (copied from above)
+      selectionIndex = cutie.selected('favorite');
+      selected = selectionIndex > -1;
+      lastSelected = cutieElement.data('favorite');
+      if(selected !== lastSelected) {
+        if(selected) {
+          cutieElement.find('.fav-wrapper').addClass('favorite favorite-' + selectionIndex);
+        } else {
+          cutieElement.find('.fav-wrapper').removeClass().addClass('fav-wrapper');
+        }
+        cutieElement.data('favorite', selected);
       }
     });
   };

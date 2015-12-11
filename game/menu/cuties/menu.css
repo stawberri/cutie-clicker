@@ -260,3 +260,7 @@
           background: #ffcce5;
           color: #ff007f;
         }
+
+        .menu-script-cuties .menu-cuties-list-button .favorite .visible-button {
+          box-shadow: 0 0 3px #ffcc00, 0 0 6px #ffcc00, 0 0 9px #ffcc00;
+        }
