@@ -1,0 +1,41 @@
+.menu-script-showcase #menu-showcase-wrap {
+  position: absolute;
+  width: 100%; height: 100%;
+}
+
+  .menu-script-showcase #menu-showcase-wrap>div {
+    position: absolute;
+  }
+
+  .menu-script-showcase #menu-showcase-main {
+    top: 50%; left: 50%;
+    width: 960px; height: 540px;
+    margin: -270px 0 0 -480px;
+  }
+
+    .menu-script-showcase #menu-showcase-main>div {
+      display: none;
+    }
+
+      .menu-script-showcase .menu-showcase-cutie #menu-showcase-cutie {
+        display: block;
+        width: 100%; height: 100%;
+      }
+
+        .menu-script-showcase #menu-showcase-cutie-pic-area {
+          top: 0; left: 0;
+          width: 69%; height: 100%;
+        }
+          .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-pic-area {
+            left: auto;
+            right: 0;
+          }
+
+        .menu-script-showcase #menu-showcase-cutie-card-area {
+          top: 0; right: 0;
+          width: 31%; height: 100%;
+        }
+          .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-card-area {
+            right: auto;
+            left: 0;
+          }
