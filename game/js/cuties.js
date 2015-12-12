@@ -428,7 +428,7 @@
     // What happens when bursting is successful?
     burstSuccess: function() {
       this.loveup();
-      cc.menu('loveup');
+      cc.menu('loot');
 
       // How long should we wait?
       return 1000;

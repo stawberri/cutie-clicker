@@ -35,9 +35,6 @@
       case 7:
         cc.ls.d.erase('tempClickStreakPassive');
         cc.ls.d.erase('tempClickStreakTime');
-        if(cc.ls.d.menu && cc.ls.d.menu.script == 'stats') {
-          cc.ls.d.erase('menu');
-        }
         cc.ls.d.erase('cutieStats');
         if(cc.ls.d.cuties && cc.ls.d.cuties.list && cc.ls.d.cuties.list[0]) {
           var cutie = cc.ls.d.cuties.list[0];

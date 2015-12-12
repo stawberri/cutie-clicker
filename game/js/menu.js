@@ -186,7 +186,10 @@
       afterLoad();
     } else {
       // It hasn't loaded yet, so get it loaded.
-      cc.getScript('menu/' + scriptname + '/menu.js').done(afterLoad);
+      cc.getScript('menu/' + scriptname + '/menu.js').done(afterLoad).fail(function() {
+        // If it fails, redirect to home.
+        cc.menu('home');
+      });
     }
   }
 

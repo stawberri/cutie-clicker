@@ -142,6 +142,8 @@
 
 
   // Grab stuff from other scripts
+    // Loot
+    cc.getScript('js/loot.js');
     // Cutie rendering
     cc.getScript('js/cutie-display.js');
     // Input processing

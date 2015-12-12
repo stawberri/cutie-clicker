@@ -71,14 +71,17 @@
           case 'delete':
             // Register button handler
             $('#menu-cuties-pane-action-button').click(function() {
+              // Get slots of currently equipped cuties
+              var m = cc.cuties.m();
+              var l = cc.cuties.l();
+              var r = cc.cuties.r();
               // Delete them all
               var cutieIndex;
               // While there's still more cuties to delete
               // Fetch cutie while checking
               while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
-                if(cutieIndex === 0) {
-                  // REPLACE THIS LATER ONCE CUTIE EQUIPS ARE POSSIBLE
-                  // Keeps cutie 0 from being deleted
+                if(cutieIndex === m || cutieIndex === l || cutieIndex === r) {
+                  // Prevent equipped cuties from being deleted
                   continue;
                 }
 
