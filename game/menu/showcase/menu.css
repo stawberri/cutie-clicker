@@ -58,8 +58,8 @@
 
         .menu-script-showcase #menu-showcase-cutie-card-area {
           position: absolute;
-          top: 0; right: 0;
-          width: calc(50% - 280px); height: 100%;
+          bottom: 0; right: 0;
+          width: calc(50% - 280px); height: 69%;
           justify-content: flex-start;
         }
 
