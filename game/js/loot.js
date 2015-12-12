@@ -17,6 +17,12 @@
     }
   }
 
+  cc.loot.genericMoney = [
+    _(1, moneyLoot(1, 100, 0)),
+    _(.3, moneyLoot(200, 600, 1)),
+    _(.1, moneyLoot(1000, 2000, 2)),
+  ];
+
   function _(weight, func) {
     if($.type(func) !== 'function') {
       func = $.noop();
@@ -30,11 +36,11 @@
   }
   cc.loot.entry = _;
 
-  cc.loot.genericMoney = [
-    _(1, moneyLoot(1, 100, 0)),
-    _(.3, moneyLoot(200, 600, 1)),
-    _(.1, moneyLoot(1000, 2000, 2)),
-  ];
+  function lootTable(table) {
+    return function() {
+      cc.loot(table);
+    }
+  }
 
   function moneyLoot(min, max, rarity) {
     return function() {
@@ -48,7 +54,7 @@
       // Award and report it
       cc.stats.empathy(money);
       return {
-        type: 'money',
+        type: 'empathy',
         amount: money,
         rarity: rarity
       }

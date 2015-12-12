@@ -1,0 +1,54 @@
+.menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy {
+  display: block;
+  width: 100%; height: 100%;
+}
+
+  .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter {
+    position: absolute;
+    display: flex;
+    font-size: 20rem;
+    color: #fff;
+    text-shadow: 0 0 69px #fff;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    bottom: 28%; right: 16%;
+  }
+
+    .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter .number {
+      padding-right: 100px;
+    }
+
+      .menu-script-showcase .menu-showcase-empathy.menu-showcase-go #menu-showcase-empathy-counter .number {
+        padding-right: 20px;
+        transition: padding-right .69s;
+      }
+
+
+    .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter .unit {
+      position: relative;
+      top: 200px;
+      opacity: 0;
+    }
+
+      .menu-script-showcase .menu-showcase-empathy.menu-showcase-go #menu-showcase-empathy-counter .unit {
+        top: 0;
+        opacity: 1;
+        transition: top .3s .09s ease-in, opacity .3s .09s ease-in;
+      }
+
+      .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter .shadow {
+        text-shadow: none;
+        position: absolute;
+        bottom: 0; left: 0;
+      }
+
+        .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter .shadow::before {
+          color: #fff;
+        }
+
+        .menu-script-showcase .menu-showcase-empathy.menu-showcase-go #menu-showcase-empathy-counter .shadow {
+          bottom: 50px;
+          opacity: 0;
+          transition: bottom .49s .29s, opacity .49s .29s, text-shadow .49s .29s, color .69s .29s;
+        }

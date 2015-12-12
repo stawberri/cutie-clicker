@@ -1,6 +1,6 @@
 /* Generic symbols */
 .cs::before {
-
+  display: inline-block;
 }
 
 /* Stats */
@@ -73,7 +73,6 @@
   .cs-sext::before {
     content: '\2736';
     animation: 3s cs-sext linear infinite;
-    display: inline-block;
   }
 
   .cs-rarity::before {
