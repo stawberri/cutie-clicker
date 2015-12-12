@@ -10,8 +10,7 @@
 
           var index = cc.cuties.add('77');
           cc.effect.lightBurst({
-            x: ev.pageX - $(window).scrollLeft(),
-            y: ev.pageY - $(window).scrollTop()
+            mouseEvent: ev
           }).done(function() {
             // Empty out menu to prevent flashing
             element.empty();

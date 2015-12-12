@@ -142,12 +142,17 @@
   lightBurstTemplate.append('<img class="glow" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">')
   cc.effect.lightBurst = function(settings) {
     settings = $.extend({
+      mouseEvent: undefined,
       x: $('html').width() / 2,
       y: $('html').height() / 2
     }, settings);
 
-    var defer = $.Deferred();
+    if(settings.mouseEvent) {
+      settings.x = settings.mouseEvent.pageX - $(window).scrollLeft();
+      settings.y = settings.mouseEvent.pageY - $(window).scrollTop();
+    }
 
+    var defer = $.Deferred();
     var element = lightBurstTemplate.clone();
 
     $('#layer-effects').append(element);
