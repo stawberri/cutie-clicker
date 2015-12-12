@@ -8,13 +8,7 @@ html.menu-active {
 }
 
 .menu-active #layers-under-ui {
-  transform: scale(.85);
-  opacity: 0;
-}
-
-.menu-active body>.layer,
-.menu-active #layers-under-ui>.layer {
-  position: fixed;
+  display: none;
 }
 
 .menu-active #layer-ui {

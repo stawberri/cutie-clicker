@@ -14,11 +14,17 @@ html.burst-post-fail.menu-active {
   background: #000;
 }
 
+.burst-pre .layer,
+.burst-active .layer,
+.burst-post-win .layer,
+.burst-post-fail .layer {
+  display: none !important;
+}
 .burst-pre #layer-burst,
 .burst-active #layer-burst,
 .burst-post-win #layer-burst,
 .burst-post-fail #layer-burst {
-  display: block;
+  display: block !important;
 }
 
   #burst-cover {

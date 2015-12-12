@@ -28,7 +28,6 @@ body {
   margin: 0;
   overflow: hidden;
   animation: .3s body-game-start;
-  background: #fff;
 }
 
 /* Main game display layers */
@@ -41,10 +40,8 @@ body>.layer,
 
 #layers-under-ui {
   position: absolute;
-  width: 100%; height: 100%;
-  background: #fff;
   overflow: hidden;
-  transition: transform .3s, opacity .3s;
+  width: 100%; height: 100%;
 }
 
 /* Game Size Div */

@@ -28,8 +28,52 @@
     content: '\a4';
   }
 
+  @keyframes cs-sext {
+    0% {
+      color: #c71585;
+      transform: none;
+    }
+    19.99% {
+      color: #c71585;
+      transform: rotate(-45deg);
+    }
+    20% {
+      color: #0d98ba;
+      transform: none;
+    }
+    39.99% {
+      color: #0d98ba;
+      transform: rotate(-45deg);
+    }
+    40% {
+      color: #7fff00;
+      transform: none;
+    }
+    59.99% {
+      color: #7fff00;
+      transform: rotate(-45deg);
+    }
+    60% {
+      color: #ffcc00;
+      transform: none;
+    }
+    79.99% {
+      color: #ffcc00;
+      transform: rotate(-45deg);
+    }
+    80% {
+      color: #ff5349;
+      transform: none;
+    }
+    99.99% {
+      color: #ff5349;
+      transform: rotate(-45deg);
+    }
+  }
   .cs-sext::before {
     content: '\2736';
+    animation: 3s cs-sext linear infinite;
+    display: inline-block;
   }
 
   .cs-rarity::before {

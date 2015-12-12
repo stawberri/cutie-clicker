@@ -2,6 +2,7 @@
   position: absolute;
   width: 100%; height: 100%;
   opacity: 0;
+  overflow: hidden;
 }
 
   .menu-script-showcase #menu-showcase-wrap.menu-showcase-go {
@@ -13,6 +14,41 @@
     position: absolute;
   }
 
+  .menu-script-showcase #menu-showcase-layer-0,
+  .menu-script-showcase #menu-showcase-layer--0 {
+    position: absolute;
+    left: -0.5%; top: -0.5%;
+    width: 101%; height: 101%;
+  }
+
+  .menu-script-showcase #menu-showcase-layer-1,
+  .menu-script-showcase #menu-showcase-layer--1 {
+    position: absolute;
+    left: -1%; top: -1%;
+    width: 102%; height: 102%;
+  }
+
+  .menu-script-showcase #menu-showcase-layer-2,
+  .menu-script-showcase #menu-showcase-layer--2 {
+    position: absolute;
+    left: -2%; top: -2%;
+    width: 104%; height: 104%;
+  }
+
+  .menu-script-showcase #menu-showcase-layer-3,
+  .menu-script-showcase #menu-showcase-layer--3 {
+    position: absolute;
+    left: -4%; top: -4%;
+    width: 108%; height: 108%;
+  }
+
+  .menu-script-showcase #menu-showcase-layer-4,
+  .menu-script-showcase #menu-showcase-layer--4 {
+    position: absolute;
+    left: -8%; top: -8%;
+    width: 116%; height: 116%;
+  }
+
   .menu-script-showcase #menu-showcase-main {
     top: 40px; left: 40px;
     width: calc(100% - 80px); height: calc(100% - 80px);
@@ -22,54 +58,3 @@
       display: none;
     }
 
-      .menu-script-showcase .menu-showcase-cutie #menu-showcase-cutie {
-        display: block;
-        width: 100%; height: 100%;
-      }
-
-        .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-pic-area,
-        .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
-          display: flex;
-          flex-flow: row nowrap;
-          align-items: center;
-        }
-
-        .menu-script-showcase #menu-showcase-cutie-pic-area {
-          position: absolute;
-          top: 0; left: 0;
-          width: calc(50% + 90px); height: 100%;
-          justify-content: flex-end;
-        }
-
-          .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-pic-area {
-            width: calc(50% + 140px);
-            transition: width 1s;
-          }
-
-          .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-pic-area {
-            left: auto;
-            right: 0;
-            justify-content: flex-start;
-          }
-
-          .menu-script-showcase #menu-showcase-cutie-pic {
-            width: 100%; height: 100%;
-          }
-
-        .menu-script-showcase #menu-showcase-cutie-card-area {
-          position: absolute;
-          bottom: 0; right: 0;
-          width: calc(50% - 280px); height: 69%;
-          justify-content: flex-start;
-        }
-
-          .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
-            width: calc(50% - 180px);
-            transition: width 1s;
-          }
-
-          .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-card-area {
-            right: auto;
-            left: 0;
-            justify-content: flex-end;
-          }

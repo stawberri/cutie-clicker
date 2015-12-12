@@ -34,45 +34,54 @@
       if(mouseY < -1) mouseY = -1;
       else if(mouseY > 1) mouseY = 1;
 
-      var xMult = $('html').width();
-      var yMult = $('html').height();
+      // var xMult = $('html').width();
+      // var yMult = $('html').height();
 
-      xMult *= .005 * mouseX;
-      yMult *= .005 * mouseY;
+      var xMult = .5 * mouseX;
+      var yMult = .5 * mouseY;
 
       cc.util.cssrule('.parallax-0')({
-        transform: 'translate(' + (1 * xMult) + 'px,' + (1 * yMult) + 'px)'
+        transform: 'translate(' + (1 * xMult) + '%,' + (1 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax--0')({
-        transform: 'translate(' + (-1 * xMult) + 'px,' + (-1 * yMult) + 'px)'
+        transform: 'translate(' + (-1 * xMult) + '%,' + (-1 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax-1')({
-        transform: 'translate(' + (2 * xMult) + 'px,' + (2 * yMult) + 'px)'
+        transform: 'translate(' + (2 * xMult) + '%,' + (2 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax--1')({
-        transform: 'translate(' + (-2 * xMult) + 'px,' + (-2 * yMult) + 'px)'
+        transform: 'translate(' + (-2 * xMult) + '%,' + (-2 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax-2')({
-        transform: 'translate(' + (4 * xMult) + 'px,' + (4 * yMult) + 'px)'
+        transform: 'translate(' + (4 * xMult) + '%,' + (4 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax--2')({
-        transform: 'translate(' + (-4 * xMult) + 'px,' + (-4 * yMult) + 'px)'
+        transform: 'translate(' + (-4 * xMult) + '%,' + (-4 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax-3')({
-        transform: 'translate(' + (8 * xMult) + 'px,' + (8 * yMult) + 'px)'
+        transform: 'translate(' + (8 * xMult) + '%,' + (8 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax--3')({
-        transform: 'translate(' + (-8 * xMult) + 'px,' + (-8 * yMult) + 'px)'
+        transform: 'translate(' + (-8 * xMult) + '%,' + (-8 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax-4')({
-        transform: 'translate(' + (16 * xMult) + 'px,' + (16 * yMult) + 'px)'
+        transform: 'translate(' + (16 * xMult) + '%,' + (16 * yMult) + '%)'
       });
       cc.util.cssrule('.parallax--4')({
-        transform: 'translate(' + (-16 * xMult) + 'px,' + (-16 * yMult) + 'px)'
+        transform: 'translate(' + (-16 * xMult) + '%,' + (-16 * yMult) + '%)'
       });
     });
 
+    var lastMouse = {x: 0, y: 0};
     $(window).on('mousemove.parallax', function(ev) {
+      // Don't do anything if x and y haven't changed much
+      if(Math.abs(ev.pageX - lastMouse.x) < 16 && Math.abs(ev.pageY - lastMouse.y) < 16) {
+        return;
+      } else {
+        lastMouse.x = ev.pageX;
+        lastMouse.y = ev.pageY;
+      }
+
       // Need to use body size, since document includes everything, and I have no idea what window is doing
       var mouseX = ((ev.pageX - $(window).scrollLeft())/($('html').width() - 1));
       var mouseY = ((ev.pageY - $(window).scrollTop())/($('html').height() - 1));

@@ -2,10 +2,12 @@
   var script = 'showcase', dir = 'menu/' + script + '/',
   menu = cc.menu[script] = function(element, state) {
     cc.util.getcss(dir + 'menu.css');
+    cc.util.getcss(dir + 'rarity.css');
     element.load(cc.util.l(dir + 'menu.html'), function() {
       // Load in stuff from state
       switch(state.type) {
         case 'cutie':
+          cc.util.getcss(dir + 'cutie.css');
           // Get cutie information
           cc.cuties(state.index, function(cutie) {
             // Load css
