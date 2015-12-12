@@ -15,16 +15,30 @@
 
 #layer-effects .light-burst {
   position: absolute;
-  transform: translate(-25%, -25%);
+  transform: translate(-50%, -50%);
   width: 200%; height: 200%;
   background: transparent;
 }
 
   #layer-effects .light-burst.go {
     background: #fff;
-    transition: background .3s;
+    transition: background .69s;
   }
   #layer-effects .light-burst.away {
     opacity: 0;
     transition: opacity .69s;
   }
+
+  #layer-effects .light-burst .glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+  }
+    #layer-effects .light-burst.go .glow {
+      width: 100%;
+      transition: width .69s;
+    }

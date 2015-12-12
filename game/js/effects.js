@@ -130,6 +130,7 @@
 
   // Light Burst effect
   var lightBurstTemplate = $('<div class="light-burst">');
+  lightBurstTemplate.append('<img class="glow" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">')
   cc.effect.lightBurst = function(settings) {
     settings = $.extend({
       x: $('html').width() / 2,
@@ -164,7 +165,7 @@
       setTimeout(function() {
         element.remove();
       }, 690);
-    }, 300);
+    }, 690);
 
     return defer;
   }
