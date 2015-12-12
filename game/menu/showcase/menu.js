@@ -15,6 +15,7 @@
 
             // Dump in classes
             element.find('#menu-showcase-wrap').addClass('menu-showcase-cutie' + cutie.renderCutieClasses());
+            rarifyMenubar(cutie.rarity);
 
             // Add cutie card
             cutie.renderCutieCard(element.find('#menu-showcase-cutie-card'));
@@ -25,6 +26,7 @@
           cc.util.getcss(dir + 'money.css');
           // Set classes
           element.find('#menu-showcase-wrap').addClass('menu-showcase-empathy rarity-' + state.rarity);
+          rarifyMenubar(state.rarity);
 
           // Set counter (work on animating it later)
           var startTime = $.now();
@@ -60,11 +62,39 @@
     });
   };
 
-  menu.open = function(open) {
-    if(open === false) {
-      setTimeout(function() {
-        cc.menu('home');
-      }, 300);
+  function rarifyMenubar(rarity) {
+    var cssColor;
+
+    switch(rarity) {
+      default:
+        cssColor = '7f00ff';
+      break;
+
+      case 1:
+        cssColor = '007fff';
+      break;
+
+      case 2:
+        cssColor = '00ff7f';
+      break;
+
+      case 3:
+        cssColor = '7fff00';
+      break;
+
+      case 4:
+        cssColor = 'ff7f00';
+      break;
+
+      case 5:
+        cssColor = 'ff007f';
+      break;
     }
+
+    var cssLine = '0 0 3px #' + cssColor + ', 0 0 6px #' + cssColor + ', 0 0 9px #' + cssColor
+    cc.util.cssrule('.menu-script-showcase .menu-top-button')({
+      color: 'rgba(255, 255, 255, .85)',
+      'text-shadow': cssLine
+    });
   }
 }();
