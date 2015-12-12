@@ -97,4 +97,12 @@
       'text-shadow': cssLine
     });
   }
+
+  menu.open = function(open) {
+    if(open === false) {
+      setTimeout(function() {
+        cc.menu('home');
+      }, 300);
+    }
+  }
 }();

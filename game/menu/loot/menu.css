@@ -20,3 +20,55 @@
     width: 300px; height: 300px;
     animation: 9s menu-loot-button linear infinite;
   }
+
+@keyframes menu-script-loot-menu-top-pulsate {
+  100% {
+    color: #aaa;
+    text-shadow: none;
+  }
+}
+
+.menu-script-loot #menu-top-home {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #7f00ff,
+               0 0 6px #7f00ff,
+               0 0 9px #7f00ff;
+  animation: .69s menu-script-loot-menu-top-pulsate alternate infinite;
+}
+.menu-script-loot #menu-top-cuties {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #007fff,
+               0 0 6px #007fff,
+               0 0 9px #007fff;
+  animation: .69s menu-script-loot-menu-top-pulsate .115s alternate infinite;
+}
+
+.menu-script-loot #menu-top-items {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #00ff7f,
+               0 0 6px #00ff7f,
+               0 0 9px #00ff7f;
+  animation: .69s menu-script-loot-menu-top-pulsate .23s alternate infinite;
+}
+
+.menu-script-loot #menu-top-store {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #7fff00,
+               0 0 6px #7fff00,
+               0 0 9px #7fff00;
+  animation: .69s menu-script-loot-menu-top-pulsate .345s alternate infinite;
+}
+.menu-script-loot #menu-top-tbd {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #ff7f00,
+               0 0 6px #ff7f00,
+               0 0 9px #ff7f00;
+  animation: .69s menu-script-loot-menu-top-pulsate .46s alternate infinite;
+}
+.menu-script-loot #menu-top-misc {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #ff007f,
+               0 0 6px #ff007f,
+               0 0 9px #ff007f;
+  animation: .69s menu-script-loot-menu-top-pulsate .575s alternate infinite;
+}
