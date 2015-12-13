@@ -89,13 +89,25 @@
               // Clear selection
               cc.cuties.selection('menu', true);
 
-              // Delete them
+              // Award empathy
+              var empathyDefer = [];
               $.each(toDelete, function(index, value) {
-                cc.cuties.remove(value);
+                var defer = $.Deferred();
+                empathyDefer.push(defer);
+                cc.cuties(value, function(cutie) {
+                  cc.stats.empathy(cutie.value());
+                  defer.resolve();
+                });
               });
+              $.when.apply($, empathyDefer).done(function() {
+                // Delete them
+                $.each(toDelete, function(index, value) {
+                  cc.cuties.remove(value);
+                });
 
-              // Refresh menu
-              cc.menu.restate();
+                // Refresh menu
+                cc.menu.restate();
+              });
             });
           break;
 

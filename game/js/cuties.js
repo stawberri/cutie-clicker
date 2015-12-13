@@ -96,9 +96,16 @@
       return false;
     }
 
+    var cutieOptions = {
+      // Set cutieLootCooldown to an hour from now
+      cutieLootCooldown: LZString.compress(String($.now() + 3600000))
+    }
+
+    $.extend(cutieOptions, options);
+
     var newIndex = cc.cuties.list().length;
 
-    cc.cuties.list().write(newIndex, options);
+    cc.cuties.list().write(newIndex, cutieOptions);
     cc.cuties.listTime = $.now();
 
     // Add to total cuties
@@ -107,7 +114,7 @@
     // Add to cutie count
     // Since this creates the cutie stats object for this cutie, we can assume that it's always defined
     var cutieStats = cc.ls.d.cutieStats || cc.ls.d.write('cutieStats', {}).cutieStats;
-    var cutieStat = cutieStats[options.cutie] || cutieStats.write(options.cutie, {})[options.cutie];
+    var cutieStat = cutieStats[cutieOptions.cutie] || cutieStats.write(cutieOptions.cutie, {})[cutieOptions.cutie];
     cc.util.rhainc(cutieStat, 'count');
 
     // Return cutie index
@@ -369,6 +376,7 @@
 
   // Cutie object constructor
   cc.cuties.construct = function(data) {
+    // Basic info
     this.cutie = data.cutie;
     this.glyph = String.fromCharCode(parseInt('0x' + data.cutie)) + '\ufe0e';
   }
@@ -416,6 +424,11 @@
 
 
     // Stuff that might be overwritten, but probably won't be
+
+    // How much is deleting this cutie worth?
+    value: function() {
+      return String(SchemeNumber.fn['+'](100, this.love()));
+    },
 
     // How much excitement does this cutie require for love up?
     targetxp: function() {
