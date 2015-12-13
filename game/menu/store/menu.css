@@ -9,3 +9,15 @@
   font-size: 3rem;
   min-width: 300px; min-height: 150px;
 }
+
+  .menu-script-store #menu-store-buy-cutie .cooldown {
+    display: none;
+  }
+
+  .menu-script-store #menu-store-buy-cutie:disabled .cooldown {
+    display: block;
+  }
+
+  .menu-script-store #menu-store-buy-cutie:disabled .price {
+    display: none;
+  }
