@@ -443,14 +443,14 @@
       this.loveup();
 
       var lootArray = [
-        ['', cc.loot.genericMoney],
-        ['', cc.loot.genericMoney]
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney],
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney]
       ];
       if(this.cutieLootCooldown() > $.now()) {
         // Not eligible for cuties
       } else {
         // Eligible for cuties
-        lootArray.push(['', cc.loot.genericCutie, 'm cutieLootCooldown']);
+        lootArray.push(['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, 'm cutieLootCooldown']);
       }
 
       cc.menu('loot', {

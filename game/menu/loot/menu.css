@@ -6,19 +6,9 @@
   height: 100%; width: 100%;
 }
 
-  @keyframes menu-loot-button {
-    0% {
-      transform: none;
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
   .menu-script-loot .menu-loot-button {
-    width: 300px; height: 300px;
-    animation: 9s menu-loot-button linear infinite;
+    width: 250px; height: 350px;
+    font-size: 160px;
   }
 
 @keyframes menu-script-loot-menu-top-pulsate {

@@ -26,7 +26,8 @@
           }
 
           // Disable buttons and get index of button
-          var index = $('.menu-loot-button').prop('disabled', true).index(this);
+          var buttons = $('.menu-loot-button').prop('disabled', true)
+          var index = buttons.index(this);
 
           // Pick loot
           cc.util.shuffle(loot);
@@ -40,9 +41,34 @@
             })
           }
 
-          cc.effect.lightBurst({mouseEvent: ev}).done(function() {
-            leave('showcase', cc.loot(looted[1]));
-          });
+          // Start looted animation
+          var animateIndex = 0;
+          var interval = setInterval(function() {
+            if(animateIndex == loot.length) {
+              buttons.eq(index).html(loot[index][0]);
+
+              animateIndex++;
+            } else if(animateIndex == loot.length + 1) {
+              clearInterval(interval);
+              cc.effect.lightBurst({mouseEvent: ev}).done(function() {
+                leave('showcase', cc.loot(looted[1]));
+              });
+            } else {
+              if(animateIndex == index) {
+                if(animateIndex == loot.length - 1) {
+                  // Special case - player clicked on last card
+                  buttons.eq(animateIndex).html(loot[animateIndex][0]);
+                  animateIndex += 2;
+                  return;
+                } else {
+                  animateIndex++;
+                }
+              }
+
+              buttons.eq(animateIndex).html(loot[animateIndex][0]);
+              animateIndex++;
+            }
+          }, 500);
         });
 
         // Add them to loot-wrap
