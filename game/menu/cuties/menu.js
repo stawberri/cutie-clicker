@@ -220,6 +220,8 @@
       var cutieElement = $(element);
       var cutie = cutieElement.data('cutie');
 
+      var stateR = cc.menu.state();
+
       // Sorting stuff
       var sortIndex = cutie.index();
       var lastIndex = cutieElement.data('lastIndex');
@@ -232,17 +234,50 @@
       }
 
       // Info display stuff
-      var infoOne = (function() {
-        return '<span class="cs cs-love"></span> ' + cutie.love();
-      })();
-      if(cutieElement.find('.info-1').html() != infoOne) {
-        cutieElement.find('.info-1').html(infoOne);
-      }
-      var infoTwo = (function() {
-        return '<span class="cs cs-excitement"></span> ' + cutie.targetxp();
-      })();
-      if(cutieElement.find('.info-2').html() != infoTwo) {
-        cutieElement.find('.info-2').html(infoTwo);
+      switch(stateR.mode) {
+        default:
+          var infoOne = '<span class="cs cs-love"></span> ' + cutie.love();
+          if(cutieElement.find('.info-1').html() != infoOne) {
+            cutieElement.find('.info-1').html(infoOne);
+          }
+          var infoTwo = '<span class="cs cs-excitement"></span> ' + cutie.targetxp();
+          if(cutieElement.find('.info-2').html() != infoTwo) {
+            cutieElement.find('.info-2').html(infoTwo);
+          }
+        break;
+
+        case 'delete':
+          var infoOne = '<span class="cs cs-love"></span> ' + cutie.love();
+          if(cutieElement.find('.info-1').html() != infoOne) {
+            cutieElement.find('.info-1').html(infoOne);
+          }
+
+          var infoTwo = '<span class="cs cs-empathy"></span> ' + cutie.value();
+          if(cutieElement.find('.info-2').html() != infoTwo) {
+            cutieElement.find('.info-2').html(infoTwo);
+          }
+        break;
+
+        case 'equip':
+          var infoOne = '<span class="cs cs-love"></span> ' + cutie.love();
+          if(cutieElement.find('.info-1').html() != infoOne) {
+            cutieElement.find('.info-1').html(infoOne);
+          }
+
+          if(cutie.cutieLootCooldown() > now) {
+            var cooldown = String(cutie.cutieLootCooldown());
+            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-time="' + cooldown + '"></span>';
+            var infoTwoRegex = new RegExp('class="cv-countdown" data-time="' + cooldown + '"');
+            if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+              cutieElement.find('.info-2').html(infoTwo);
+            }
+          } else {
+            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="fa fa-check-circle-o"></span>';
+            if(cutieElement.find('.info-2').html() != infoTwo) {
+              cutieElement.find('.info-2').html(infoTwo);
+            }
+          }
+        break;
       }
 
       // Selection stuff
