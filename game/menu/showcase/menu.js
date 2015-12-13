@@ -22,6 +22,9 @@
             element.find('#menu-showcase-wrap').addClass('menu-showcase-cutie' + cutie.renderCutieClasses());
             rarifyMenubar(cutie.rarity);
 
+            // Set cutie quote
+            $('#menu-showcase-cutie-info').html(cutie.cutieQuote);
+
             // Add cutie card
             cutie.renderCutieCard(element.find('#menu-showcase-cutie-card'));
           });

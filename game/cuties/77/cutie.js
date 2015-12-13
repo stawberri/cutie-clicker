@@ -6,6 +6,7 @@
 
   cc.cuties[cutie].prototype = {
     rarity: 0,
-    showcaseRight: false
+    showcaseRight: false,
+    cutieQuote: '"uu"'
   };
 }();

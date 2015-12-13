@@ -388,6 +388,12 @@
     // Rarity
     rarity: 0,
 
+    // Left showcase
+    showcaseRight: false,
+
+    // Cutie quote
+    cutieQuote: '',
+
     // Target bp for lv up?
     targetbp: function() {
       return '0';

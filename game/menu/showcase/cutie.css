@@ -4,6 +4,7 @@
 }
 
   .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-pic-area,
+  .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-info-area,
   .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
     display: flex;
     flex-flow: row nowrap;
@@ -36,6 +37,59 @@
     position: absolute;
     bottom: 0; right: 0;
     width: calc(50% - 280px); height: 69%;
+    justify-content: flex-start;
+  }
+
+    .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
+      width: calc(50% - 180px);
+      transition: width 1s;
+    }
+
+    .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-card-area {
+      right: auto;
+      left: 0;
+      justify-content: flex-end;
+    }
+
+  .menu-script-showcase #menu-showcase-cutie-info-area {
+    position: absolute;
+    top: 0; right: 0;
+    width: calc(50% - 280px); height: 69%;
+    justify-content: flex-start;
+  }
+
+    .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-info-area {
+      width: calc(50% - 180px);
+      transition: width 1s;
+    }
+
+    .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-info-area {
+      right: auto;
+      left: 0;
+      justify-content: flex-end;
+    }
+
+    .menu-script-showcase #menu-showcase-cutie-info {
+      text-align: center;
+      position: relative;
+      left: 100px;
+      transform: translateX(-50%) rotate(-9deg);
+      white-space: nowrap;
+      font-size: 10rem;
+      color: white;
+      text-shadow: 0 0 9px rgba(255, 255, 255, .9), 0 0 16px  rgba(255, 255, 255, .69), 0 0 28px  rgba(255, 255, 255, .28);
+    }
+
+    .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-info {
+      left: auto; right: 100px;
+      transform: translateX(50%) rotate(9deg);
+    }
+
+
+  .menu-script-showcase #menu-showcase-cutie-card-area {
+    position: absolute;
+    bottom: 0; right: 0;
+    width: calc(50% - 280px); height: 80%;
     justify-content: flex-start;
   }
 
