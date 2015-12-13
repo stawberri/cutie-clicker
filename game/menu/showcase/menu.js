@@ -6,6 +6,11 @@
     element.load(cc.util.l(dir + 'menu.html'), function() {
       // Load in stuff from state
       switch(state.type) {
+        default:
+          // Return home
+          cc.menu('home');
+        break;
+
         case 'cutie':
           cc.util.getcss(dir + 'cutie.css');
           // Get cutie information
