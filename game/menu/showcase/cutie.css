@@ -54,7 +54,7 @@
   .menu-script-showcase #menu-showcase-cutie-info-area {
     position: absolute;
     top: 0; right: 0;
-    width: calc(50% - 280px); height: 69%;
+    width: calc(50% - 280px); height: 50%;
     justify-content: flex-start;
   }
 
@@ -89,7 +89,7 @@
   .menu-script-showcase #menu-showcase-cutie-card-area {
     position: absolute;
     bottom: 0; right: 0;
-    width: calc(50% - 280px); height: 80%;
+    width: calc(50% - 280px); height: 69%;
     justify-content: flex-start;
   }
 
@@ -102,4 +102,9 @@
       right: auto;
       left: 0;
       justify-content: flex-end;
+    }
+
+    .menu-script-showcase #menu-showcase-cutie-card {
+      max-height: 69%;
+      overflow: visible;
     }
