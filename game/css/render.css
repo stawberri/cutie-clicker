@@ -16,12 +16,21 @@
     position: absolute;
     width: 103%; height: 103%;
     left: -1.5%; top: -1.5%;
-    background-image: linear-gradient(rgba(0, 127, 255, .1) 2px, transparent 2px),
-                      linear-gradient(90deg, rgba(0, 127, 255, .1) 2px, transparent 2px),
-                      linear-gradient(rgba(0, 127, 255, .05) 1px, transparent 1px),
+    background-image: linear-gradient(rgba(0, 127, 255, .05) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(0, 127, 255, .05) 1px, transparent 1px);
-    background-size:240px 240px, 240px 240px, 60px 60px, 60px 60px;
-    background-position:-2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background-size: 60px 60px, 60px 60px;
+    background-position: -1px -1px, -1px -1px;
+  }
+
+  #temp-blueprint-2 {
+    /* http://lea.verou.me/css3patterns/#blueprint-grid */
+    position: absolute;
+    width: 103%; height: 103%;
+    left: -1.5%; top: -1.5%;
+    background-image: linear-gradient(rgba(0, 127, 255, .1) 2px, transparent 2px),
+                      linear-gradient(90deg, rgba(0, 127, 255, .1) 2px, transparent 2px);
+    background-size:240px 240px, 240px 240px;
+    background-position:-2px -2px, -2px -2px;
   }
 
 /* Cutie layer */
