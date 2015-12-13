@@ -36,7 +36,7 @@
           if($.inArray('m cutieLootCooldown', looted, 2) > 1) {
             // Set cooldown to 23 hours
             cc.cuties.m(function(cutie) {
-              cc.util.rhanum(cutie.data, 'cutieLootCooldown', $.now() + 82800000);
+              cutie.cutieLootCooldown($.now() + 82800000);
             })
           }
 

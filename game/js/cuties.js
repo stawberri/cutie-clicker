@@ -433,7 +433,7 @@
         ['', cc.loot.genericMoney],
         ['', cc.loot.genericMoney]
       ];
-      if(cc.util.rhanum(this.data, 'cutieLootCooldown') > $.now()) {
+      if(this.cutieLootCooldown() > $.now()) {
         // Not eligible for cuties
       } else {
         // Eligible for cuties
@@ -454,7 +454,7 @@
     },
 
 
-    // Stuff that probably won't be overidden
+    // Stuff that probably won't be overridden
 
 
     // Get / set love - low level, doesn't trigger events
@@ -467,7 +467,7 @@
         return cc.util.rhanum(this.data, 'lv', String(value));
       }
     },
-    // Incremenets love
+    // Increments love
     love: function(value) {
       if(value) {
         value = SchemeNumber.fn.round(String(value));
@@ -533,6 +533,10 @@
     // Same for classes
     renderCutieClasses: function() {
       return cutieClasses(this);
+    },
+    // Pretty simple cutie loot cooldown accessor
+    cutieLootCooldown: function(value) {
+      return cc.util.rhanum(this.data, 'cutieLootCooldown', value);
     },
     // Index of cutie in cutie list. DO NOT SAVE without accounting for deletion.
     index: function() {
