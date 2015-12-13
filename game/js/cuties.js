@@ -428,7 +428,21 @@
     // What happens when bursting is successful?
     burstSuccess: function() {
       this.loveup();
-      cc.menu('loot');
+
+      var lootArray = [
+        ['', cc.loot.genericMoney],
+        ['', cc.loot.genericMoney]
+      ];
+      if(cc.util.rhanum(this.data, 'cutieLootCooldown') > $.now()) {
+        // Not eligible for cuties
+      } else {
+        // Eligible for cuties
+        lootArray.push(['', cc.loot.genericCutie, 'm cutieLootCooldown']);
+      }
+
+      cc.menu('loot', {
+        loot: lootArray
+      });
 
       // How long should we wait?
       return 1000;

@@ -75,19 +75,26 @@
               var m = cc.cuties.m();
               var l = cc.cuties.l();
               var r = cc.cuties.r();
-              // Delete them all
-              var cutieIndex;
-              // While there's still more cuties to delete
-              // Fetch cutie while checking
-              while($.type(cutieIndex = cc.cuties.selection('menu').shift()) !== 'undefined') {
-                if(cutieIndex === m || cutieIndex === l || cutieIndex === r) {
-                  // Prevent equipped cuties from being deleted
-                  continue;
-                }
 
-                cc.cuties.remove(cutieIndex);
-              }
-              // Refresh state
+              // Copy selection to another array
+              var toDelete = $.map(cc.cuties.selection('menu'), function(value, index) {
+                if(value === m || value === l || value === r) {
+                  // Prevent equipped cuties from being deleted
+                  return;
+                } else {
+                  return value;
+                }
+              });
+
+              // Clear selection
+              cc.cuties.selection('menu', true);
+
+              // Delete them
+              $.each(toDelete, function(index, value) {
+                cc.cuties.remove(value);
+              });
+
+              // Refresh menu
               cc.menu.restate();
             });
           break;

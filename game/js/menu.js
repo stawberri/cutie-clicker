@@ -214,21 +214,19 @@
   cc.menu.state = function(newState) {
     if(newState) {
       replacementState = $.extend({}, data.state, newState);
-
-      // Look through state and remove anything that's null or undefined.
-      var removeKeys = [];
-      $.each(replacementState, function(key, value) {
-        var type = $.type(value);
-        if(type === 'null' || type === 'undefined') {
-          removeKeys.push(key);
-        }
-      });
-      $.each(removeKeys, function(index, value) {
-        delete replacementState[value];
-      });
-
       // Interesting note: stateChanged gets a normal object that's used to update Rhaboo, not a Rhaboo object.
       if(callOnMenu('stateChanged', [replacementState]) !== false) {
+        // Look through state and remove anything that's null or undefined.
+        var removeKeys = [];
+        $.each(replacementState, function(key, value) {
+          var type = $.type(value);
+          if(type === 'null' || type === 'undefined') {
+            removeKeys.push(key);
+          }
+        });
+        $.each(removeKeys, function(index, value) {
+          delete replacementState[value];
+        });
         data.write('state', replacementState);
       }
     }
