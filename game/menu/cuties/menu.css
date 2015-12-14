@@ -187,16 +187,19 @@
       }
 
         .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .alert-text {
+          display: flex;
           position: absolute;
-          top: 50%; left: 19px;
-          width: 128px;
-          text-align: center;
-          transform: translateY(-50%) scale(.9);
+          top: 19px; left: 19px;
+          width: 128px; height: 128px;
+          transform: scale(.9);
           font-size: 9rem;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
         }
 
           .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert.go .alert-text {
-            transform: translateY(-50%);
+            transform: none;
             opacity: 0;
             transition: transform .5s, opacity .31s .69s;
           }
