@@ -5,8 +5,8 @@
   /* Temporary stuff */
   #temp-background {
     position: absolute;
-    width: 104%; height: 104%;
-    left: -2%; top: -2%;
+    width: 101%; height: 101%;
+    left: -0.5%; top: -0.5%;
     background: linear-gradient(rgba(255, 255, 255, .69) 0%, rgba(255, 255, 255, 0) 100%),
                 radial-gradient(farthest-corner at 50% 0, rgba(13, 152, 186, 0) 50%, rgba(13, 152, 186, .2) 100%);
   }

@@ -1,41 +1,41 @@
 /* rarity 0 */
-  .menu-script-showcase .rarity-0 #menu-showcase-layer--4 {
+  .menu-script-showcase .rarity-0 #menu-showcase-layer--0 {
     background: radial-gradient(circle farthest-corner at top left, #f2e5ff 0%, #d9b3ff 100%);
   }
-  .menu-script-showcase .rarity-0 #menu-showcase-layer--3 {
+  .menu-script-showcase .rarity-0 #menu-showcase-layer--1 {
     background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #d9b3ff 30%, #bf80ff 100%);
   }
   .menu-script-showcase .rarity-0 #menu-showcase-layer--2 {
     background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #bf80ff 50%, #a54dff 100%);
   }
-  .menu-script-showcase .rarity-0 #menu-showcase-layer--1 {
+  .menu-script-showcase .rarity-0 #menu-showcase-layer--3 {
     background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #a54dff 70%, #8c1aff 100%);
   }
 
 /* rarity 1 */
-  .menu-script-showcase .rarity-1 #menu-showcase-layer--4 {
+  .menu-script-showcase .rarity-1 #menu-showcase-layer--0 {
     background: radial-gradient(circle farthest-corner at top left, #e5f2ff 0%, #b3d9ff 100%);
   }
-  .menu-script-showcase .rarity-1 #menu-showcase-layer--3 {
+  .menu-script-showcase .rarity-1 #menu-showcase-layer--1 {
     background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #b3d9ff 30%, #80bfff 100%);
   }
   .menu-script-showcase .rarity-1 #menu-showcase-layer--2 {
     background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #80bfff 50%, #4da5ff 100%);
   }
-  .menu-script-showcase .rarity-1 #menu-showcase-layer--1 {
+  .menu-script-showcase .rarity-1 #menu-showcase-layer--3 {
     background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #4da5ff 70%, #1a8cff 100%);
   }
 
 /* rarity 2 */
-  .menu-script-showcase .rarity-2 #menu-showcase-layer--4 {
+  .menu-script-showcase .rarity-2 #menu-showcase-layer--0 {
     background: radial-gradient(circle farthest-corner at top left, #e5fff2 0%, #b3ffd9 100%);
   }
-  .menu-script-showcase .rarity-2 #menu-showcase-layer--3 {
+  .menu-script-showcase .rarity-2 #menu-showcase-layer--1 {
     background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #b3ffd9 30%, #80ffbf 100%);
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--2 {
     background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #80ffbf 50%, #4dffa5 100%);
   }
-  .menu-script-showcase .rarity-2 #menu-showcase-layer--1 {
+  .menu-script-showcase .rarity-2 #menu-showcase-layer--3 {
     background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #4dffa5 70%, #1aff8c 100%);
   }
