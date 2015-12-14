@@ -7,6 +7,6 @@
   cc.cuties[cutie].prototype = {
     rarity: 0,
     showcaseRight: false,
-    cutieQuote: '&#x1f332;&#x1f381;&#x1f389;'
+    cutieQuote: '&#x1f332;&#xfe0e;&#x1f381;&#xfe0e;&#x1f389;&#xfe0e;'
   };
 }();
