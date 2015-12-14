@@ -1,0 +1,7 @@
+.menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back,
+.menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-footer {
+  background: #ff7f00;
+}
+.menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back .pane-title::before {
+  content: '\f1f8';
+}

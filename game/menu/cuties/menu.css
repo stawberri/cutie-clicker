@@ -32,97 +32,11 @@
       padding-right: 20px;
     }
 
-    .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back,
-    .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-footer {
-      background: #007fff;
-    }
-    .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back .pane-title::before {
-      content: '\f21d';
-    }
-
-    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-back,
-    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-footer {
-      background: #ff007f;
-    }
-    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-back .pane-title::before {
-      content: '\f06b';
-    }
-
-    .menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back,
-    .menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-footer {
-      background: #ff7f00;
-    }
-    .menu-script-cuties .menu-cuties-mode-delete #menu-cuties-pane-back .pane-title::before {
-      content: '\f1f8';
-    }
-
   .menu-script-cuties #menu-cuties-pane-main {
     flex: 1 1 auto;
     overflow-x: hidden;
     overflow-y: auto;
   }
-
-    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main {
-    }
-
-  .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main {
-    padding: 10px 20px;
-  }
-
-    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info {
-      display: flex;
-      font-size: 3rem;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-    }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info>div {
-      }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info .left {
-        flex: 1 1 auto;
-      }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info .right {
-        flex: 0 1 auto;
-        font-size: .5em;
-        text-align: right;
-      }
-
-    .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a {
-      display: block;
-      text-align: center;
-      margin: 20px 0;
-      padding: 20px 0;
-      color: #fff;
-      font-size: 5rem;
-      overflow: hidden;
-      text-decoration: none;
-    }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main span {
-        pointer-events: none;
-      }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a:active {
-        transform: scale(.95);
-      }
-
-        .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a:active span {
-          transform: scale(1.3);
-        }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-equip {
-        background: #007fff;
-      }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-gift {
-        background: #ff007f;
-      }
-
-      .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main #menu-cuties-pane-delete {
-        background: #ff7f00;
-      }
 
   .menu-script-cuties #menu-cuties-pane-footer {
     position: relative;
@@ -192,7 +106,6 @@
         position: absolute;
         top: 16px; left: 16px;
         width: 128px; height: 128px;
-        background: white;
         border: 3px solid;
         border-radius: 13px;
         overflow: hidden;
@@ -265,3 +178,52 @@
         .menu-script-cuties .menu-cuties-list-button .favorite .visible-button {
           box-shadow: 0 0 3px #ffcc00, 0 0 6px #ffcc00, 0 0 9px #ffcc00;
         }
+
+      .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+      }
+
+        .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .alert-text {
+          position: absolute;
+          top: 50%; left: 19px;
+          width: 128px;
+          text-align: center;
+          transform: translateY(-50%) scale(.9);
+          font-size: 9rem;
+        }
+
+          .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert.go .alert-text {
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: transform .5s, opacity .31s .69s;
+          }
+
+        .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .color-square {
+          position: absolute;
+          top: 19px; left: 19px;
+          width: 128px; height: 128px;
+          border-radius: 13px;
+        }
+
+          .menu-script-cuties .menu-cuties-list-button:active .menu-cuties-button-alert .color-square {
+            transform: scale(.9);
+          }
+
+        .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .color-circle {
+          position: absolute;
+          top: 7px; left: 7px;
+          width: 66px; height: 66px;
+          border-radius: 33px;
+        }
+
+          .menu-script-cuties .menu-cuties-list-button:active .menu-cuties-button-alert .color-circle {
+            transform: scale(1.1);
+          }
+
+            .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert.go .backgrounds {
+              opacity: 0;
+              transition: opacity .6s .2s;
+            }

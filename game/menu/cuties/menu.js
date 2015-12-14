@@ -4,6 +4,7 @@
     return $();
   }
   var backButtonTemplate = cutieTemplate;
+  var buttonAlertTemplate = cutieTemplate;
 
   var script = 'cuties', dir = 'menu/' + script + '/',
   menu = cc.menu[script] = function(element, state) {
@@ -19,6 +20,12 @@
       var backButtonOriginal = element.find('#menu-cuties-pane-back').remove();
       backButtonTemplate = function() {
         return backButtonOriginal.clone();
+      }
+
+      // Create button alert template
+      var buttonAlertOriginal = element.find('.menu-cuties-button-alert').remove();
+      buttonAlertTemplate = function() {
+        return buttonAlertOriginal.clone();
       }
 
       // Register handlers
@@ -62,6 +69,7 @@
     }
 
     // Load in new pane
+    cc.util.getcss(dir + (state.mode || 'view') + '/pane.css');
     paneElement.load(cc.util.l(dir + (state.mode || 'view') + '/pane.html'), function() {
       if(state.mode && state.mode != 'view') {
         // Need back button
@@ -187,18 +195,26 @@
     if(stateR.mode && stateR.mode != 'view') {
       switch(stateR.mode) {
         case 'delete':
-          // Can't select more than 16 people
-          if(cc.cuties.selection('menu').length > 15) {
+          // Can't select more than 16 cards
+          // (It's fine AT 15 cards, but not more than that)
+          if(cc.cuties.selection('menu').length > 15 && cutie.selected('menu') < 0) {
+            alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', '#000', '#ff7f00');
             return;
           }
-          // Can't select equipped people
+          // Can't select equipped cards
           // Positions 0, 1, or 2
           var slot = cutie.slot();
           if(slot > -1 && slot < 3) {
+            switch(slot) {
+              case 0:
+                alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#007fff');
+              break;
+            }
             return;
           }
-          // Can't select favorited cuties
+          // Can't select favorited cards
           if(cutie.selected('favorite') > -1) {
+            alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#000', '#ffcc00');
             return;
           }
           cutie.select('menu');
@@ -207,10 +223,17 @@
         case 'equip':
           cc.cuties.selection('menu').write(0, cutie.index());
         break;
+
+        case 'gift':
+          alertifyButton(cutieElement, '<span class="fa fa-hourglass-half"></span>', '#000', '#ff007f');
+        break;
       }
     } else {
       // View state
       cutie.select('favorite');
+      if(cutie.selected('favorite') > -1) {
+        alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#ffcc00', '#fff');
+      }
     }
   }
 
@@ -307,4 +330,24 @@
       }
     });
   };
+
+  function alertifyButton(button, text, background, foreground) {
+    text = text || '';
+    background = background || '#000';
+    foreground = foreground || '#fff';
+
+    var element = $(button);
+    var alert = buttonAlertTemplate();
+
+    alert.find('.color-square, .color-circle').css('background', background);
+    alert.find('.alert-text').css('color', foreground).html(text);
+
+    alert.appendTo(element);
+    alert[0].offsetHeight;
+    alert.addClass('go');
+
+    setTimeout(function() {
+      alert.remove();
+    }, 1000);
+  }
 }();
