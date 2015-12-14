@@ -8,13 +8,16 @@
   .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
     display: flex;
     flex-flow: row nowrap;
-    align-items: center;
   }
 
   .menu-script-showcase #menu-showcase-cutie-pic-area {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
     position: absolute;
     top: 0; left: 0;
     width: calc(50% + 90px); height: 100%;
+    align-items: center;
     justify-content: flex-end;
   }
 
@@ -33,28 +36,11 @@
       width: 100%; height: 100%;
     }
 
-  .menu-script-showcase #menu-showcase-cutie-card-area {
-    position: absolute;
-    bottom: 0; right: 0;
-    width: calc(50% - 280px); height: 69%;
-    justify-content: flex-start;
-  }
-
-    .menu-script-showcase .menu-showcase-go #menu-showcase-cutie-card-area {
-      width: calc(50% - 180px);
-      transition: width 1s;
-    }
-
-    .menu-script-showcase .menu-showcase-cutie-right #menu-showcase-cutie-card-area {
-      right: auto;
-      left: 0;
-      justify-content: flex-end;
-    }
-
   .menu-script-showcase #menu-showcase-cutie-info-area {
     position: absolute;
     top: 0; right: 0;
     width: calc(50% - 280px); height: 50%;
+    align-items: flex-end;
     justify-content: flex-start;
   }
 
@@ -89,7 +75,8 @@
   .menu-script-showcase #menu-showcase-cutie-card-area {
     position: absolute;
     bottom: 0; right: 0;
-    width: calc(50% - 280px); height: 69%;
+    width: calc(50% - 280px); height: 45%;
+    align-items: flex-start;
     justify-content: flex-start;
   }
 
