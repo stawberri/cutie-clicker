@@ -16,7 +16,7 @@
     align-items: center;
     position: absolute;
     top: 0; left: 0;
-    width: calc(50% + 90px); height: 100%;
+    width: calc(50% + 200px); height: 100%;
     align-items: center;
     justify-content: flex-end;
   }
@@ -39,7 +39,7 @@
   .menu-script-showcase #menu-showcase-cutie-info-area {
     position: absolute;
     top: 0; right: 0;
-    width: calc(50% - 280px); height: 50%;
+    width: calc(50% - 350px); height: 50%;
     align-items: flex-end;
     justify-content: flex-start;
   }
@@ -75,7 +75,7 @@
   .menu-script-showcase #menu-showcase-cutie-card-area {
     position: absolute;
     bottom: 0; right: 0;
-    width: calc(50% - 280px); height: 45%;
+    width: 50%; height: 45%;
     align-items: flex-start;
     justify-content: flex-start;
   }
