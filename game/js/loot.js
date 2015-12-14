@@ -34,7 +34,8 @@
   ];
 
   cc.loot.genericCutie = [
-    [1, 'cutie', '77']
+    [1, 'cutie', '77'],
+    [.1, 'cutie', '25b2']
   ];
 
   var loot = {
