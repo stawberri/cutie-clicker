@@ -136,7 +136,7 @@
           case 'equip':
             // Load in current slots if necessary
             var selection = cc.cuties.selection('menu');
-            if(!selection[0]) {
+            if($.type(selection[0]) !== 'number') {
               selection.write(0, cc.cuties.m());
               selection.write(1, cc.cuties.l());
               selection.write(2, cc.cuties.r());
@@ -710,6 +710,11 @@
                 cutieElement.find('.info-2').html(infoTwo);
               }
             }
+          }
+
+          // Remove selection if cutie isn't ecchi
+          if(!cutie.isEcchi() && cutie.selected('menu') > 0) {
+            cutie.select('menu');
           }
         break;
 
