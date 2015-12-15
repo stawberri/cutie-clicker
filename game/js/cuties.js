@@ -439,26 +439,26 @@
     // How much is gifting this cutie worth?
     ecchiValue: function() {
       // This is in seconds for less math later.
-      var baseValue = '60';
+      var baseValue = '90';
       switch(this.rarity) {
         case 1:
-          baseValue = '60';
+          baseValue = '90';
         break;
 
         case 2:
-          baseValue = '60';
+          baseValue = '90';
         break;
 
         case 3:
-          baseValue = '60';
+          baseValue = '90';
         break;
 
         case 4:
-          baseValue = '60';
+          baseValue = '90';
         break;
 
         case 5:
-          baseValue = '100';
+          baseValue = '90';
         break;
       }
 

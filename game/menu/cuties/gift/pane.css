@@ -12,12 +12,18 @@
   box-shadow: 0 0 16px #ff007f, 0 0 28px #ff007f, 0 0 69px #ff007f;
 }
 
+.menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-main {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-giftee {
   position: relative;
-  width: 100%; height: 100px;
+  width: 320px; height: 100px;
   background: rgba(0, 0, 0, .1);
   border: none;
   outline: none;
+  flex: 0 0 auto;
 }
 
   .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-giftee:not([disabled]):active {
