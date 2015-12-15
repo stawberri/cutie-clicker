@@ -536,11 +536,11 @@
 
             if(is1 && cutie.cutie == cutie1.cutie) {
               // Blocked by cutie 1
-              alertifyButton(cutieElement, cutie.htmlGlyph, '#000', color1);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color1);
               return
             } else if(is2 && cutie.cutie == cutie2.cutie) {
               // Blocked by cutie 2
-              alertifyButton(cutieElement, cutie.htmlGlyph, '#000', color2);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color2);
               return
             }
 
