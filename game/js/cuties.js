@@ -98,7 +98,7 @@
 
     var cutieOptions = {
       // Set cutieLootCooldown to an hour from now
-      cutieLootCooldown: LZString.compress(String($.now() + 900000))
+      // cutieLootCooldown: LZString.compress(String($.now() + 900000))
     }
 
     $.extend(cutieOptions, options);
