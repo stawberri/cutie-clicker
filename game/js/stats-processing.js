@@ -18,7 +18,22 @@
     } else {
       // Run tick for all equipped cuties
     }
-  })
+  });
+
+  // Check ecchi
+  cc.loop.tick(function(now) {
+    cc.cuties.l(function(cutie) {
+      if(!cutie.isEcchi()) {
+        cc.cuties.l(null);
+      }
+    });
+
+    cc.cuties.r(function(cutie) {
+      if(!cutie.isEcchi()) {
+        cc.cuties.r(null);
+      }
+    });
+  });
 
   // Lv Up & Bursting
   cc.loop.tick(function(now) {

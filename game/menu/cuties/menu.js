@@ -134,23 +134,121 @@
           break;
 
           case 'equip':
-            // Load in current slots
+            // Load in current slots if necessary
             var selection = cc.cuties.selection('menu');
-            selection.write(0, cc.cuties.m());
-            // selection.write(1, cc.cuties.l());
-            // selection.write(2, cc.cuties.r());
+            if(!selection[0]) {
+              selection.write(0, cc.cuties.m());
+              selection.write(1, cc.cuties.l());
+              selection.write(2, cc.cuties.r());
+            }
 
+            // Set up substate buttons
+            $('#menu-cuties-equip-left').click(function() {
+              cc.menu.state({substate: {equipping: 1}});
+            });
+            $('#menu-cuties-equip-mid').click(function() {
+              cc.menu.state({substate: {equipping: 0}});
+            });
+            $('#menu-cuties-equip-right').click(function() {
+              cc.menu.state({substate: {equipping: 2}});
+            });
+
+            // Equip effect timeout
+            var equipEffectTimeout;
 
             $('#menu-cuties-pane-action-button').click(function() {
+              var selection = cc.cuties.selection('menu');
+
+              var oldM = cc.cuties.m();
+              var oldL = cc.cuties.l();
+              var oldR = cc.cuties.r();
+
               // Set cuties
               cc.cuties.m(selection[0]);
-              // cc.cuties.l(selection[1]);
-              // cc.cuties.r(selection[2]);
 
-              $('#menu-cuties-temp-equip-confirm').html('Cutie card #' + (selection[0] + 1) + ' equipped.');
+              // Grab all three cuties
+              var deferM = $.Deferred();
+              var deferL = $.Deferred();
+              var deferR = $.Deferred();
+              var cutieM, cutieL, cutieR, isL, isR;
 
-              // Refresh state
-              cc.menu.restate();
+              if($.type(selection[0]) === 'number') {
+                cc.cuties(selection[0], function(cutie) {
+                  cutieM = cutie;
+                  deferM.resolve();
+                });
+              } else {
+                // M cutie should be set. Something is wrong.
+                return;
+              }
+              if($.type(selection[1]) === 'number') {
+                cc.cuties(selection[1], function(cutie) {
+                  isL = true;
+                  cutieL = cutie;
+                  deferL.resolve();
+                });
+              } else {
+                cutieL = false;
+                deferL.resolve();
+              }
+              if($.type(selection[2]) === 'number') {
+                cc.cuties(selection[2], function(cutie) {
+                  isR = true;
+                  cutieR = cutie;
+                  deferR.resolve();
+                });
+              } else {
+                cutieR = false;
+                deferR.resolve();
+              }
+
+              $.when(deferM, deferL, deferR).done(function() {
+                // Left cutie first
+                if(isL) {
+                  // Check ecchi
+                  if(cutieL.isEcchi()) {
+                    // Check index overlap
+                    if(cutieL.index() != cutieM.index()) {
+                      // Check type overlap
+                      if(cutieL.cutie != cutieM.cutie) {
+                        // Set cutie
+                        cc.cuties.l(selection[1]);
+                      }
+                    }
+                  }
+                } else {
+                  cc.cuties.l(null);
+                }
+
+                // Now right cutie
+                if(isR) {
+                  if(cutieR.isEcchi()) {
+                    if(cutieR.index() != cutieM.index() && (!isL || cutieR.index() != cutieL.index())) {
+                      if(cutieR.cutie != cutieM.cutie && (!isL || cutieR.cutie != cutieL.cutie)) {
+                        cc.cuties.r(selection[2]);
+                      }
+                    }
+                  }
+                } else {
+                  cc.cuties.r(null);
+                }
+
+                // Check for differences
+                if(cc.cuties.m() != oldM || cc.cuties.l() != oldL || cc.cuties.r() != oldR) {
+                  // Equip cutie bar effect
+                  var cutieBar = $('#cutie-bar');
+                  cutieBar.removeClass('menu-cuties-mode-equip-changed-animate');
+                  cutieBar[0].offsetHeight;
+                  cutieBar.addClass('menu-cuties-mode-equip-changed-animate');
+                  clearTimeout(equipEffectTimeout);
+                  equipEffectTimeout = setTimeout(function() {
+                    cutieBar.removeClass('menu-cuties-mode-equip-changed-animate');
+                  }, 300);
+                }
+
+                // Refresh state
+                cc.menu.restate();
+              });
             });
           break;
 
@@ -231,6 +329,24 @@
   // This gets called a ton of times!
   function substateProcess(state) {
     switch(state.mode) {
+      case 'equip':
+        var buttons = $('#menu-cuties-equip-buttons');
+        switch(state.substate.equipping) {
+          default:
+          case 0:
+            buttons.removeClass().addClass('equip-mid');
+          break;
+
+          case 1:
+            buttons.removeClass().addClass('equip-left');
+          break;
+
+          case 2:
+            buttons.removeClass().addClass('equip-right');
+          break;
+        }
+      break;
+
       case 'gift':
         var gifteeElement = $('#menu-cuties-pane-giftee');
 
@@ -322,10 +438,122 @@
         break;
 
         case 'equip':
-          if(cutie.selected('menu') != 1) {
-            alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#007fff', '#fff');
+          var selection = cc.cuties.selection('menu'), slot, old, slot1, old1, cutie1, slot2, old2, cutie2, color, color1, color2;
+          switch(stateR.substate.equipping) {
+            default:
+            case 0:
+              slot = 0;
+              old = selection[0];
+              color = '#007fff';
+              slot1 = 1;
+              old1 = selection[1];
+              color1 = '#7f00ff';
+              slot2 = 2;
+              old2 = selection[2];
+              color2 = '#00ff7f';
+
+              if(cutie.index() == old) {
+                // Can't unequip middle cutie
+                return;
+              }
+            break;
+
+            case 1:
+              slot = 1;
+              old = selection[1];
+              color = '#7f00ff';
+              slot1 = 0;
+              old1 = selection[0];
+              color1 = '#007fff';
+              slot2 = 2;
+              old2 = selection[2];
+              color2 = '#00ff7f';
+            break;
+
+            case 2:
+              slot = 2;
+              old = selection[2];
+              color = '#00ff7f';
+              slot1 = 0;
+              old1 = selection[0];
+              color1 = '#007fff';
+              slot2 = 1;
+              old2 = selection[1];
+              color2 = '#7f00ff';
+            break;
           }
-          cc.cuties.selection('menu').write(0, cutie.index());
+
+          if(cutie.index() == old) {
+            // Just toggle off slot
+            selection.write(slot, null);
+            return;
+          }
+
+          var is1 = $.type(old1) === 'number';
+          var is2 = $.type(old2) === 'number';
+
+          // Load other cuties
+          var defer1 = $.Deferred();
+          var defer2 = $.Deferred();
+
+          if(is1) {
+            cc.cuties(old1, function(cutie) {
+              cutie1 = cutie;
+              defer1.resolve();
+            });
+          } else {
+            defer1.resolve();
+          }
+
+          if(is2) {
+            cc.cuties(old2, function(cutie) {
+              cutie2 = cutie;
+              defer2.resolve();
+            });
+          } else {
+            defer2.resolve();
+          }
+
+          $.when(defer1, defer2).done(function() {
+            if(is1 && cutie.index() == old1) {
+              // Swap with old1
+              // If there's a 0, it'd be this slot
+              if(slot1 === 0 && $.type(old) !== 'number') {
+                alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color1);
+                return;
+              }
+              selection.write(slot1, old);
+              selection.write(slot, old1);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              return;
+            } else if(is2 && cutie.index() == old2) {
+              // Swap with old2
+              selection.write(slot2, old);
+              selection.write(slot, old2);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              return;
+            }
+
+            if(is1 && cutie.cutie == cutie1.cutie) {
+              // Blocked by cutie 1
+              alertifyButton(cutieElement, cutie.htmlGlyph, '#000', color1);
+              return
+            } else if(is2 && cutie.cutie == cutie2.cutie) {
+              // Blocked by cutie 2
+              alertifyButton(cutieElement, cutie.htmlGlyph, '#000', color2);
+              return
+            }
+
+            // Ecchi check last (don't encourage people to get ecchi if what they wanted doesn't work)
+            if(slot !== 0 && !cutie.isEcchi()) {
+              alertifyButton(cutieElement, '<span class="cs cs-ecchi"></span>', '#000', '#fff');
+              return;
+            }
+
+            // It's fine!
+            alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+            selection.write(slot, cutie.index());
+          });
         break;
 
         case 'gift':
@@ -385,6 +613,12 @@
       switch(slot) {
         case 0:
           alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#007fff');
+        break;
+        case 1:
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#7f00ff');
+        break;
+        case 2:
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#00ff7f');
         break;
       }
       return;
@@ -448,17 +682,33 @@
             cutieElement.find('.info-1').html(infoOne);
           }
 
-          if(cutie.cutieLootCooldown() > now) {
-            var cooldown = String(cutie.cutieLootCooldown());
-            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '"></span>';
-            var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + cooldown + '"');
-            if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
-              cutieElement.find('.info-2').html(infoTwo);
+          if(stateR.substate.equipping > 0) {
+            if(cutie.isEcchi()) {
+              var ecchiTime = cutie.ecchi();
+              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"></span>';
+              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"');
+              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
+            } else {
+              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="fa fa-times-circle"></span>';
+              if(cutieElement.find('.info-2').html() != infoTwo) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
             }
           } else {
-            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="fa fa-check-circle-o"></span>';
-            if(cutieElement.find('.info-2').html() != infoTwo) {
-              cutieElement.find('.info-2').html(infoTwo);
+            if(cutie.cutieLootCooldown() > now) {
+              var cooldown = String(cutie.cutieLootCooldown());
+              var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '"></span>';
+              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + cooldown + '"');
+              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
+            } else {
+              var infoTwo = '<span class="fa fa-user-plus"></span> <span class="fa fa-check-circle-o"></span>';
+              if(cutieElement.find('.info-2').html() != infoTwo) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
             }
           }
         break;
@@ -516,26 +766,26 @@
       var selectionIndex = cutie.selected('menu');
       var selected = selectionIndex > -1;
       var lastSelected = cutieElement.data('selected');
-      if(selected !== lastSelected) {
+      if(selectionIndex !== lastSelected) {
         if(selected) {
-          cutieElement.find('.selection-wrapper').addClass('selected selected-' + selectionIndex);
+          cutieElement.find('.selection-wrapper').removeClass('selected-' + lastSelected).addClass('selected selected-' + selectionIndex);
         } else {
-          cutieElement.find('.selection-wrapper').removeClass().addClass('selection-wrapper');
+          cutieElement.find('.selection-wrapper').removeClass('selected selected-' + lastSelected);
         }
-        cutieElement.data('selected', selected);
+        cutieElement.data('selected', selectionIndex);
       }
 
       // Favorite stuff (copied from above)
       selectionIndex = cutie.selected('favorite');
       selected = selectionIndex > -1;
       lastSelected = cutieElement.data('favorite');
-      if(selected !== lastSelected) {
+      if(selectionIndex !== lastSelected) {
         if(selected) {
-          cutieElement.find('.fav-wrapper').addClass('favorite favorite-' + selectionIndex);
+          cutieElement.find('.fav-wrapper').removeClass('favorite-' + lastSelected).addClass('favorite favorite-' + selectionIndex);
         } else {
-          cutieElement.find('.fav-wrapper').removeClass().addClass('fav-wrapper');
+          cutieElement.find('.fav-wrapper').removeClass('favorite favorite-' + lastSelected);
         }
-        cutieElement.data('favorite', selected);
+        cutieElement.data('favorite', selectionIndex);
       }
     });
   };

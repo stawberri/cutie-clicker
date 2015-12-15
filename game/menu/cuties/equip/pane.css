@@ -6,6 +6,76 @@
   content: '\f21d';
 }
 
-.menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected .cutie-card {
+.menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected-1 .cutie-card {
+  box-shadow: 0 0 16px #7f00ff, 0 0 28px #7f00ff, 0 0 69px #7f00ff;
+}
+.menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected-0 .cutie-card {
   box-shadow: 0 0 16px #007fff, 0 0 28px #007fff, 0 0 69px #007fff;
 }
+.menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected-2 .cutie-card {
+  box-shadow: 0 0 16px #00ff7f, 0 0 28px #00ff7f, 0 0 69px #00ff7f;
+}
+
+@keyframes cutie-bar-menu-cuties-mode-equip-changed-animate {
+  0% {
+    transform: scale(.1);
+  }
+}
+#cutie-bar.menu-cuties-mode-equip-changed-animate {
+  transform-origin: 50% 0;
+  animation: .3s cutie-bar-menu-cuties-mode-equip-changed-animate cubic-bezier(.36,1,.69,1.33);
+}
+
+.menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-main {
+  padding-top: 10px;
+}
+
+  .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-equip-picker {
+    position: relative;
+    width: 280px; height: 100px;
+    margin: 10px 20px;
+    font-size: 4rem;
+    border: 2px solid #000;
+    outline: none;
+    background: #fff;
+    color: #000;
+    transition: color .3s, border-color .3s, background .3s, box-shadow .3s;
+  }
+
+    .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-equip-picker:active {
+      transform: scale(.95);
+    }
+
+    .menu-script-cuties .menu-cuties-mode-equip .equip-left #menu-cuties-equip-left {
+      color: #7f00ff;
+      border-color: #7f00ff;
+      background: #e5ccff;
+      box-shadow: 0 0 5px #7f00ff;
+    }
+      .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-equip-left .colored {
+        color: #7f00ff;
+      }
+    .menu-script-cuties .menu-cuties-mode-equip .equip-mid #menu-cuties-equip-mid {
+      color: #007fff;
+      border-color: #007fff;
+      background: #cce5ff;
+      box-shadow: 0 0 5px #007fff;
+    }
+      .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-equip-mid .colored {
+        color: #007fff;
+      }
+    .menu-script-cuties .menu-cuties-mode-equip .equip-right #menu-cuties-equip-right {
+      color: #00ff7f;
+      border-color: #00ff7f;
+      background: #ccffe5;
+      box-shadow: 0 0 5px #00ff7f;
+    }
+      .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-equip-right .colored {
+        color: #00ff7f;
+      }
+
+    .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-equip-picker .label {
+      position: absolute;
+      right: 50px; top: 50%;
+      transform: translateY(-50%);
+    }

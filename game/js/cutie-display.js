@@ -68,7 +68,7 @@
 
       // left cutie
       // massive if statement checks if it's not defined
-      if(!cc.cuties.l(function(cutie) {
+      if($.type(cc.cuties.l(function(cutie) {
         if(cutieL != cutie.cutie) {
           cutieL = cutie.cutie;
 
@@ -89,7 +89,7 @@
           $('#cutie-bar-l').removeClass().addClass('cutie-bar-slot' + thisClass);
         }
 
-      }) && cutieL) {
+      })) !== 'number' && cutieL) {
         cutieL = undefined;
         cutieClassL = undefined;
 
@@ -103,7 +103,7 @@
 
       // right cutie
       // massive if statement checks if it's not defined
-      if(!cc.cuties.r(function(cutie) {
+      if($.type(cc.cuties.r(function(cutie) {
         if(cutieR != cutie.cutie) {
           cutieR = cutie.cutie;
 
@@ -124,7 +124,7 @@
           $('#cutie-bar-r').removeClass().addClass('cutie-bar-slot' + thisClass);
         }
 
-      }) && cutieR) {
+      })) !== 'number' && cutieR) {
         cutieR = undefined;
         cutieClassR = undefined;
 
