@@ -546,7 +546,7 @@
 
             // Ecchi check last (don't encourage people to get ecchi if what they wanted doesn't work)
             if(slot !== 0 && !cutie.isEcchi()) {
-              alertifyButton(cutieElement, '<span class="cs cs-ecchi"></span>', '#000', '#fff');
+              alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', '#000', '#ff007f');
               return;
             }
 
