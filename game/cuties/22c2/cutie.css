@@ -1,0 +1,18 @@
+/* Cutie Display */
+
+#cuties .cutie-22c2 .cutie-embed {
+  max-width: 545px; max-height: 544px;
+  background: url(normal.png) center center no-repeat;
+  background-size: contain;
+}
+
+.ce-recent-click #cutie-m.cutie-22c2 .cutie-embed {
+  background-image: url(clicked.png);
+}
+
+/* Showcase */
+.menu-script-showcase .menu-showcase-cutie.cutie-22c2 #menu-showcase-cutie-pic {
+  max-width: 549px; max-height: 585px;
+  background: url(cutie.png) center center no-repeat;
+  background-size: contain;
+}

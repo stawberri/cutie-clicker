@@ -45,6 +45,7 @@
 
   cc.loot.genericCutie = [
     [1, 'cutie', '77'],
+    [1, 'cutie', '22c2'],
     [.3, 'cutie', '25b2']
   ];
 
