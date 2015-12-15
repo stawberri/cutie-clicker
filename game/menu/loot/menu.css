@@ -65,7 +65,12 @@
       font-size: 160px;
       color: rgba(0, 0, 0, 0.3);
       line-height: 350px;
+      display: none;
     }
+
+      .menu-script-loot .menu-loot-button:disabled .card-front {
+        display: block;
+      }
 
       .menu-script-loot .menu-loot-button.chosen .card-front {
         background: #fff;
