@@ -142,4 +142,30 @@
 
     return array;
   }
+
+  // Time String generator
+  cc.util.timeString = function(time) {
+    var ms = time % 1000;
+    time = Math.floor(time / 1000);
+    var s = time % 60;
+    time = Math.floor(time / 60);
+    var m = time % 60;
+    time = Math.floor(time / 60);
+    var h = time;
+
+    // How much do we need to display?
+    if(h > 0) {
+      // Display hours, minutes (2 digits), and seconds (2 digits)
+      return h + ':' + ('0' + m).slice(-2) + ':' + ('0' + s).slice(-2);
+    } else if(m > 0) {
+      // Display minutes and seconds (two digits)
+      return m + ':' + ('0' + s).slice(-2);
+    } else if(s > 0) {
+      // Display seconds and ms
+      return (s + (ms / 1000)).toFixed(2);
+    } else {
+      // Just display ms
+      return ms;
+    }
+  }
 }();

@@ -5,3 +5,7 @@
 .menu-script-cuties .menu-cuties-mode-equip #menu-cuties-pane-back .pane-title::before {
   content: '\f21d';
 }
+
+.menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected .cutie-card {
+  box-shadow: 0 0 16px #007fff, 0 0 28px #007fff, 0 0 69px #007fff;
+}

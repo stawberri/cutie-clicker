@@ -53,12 +53,21 @@
       paneChange(state);
       lastMode = mode;
     }
-    // Clear selections if necessary (based on lastMode)
+
+    // Mode actually changed
     var lastDataMode = state.lastMode || '';
     if(lastDataMode != mode) {
+      // Clear selections
       cc.cuties.selection('menu', true);
+
+      // Clear substate
+      state.substate = {};
+
       state.lastMode = mode;
     }
+
+    // Process substate
+    substateProcess(state);
   }
 
   function paneChange(state) {
@@ -92,6 +101,11 @@
                 } else {
                   return value;
                 }
+              });
+
+              // Sort numerically, descending
+              toDelete.sort(function(a, b) {
+                return b - a;
               });
 
               // Clear selection
@@ -139,9 +153,104 @@
               cc.menu.restate();
             });
           break;
+
+          case 'gift':
+            // Clear giftee button
+            $('#menu-cuties-pane-giftee').click(function() {
+              cc.cuties.selection('menu', true);
+              cc.menu.state({substate: {gifting: false}})
+            });
+
+            // This was copied off of delete and modified to fit
+            $('#menu-cuties-pane-action-button').click(function() {
+              // Get slots of currently equipped cuties
+              var m = cc.cuties.m();
+              var l = cc.cuties.l();
+              var r = cc.cuties.r();
+
+              // Copy selection to another array
+              var giftee;
+              var toDelete = $.map(cc.cuties.selection('menu'), function(value, index) {
+                if(index === 0) {
+                  // This is our giftee
+                  giftee = value;
+                  return;
+                } else if(value === m || value === l || value === r) {
+                  // Prevent equipped cuties from being deleted
+                  return;
+                } else {
+                  return value;
+                }
+              });
+
+              // Sort numerically, descending
+              toDelete.sort(function(a, b) {
+                return b - a;
+              });
+
+              // Clear selection, but keep giftee
+              cc.cuties.selection('menu', [giftee]);
+
+              // Enter giftee
+              var leader = $.Deferred();
+              var ecchiDefer = [leader];
+
+              cc.cuties(giftee, function(gifteeCutie) {
+                // Award ecchi
+                $.each(toDelete, function(index, value) {
+                  var defer = $.Deferred();
+                  ecchiDefer.push(defer);
+                  cc.cuties(value, function(cutie) {
+                    gifteeCutie.ecchi(cutie.ecchiValue());
+                    defer.resolve();
+                  });
+                });
+
+                leader.resolve();
+              })
+
+              $.when.apply($, ecchiDefer).done(function() {
+                // Delete them
+                $.each(toDelete, function(index, value) {
+                  cc.cuties.remove(value);
+                });
+
+                // Refresh menu
+                cc.menu.restate();
+              });
+            });
+          break;
         }
+
+        // Process substate (again)
+        substateProcess(state);
       }
     });
+  }
+
+  // This gets called a ton of times!
+  function substateProcess(state) {
+    switch(state.mode) {
+      case 'gift':
+        var gifteeElement = $('#menu-cuties-pane-giftee');
+
+        if(gifteeElement.length < 1) {
+          return;
+        }
+
+        // Load giftee
+        if(state.substate.gifting) {
+          cc.cuties(cc.cuties.selection('menu')[0], function(cutie) {
+            gifteeElement.prop('disabled', false);
+            cutie.renderCutieCard('#menu-cuties-pane-giftee-card');
+          });
+        } else {
+          $('#menu-cuties-pane-giftee').prop('disabled', true);
+          gifteeElement.find('.countdown').removeClass('cv-countdown');
+          cc.cuties.clearCutieCard('#menu-cuties-pane-giftee-card');
+        }
+      break;
+    }
   }
 
   function listUpdate(state) {
@@ -201,31 +310,61 @@
             alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', '#000', '#ff7f00');
             return;
           }
-          // Can't select equipped cards
-          // Positions 0, 1, or 2
-          var slot = cutie.slot();
-          if(slot > -1 && slot < 3) {
-            switch(slot) {
-              case 0:
-                alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#007fff');
-              break;
-            }
+
+          if(!deleteClickChecks(cutieElement, cutie)) {
             return;
           }
-          // Can't select favorited cards
-          if(cutie.selected('favorite') > -1) {
-            alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#000', '#ffcc00');
-            return;
-          }
+
           cutie.select('menu');
+          if(cutie.selected('menu') > -1) {
+            alertifyButton(cutieElement, '<span class="fa fa-trash"></span>', '#ff7f00', '#fff');
+          }
         break;
 
         case 'equip':
+          if(cutie.selected('menu') != 1) {
+            alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#007fff', '#fff');
+          }
           cc.cuties.selection('menu').write(0, cutie.index());
         break;
 
         case 'gift':
-          alertifyButton(cutieElement, '<span class="fa fa-hourglass-half"></span>', '#000', '#ff007f');
+          if(stateR.substate.gifting) {
+            if(cutie.selected('menu') === 0) {
+              // No selecting giftee
+              alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', '#000', '#ff007f');
+              return
+            }
+
+            // Can't select more than 16 cards
+            // (It's fine AT 15 cards, but not more than that)
+            // Note that giftee is #0, so we need to add one
+            if(cc.cuties.selection('menu').length > 16 && cutie.selected('menu') < 0) {
+              alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', '#000', '#ff7f00');
+              return;
+            }
+
+            if(!deleteClickChecks(cutieElement, cutie)) {
+              return;
+            }
+
+            // Can't select lv 0 cuties
+            if(cutie.love() == 0) {
+              alertifyButton(cutieElement, '<span class="fa fa-heart-o"></span>', '#000', '#ffcc00');
+              return;
+            }
+
+            cutie.select('menu');
+            if(cutie.selected('menu') > -1) {
+              alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', '#ff7f00', '#fff');
+            }
+          } else {
+            cc.cuties.selection('menu').write(0, cutie.index());
+            alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', '#ff007f', '#fff');
+
+            // Update state
+            cc.menu.state({substate: {gifting: true}});
+          }
         break;
       }
     } else {
@@ -235,6 +374,28 @@
         alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#ffcc00', '#fff');
       }
     }
+  }
+
+  // Since gifting and delete both delete cuties, check to see if deleting is allowed in a common function
+  function deleteClickChecks(cutieElement, cutie) {
+    // Can't select equipped cards
+    // Positions 0, 1, or 2
+    var slot = cutie.slot();
+    if(slot > -1 && slot < 3) {
+      switch(slot) {
+        case 0:
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#007fff');
+        break;
+      }
+      return;
+    }
+    // Can't select favorited cards
+    if(cutie.selected('favorite') > -1) {
+      alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#000', '#ffcc00');
+      return;
+    }
+
+    return true;
   }
 
   menu.draw = function(now) {
@@ -275,7 +436,7 @@
             cutieElement.find('.info-1').html(infoOne);
           }
 
-          var infoTwo = '<span class="cs cs-empathy"></span> ' + cutie.value();
+          var infoTwo = '<span class="cs cs-empathy"></span> +' + cutie.value();
           if(cutieElement.find('.info-2').html() != infoTwo) {
             cutieElement.find('.info-2').html(infoTwo);
           }
@@ -289,8 +450,8 @@
 
           if(cutie.cutieLootCooldown() > now) {
             var cooldown = String(cutie.cutieLootCooldown());
-            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-time="' + cooldown + '"></span>';
-            var infoTwoRegex = new RegExp('class="cv-countdown" data-time="' + cooldown + '"');
+            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '"></span>';
+            var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + cooldown + '"');
             if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
               cutieElement.find('.info-2').html(infoTwo);
             }
@@ -298,6 +459,54 @@
             var infoTwo = '<span class="fa fa-user-plus"></span> <span class="fa fa-check-circle-o"></span>';
             if(cutieElement.find('.info-2').html() != infoTwo) {
               cutieElement.find('.info-2').html(infoTwo);
+            }
+          }
+        break;
+
+        case 'gift':
+          if(stateR.substate.gifting) {
+            var infoOne = '<span class="cs cs-love"></span> ' + cutie.love();
+            if(cutieElement.find('.info-1').html() != infoOne) {
+              cutieElement.find('.info-1').html(infoOne);
+            }
+
+            if(cutie.selected('menu') == 0) {
+              var infoTwo = '<span class="fa fa-birthday-cake"></span>';
+
+              // While we're here, update cutie info in pane
+              var ecchiValue = $('#menu-cuties-pane-giftee-ecchi .countdown')
+              if(cutie.isEcchi()) {
+                ecchiValue.attr({
+                  'data-time': cutie.ecchi(),
+                  'data-direction': 'down'
+                }).addClass('cv-countdown');
+              } else {
+                ecchiValue.removeClass('cv-countdown').html('0');
+              }
+            } else {
+              var infoTwo = '<span class="cs cs-ecchi"></span> +' + cc.util.timeString(cutie.ecchiValue());
+            }
+            if(cutieElement.find('.info-2').html() != infoTwo) {
+              cutieElement.find('.info-2').html(infoTwo);
+            }
+          } else {
+            var infoOne = '<span class="cs cs-love"></span> ' + cutie.love();
+            if(cutieElement.find('.info-1').html() != infoOne) {
+              cutieElement.find('.info-1').html(infoOne);
+            }
+
+            if(cutie.isEcchi()) {
+              var ecchiTime = cutie.ecchi();
+              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"></span>';
+              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"');
+              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
+            } else {
+              var infoTwo = '<span class="cs cs-ecchi"></span> 0';
+              if(cutieElement.find('.info-2').html() != infoTwo) {
+                cutieElement.find('.info-2').html(infoTwo);
+              }
             }
           }
         break;

@@ -90,18 +90,6 @@
           transform: scale(.3);
         }
 
-          .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-list-button .selected .cutie-card {
-            box-shadow: 0 0 16px #007fff, 0 0 28px #007fff, 0 0 69px #007fff;
-          }
-
-          .menu-script-cuties .menu-cuties-mode-gift .menu-cuties-list-button .selected .cutie-card {
-            box-shadow: 0 0 16px #ff007f, 0 0 28px #ff007f, 0 0 69px #ff007f;
-          }
-
-          .menu-script-cuties .menu-cuties-mode-delete .menu-cuties-list-button .selected .cutie-card {
-            box-shadow: 0 0 16px #ff7f00, 0 0 28px #ff7f00, 0 0 69px #ff7f00;
-          }
-
       .menu-script-cuties .menu-cuties-list-button .visible-button {
         position: absolute;
         top: 16px; left: 16px;

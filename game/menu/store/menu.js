@@ -32,7 +32,10 @@
   menu.tick = function(now) {
     // Disable button when it's on cooldown
     if(cc.util.rhanum(cc.ls.d, 'dailyShopCutie') > $.now()) {
-      $('#menu-store-buy-cutie .countdown').addClass('cv-countdown').attr('data-time', cc.util.rhanum(cc.ls.d, 'dailyShopCutie'));
+      $('#menu-store-buy-cutie .countdown').attr({
+        'data-time': cc.util.rhanum(cc.ls.d, 'dailyShopCutie'),
+        'data-direction': 'down'
+      }).addClass('cv-countdown');
       $('#menu-store-buy-cutie').prop('disabled', true);
     } else {
       $('#menu-store-buy-cutie').prop('disabled', false);

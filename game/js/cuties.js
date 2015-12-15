@@ -98,7 +98,7 @@
 
     var cutieOptions = {
       // Set cutieLootCooldown to an hour from now
-      cutieLootCooldown: LZString.compress(String($.now() + 3600000))
+      cutieLootCooldown: LZString.compress(String($.now() + 900000))
     }
 
     $.extend(cutieOptions, options);
@@ -435,6 +435,41 @@
     value: function() {
       return String(SchemeNumber.fn['+'](100, this.love()));
     },
+    // How much is gifting this cutie worth?
+    ecchiValue: function() {
+      // This is in seconds for less math later.
+      var baseValue = '60';
+      switch(this.rarity) {
+        case 1:
+          baseValue = '60';
+        break;
+
+        case 2:
+          baseValue = '60';
+        break;
+
+        case 3:
+          baseValue = '60';
+        break;
+
+        case 4:
+          baseValue = '60';
+        break;
+
+        case 5:
+          baseValue = '100';
+        break;
+      }
+
+      var value = SchemeNumber.fn['*'](baseValue, this.love());
+
+      // Round up to the nearest second
+      value = SchemeNumber.fn.ceiling(value);
+      value = SchemeNumber.fn['*'](value, '1000');
+
+      // Return it
+      return String(value);
+    },
 
     // How much excitement does this cutie require for love up?
     targetxp: function() {
@@ -544,6 +579,42 @@
     targetBpMet: function(value) {
       value = value || this.burstPoints();
       return SchemeNumber.fn['>='](value, this.targetbp());
+    },
+    // HP
+    hp: function(value) {
+      if($.type(value) === 'undefined') {
+        // Get - default to 0
+        return cc.util.rhanum(this.data, 'hp') || cc.util.rhanum(this.data, 'hp', '0');
+      } else {
+        // Set
+        return cc.util.rhanum(this.data, 'hp', String(value));
+      }
+    },
+    // Mod ecchi. This is slightly more complicated than other stats because it works with time
+    ecchi: function(value) {
+      if(value) {
+        value = SchemeNumber.fn.round(String(value));
+
+        var now = String($.now());
+        if(this.isEcchi(now)) {
+          this.hp(SchemeNumber.fn['+'](this.hp(), value));
+        } else {
+          this.hp(SchemeNumber.fn['+'](now, value));
+        }
+
+        // Ensure that this can't be in the past
+        if(SchemeNumber.fn['<'](this.hp(), now)) {
+          this.hp(now);
+        }
+      }
+      return this.hp();
+    },
+    // Is ecchi currently active?
+    isEcchi: function(time) {
+      time = String(time || $.now());
+
+      // Ecchi deactivates at the instant indicated in its variable
+      return SchemeNumber.fn['>'](this.hp(), time);
     },
     // Render cutie card. Uses function above.
     renderCutieCard: function(element, defaultClass) {

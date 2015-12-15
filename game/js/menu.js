@@ -213,7 +213,7 @@
   }
   cc.menu.state = function(newState) {
     if(newState) {
-      replacementState = $.extend({}, data.state, newState);
+      replacementState = $.extend(true, {}, data.state, newState);
       // Interesting note: stateChanged gets a normal object that's used to update Rhaboo, not a Rhaboo object.
       if(callOnMenu('stateChanged', [replacementState]) !== false) {
         // Look through state and remove anything that's null or undefined.
