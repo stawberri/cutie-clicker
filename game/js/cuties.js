@@ -484,14 +484,14 @@
       this.loveup();
 
       var lootArray = [
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney],
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney]
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()]
       ];
       if(this.cutieLootCooldown() > $.now()) {
         // Not eligible for cuties
       } else {
         // Eligible for cuties
-        lootArray.push(['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, 'm cutieLootCooldown']);
+        lootArray.push(['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, this.magicFind(), 'm cutieLootCooldown']);
       }
 
       cc.menu('loot', {
@@ -505,6 +505,15 @@
     // What happens when bursting fails?
     burstFailure: function() {
       return 300;
+    },
+
+    // How much magic find should this cutie give?
+    magicFind: function() {
+      if(this.isEcchi()) {
+        return String(SchemeNumber.fn.min(this.love(), '100000')); // 1000x
+      } else {
+        return 0;
+      }
     },
 
 

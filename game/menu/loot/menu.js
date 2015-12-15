@@ -59,10 +59,10 @@
     // Pick and perform loot
     cc.util.shuffle(loot);
     var looted = loot[index];
-    stateR.write('showcase', cc.loot(looted[1]));
+    stateR.write('showcase', cc.loot(looted[1], looted[2]));
 
     // Need special actions?
-    if($.inArray('m cutieLootCooldown', looted, 2) > 1) {
+    if($.inArray('m cutieLootCooldown', looted, 3) > 1) {
       // Set cooldown to 23 hours
       cc.cuties.m(function(cutie) {
         cutie.cutieLootCooldown($.now() + 82800000);

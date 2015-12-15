@@ -7,6 +7,8 @@
     var dice = Math.random();
     var modifier = 1 + (magicFind / 100);
 
+    console.log(modifier);
+
     dice = dice / modifier;
 
     var validLoot = $.map(lootTable, function(value, index) {
