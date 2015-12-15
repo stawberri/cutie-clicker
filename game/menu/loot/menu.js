@@ -53,6 +53,7 @@
 
     // Disable buttons and get index of button
     var buttons = $('.menu-loot-button');
+    $(this).addClass('chosen');
     buttons.prop('disabled', true);
     var index = buttons.index(this);
 
@@ -73,7 +74,7 @@
     var animateIndex = 0;
     var interval = setInterval(function() {
       if(animateIndex == loot.length) {
-        buttons.eq(index).html(loot[index][0]);
+        buttons.eq(index).find('.card-front').html(loot[index][0]);
 
         animateIndex++;
       } else if(animateIndex == loot.length + 1) {
@@ -85,7 +86,7 @@
         if(animateIndex == index) {
           if(animateIndex == loot.length - 1) {
             // Special case - player clicked on last card
-            buttons.eq(animateIndex).html(loot[animateIndex][0]);
+            buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
             animateIndex += 2;
             return;
           } else {
@@ -93,7 +94,7 @@
           }
         }
 
-        buttons.eq(animateIndex).html(loot[animateIndex][0]);
+        buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
         animateIndex++;
       }
     }, 500);

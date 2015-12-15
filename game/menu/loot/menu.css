@@ -1,15 +1,91 @@
+@keyframes menu-loot-background-pulsate {
+  0% {
+    opacity: .69;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.menu-script-loot #menu-loot-background {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: radial-gradient(circle farthest-corner at top center, rgba(255, 204, 0, .1) 0%, #fff 100%);
+  animation: 3s menu-loot-background-pulsate infinite alternate;
+}
+
 .menu-script-loot #menu-loot-wrap {
+  position: absolute;
+  top: 0; left: 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-around;
   height: 100%; width: 100%;
+  perspective: 1000px;
 }
 
   .menu-script-loot .menu-loot-button {
+    position: relative;
     width: 250px; height: 350px;
-    font-size: 160px;
+    background: #fff;
+    border: none;
+    outline: none;
+    transform-style: preserve-3d;
+    transition: transform .3s;
+    transform: rotateY(180deg);
   }
+
+    .menu-script-loot .menu-loot-button:not([disabled]) {
+      cursor: pointer;
+    }
+
+    .menu-script-loot .menu-loot-button:not([disabled]):active {
+      top: 1px; bottom: 1px;
+    }
+
+    .menu-script-loot .menu-loot-button:disabled {
+      transform: scale(.8);
+    }
+
+    .menu-script-loot .menu-loot-button.chosen:disabled {
+      transform: none;
+    }
+
+    .menu-script-loot .menu-loot-button .card-front {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #eee;
+      backface-visibility: hidden;
+      border: 1px rgba(0, 0, 0, .3) solid;
+      border-radius: 10px;
+      font-size: 160px;
+      color: rgba(0, 0, 0, 0.3);
+      line-height: 350px;
+    }
+
+      .menu-script-loot .menu-loot-button.chosen .card-front {
+        background: #fff;
+      }
+
+    .menu-script-loot .menu-loot-button .card-back {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff url(card-back.png);
+      transform: rotateY(180deg);
+      backface-visibility: hidden;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+      pointer-events: none;
+      border-radius: 10px;
+    }
+
+      .menu-script-loot .menu-loot-button:active .card-back {
+        box-shadow: 0 0 1px rgba(0, 0, 0, .3);
+      }
 
 @keyframes menu-script-loot-menu-top-pulsate {
   100% {
