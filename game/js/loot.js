@@ -1,8 +1,13 @@
 // This script deals with loot. It also contains the main loot tables and functions
 
 !function() {
-  cc.loot = function(lootTable) {
+  cc.loot = function(lootTable, magicFind) {
+    magicFind = magicFind || 0;
+
     var dice = Math.random();
+    var modifier = 1 + (magicFind / 100);
+
+    dice = dice / modifier;
 
     var validLoot = $.map(lootTable, function(value, index) {
       // Stop if it's not valid.
@@ -13,7 +18,10 @@
       // Find proper function for this line
       var func = loot[value[1]];
       if(func) {
-        return func.apply(loot, value.slice(2));
+        // Add on magicFind
+        var applyArgs = value.slice(2);
+        applyArgs.push(magicFind);
+        return func.apply(loot, applyArgs);
       } else {
         // "noop"
         return function() {return {}};
@@ -39,11 +47,11 @@
   ];
 
   var loot = {
-    table: function(table) {
-      return cc.loot(table);
+    table: function(table, magicFind) {
+      return cc.loot(table, magicFind);
     },
 
-    empathy: function(min, max, rarity) {
+    empathy: function(min, max, rarity, magicFind) {
       return function() {
         // Generate money
         var money = SchemeNumber.fn['-'](max, min);
