@@ -7,8 +7,6 @@
     var dice = Math.random();
     var modifier = 1 + (magicFind / 100);
 
-    console.log(modifier);
-
     dice = dice / modifier;
 
     var validLoot = $.map(lootTable, function(value, index) {
@@ -63,6 +61,9 @@
         money = SchemeNumber.fn['+'](min, money);
         money = String(money);
 
+        // Analytics
+        ga('send', 'event', 'loot', 'empathy', undefined, Number(money));
+
         // Award and report it
         cc.stats.empathy(money);
         return {
@@ -77,6 +78,9 @@
       return function() {
         // Give cutie
         var index = cc.cuties.add(type);
+
+        // Analytics
+        ga('send', 'event', 'loot', 'cutie', String.fromCharCode(Number('0x' + type)));
 
         // Report cutie
         return {

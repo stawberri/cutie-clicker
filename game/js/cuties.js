@@ -378,7 +378,7 @@
   cc.cuties.construct = function(data) {
     // Basic info
     this.cutie = data.cutie;
-    this.glyph = String.fromCharCode(parseInt('0x' + data.cutie)) + '\ufe0e';
+    this.glyph = String.fromCharCode(Number('0x' + data.cutie)) + '\ufe0e';
     this.htmlGlyph = '&#x' + data.cutie + ';&#xfe0e;';
   }
 
