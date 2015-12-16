@@ -131,7 +131,7 @@
         return;
       }
 
-      var requestTime = Math.floor(now / 60000);
+      var requestTime = cc.v + '-' + Math.floor(now / 60000);
       $.get('version.txt', {_: requestTime}, function(data) {
         if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
           // There's an update!
@@ -139,9 +139,9 @@
 
           var updateElement = $('#update-available');
           updateElement.click(doUpdate);
-          // 90 seconds.
-          updateElement.find('.message').attr('data-time', $.now() + 90000).addClass('cv-countdown');
-          setTimeout(doUpdate, 91000);
+          // 30 minutes.
+          updateElement.find('.message').attr('data-time', $.now() + 1800000).addClass('cv-countdown');
+          setTimeout(doUpdate, 1801000);
           updateElement.addClass('yes');
         }
       }, 'text');

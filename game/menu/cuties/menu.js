@@ -112,12 +112,14 @@
               cc.cuties.selection('menu', true);
 
               // Award empathy
+              var empathyGain = '0';
+
               var empathyDefer = [];
               $.each(toDelete, function(index, value) {
                 var defer = $.Deferred();
                 empathyDefer.push(defer);
                 cc.cuties(value, function(cutie) {
-                  cc.stats.empathy(cutie.value());
+                  empathyGain = SchemeNumber.fn['+'](empathyGain, cutie.value());
                   defer.resolve();
                 });
               });
@@ -126,6 +128,9 @@
                 $.each(toDelete, function(index, value) {
                   cc.cuties.remove(value);
                 });
+
+                // Award empathy
+                cc.stats.empathy(empathyGain);
 
                 // Refresh menu
                 cc.menu.restate();
@@ -311,13 +316,13 @@
                     return;
                   }
 
-                  // Grant ecchi
-                  gifteeCutie.ecchi(ecchiGain);
-
                   // Delete them
                   $.each(toDelete, function(index, value) {
                     cc.cuties.remove(value);
                   });
+
+                  // Grant ecchi
+                  gifteeCutie.ecchi(ecchiGain);
 
                   // Refresh menu
                   cc.menu.restate();
