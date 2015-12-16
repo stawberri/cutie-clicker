@@ -17,13 +17,10 @@
           $(this).prop('disabled', true);
 
           var index = cc.cuties.add('77');
-          cc.effect.lightBurst({
-            mouseEvent: ev
-          }).done(function() {
-            // Empty out menu to prevent flashing
-            element.empty();
-            cc.menu('showcase', {type: 'cutie', index: index});
-          });
+
+          // Empty out menu
+          element.empty();
+          cc.menu('showcase', {type: 'cutie', index: index});
         }
       });
     });

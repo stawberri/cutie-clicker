@@ -82,11 +82,6 @@
       } else if(animateIndex == loot.length + 1) {
         clearInterval(interval);
 
-        // Light burst effect
-        // cc.effect.lightBurst({mouseEvent: ev}).done(function() {
-        //   leave('showcase', stateR.showcase);
-        // });
-
         var exitEffectElement = $('#menu-loot-exit-effect');
         var target = thisElement.offset();
         var targetX = target.left + (thisElement.width() / 2);
