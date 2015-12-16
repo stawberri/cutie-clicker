@@ -445,38 +445,11 @@
     },
     // How much is gifting this cutie worth?
     ecchiValue: function() {
-      // This is in seconds for less math later.
-      var baseValue = '90';
-      switch(this.rarity) {
-        case 1:
-          baseValue = '90';
-        break;
-
-        case 2:
-          baseValue = '90';
-        break;
-
-        case 3:
-          baseValue = '90';
-        break;
-
-        case 4:
-          baseValue = '90';
-        break;
-
-        case 5:
-          baseValue = '90';
-        break;
-      }
-
-      var value = SchemeNumber.fn['*'](baseValue, this.love());
-
-      // Round up to the nearest second
-      value = SchemeNumber.fn.ceiling(value);
-      value = SchemeNumber.fn['*'](value, '1000');
+      var baseValue = '3600000';
+      var valueMult = SchemeNumber.fn.ceiling(this.love() + '/10');
 
       // Return it
-      return String(value);
+      return String(SchemeNumber.fn['*'](baseValue, valueMult));
     },
 
     // How much excitement does this cutie require for love up?
