@@ -100,7 +100,7 @@
       $('#cutie-bar-m').removeClass('fake-click');
 
       // But this doesn't click if player released mouse over cutie-bar-m, so fix that.
-      if($('#cutie-bar-m').is(ev.target)) {
+      if($('#cutie-bar-m').is(ev.target) || $('#cutie-bar-m').has(ev.target).length) {
         $('#cutie-bar-m').click();
       }
     });
