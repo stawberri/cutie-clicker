@@ -40,8 +40,8 @@
         cc.cuties.construct.call(cutie, dataObject);
         cutie.constructor.call(cutie, dataObject);
 
-        // These are only really good to be used as private variables. Too risky otherwise.
         cutie.data = dataObject;
+        cutie.super = cc.cuties.proto;
         cutie.base = cutieBase;
 
         callback(cutie);
@@ -408,10 +408,12 @@
       if(!cc.ls.d.burst) {
         // Normal mode
 
-        // Drain 10% of current xp per second
-        var xpDrain = String(SchemeNumber.fn.floor(SchemeNumber.fn['*'](cc.stats.excitement(), '1/10')));
-
-        return xpDrain;
+        // Drain 3% or 9% of current xp per second
+        if(this.isEcchi()) {
+          return String(SchemeNumber.fn.floor(SchemeNumber.fn['*'](cc.stats.excitement(), '3/100')));
+        } else {
+          return String(SchemeNumber.fn.floor(SchemeNumber.fn['*'](cc.stats.excitement(), '9/100')));
+        }
       } else {
         // Burst mode
 
@@ -445,7 +447,8 @@
     },
     // How much is gifting this cutie worth?
     ecchiValue: function() {
-      var baseValue = '3600000';
+      // 46 minutes
+      var baseValue = '2760000';
       var valueMult = SchemeNumber.fn.ceiling(this.love() + '/10');
 
       // Return it
@@ -500,7 +503,14 @@
 
     // Stuff that probably won't be overridden
 
-
+    // Call a function on this
+    $: function(func, args) {
+      return this.super[func].apply(this, args);
+    },
+    // Same thing, but for cutie definition object.
+    $$: function(func, args) {
+      return this.base[func].apply(this, args);
+    },
     // Get / set love - low level, doesn't trigger events
     lv: function(value) {
       if($.type(value) === 'undefined') {

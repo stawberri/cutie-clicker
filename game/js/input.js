@@ -13,16 +13,10 @@
     cc.stats.clicks.add(1);
 
     // Award excitement
-    cc.cuties.m(function(cutie) {
-      if(cutie.isEcchi()) {
-        cc.stats.excitement('2');
-      } else {
-        cc.stats.excitement('1');
-      }
+    cc.stats.excitement('1');
 
-      // Add event classes
-      $('html').addClass('ce-recent-click ce-mousedown');
-    });
+    // Add event classes
+    $('html').addClass('ce-recent-click ce-mousedown');
   });
 
   $('#cutie-clicker').on('mouseup touchend', function(ev) {
