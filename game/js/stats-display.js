@@ -44,6 +44,60 @@
       if($(this).html() != cost) {
         $(this).html(cost);
       }
+
+      // Check if we can afford this, while we're at it
+      if(SchemeNumber.fn['<'](cc.stats.empathy(), cost)) {
+        $(this).removeClass('cr-mp-cost-yes').addClass('cr-mp-cost-no');
+      } else {
+        $(this).removeClass('cr-mp-cost-no').addClass('cr-mp-cost-yes');
+      }
+    });
+  });
+
+  // Show cost for a cutie's skill
+  cc.loop.draw(function() {
+    $('.cv-mp-cost-skill').each(function(index, element) {
+      // Grab cutie skill cost
+      var index = $(element).attr('data-cutie');
+      if($.type(index) === 'undefined') {
+        return;
+      }
+
+      switch(index) {
+        case 'left':
+          index = cc.cuties.l();
+        break;
+
+        case 'right':
+          index = cc.cuties.r();
+        break;
+
+        default:
+          index = Number(index);
+        break;
+      }
+
+      if($.type(index) != 'number') {
+        if($(element).html()) {
+          $(element).html('');
+        }
+        $(element).removeClass('cr-mp-cost-yes cr-mp-cost-no');
+        return;
+      }
+
+      cc.cuties(index, function(cutie) {
+        var cost = cc.stats.mpcostcalc(cutie.skillCost());
+        if($(element).html() != cost) {
+          $(element).html(cost);
+        }
+
+        // Check if we can afford this, while we're at it
+        if(SchemeNumber.fn['<'](cc.stats.empathy(), cost)) {
+          $(element).removeClass('cr-mp-cost-yes').addClass('cr-mp-cost-no');
+        } else {
+          $(element).removeClass('cr-mp-cost-no').addClass('cr-mp-cost-yes');
+        }
+      });
     });
   });
 
@@ -122,6 +176,10 @@
       }
 
       var now = $.now();
+      dataTime = Number(dataTime);
+      if(isNaN(dataTime)) {
+        dataTime = now;
+      }
 
       // Check if we're locked to a direction
       var after = $(this).attr('data-after') || '';

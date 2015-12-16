@@ -2,21 +2,6 @@
 #layer-ui {
 }
 
-  /* Temp MP buttons */
-  #temp-mp-button-1 {
-    -webkit-appearance: none;
-    position: absolute;
-    bottom: 50px; left: 50px;
-    pointer-events: auto;
-  }
-
-  #temp-mp-button-2 {
-    -webkit-appearance: none;
-    position: absolute;
-    bottom: 50px; right: 50px;
-    pointer-events: auto;
-  }
-
   /* Giant button */
   #cutie-clicker {
     position: absolute;
@@ -210,3 +195,76 @@
     #cutie-bar-r {
       transform: translateX(85px) translateX(-50%);
     }
+
+    #cutie-bar .skill-tip {
+      position: absolute;
+      top: -2px; left: -3px;
+      width: 75px; height: 75px;
+      background: #0d98ba;
+      border-radius: 37.5px;
+      opacity: 0;
+      transform: rotate(30deg) scale(.8);
+      transition: transform .3s, opacity .3s;
+    }
+
+      #cutie-bar #cutie-bar-l .skill-tip {
+        transform: rotate(-30deg) scale(.8);
+      }
+
+      #cutie-bar .primed .skill-tip,
+      #cutie-bar #cutie-bar-l.primed .skill-tip {
+        opacity: 1;
+        transform: none;
+      }
+
+      #cutie-bar .skill-tip .cost-bar {
+        position: absolute;
+        left: 37px; bottom: 0;
+        background: #0d98ba;
+        height: 30px;
+        padding: 0 28px 0 45px;
+        font-size: 2rem;
+        line-height: 30px;
+        border-radius: 0 36px 0 0 / 0 15px 0 0;
+        color: #fff;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+
+        #cutie-bar .skill-tip .cost-bar .amount.cr-mp-cost-no {
+          color: #ffb7b3;
+          transition: color .3s;
+        }
+
+          #cutie-bar button:active .skill-tip .cost-bar .amount.cr-mp-cost-no {
+            color: #ff5349;
+            transition: none;
+          }
+
+        #cutie-bar .skill-tip .cost-bar .amount.cr-mp-cost-yes::before,
+        #cutie-bar .skill-tip .cost-bar .amount.cr-mp-cost-no::before {
+          content: '- ';
+        }
+
+        #cutie-bar .skill-tip .cost-bar .symbol {
+          position: absolute;
+          top: -24px; right: -6px;
+          font-size: 4rem;
+          transition: top .3s;
+        }
+
+        #cutie-bar #cutie-bar-l .skill-tip .cost-bar {
+          left: auto; right: 37px;
+          padding: 0 45px 0 28px;
+          border-radius: 36px 0 0 0 / 15px 0 0 0;
+        }
+
+          #cutie-bar #cutie-bar-l .skill-tip .cost-bar .symbol {
+            right: auto; left: -6px;
+          }
+
+          #cutie-bar button:active .skill-tip .cost-bar .amount.cr-mp-cost-yes+.symbol {
+            top: -30px;
+            transition: none;
+          }
+

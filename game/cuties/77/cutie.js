@@ -7,6 +7,11 @@
   cc.cuties[cutie].prototype = {
     rarity: 0,
     showcaseRight: false,
-    cutieQuote: '"uu"'
+    cutieQuote: '"uu"',
+    skillCost: function() {
+      return SchemeNumber.fn['*']('10', this.love());
+    }, skillUse: function() {
+      cc.stats.excitement(this.love());
+    }
   };
 }();
