@@ -14,7 +14,7 @@
 
     // Award excitement
     cc.cuties.m(function(cutie) {
-      cc.stats.excitement('2');
+      cc.stats.excitement('1');
 
       // Add event classes
       $('html').addClass('ce-recent-click ce-mousedown');
