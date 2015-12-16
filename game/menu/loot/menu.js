@@ -53,9 +53,10 @@
 
     // Disable buttons and get index of button
     var buttons = $('.menu-loot-button');
-    $(this).addClass('chosen');
+    var thisElement = $(this);
+    thisElement.addClass('chosen');
     buttons.prop('disabled', true);
-    var index = buttons.index(this);
+    var index = buttons.index(thisElement);
 
     // Pick and perform loot
     cc.util.shuffle(loot);
@@ -87,11 +88,14 @@
         // });
 
         var exitEffectElement = $('#menu-loot-exit-effect');
-        var movementX = -(ev.pageX - $(window).scrollLeft() - ($(window).width() / 2));
-        var movementY = -(ev.pageY - $(window).scrollTop() - ($(window).height() / 2));
+        var target = thisElement.offset();
+        var targetX = target.left + (thisElement.width() / 2);
+        var targetY = target.top + (thisElement.height() / 2);
+        var movementX = -(targetX - $(window).scrollLeft() - ($(window).width() / 2));
+        var movementY = -(targetY - $(window).scrollTop() - ($(window).height() / 2));
         var offset = exitEffectElement.offset();
-        var offsetX = ev.pageX - offset.left;
-        var offsetY = ev.pageY - offset.top;
+        var offsetX = targetX - offset.left;
+        var offsetY = targetY - offset.top;
         exitEffectElement.css({
           'opacity': 0,
           'transform-origin': offsetX + 'px ' + offsetY + 'px',
