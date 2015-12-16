@@ -75,6 +75,7 @@
     var interval = setInterval(function() {
       if(animateIndex == loot.length) {
         buttons.eq(index).find('.card-front').html(loot[index][0]);
+        buttons.eq(index).addClass('revealed');
 
         animateIndex++;
       } else if(animateIndex == loot.length + 1) {
@@ -87,6 +88,7 @@
           if(animateIndex == loot.length - 1) {
             // Special case - player clicked on last card
             buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
+            buttons.eq(animateIndex).addClass('revealed');
             animateIndex += 2;
             return;
           } else {
@@ -95,6 +97,7 @@
         }
 
         buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
+        buttons.eq(animateIndex).addClass('revealed');
         animateIndex++;
       }
     }, 500);
