@@ -88,6 +88,10 @@
         box-shadow: 0 0 1px rgba(0, 0, 0, .3);
       }
 
+      .menu-script-loot .menu-loot-button:disabled .card-back {
+        box-shadow: none;
+      }
+
 @keyframes menu-script-loot-menu-top-pulsate {
   100% {
     color: #aaa;

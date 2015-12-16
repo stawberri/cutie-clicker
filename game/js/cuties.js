@@ -99,8 +99,8 @@
     var newIndex = cc.cuties.list().length;
 
     var cutieOptions = {
-      // Set cutieLootCooldown to five seconds per existing cutie (plus one cutie, to be exact)
-      cutieLootCooldown: LZString.compress(String($.now() + (5000 * newIndex)))
+      // Set cutieLootCooldown to fifteen seconds per existing cutie (plus one cutie, to be exact)
+      cutieLootCooldown: LZString.compress(String($.now() + (15000 * newIndex)))
     }
 
     $.extend(cutieOptions, options);
