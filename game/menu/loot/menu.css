@@ -8,6 +8,16 @@
   }
 }
 
+.menu-script-loot #menu-loot-outer-wrap {
+  height: 100%; width: 100%;
+  overflow: hidden;
+}
+
+.menu-script-loot #menu-loot-exit-effect {
+  height: 100%; width: 100%;
+  transition: transform .5s, opacity .3s;
+}
+
 .menu-script-loot #menu-loot-background {
   position: absolute;
   top: 0; left: 0;

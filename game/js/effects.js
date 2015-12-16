@@ -178,8 +178,8 @@
 
       setTimeout(function() {
         element.remove();
-      }, 690);
-    }, 690);
+      }, 300);
+    }, 300);
 
     return defer;
   }

@@ -22,11 +22,11 @@
 
   #layer-effects .light-burst.go {
     background: #fff;
-    transition: background .69s;
+    transition: background .3s;
   }
   #layer-effects .light-burst.away {
     opacity: 0;
-    transition: opacity .69s;
+    transition: opacity .3s;
   }
 
   #layer-effects .light-burst .glow {
@@ -40,5 +40,5 @@
   }
     #layer-effects .light-burst.go .glow {
       width: 100%;
-      transition: width .69s;
+      transition: width .3s;
     }

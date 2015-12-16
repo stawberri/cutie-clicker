@@ -80,9 +80,27 @@
         animateIndex++;
       } else if(animateIndex == loot.length + 1) {
         clearInterval(interval);
-        cc.effect.lightBurst({mouseEvent: ev}).done(function() {
-          leave('showcase', stateR.showcase);
+
+        // Light burst effect
+        // cc.effect.lightBurst({mouseEvent: ev}).done(function() {
+        //   leave('showcase', stateR.showcase);
+        // });
+
+        var exitEffectElement = $('#menu-loot-exit-effect');
+        var movementX = -(ev.pageX - $(window).scrollLeft() - ($(window).width() / 2));
+        var movementY = -(ev.pageY - $(window).scrollTop() - ($(window).height() / 2));
+        var offset = exitEffectElement.offset();
+        var offsetX = ev.pageX - offset.left;
+        var offsetY = ev.pageY - offset.top;
+        exitEffectElement.css({
+          'opacity': 0,
+          'transform-origin': offsetX + 'px ' + offsetY + 'px',
+          'transform': 'translate(' + movementX + 'px, ' + movementY + 'px) scale(28)'
         });
+        setTimeout(function() {
+          leave('showcase', stateR.showcase);
+        }, 360);
+
       } else {
         if(animateIndex == index) {
           if(animateIndex == loot.length - 1) {
