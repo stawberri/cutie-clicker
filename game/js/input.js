@@ -64,6 +64,7 @@
         }
       } else {
         $('html').on('mousedown touchstart', function(ev2) {
+          console.log(ev2.target);
           if(!buttonElement.is(ev2.target)) {
             $('html').off(ev2);
             buttonElement.removeClass('primed');

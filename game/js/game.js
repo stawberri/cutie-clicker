@@ -141,7 +141,7 @@
           updateElement.click(doUpdate);
           // 90 seconds.
           updateElement.find('.message').attr('data-time', $.now() + 90000).addClass('cv-countdown');
-          setTimeout(doUpdate, 93000);
+          setTimeout(doUpdate, 91000);
           updateElement.addClass('yes');
         }
       }, 'text');

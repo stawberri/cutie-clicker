@@ -289,32 +289,39 @@
               // Clear selection, but keep giftee
               cc.cuties.selection('menu', [giftee]);
 
-              // Enter giftee
-              var leader = $.Deferred();
-              var ecchiDefer = [leader];
+              var ecchiDefer = [], ecchiGain, empathyCost;
+              ecchiGain = '0';
+              empathyCost = '0';
 
-              cc.cuties(giftee, function(gifteeCutie) {
-                // Award ecchi
-                $.each(toDelete, function(index, value) {
-                  var defer = $.Deferred();
-                  ecchiDefer.push(defer);
-                  cc.cuties(value, function(cutie) {
-                    gifteeCutie.ecchi(cutie.ecchiValue());
-                    defer.resolve();
-                  });
+              // Award ecchi
+              $.each(toDelete, function(index, value) {
+                var defer = $.Deferred();
+                ecchiDefer.push(defer);
+                cc.cuties(value, function(cutie) {
+                  ecchiGain = SchemeNumber.fn['+'](ecchiGain, cutie.ecchiValue());
+                  defer.resolve();
                 });
-
-                leader.resolve();
-              })
+              });
 
               $.when.apply($, ecchiDefer).done(function() {
-                // Delete them
-                $.each(toDelete, function(index, value) {
-                  cc.cuties.remove(value);
-                });
+                // Award ecchi
+                cc.cuties(giftee, function(gifteeCutie) {
+                  if(gifteeCutie.love() == 0) {
+                    // This shouldn't happen, so just stop.
+                    return;
+                  }
 
-                // Refresh menu
-                cc.menu.restate();
+                  // Grant ecchi
+                  gifteeCutie.ecchi(ecchiGain);
+
+                  // Delete them
+                  $.each(toDelete, function(index, value) {
+                    cc.cuties.remove(value);
+                  });
+
+                  // Refresh menu
+                  cc.menu.restate();
+                });
               });
             });
           break;
@@ -587,6 +594,12 @@
               alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', '#ff7f00', '#fff');
             }
           } else {
+            // Can't select lv 0 cuties
+            if(cutie.love() == 0) {
+              alertifyButton(cutieElement, '<span class="fa fa-heart-o"></span>', '#000', '#ffcc00');
+              return;
+            }
+
             cc.cuties.selection('menu').write(0, cutie.index());
             alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', '#ff007f', '#fff');
 
