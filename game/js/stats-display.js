@@ -124,17 +124,18 @@
       var now = $.now();
 
       // Check if we're locked to a direction
+      var after = $(this).attr('data-after') || '';
       switch($(this).attr('data-direction')) {
         case 'up':
           if(dataTime > now) {
-            $(this).removeClass('.cv-countdown');
+            $(this).html(after).removeClass('.cv-countdown');
             return;
           }
         break;
 
         case 'down':
           if(dataTime < now) {
-            $(this).removeClass('.cv-countdown');
+            $(this).html(after).removeClass('.cv-countdown');
             return;
           }
         break;

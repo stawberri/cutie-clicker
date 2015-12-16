@@ -125,17 +125,30 @@
 
     // Check for updates
     // Don't do this locally.
-    cc.f||task(function(now) {
+    var updating;
+    task(function(now) {
       var requestTime = Math.floor(now / 60000);
       $.get('version.txt', {_: requestTime}, function(data) {
         if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
           // There's an update!
-          $('#update-available').click(function() {
-            location.reload();
-          }).addClass('yes');
+          if(updating) {
+            return;
+          } else {
+            updating = true;
+          }
+
+          var updateElement = $('#update-available');
+          updateElement.click(doUpdate);
+          // 90 seconds.
+          updateElement.find('.message').attr('data-time', $.now() + 90000).addClass('cv-countdown');
+          setTimeout(doUpdate, 93000);
+          updateElement.addClass('yes');
         }
       }, 'text');
     });
+    function doUpdate() {
+      location.reload();
+    }
 
     // FastClick
     FastClick.attach(document.body);

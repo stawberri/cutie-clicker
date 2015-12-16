@@ -110,6 +110,7 @@ body>.layer,
   }
 
   #update-available.yes button {
+    position: relative;
     font-size: 3rem;
     background: #000;
     color: #fff;
@@ -119,3 +120,12 @@ body>.layer,
     padding: 5px 25px;
     pointer-events: auto;
   }
+
+    #update-available.yes button:active {
+      right: 10px;
+      padding-right: 35px;
+    }
+
+    #update-available .message {
+      padding-left: 20px;
+    }

@@ -13,7 +13,7 @@
       default: // there isn't a version
         // Move people to https://cc.aideen.pw/ if they aren't already there.
         // This is here and not in init, because this ensures players won't lose data.
-        if(location.protocol + location.host != 'https:cc.aideen.pw' && !cc.f) {
+        if(location.protocol + location.host != 'https:cc.aideen.pw' && location.protocol != 'file:') {
           // Attempt to record that redirection is needed. It's okay if this fails--players will just have to keep coming back here
           try {window.localStorage.setItem('cc-redirecthttps', 1);} catch(e) {}
           location.replace('https://cc.aideen.pw' + location.pathname + location.search + location.hash);
