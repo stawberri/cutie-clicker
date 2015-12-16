@@ -15,7 +15,7 @@
 
 .menu-script-loot #menu-loot-exit-effect {
   height: 100%; width: 100%;
-  transition: transform .5s, opacity .3s;
+  transition: transform .3s ease-in, opacity .2s .1s;
 }
 
 .menu-script-loot #menu-loot-background {

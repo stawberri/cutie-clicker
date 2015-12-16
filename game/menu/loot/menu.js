@@ -95,11 +95,11 @@
         exitEffectElement.css({
           'opacity': 0,
           'transform-origin': offsetX + 'px ' + offsetY + 'px',
-          'transform': 'translate(' + movementX + 'px, ' + movementY + 'px) scale(28)'
+          'transform': 'translate(' + movementX + 'px, ' + movementY + 'px) scale(16)'
         });
         setTimeout(function() {
           leave('showcase', stateR.showcase);
-        }, 360);
+        }, 350);
 
       } else {
         if(animateIndex == index) {
