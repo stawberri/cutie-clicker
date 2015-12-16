@@ -422,6 +422,13 @@
       }
     },
 
+    // Skill cost and use
+    skillCost: function() {
+      return 0;
+    },
+    skillUse: function() {
+    },
+
 
     // These handler functions are run if this cutie is equipped at all
 

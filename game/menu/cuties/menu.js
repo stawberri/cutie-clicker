@@ -683,32 +683,18 @@
           }
 
           if(stateR.substate.equipping > 0) {
-            if(cutie.isEcchi()) {
-              var ecchiTime = cutie.ecchi();
-              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"></span>';
-              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"');
-              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
-            } else {
-              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="fa fa-times-circle"></span>';
-              if(cutieElement.find('.info-2').html() != infoTwo) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
+            var ecchiTime = cutie.ecchi();
+            var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '" data-after=\'<span class="fa fa-times-circle"></span>\'></span>';
+            var infoTwoRegex = new RegExp('data-time="' + ecchiTime + '"');
+            if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+              cutieElement.find('.info-2').html(infoTwo);
             }
           } else {
-            if(cutie.cutieLootCooldown() > now) {
-              var cooldown = String(cutie.cutieLootCooldown());
-              var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '"></span>';
-              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + cooldown + '"');
-              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
-            } else {
-              var infoTwo = '<span class="fa fa-user-plus"></span> <span class="fa fa-check-circle-o"></span>';
-              if(cutieElement.find('.info-2').html() != infoTwo) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
+            var cooldown = String(cutie.cutieLootCooldown());
+            var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '" data-after=\'<span class="fa fa-check-circle-o"></span>\'></span>';
+            var infoTwoRegex = new RegExp('data-time="' + cooldown + '"');
+            if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+              cutieElement.find('.info-2').html(infoTwo);
             }
           }
 
@@ -730,14 +716,11 @@
 
               // While we're here, update cutie info in pane
               var ecchiValue = $('#menu-cuties-pane-giftee-ecchi .countdown')
-              if(cutie.isEcchi()) {
-                ecchiValue.attr({
-                  'data-time': cutie.ecchi(),
-                  'data-direction': 'down'
-                }).addClass('cv-countdown');
-              } else {
-                ecchiValue.removeClass('cv-countdown').html('0');
-              }
+              ecchiValue.attr({
+                'data-time': cutie.ecchi(),
+                'data-direction': 'down',
+                'data-after': '0'
+              }).addClass('cv-countdown');
             } else {
               var infoTwo = '<span class="cs cs-ecchi"></span> +' + cc.util.timeString(cutie.ecchiValue());
             }
@@ -750,18 +733,11 @@
               cutieElement.find('.info-1').html(infoOne);
             }
 
-            if(cutie.isEcchi()) {
-              var ecchiTime = cutie.ecchi();
-              var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"></span>';
-              var infoTwoRegex = new RegExp('class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '"');
-              if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
-            } else {
-              var infoTwo = '<span class="cs cs-ecchi"></span> 0';
-              if(cutieElement.find('.info-2').html() != infoTwo) {
-                cutieElement.find('.info-2').html(infoTwo);
-              }
+            var ecchiTime = cutie.ecchi();
+            var infoTwo = '<span class="cs cs-ecchi"></span> <span class="cv-countdown" data-direction="down" data-time="' + ecchiTime + '" data-after=\'0\'></span>';
+            var infoTwoRegex = new RegExp('data-time="' + ecchiTime + '"');
+            if(cutieElement.find('.info-2').html().search(infoTwoRegex) < 0) {
+              cutieElement.find('.info-2').html(infoTwo);
             }
           }
         break;
