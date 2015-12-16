@@ -127,15 +127,15 @@
     // Don't do this locally.
     var updating;
     task(function(now) {
+      if(updating) {
+        return;
+      }
+
       var requestTime = Math.floor(now / 60000);
       $.get('version.txt', {_: requestTime}, function(data) {
         if($.type(cc.v) === 'string' && $.trim(data) !== cc.v) {
           // There's an update!
-          if(updating) {
-            return;
-          } else {
-            updating = true;
-          }
+          updating = true;
 
           var updateElement = $('#update-available');
           updateElement.click(doUpdate);
