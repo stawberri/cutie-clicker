@@ -96,14 +96,14 @@
       return false;
     }
 
+    var newIndex = cc.cuties.list().length;
+
     var cutieOptions = {
-      // Set cutieLootCooldown to an hour from now
-      // cutieLootCooldown: LZString.compress(String($.now() + 900000))
+      // Set cutieLootCooldown to five seconds per existing cutie (plus one cutie, to be exact)
+      cutieLootCooldown: LZString.compress(String($.now() + (5000 * newIndex)))
     }
 
     $.extend(cutieOptions, options);
-
-    var newIndex = cc.cuties.list().length;
 
     cc.cuties.list().write(newIndex, cutieOptions);
     cc.cuties.listTime = $.now();
