@@ -113,4 +113,16 @@
       }, 300);
     }
   }
+
+  menu.draw = function(time, element, state) {
+    switch(state.type) {
+      case 'cutie':
+        $('#menu-showcase-cutie-help-popup').css('left', function() {
+          var cutiesButtonElement = $('#menu-top-cuties');
+
+          return (cutiesButtonElement.offset().left - $(window).scrollLeft()) + (cutiesButtonElement.width() / 2) - 40 - ($(this).width() / 2);
+        });
+      break;
+    }
+  }
 }();

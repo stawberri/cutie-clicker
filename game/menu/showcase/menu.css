@@ -12,6 +12,7 @@
 
   .menu-script-showcase #menu-showcase-wrap>div {
     position: absolute;
+    pointer-events: none;
   }
 
   .menu-script-showcase #menu-showcase-layer-0,
@@ -19,6 +20,7 @@
     position: absolute;
     left: -0.5%; top: -0.5%;
     width: 101%; height: 101%;
+    pointer-events: none;
   }
 
   .menu-script-showcase #menu-showcase-layer-1,
@@ -49,9 +51,10 @@
     width: 116%; height: 116%;
   }
 
-  .menu-script-showcase #menu-showcase-main {
+  .menu-script-showcase #menu-showcase-wrap>#menu-showcase-main {
     top: 40px; left: 40px;
     width: calc(100% - 80px); height: calc(100% - 80px);
+    pointer-events: auto;
   }
 
     .menu-script-showcase #menu-showcase-main>div {

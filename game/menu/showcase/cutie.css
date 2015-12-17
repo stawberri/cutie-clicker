@@ -95,3 +95,30 @@
       max-height: 69%;
       overflow: visible;
     }
+
+  .menu-script-showcase #menu-showcase-cutie-help-popup {
+    position: absolute;
+    display: flex;
+    color: #fff;
+    font-size: 5rem;
+    flex-flow: column nowrap;
+    align-items: center;
+    top: -25px;
+    text-decoration: none;
+    text-shadow: 0 0 3px #007fff, 0 0 3px #007fff, 0 0 3px #007fff, 0 0 9px #fff, 0 0 16px #fff;
+  }
+
+    @keyframes menu-script-showcase-cutie-help-popup-angle-up {
+      100% {
+        top: -15px;
+      }
+    }
+    .menu-script-showcase #menu-showcase-cutie-help-popup>.fa-angle-up {
+      position: relative;
+      top: 5px;
+      animation: .5s menu-script-showcase-cutie-help-popup-angle-up infinite alternate;
+    }
+
+    .menu-script-showcase #menu-showcase-cutie-help-popup:active>.fa-street-view {
+      transform: scale(.85);
+    }
