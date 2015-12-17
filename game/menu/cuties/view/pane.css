@@ -17,9 +17,12 @@
     }
 
     .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main .cutie-count-info .right {
+      display: flex;
       flex: 0 1 auto;
-      font-size: .5em;
+      font-size: .69em;
       text-align: right;
+      flex-flow: column nowrap;
+      justify-content: flex-end;
     }
 
   .menu-script-cuties .menu-cuties-mode-view #menu-cuties-pane-main a {
