@@ -3,27 +3,58 @@
     background: radial-gradient(circle farthest-corner at top left, #f2e5ff 0%, #d9b3ff 100%);
   }
   .menu-script-showcase .rarity-0 #menu-showcase-layer--1 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #d9b3ff 30%, #bf80ff 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 30%, #d9b3ff 30%, #bf80ff 100%);
   }
   .menu-script-showcase .rarity-0 #menu-showcase-layer--2 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #bf80ff 50%, #a54dff 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 50%, #bf80ff 50%, #a54dff 100%);
   }
   .menu-script-showcase .rarity-0 #menu-showcase-layer--3 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #a54dff 70%, #8c1aff 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 70%, #a54dff 70%, #8c1aff 100%);
   }
 
 /* rarity 1 */
   .menu-script-showcase .rarity-1 #menu-showcase-layer--0 {
-    background: radial-gradient(circle farthest-corner at top left, #e5f2ff 0%, #b3d9ff 100%);
+    background: linear-gradient(#e5f2ff 0%, #b3d9ff 100%);
+  }
+  @keyframes menu-script-showcase-rarity-1-bottom-layer-background-scroll {
+    100% {
+      background-position: 1000px 0, 1000px 0;
+    }
   }
   .menu-script-showcase .rarity-1 #menu-showcase-layer--1 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #b3d9ff 30%, #80bfff 100%);
+    background: linear-gradient(to top right, transparent 25%, #80bfff 25%, #80bfff 50%, transparent 50%, transparent 75%, #80bfff 75%),
+                linear-gradient(to bottom right, transparent 25%, #99ccff 25%, #99ccff 50%, transparent 50%, transparent 75%, #99ccff 75%);
+    background-size: 1000px 1000px, 1000px 1000px;
+    animation: 40s menu-script-showcase-rarity-1-bottom-layer-background-scroll linear infinite;
+  }
+  @keyframes menu-script-showcase-rarity-1-middle-layer-background-scroll {
+    100% {
+      background-position: -500px 0;
+    }
   }
   .menu-script-showcase .rarity-1 #menu-showcase-layer--2 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #80bfff 50%, #4da5ff 100%);
+    opacity: .42;
+    background: linear-gradient(to bottom right, transparent 30%, #66b2ff 30%, #66b2ff 50%, transparent 50%, transparent 80%, #66b2ff 80%);
+    background-size: 500px 500px;
+    animation: 30s menu-script-showcase-rarity-1-middle-layer-background-scroll linear infinite;
   }
   .menu-script-showcase .rarity-1 #menu-showcase-layer--3 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #4da5ff 70%, #1a8cff 100%);
+    opacity: .69;
+    background: linear-gradient(to top right, transparent 30%, #66b2ff 30%, #66b2ff 50%, transparent 50%, transparent 80%, #66b2ff 80%);
+    background-size: 500px 500px;
+    animation: 30s menu-script-showcase-rarity-1-middle-layer-background-scroll linear infinite;
+  }
+  @keyframes menu-script-showcase-rarity-1-top-layer-background-scroll {
+    100% {
+      background-position: 250px 0, -250px 0;
+    }
+  }
+  .menu-script-showcase .rarity-1 #menu-showcase-layer--4 {
+    opacity: .1;
+    background: linear-gradient(to top right, transparent 49%, #fff 49%, #fff 50%, transparent 50%, transparent 99%, #fff 99%),
+                linear-gradient(to bottom right, transparent 49%, #fff 49%, #fff 50%, transparent 50%, transparent 99%, #fff 99%);
+    background-size: 250px 250px, 250px 250px;
+    animation: 20s menu-script-showcase-rarity-1-top-layer-background-scroll linear infinite;
   }
 
 /* rarity 2 */
@@ -31,11 +62,11 @@
     background: radial-gradient(circle farthest-corner at top left, #e5fff2 0%, #b3ffd9 100%);
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--1 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 29.99%, #b3ffd9 30%, #80ffbf 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 30%, #b3ffd9 30%, #80ffbf 100%);
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--2 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 49.99%, #80ffbf 50%, #4dffa5 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 50%, #80ffbf 50%, #4dffa5 100%);
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--3 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 69.99%, #4dffa5 70%, #1aff8c 100%);
+    background: radial-gradient(circle farthest-corner at top left, transparent 70%, #4dffa5 70%, #1aff8c 100%);
   }
