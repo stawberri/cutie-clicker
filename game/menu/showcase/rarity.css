@@ -71,10 +71,10 @@
     transform: rotate(30deg);
     top: -200%; left: -200%;
     height: 500%; width: 500%;
-    background: radial-gradient(circle 25px at center center, #66ffb2 100%, transparent 100%) calc(50% + 200px) 50%,
-                radial-gradient(circle 35px at center center, #ccffe5 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px),
-                radial-gradient(circle 30px at center center, #00cc66 100%, transparent 100%) calc(50% + 200px) 50%,
-                radial-gradient(circle 42px at center center, #00cc66 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px),
+    background: radial-gradient(circle 25px at center center, #66ffb2 99%, transparent 99%) calc(50% + 200px) 50%,
+                radial-gradient(circle 35px at center center, #ccffe5 99%, transparent 99%) calc(50% + 200px) calc(50% + 200px),
+                radial-gradient(circle 30px at center center, #00cc66 99%, transparent 99%) calc(50% + 200px) 50%,
+                radial-gradient(circle 42px at center center, #00cc66 99%, transparent 99%) calc(50% + 200px) calc(50% + 200px),
                 linear-gradient(90deg, #00cc66 6px, transparent 6px) calc(50% - 3px) 0;
     background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px;
     animation: 1s menu-script-showcase-rarity-2-menu-showcase-layer--1 infinite;
@@ -89,10 +89,10 @@
     transform: rotate(30deg);
     top: -200%; left: -200%;
     height: 500%; width: 500%;
-    background: radial-gradient(circle 20px at center center, #66ffb2 100%, transparent 100%) 50% 50%,
-                radial-gradient(circle 30px at center center, #ccffe5 100%, transparent 100%) 50% calc(50% + 200px),
-                radial-gradient(circle 23px at center center, #00994c 100%, transparent 100%) 50% 50%,
-                radial-gradient(circle 35px at center center, #00994c 100%, transparent 100%) 50% calc(50% + 200px),
+    background: radial-gradient(circle 20px at center center, #66ffb2 99%, transparent 99%) 50% 50%,
+                radial-gradient(circle 30px at center center, #ccffe5 99%, transparent 99%) 50% calc(50% + 200px),
+                radial-gradient(circle 23px at center center, #00994c 99%, transparent 99%) 50% 50%,
+                radial-gradient(circle 35px at center center, #00994c 99%, transparent 99%) 50% calc(50% + 200px),
                 linear-gradient(90deg, #00994c 4px, transparent 4px) calc(50% + 198px) 0;
     background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
     animation: .8s menu-script-showcase-rarity-2-menu-showcase-layer--2 infinite;
@@ -118,10 +118,10 @@
     transform: rotate(-30deg);
     top: -200%; left: -200%;
     height: 500%; width: 500%;
-    background: radial-gradient(circle 30px at center center, #e5fff2 100%, transparent 100%) 50% 50%,
-                radial-gradient(circle 40px at center center, #e5fff2 100%, transparent 100%) 50% calc(50% + 200px),
-                radial-gradient(circle 33px at center center, #fff 100%, transparent 100%) 50% 50%,
-                radial-gradient(circle 45px at center center, #fff 100%, transparent 100%) 50% calc(50% + 200px);
+    background: radial-gradient(circle 30px at center center, #e5fff2 99%, transparent 99%) 50% 50%,
+                radial-gradient(circle 40px at center center, #e5fff2 99%, transparent 99%) 50% calc(50% + 200px),
+                radial-gradient(circle 33px at center center, #fff 99%, transparent 99%) 50% 50%,
+                radial-gradient(circle 45px at center center, #fff 99%, transparent 99%) 50% calc(50% + 200px);
     background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px;
     animation: 4s menu-script-showcase-rarity-2-menu-showcase-layer-3 linear infinite;
   }
@@ -136,10 +136,10 @@
     transform: rotate(-30deg);
     top: -200%; left: -200%;
     height: 500%; width: 500%;
-    background: radial-gradient(circle 35px at center center, #e5fff2 100%, transparent 100%) calc(50% + 200px) 50%,
-                radial-gradient(circle 45px at center center, #e5fff2 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px),
-                radial-gradient(circle 40px at center center, #fff 100%, transparent 100%) calc(50% + 200px) 50%,
-                radial-gradient(circle 52px at center center, #fff 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px);
+    background: radial-gradient(circle 35px at center center, #e5fff2 99%, transparent 99%) calc(50% + 200px) 50%,
+                radial-gradient(circle 45px at center center, #e5fff2 99%, transparent 99%) calc(50% + 200px) calc(50% + 200px),
+                radial-gradient(circle 40px at center center, #fff 99%, transparent 99%) calc(50% + 200px) 50%,
+                radial-gradient(circle 52px at center center, #fff 99%, transparent 99%) calc(50% + 200px) calc(50% + 200px);
     background-size: 400px 400px, 400px 400px, 400px 400px;
     animation: 5s menu-script-showcase-rarity-2-menu-showcase-layer-2 linear infinite;
   }
