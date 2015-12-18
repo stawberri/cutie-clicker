@@ -15,8 +15,8 @@
 
       return String(cost);
     }, skillUse: function() {
-      // Max level of 100
-      var effectiveness = SchemeNumber.fn.min('100', this.love());
+      // Max level of 50
+      var effectiveness = SchemeNumber.fn.min('50', this.love());
       effectiveness = String(effectiveness) + '/100';
 
       cc.cuties.m(function(cutie) {
