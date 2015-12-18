@@ -435,9 +435,9 @@
     // What loot does this cutie give?
     loot: function() {
       return [
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
-        ['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, this.magicFind(), 'cutieLootCooldown']
+        ['<span class="fa fa-money"></span>', cc.loot.violetMoney, this.magicFind()],
+        ['<span class="fa fa-money"></span>', cc.loot.violetMoney, this.magicFind()],
+        ['<span class="fa fa-user-plus"></span>', cc.loot.violetCutie, this.magicFind(), 'cutieLootCooldown']
       ];
     },
 

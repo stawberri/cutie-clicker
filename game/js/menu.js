@@ -133,7 +133,7 @@
     if($.type(scriptname) === 'undefined' && $.type(data.script) !== 'undefined') {
       // Keep current script
       scriptname = data.script;
-      state = data.state;
+      state = data.state || {};
       var noscroll = true;
     } else if($.type(scriptname) === 'undefined') {
       // No script name defined, so set it to default

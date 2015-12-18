@@ -35,13 +35,13 @@
     }
   }
 
-  cc.loot.genericMoney = [
-    [1, 'empathy', 1, 100, 0],
-    [.3, 'empathy', 200, 600, 1],
-    [.1, 'empathy', 1000, 2000, 2]
+  cc.loot.violetMoney = [
+    [1, 'empathy', 100, 500, 0],
+    [.4, 'empathy', 750, 1500, 1],
+    [.2, 'empathy', 2000, 4000, 2]
   ];
 
-  cc.loot.genericCutie = [
+  cc.loot.violetCutie = [
     [1, 'cutie', '77'],
     [1, 'cutie', '22c2'],
     [.3, 'cutie', '25b2']
