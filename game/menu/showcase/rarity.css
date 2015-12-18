@@ -59,14 +59,51 @@
 
 /* rarity 2 */
   .menu-script-showcase .rarity-2 #menu-showcase-layer--0 {
-    background: radial-gradient(circle farthest-corner at top left, #e5fff2 0%, #b3ffd9 100%);
+    background: radial-gradient(circle farthest-corner at center center, #80ffbf 0%, #1aff8c 100%);
+  }
+  @keyframes menu-script-showcase-rarity-2-menu-showcase-layer--1 {
+    100% {
+      background-position: calc(50% + 200px) calc(50% - 400px), calc(50% + 200px) calc(50% - 200px), calc(50% + 200px) calc(50% - 400px), calc(50% + 200px) calc(50% - 200px), calc(50% - 3px) 0;
+    }
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--1 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 30%, #b3ffd9 30%, #80ffbf 100%);
+    position: relative;
+    transform: rotate(30deg);
+    top: -200%; left: -200%;
+    height: 500%; width: 500%;
+    background: radial-gradient(circle 25px at center center, #66ffb2 100%, transparent 100%) calc(50% + 200px) 50%,
+                radial-gradient(circle 35px at center center, #ccffe5 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px),
+                radial-gradient(circle 30px at center center, #00cc66 100%, transparent 100%) calc(50% + 200px) 50%,
+                radial-gradient(circle 42px at center center, #00cc66 100%, transparent 100%) calc(50% + 200px) calc(50% + 200px),
+                linear-gradient(90deg, #00cc66 6px, transparent 6px) calc(50% - 3px) 0;
+    background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px;
+    animation: 1s menu-script-showcase-rarity-2-menu-showcase-layer--1 infinite;
+  }
+  @keyframes menu-script-showcase-rarity-2-menu-showcase-layer--2 {
+    100% {
+      background-position: 50% calc(50% + 400px), 50% calc(50% + 600px), 50% calc(50% + 400px), 50% calc(50% + 600px), calc(50% + 198px) 0;
+    }
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--2 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 50%, #80ffbf 50%, #4dffa5 100%);
+    position: relative;
+    transform: rotate(30deg);
+    top: -200%; left: -200%;
+    height: 500%; width: 500%;
+    background: radial-gradient(circle 20px at center center, #66ffb2 100%, transparent 100%) 50% 50%,
+                radial-gradient(circle 30px at center center, #ccffe5 100%, transparent 100%) 50% calc(50% + 200px),
+                radial-gradient(circle 23px at center center, #00994c 100%, transparent 100%) 50% 50%,
+                radial-gradient(circle 35px at center center, #00994c 100%, transparent 100%) 50% calc(50% + 200px),
+                linear-gradient(90deg, #00994c 4px, transparent 4px) calc(50% + 198px) 0;
+    background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
+    animation: .8s menu-script-showcase-rarity-2-menu-showcase-layer--2 infinite;
+  }
+  @keyframes menu-script-showcase-rarity-2-menu-showcase-layer--3 {
+    0% {
+      opacity: .6;
+    }
   }
   .menu-script-showcase .rarity-2 #menu-showcase-layer--3 {
-    background: radial-gradient(circle farthest-corner at top left, transparent 70%, #4dffa5 70%, #1aff8c 100%);
+    opacity: .3;
+    background: radial-gradient(circle farthest-corner at center center, #e5fff2 69%, #004d26 100%);
+    animation: .69s menu-script-showcase-rarity-2-menu-showcase-layer--3 infinite alternate;
   }
