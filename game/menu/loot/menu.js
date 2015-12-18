@@ -16,24 +16,25 @@
       // Return home. State is missing loot lists
       leave('home');
     } else {
-
       // Drop invalid loot
-      cc.cuties.m(function(cutie) {
-        var cutieLootCooldownPending = cutie.cutieLootCooldown() > $.now();
+      if(!state.lootChecked) {
+        state.lootChecked = true;
+        cc.cuties.m(function(cutie) {
+          var cutieLootCooldownPending = cutie.cutieLootCooldown() > $.now();
 
-        state.loot = $.map(state.loot, function(value, index) {
-          var invalid;
+          state.loot = $.map(state.loot, function(value, index) {
+            var invalid;
 
-          invalid = invalid || cutieLootCooldownPending && $.inArray('cutieLootCooldown', value, 3) > 2;
+            invalid = invalid || cutieLootCooldownPending && $.inArray('cutieLootCooldown', value, 3) > 2;
 
-          if(invalid) {
-            return;
-          }
+            if(invalid) {
+              return;
+            }
 
-          return [value];
+            return [value];
+          });
         });
-
-      });
+      }
 
       looting = false;
       element.load(cc.util.l(dir + 'menu.html'), function() {
