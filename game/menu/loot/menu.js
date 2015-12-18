@@ -16,6 +16,25 @@
       // Return home. State is missing loot lists
       leave('home');
     } else {
+
+      // Drop invalid loot
+      cc.cuties.m(function(cutie) {
+        var cutieLootCooldownPending = cutie.cutieLootCooldown() > $.now();
+
+        state.loot = $.map(state.loot, function(value, index) {
+          var invalid;
+
+          invalid = invalid || cutieLootCooldownPending && $.inArray('cutieLootCooldown', value, 3) > 2;
+
+          if(invalid) {
+            return;
+          }
+
+          return [value];
+        });
+
+      });
+
       looting = false;
       element.load(cc.util.l(dir + 'menu.html'), function() {
         // Grab loot element as template and add event
@@ -64,7 +83,7 @@
     stateR.write('showcase', cc.loot(looted[1], looted[2]));
 
     // Need special actions?
-    if($.inArray('m cutieLootCooldown', looted, 3) > 1) {
+    if($.inArray('cutieLootCooldown', looted, 3) > 2) {
       // Set cooldown to 23 hours
       cc.cuties.m(function(cutie) {
         cutie.cutieLootCooldown($.now() + 82800000);

@@ -432,6 +432,15 @@
     },
 
 
+    // What loot does this cutie give?
+    loot: function() {
+      return [
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
+        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
+        ['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, this.magicFind(), 'cutieLootCooldown']
+      ];
+    },
+
     // These handler functions are run if this cutie is equipped at all
 
     // on tick function.
@@ -467,16 +476,7 @@
     burstSuccess: function() {
       this.loveup();
 
-      var lootArray = [
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()],
-        ['<span class="fa fa-money"></span>', cc.loot.genericMoney, this.magicFind()]
-      ];
-      if(this.cutieLootCooldown() > $.now()) {
-        // Not eligible for cuties
-      } else {
-        // Eligible for cuties
-        lootArray.push(['<span class="fa fa-user-plus"></span>', cc.loot.genericCutie, this.magicFind(), 'm cutieLootCooldown']);
-      }
+      var lootArray = this.loot();
 
       cc.menu('loot', {
         loot: lootArray
