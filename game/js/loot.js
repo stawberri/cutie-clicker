@@ -37,8 +37,8 @@
 
   cc.loot.violetMoney = [
     [1, 'empathy', 100, 500, 0],
-    [.4, 'empathy', 750, 1500, 1],
-    [.2, 'empathy', 2000, 4000, 2]
+    [.3, 'empathy', 750, 1500, 1],
+    [.1, 'empathy', 2000, 4000, 2]
   ];
 
   cc.loot.violetCutie = [

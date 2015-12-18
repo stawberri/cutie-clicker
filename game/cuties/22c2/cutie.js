@@ -22,8 +22,8 @@
     }, loot: function() {
       var moneyLoot = [
         [1, 'empathy', 300, 400, 0],
-        [.3, 'empathy', 1000, 1300, 1],
-        [.1, 'empathy', 3000, 3500, 2]
+        [.5, 'empathy', 1000, 1300, 1],
+        [.3, 'empathy', 3000, 3500, 2]
       ];
 
       return [
