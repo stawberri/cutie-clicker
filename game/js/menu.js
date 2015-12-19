@@ -282,8 +282,8 @@
   $('#menu-top-store').click(function() {
     cc.menu('store');
   });
-  $('#menu-top-tbd').click(function() {
-    cc.menu('tbd');
+  $('#menu-top-stats').click(function() {
+    cc.menu('stats');
   });
   $('#menu-top-misc').click(function() {
     cc.menu('misc');

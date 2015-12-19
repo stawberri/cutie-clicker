@@ -147,7 +147,7 @@
                0 0 9px #7fff00;
   animation: .69s menu-script-loot-menu-top-pulsate .345s alternate infinite;
 }
-.menu-script-loot #menu-top-tbd {
+.menu-script-loot #menu-top-stats {
   color: rgba(255, 255, 255, .85);
   text-shadow: 0 0 3px #ff7f00,
                0 0 6px #ff7f00,

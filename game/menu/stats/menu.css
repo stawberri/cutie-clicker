@@ -1,0 +1,88 @@
+.menu-script-stats #menu-top-stats {
+  color: rgba(255, 255, 255, .85);
+  text-shadow: 0 0 3px #ff7f00,
+               0 0 6px #ff7f00,
+               0 0 9px #ff7f00;
+}
+
+.menu-script-stats #menu-stats-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px 50px 50px;
+  margin: -5px;
+}
+
+  .menu-script-stats .menu-stats-stat-box {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: hidden;
+  }
+
+  .menu-script-stats .menu-stats-stat-box .symbol {
+    flex: 1 0 auto;
+  }
+
+  .menu-script-stats .menu-stats-stat-box .value {
+    flex: 0 1 auto;
+    white-space: nowrap;
+  }
+
+  .menu-script-stats .menu-stats-top-flex-item {
+    box-sizing: border-box;
+    margin: 10px;
+  }
+
+  .menu-script-stats #menu-stats-click-count {
+    flex: 1 0 auto;
+    font-size: 10rem;
+    width: 90%;
+    padding: 20px;
+    background: #ff7f00;
+    color: #fff;
+  }
+    .menu-script-stats #menu-stats-click-count .symbol {
+      margin-right: 20px;
+    }
+
+  .menu-script-stats #menu-stats-total-play-time,
+  .menu-script-stats #menu-stats-found-cutie-types,
+  .menu-script-stats #menu-stats-total-cutie-cards,
+  .menu-script-stats #menu-stats-total-love {
+    flex: 1 1 auto;
+    font-size: 3rem;
+    overflow: hidden;
+    width: 20%;
+    padding: 10px;
+  }
+
+  .menu-script-stats #menu-stats-total-play-time {
+    background: #ff007f;
+    color: #fff;
+  }
+
+  .menu-script-stats #menu-stats-found-cutie-types {
+    background: #7f00ff;
+    color: #fff;
+  }
+
+    .menu-script-stats #menu-stats-found-cutie-types .divider {
+      opacity: .69;
+      font-size: .75em;
+      margin-left: -5px;
+      margin-right: -7px;
+    }
+
+    .menu-script-stats #menu-stats-found-cutie-types .total {
+      opacity: .5;
+      font-size: .69em;
+    }
+
+  .menu-script-stats #menu-stats-total-cutie-cards {
+    background: #007fff;
+    color: #fff;
+  }
+
+  .menu-script-stats #menu-stats-total-love {
+    background: #ffcc00;
+    color: #fff;
+  }

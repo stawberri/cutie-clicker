@@ -112,6 +112,13 @@
     });
   });
 
+  // Clicks
+  cc.loop.draw(function() {
+    cc.util.cssrule('.cv-total-clicks::before')({
+      content: "'" + cc.stats.clicks() + "'"
+    });
+  });
+
   // Empathy class
   cc.loop.draw(function() {
     cc.util.cssrule('.cv-empathy::before')({
