@@ -149,6 +149,11 @@
     buttons.prop('disabled', true);
     var index = buttons.index(thisElement);
 
+    // Verify loot
+    if(!displayLoot[index]) {
+      return;
+    }
+
     // Pick and perform loot
     cc.util.shuffle(validLoot);
     cc.util.shuffle(invalidLoot);
