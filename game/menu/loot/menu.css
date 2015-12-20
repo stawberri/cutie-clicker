@@ -56,16 +56,12 @@
       top: 1px; bottom: 1px;
     }
 
-    .menu-script-loot .menu-loot-button:disabled {
-      transform: scale(.8) rotateY(180deg);
-    }
-
-    .menu-script-loot .menu-loot-button.chosen:disabled {
-      transform: rotateY(180deg);
+    .menu-script-loot .menu-loot-button.not-chosen {
+      transform: scale(.69) rotateY(180deg);
     }
 
       .menu-script-loot .menu-loot-button.revealed {
-        transform: scale(.8);
+        transform: scale(.69);
       }
 
       .menu-script-loot .menu-loot-button.chosen.revealed {
@@ -76,7 +72,7 @@
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: #eee;
+      background: #fff;
       backface-visibility: hidden;
       border: 1px rgba(0, 0, 0, .3) solid;
       border-radius: 10px;
@@ -85,10 +81,6 @@
       line-height: 350px;
       transform: translateZ(.05px);
     }
-
-      .menu-script-loot .menu-loot-button.chosen .card-front {
-        background: #fff;
-      }
 
     .menu-script-loot .menu-loot-button .card-back {
       position: absolute;
@@ -102,12 +94,38 @@
       border-radius: 10px;
     }
 
-      .menu-script-loot .menu-loot-button:active .card-back {
+      .menu-script-loot .menu-loot-button:not([disabled]):active .card-back {
         box-shadow: 0 0 1px rgba(0, 0, 0, .3);
       }
 
       .menu-script-loot .menu-loot-button.revealed .card-back {
         box-shadow: none;
+      }
+
+
+    .menu-script-loot .menu-loot-button .card-invalid {
+      display: none;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, .69);
+      transform: rotateY(180deg) translateZ(.2px);
+      backface-visibility: hidden;
+      pointer-events: none;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 4rem;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+
+      .menu-script-loot .menu-loot-button.invalid .card-invalid {
+        display: flex;
+      }
+
+      .menu-script-loot .menu-loot-button .card-invalid .lock {
+        font-size: 10rem;
+        margin-bottom: 15px;
       }
 
 @keyframes menu-script-loot-menu-top-pulsate {

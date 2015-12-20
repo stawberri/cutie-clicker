@@ -144,7 +144,7 @@
       state = state || {};
     }
 
-    if(callOnMenu('exit', [scriptname, state]) === false) {
+    if(callOnMenu('exit', [scriptname]) === false) {
       return;
     }
 
@@ -252,17 +252,17 @@
   // Pass tasks, ticks, and draws to menu
   cc.loop.task(function(now) {
     if(data.active) {
-      callOnMenu('task', [now, $('#menu-content'), data.state]);
+      callOnMenu('task', [now]);
     }
   });
   cc.loop.tick(function(now) {
     if(data.active) {
-      callOnMenu('tick', [now, $('#menu-content'), data.state]);
+      callOnMenu('tick', [now]);
     }
   });
   cc.loop.draw(function(now) {
     if(data.active) {
-      callOnMenu('draw', [now, $('#menu-content'), data.state]);
+      callOnMenu('draw', [now]);
     }
   });
 

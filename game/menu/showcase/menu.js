@@ -114,8 +114,8 @@
     }
   }
 
-  menu.draw = function(time, element, state) {
-    switch(state.type) {
+  menu.draw = function(time) {
+    switch(cc.menu.state().type) {
       case 'cutie':
         $('#menu-showcase-cutie-help-popup').css('left', function() {
           var cutiesButtonElement = $('#menu-top-cuties');

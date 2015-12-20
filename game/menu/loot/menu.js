@@ -1,5 +1,5 @@
 !function() {
-  var leaveOk = false, looting;
+  var leaveOk = false, looting, buttonTemplate;
   function leave(script, state) {
     leaveOk = true;
     cc.menu(script, state);
@@ -9,43 +9,63 @@
   menu = cc.menu[script] = function(element, state) {
     cc.util.getcss(dir + 'menu.css');
 
+    leaveOk = false;
+
     if(state.showcase) {
       // Previous loot got interrupted. Immediately skip to showcase.
       leave('showcase', state.showcase);
-    } else if($.type(state.loot) !== 'array' || state.loot.length < 1) {
+    } else if($.type(state.loot) !== 'array' || !state.loot.length) {
       // Return home. State is missing loot lists
       leave('home');
     } else {
-      // Drop invalid loot
-      if(!state.lootChecked) {
-        state.lootChecked = true;
-        cc.cuties.m(function(cutie) {
-          var cutieLootCooldownPending = cutie.cutieLootCooldown() > $.now();
-
-          state.loot = $.map(state.loot, function(value, index) {
-            var invalid;
-
-            invalid = invalid || cutieLootCooldownPending && $.inArray('cutieLootCooldown', value, 3) > 2;
-
-            if(invalid) {
-              return;
-            }
-
-            return [value];
-          });
-        });
-      }
-
       looting = false;
       element.load(cc.util.l(dir + 'menu.html'), function() {
         // Grab loot element as template and add event
         var buttonOriginal = $('.menu-loot-button').remove();
         buttonOriginal.click(buttonClick);
+        buttonTemplate = function() {
+          return buttonOriginal.clone(true);
+        }
 
-        // Add them to loot-wrap
-        $.each(state.loot, function() {
-          $('#menu-loot-wrap').append(buttonOriginal.clone(true));
-        });
+        // Display loot
+        if(!state.displayLoot) {
+          output = {
+            displayLoot: [],
+            validLoot: [],
+            invalidLoot: [],
+            refreshTime: false
+          }
+
+          cc.cuties.m(function(cutie) {
+            var cutieLootCooldownPending = cutie.cutieLootCooldown() > $.now();
+
+            output.displayLoot = $.map(state.loot, function(value, index) {
+              var valid = true;
+
+              if(cutieLootCooldownPending && $.inArray('cutieLootCooldown', value, 3) > 2) {
+                valid = false;
+                output.invalidLoot.push(value);
+              }
+
+              if(valid) {
+                output.validLoot.push(value);
+
+                // This gets the current index + 1
+                return output.validLoot.length;
+              } else {
+                return false;
+              }
+            });
+
+            if(cutieLootCooldownPending) {
+              output.refreshTime = cutie.cutieLootCooldown();
+            }
+
+            cc.menu.state(output);
+          });
+        } else {
+          cc.menu.restate();
+        }
       });
     }
   };
@@ -56,8 +76,56 @@
     }
   }
 
-  menu.exit = function(script, state) {
+  menu.exit = function(script) {
     return leaveOk;
+  }
+
+  menu.tick = function(now) {
+    var refreshTime = cc.menu.state().refreshTime;
+    if(refreshTime && refreshTime <= now) {
+      leave('loot', {loot: cc.menu.state().loot});
+    }
+  }
+
+  menu.stateChanged = function(state) {
+    if(state.suppress || !$.isFunction(buttonTemplate) || !state.displayLoot || looting) {
+      return;
+    }
+
+    // Shuffle loots
+    cc.util.shuffle(state.displayLoot);
+    cc.util.shuffle(state.validLoot);
+    cc.util.shuffle(state.invalidLoot);
+
+    cc.cuties.m(function(cutie) {
+      var cutieLootCooldownTime = cutie.cutieLootCooldown();
+      var cutieLootCooldownPending = cutieLootCooldownTime > $.now();
+
+      // Add each loot to loot-wrap
+      var invalidIndex = 0;
+      $.each(state.displayLoot, function(index, value) {
+        var buttonElement = buttonTemplate();
+        if(!value) {
+          var invalidItem = state.invalidLoot[invalidIndex];
+
+          buttonElement.prop('disabled', true);
+          buttonElement.addClass('invalid');
+
+          // Why is it invalid?
+          var invalidElement = buttonElement.find('.card-invalid');
+
+          if(cutieLootCooldownPending && $.inArray('cutieLootCooldown', invalidItem, 3) > 2) {
+            // cutieLootCooldown
+            var cooldownCountdown = $('<div class="cv-countdown countdown" data-direction="down"></div>');
+            cooldownCountdown.attr('data-time', cutieLootCooldownTime);
+            invalidElement.append(cooldownCountdown);
+          }
+
+          invalidIndex++;
+        }
+        $('#menu-loot-wrap').append(buttonElement);
+      });
+    })
   }
 
   function buttonClick(ev) {
@@ -69,18 +137,22 @@
 
     // Get loot
     var stateR = cc.menu.state();
-    var loot = stateR.loot;
+    var validLoot = stateR.validLoot;
+    var invalidLoot = stateR.invalidLoot;
+    var displayLoot = stateR.displayLoot;
 
     // Disable buttons and get index of button
     var buttons = $('.menu-loot-button');
     var thisElement = $(this);
-    thisElement.addClass('chosen');
+    buttons.addClass('not-chosen');
+    thisElement.removeClass('not-chosen').addClass('chosen');
     buttons.prop('disabled', true);
     var index = buttons.index(thisElement);
 
     // Pick and perform loot
-    cc.util.shuffle(loot);
-    var looted = loot[index];
+    cc.util.shuffle(validLoot);
+    cc.util.shuffle(invalidLoot);
+    var looted = validLoot[displayLoot[index] - 1];
     stateR.write('showcase', cc.loot(looted[1], looted[2]));
 
     // Need special actions?
@@ -93,13 +165,16 @@
 
     // Start looted animation
     var animateIndex = 0;
+    var invalidIndex = 0;
     var interval = setInterval(function() {
-      if(animateIndex == loot.length) {
-        buttons.eq(index).find('.card-front').html(loot[index][0]);
+      if(animateIndex == displayLoot.length) {
+        // Animate clicked card
+        buttons.eq(index).find('.card-front').html(looted[0]);
         buttons.eq(index).addClass('revealed');
 
         animateIndex++;
-      } else if(animateIndex == loot.length + 1) {
+      } else if(animateIndex == displayLoot.length + 1) {
+        // Exit loot screen
         clearInterval(interval);
 
         var exitEffectElement = $('#menu-loot-exit-effect');
@@ -122,9 +197,9 @@
 
       } else {
         if(animateIndex == index) {
-          if(animateIndex == loot.length - 1) {
+          if(animateIndex == displayLoot.length - 1) {
             // Special case - player clicked on last card
-            buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
+            buttons.eq(animateIndex).find('.card-front').html(looted[0]);
             buttons.eq(animateIndex).addClass('revealed');
             animateIndex += 2;
             return;
@@ -133,7 +208,15 @@
           }
         }
 
-        buttons.eq(animateIndex).find('.card-front').html(loot[animateIndex][0]);
+        var currentIndex = displayLoot[animateIndex];
+        if(currentIndex) {
+          // Valid loot
+          buttons.eq(animateIndex).find('.card-front').html(validLoot[currentIndex - 1][0]);
+        } else {
+          // Invalid loot
+          buttons.eq(animateIndex).find('.card-front').html(invalidLoot[invalidIndex][0]);
+          invalidIndex++;
+        }
         buttons.eq(animateIndex).addClass('revealed');
         animateIndex++;
       }

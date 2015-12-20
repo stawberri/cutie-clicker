@@ -19,18 +19,6 @@
       return cost;
     }, skillUse: function() {
       cc.stats.excitement(3);
-    }, loot: function() {
-      var moneyLoot = [
-        [1, 'empathy', 300, 400, 0],
-        [.5, 'empathy', 1000, 1300, 1],
-        [.3, 'empathy', 3000, 3500, 2]
-      ];
-
-      return [
-        ['<span class="fa fa-money"></span>', moneyLoot, this.magicFind()],
-        ['<span class="fa fa-money"></span>', moneyLoot, this.magicFind()],
-        ['<span class="fa fa-user-plus"></span>', cc.loot.violetCutie, this.magicFind(), 'cutieLootCooldown']
-      ];
     }
   };
 }();
