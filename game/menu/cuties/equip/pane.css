@@ -40,6 +40,7 @@
     background: #fff;
     color: #000;
     transition: color .3s, border-color .3s, background .3s, box-shadow .3s;
+    overflow: hidden;
   }
 
     .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-equip-picker:active {

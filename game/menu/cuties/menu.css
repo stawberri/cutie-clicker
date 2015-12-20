@@ -41,14 +41,15 @@
   .menu-script-cuties #menu-cuties-pane-footer {
     position: relative;
     flex: 0 0 auto;
-    height: 69px;
+    height: 87px;
   }
 
     .menu-script-cuties #menu-cuties-pane-action-button {
       position: absolute;
       right: 9px; top: 9px;
-      width: 190px; height: 51px;
-      background: #fff;
+      width: 190px; height: 69px;
+      color: #000;
+      background: #f9f9f9;
       border: none; outline: none;
       border-radius: 5px;
       font-size: 3rem;
@@ -56,12 +57,26 @@
       box-sizing: border-box;
     }
 
+      @keyframes menu-script-cuties-menu-cuties-pane-action-button-okay {
+        100% {
+          font-size: 3.5rem;
+          color: #555;
+          text-shadow: 0 0 5px #999;
+          background: #fff;
+          box-shadow: 0 0 10px #fff;
+        }
+      }
+
+      .menu-script-cuties #menu-cuties-pane-action-button:not([disabled]) {
+        animation: .5s menu-script-cuties-menu-cuties-pane-action-button-okay infinite alternate;
+      }
+
       .menu-script-cuties #menu-cuties-pane-action-button:not([disabled]):active {
         padding: 4px 0 0;
       }
 
       .menu-script-cuties #menu-cuties-pane-action-button:disabled {
-        background: #ddd;
+        background: rgba(221, 221, 221, .69);
       }
 
 .menu-script-cuties #menu-cuties-main {
