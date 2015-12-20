@@ -24,6 +24,11 @@
         transition: padding-right .69s;
       }
 
+      .menu-script-showcase .menu-showcase-empathy.menu-showcase-go #menu-showcase-empathy-counter .number::before {
+        content: '+';
+        font-size: .69em;
+        padding-right: 10px;
+      }
 
     .menu-script-showcase .menu-showcase-empathy #menu-showcase-empathy-counter .unit {
       position: relative;
