@@ -87,7 +87,7 @@
 
     .menu-script-cuties .menu-cuties-mode-equip .menu-cuties-equip-picker .label {
       position: absolute;
-      right: 50px; top: 50%;
+      right: 30px; top: 50%;
       transform: translateY(-50%);
     }
 

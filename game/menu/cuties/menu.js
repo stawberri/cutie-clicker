@@ -357,11 +357,18 @@
             buttons.removeClass().addClass('equip-right');
           break;
         }
+
         updatePaneCutieCards();
+        updateActionButton();
       break;
 
       case 'gift':
         updatePaneCutieCards();
+        updateActionButton();
+      break;
+
+      case 'delete':
+        updateActionButton();
       break;
     }
   }
@@ -421,6 +428,47 @@
           cc.cuties.clearCutieCard('#menu-cuties-pane-giftee-card');
         }
       break;
+    }
+  }
+
+  function updateActionButton() {
+    var buttonElement = $('#menu-cuties-pane-action-button');
+    if(!buttonElement.length) {
+      return;
+    }
+
+    var selection = cc.cuties.selection('menu');
+    var enableButton = false;
+
+    var stateR = cc.menu.state();
+    switch(stateR.mode) {
+      case 'equip':
+        if(selection[0] !== cc.cuties.m()) {
+          enableButton = true;
+        } else if(selection[1] !== cc.cuties.l()) {
+          enableButton = true;
+        } else if(selection[2] !== cc.cuties.r()) {
+          enableButton = true;
+        }
+      break;
+
+      case 'gift':
+        if(selection.length > 1) {
+          enableButton = true;
+        }
+      break;
+
+      case 'delete':
+        if(selection.length) {
+          enableButton = true;
+        }
+      break;
+    }
+
+    if(enableButton) {
+      buttonElement.prop('disabled', false);
+    } else {
+      buttonElement.prop('disabled', true);
     }
   }
 
@@ -490,6 +538,7 @@
           if(cutie.selected('menu') > -1) {
             alertifyButton(cutieElement, '<span class="fa fa-trash"></span>', '#ff7f00', '#fff');
           }
+          cc.menu.restate();
         break;
 
         case 'equip':

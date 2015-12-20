@@ -48,11 +48,21 @@
       position: absolute;
       right: 9px; top: 9px;
       width: 190px; height: 51px;
-      background: white;
+      background: #fff;
       border: none; outline: none;
       border-radius: 5px;
       font-size: 3rem;
+      padding: 2px 0;
+      box-sizing: border-box;
     }
+
+      .menu-script-cuties #menu-cuties-pane-action-button:not([disabled]):active {
+        padding: 4px 0 0;
+      }
+
+      .menu-script-cuties #menu-cuties-pane-action-button:disabled {
+        background: #ddd;
+      }
 
 .menu-script-cuties #menu-cuties-main {
   margin-left: 320px;
