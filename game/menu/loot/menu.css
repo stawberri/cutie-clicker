@@ -56,6 +56,10 @@
       top: 1px; bottom: 1px;
     }
 
+    .menu-script-loot .menu-loot-button.golden {
+      z-index: 1;
+    }
+
     .menu-script-loot .menu-loot-button.not-chosen {
       transform: scale(.69) rotateY(180deg);
     }
@@ -81,6 +85,13 @@
       line-height: 350px;
       transform: translateZ(.05px);
     }
+
+      .menu-script-loot .menu-loot-button.golden .card-front {
+        color: #fff;
+        background: #ffcc00;
+        border: 1px #fff solid;
+        box-shadow: 1px 1px 69px #ffcc00;
+      }
 
     .menu-script-loot .menu-loot-button .card-back {
       position: absolute;

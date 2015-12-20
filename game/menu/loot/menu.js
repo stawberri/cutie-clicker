@@ -174,9 +174,7 @@
     var interval = setInterval(function() {
       if(animateIndex == displayLoot.length) {
         // Animate clicked card
-        buttons.eq(index).find('.card-front').html(looted[0]);
-        buttons.eq(index).addClass('revealed');
-
+        revealCard(buttons.eq(index), looted);
         animateIndex++;
       } else if(animateIndex == displayLoot.length + 1) {
         // Exit loot screen
@@ -204,8 +202,7 @@
         if(animateIndex == index) {
           if(animateIndex == displayLoot.length - 1) {
             // Special case - player clicked on last card
-            buttons.eq(animateIndex).find('.card-front').html(looted[0]);
-            buttons.eq(animateIndex).addClass('revealed');
+            revealCard(buttons.eq(animateIndex), looted);
             animateIndex += 2;
             return;
           } else {
@@ -213,18 +210,27 @@
           }
         }
 
-        var currentIndex = displayLoot[animateIndex];
+        var currentIndex = displayLoot[animateIndex], lootInfo;
+        var buttonElement = buttons.eq(animateIndex);
         if(currentIndex) {
           // Valid loot
-          buttons.eq(animateIndex).find('.card-front').html(validLoot[currentIndex - 1][0]);
+          lootInfo = validLoot[currentIndex - 1];
         } else {
           // Invalid loot
-          buttons.eq(animateIndex).find('.card-front').html(invalidLoot[invalidIndex][0]);
+          lootInfo = invalidLoot[invalidIndex];
           invalidIndex++;
         }
-        buttons.eq(animateIndex).addClass('revealed');
+        revealCard(buttonElement, lootInfo);
         animateIndex++;
       }
     }, 500);
+  }
+
+  function revealCard(cardElement, lootInfo) {
+    if($.inArray('goldCard', lootInfo, 3) > 2) {
+      cardElement.addClass('golden');
+    }
+    cardElement.find('.card-front').html(lootInfo[0]);
+    cardElement.addClass('revealed');
   }
 }();
