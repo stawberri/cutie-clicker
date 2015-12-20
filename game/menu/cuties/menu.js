@@ -358,25 +358,23 @@
           break;
         }
 
-        updatePaneCutieCards();
-        updateActionButton();
+        updatePaneCutieCards(state);
+        updateActionButton(state);
       break;
 
       case 'gift':
-        updatePaneCutieCards();
-        updateActionButton();
+        updatePaneCutieCards(state);
+        updateActionButton(state);
       break;
 
       case 'delete':
-        updateActionButton();
+        updateActionButton(state);
       break;
     }
   }
 
-  function updatePaneCutieCards() {
-    var stateR = cc.menu.state();
-
-    switch(stateR.mode) {
+  function updatePaneCutieCards(state) {
+    switch(state.mode) {
       case 'equip':
         if(!$('#menu-cuties-equip-buttons').length) {
           return;
@@ -412,12 +410,12 @@
       case 'gift':
         var gifteeElement = $('#menu-cuties-pane-giftee');
 
-        if(gifteeElement.length < 1) {
+        if(!gifteeElement.length) {
           return;
         }
 
         // Load giftee
-        if(stateR.substate.gifting) {
+        if(state.substate.gifting) {
           cc.cuties(cc.cuties.selection('menu')[0], function(cutie) {
             gifteeElement.prop('disabled', false);
             cutie.renderCutieCard('#menu-cuties-pane-giftee-card');
@@ -431,7 +429,7 @@
     }
   }
 
-  function updateActionButton() {
+  function updateActionButton(state) {
     var buttonElement = $('#menu-cuties-pane-action-button');
     if(!buttonElement.length) {
       return;
@@ -440,8 +438,7 @@
     var selection = cc.cuties.selection('menu');
     var enableButton = false;
 
-    var stateR = cc.menu.state();
-    switch(stateR.mode) {
+    switch(state.mode) {
       case 'equip':
         if(selection[0] !== cc.cuties.m()) {
           enableButton = true;
