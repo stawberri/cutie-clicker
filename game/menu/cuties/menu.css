@@ -194,17 +194,39 @@
           position: absolute;
           top: 19px; left: 19px;
           width: 128px; height: 128px;
+          padding: 10px;
           transform: scale(.9);
-          font-size: 9rem;
+          font-size: 7rem;
           flex-flow: row nowrap;
-          justify-content: center;
-          align-items: center;
+          justify-content: flex-end;
+          align-items: flex-end;
+          box-sizing: border-box;
+          line-height: 7rem;
         }
 
           .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert.go .alert-text {
             transform: none;
             opacity: 0;
             transition: transform .5s, opacity .31s .69s;
+          }
+
+        .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .mode-icon {
+          display: flex;
+          position: absolute;
+          top: 7px; left: 7px;
+          width: 66px; height: 66px;
+          transform: scale(1.25);
+          font-size: 4rem;
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+
+          .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert.go .mode-icon {
+            transform: none;
+            opacity: 0;
+            transition: transform .5s, opacity .31s .5s;
           }
 
         .menu-script-cuties .menu-cuties-list-button .menu-cuties-button-alert .color-square {

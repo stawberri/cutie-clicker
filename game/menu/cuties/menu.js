@@ -529,7 +529,7 @@
           // Can't select more than 16 cards
           // (It's fine AT 15 cards, but not more than that)
           if(cc.cuties.selection('menu').length > 15 && cutie.selected('menu') < 0) {
-            alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', '#000', '#ff7f00');
+            alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', 'fa fa-exclamation-triangle', '#000', '#ff7f00');
             return;
           }
 
@@ -539,7 +539,7 @@
 
           cutie.select('menu');
           if(cutie.selected('menu') > -1) {
-            alertifyButton(cutieElement, '<span class="fa fa-trash"></span>', '#ff7f00', '#fff');
+            alertifyButton(cutieElement, '<span class="fa fa-trash"></span>', 'fa fa-check-circle', '#ff7f00', '#fff');
           }
           cc.menu.restate();
         break;
@@ -627,41 +627,41 @@
               // Swap with old1
               // If there's a 0, it'd be this slot
               if(slot1 === 0 && $.type(old) !== 'number') {
-                alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color1);
+                alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
                 return;
               }
               selection.write(slot1, old);
               selection.write(slot, old1);
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-check-circle', color, '#fff');
               cc.menu.restate();
               return;
             } else if(is2 && cutie.index() == old2) {
               // Swap with old2
               selection.write(slot2, old);
               selection.write(slot, old2);
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-check-circle', color, '#fff');
               cc.menu.restate();
               return;
             }
 
             if(is1 && cutie.cutie == cutie1.cutie) {
               // Blocked by cutie 1
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color1);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
               return
             } else if(is2 && cutie.cutie == cutie2.cutie) {
               // Blocked by cutie 2
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', color2);
+              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color2);
               return
             }
 
             // Ecchi check last (don't encourage people to get ecchi if what they wanted doesn't work)
             if(slot !== 0 && !cutie.isEcchi()) {
-              alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', '#000', '#ff007f');
+              alertifyButton(cutieElement, '0<span class="cs cs-ecchi"></span>', 'fa fa-exclamation-triangle', '#000', '#ff5349');
               return;
             }
 
             // It's fine!
-            alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+            alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-check-circle', color, '#fff');
             selection.write(slot, cutie.index());
             cc.menu.restate();
           });
@@ -671,7 +671,7 @@
           if(stateR.substate.gifting) {
             if(cutie.selected('menu') === 0) {
               // No selecting giftee
-              alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', '#000', '#ff007f');
+              alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', 'fa fa-exclamation-triangle', '#000', '#ff007f');
               return
             }
 
@@ -679,7 +679,7 @@
             // (It's fine AT 15 cards, but not more than that)
             // Note that giftee is #0, so we need to add one
             if(cc.cuties.selection('menu').length > 16 && cutie.selected('menu') < 0) {
-              alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', '#000', '#ff7f00');
+              alertifyButton(cutieElement, '<span class="fa fa-hashtag"></span>', 'fa fa-exclamation-triangle', '#000', '#ff7f00');
               return;
             }
 
@@ -689,23 +689,23 @@
 
             // Can't select lv 0 cuties
             if(cutie.love() == 0) {
-              alertifyButton(cutieElement, '<span class="fa fa-heart-o"></span>', '#000', '#ffcc00');
+              alertifyButton(cutieElement, '0<span class="cs cs-love"></span>', 'fa fa-exclamation-triangle', '#000', '#ffcc00');
               return;
             }
 
             cutie.select('menu');
             if(cutie.selected('menu') > -1) {
-              alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', '#ff7f00', '#fff');
+              alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', 'fa fa-check-circle', '#ff7f00', '#fff');
             }
           } else {
             // Can't select lv 0 cuties
             if(cutie.love() == 0) {
-              alertifyButton(cutieElement, '<span class="fa fa-heart-o"></span>', '#000', '#ffcc00');
+              alertifyButton(cutieElement, '0<span class="cs cs-love"></span>', 'fa fa-exclamation-triangle', '#000', '#ffcc00');
               return;
             }
 
             cc.cuties.selection('menu').write(0, cutie.index());
-            alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', '#ff007f', '#fff');
+            alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', 'fa fa-check-circle', '#ff007f', '#fff');
 
             // Update state
             cc.menu.state({substate: {gifting: true}});
@@ -716,7 +716,7 @@
       // View state
       cutie.select('favorite');
       if(cutie.selected('favorite') > -1) {
-        alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#ffcc00', '#fff');
+        alertifyButton(cutieElement, '<span class="fa fa-star"></span>', 'fa fa-check-circle', '#ffcc00', '#fff');
       }
     }
   }
@@ -729,20 +729,20 @@
     if(slot > -1 && slot < 3) {
       switch(slot) {
         case 0:
-          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#007fff');
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', '#007fff');
         break;
         case 1:
-          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#7f00ff');
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', '#7f00ff');
         break;
         case 2:
-          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', '#000', '#00ff7f');
+          alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', '#00ff7f');
         break;
       }
       return;
     }
     // Can't select favorited cards
     if(cutie.selected('favorite') > -1) {
-      alertifyButton(cutieElement, '<span class="fa fa-star"></span>', '#000', '#ffcc00');
+      alertifyButton(cutieElement, '<span class="fa fa-star"></span>', 'fa fa-exclamation-triangle', '#000', '#ffcc00');
       return;
     }
 
@@ -889,7 +889,7 @@
     });
   };
 
-  function alertifyButton(button, text, background, foreground) {
+  function alertifyButton(button, text, modeClass, background, foreground) {
     text = text || '';
     background = background || '#000';
     foreground = foreground || '#fff';
@@ -898,6 +898,7 @@
     var alert = buttonAlertTemplate();
 
     alert.find('.color-square, .color-circle').css('background', background);
+    alert.find('.mode-icon').addClass(modeClass);
     alert.find('.alert-text').css('color', foreground).html(text);
 
     alert.appendTo(element);
@@ -906,6 +907,6 @@
 
     setTimeout(function() {
       alert.remove();
-    }, 1000);
+    }, 2000);
   }
 }();
