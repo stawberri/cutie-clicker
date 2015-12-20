@@ -357,6 +357,49 @@
             buttons.removeClass().addClass('equip-right');
           break;
         }
+        updatePaneCutieCards();
+      break;
+
+      case 'gift':
+        updatePaneCutieCards();
+      break;
+    }
+  }
+
+  function updatePaneCutieCards() {
+    var stateR = cc.menu.state();
+
+    switch(stateR.mode) {
+      case 'equip':
+        if(!$('#menu-cuties-equip-buttons').length) {
+          return;
+        }
+
+        var selection = cc.cuties.selection('menu');
+
+        if($.type(selection[0]) === 'number') {
+          cc.cuties(selection[0], function(cutie) {
+            cutie.renderCutieCard('#menu-cuties-equip-mid .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+          });
+        } else {
+          cc.cuties.clearCutieCard('#menu-cuties-equip-mid .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+        }
+
+        if($.type(selection[1]) === 'number') {
+          cc.cuties(selection[1], function(cutie) {
+            cutie.renderCutieCard('#menu-cuties-equip-left .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+          });
+        } else {
+          cc.cuties.clearCutieCard('#menu-cuties-equip-left .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+        }
+
+        if($.type(selection[2]) === 'number') {
+          cc.cuties(selection[2], function(cutie) {
+            cutie.renderCutieCard('#menu-cuties-equip-right .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+          });
+        } else {
+          cc.cuties.clearCutieCard('#menu-cuties-equip-right .menu-cuties-equip-select-card', 'menu-cuties-equip-select-card');
+        }
       break;
 
       case 'gift':
@@ -367,7 +410,7 @@
         }
 
         // Load giftee
-        if(state.substate.gifting) {
+        if(stateR.substate.gifting) {
           cc.cuties(cc.cuties.selection('menu')[0], function(cutie) {
             gifteeElement.prop('disabled', false);
             cutie.renderCutieCard('#menu-cuties-pane-giftee-card');
@@ -498,6 +541,7 @@
           if(cutie.index() == old) {
             // Just toggle off slot
             selection.write(slot, null);
+            cc.menu.restate();
             return;
           }
 
@@ -537,12 +581,14 @@
               selection.write(slot1, old);
               selection.write(slot, old1);
               alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              cc.menu.restate();
               return;
             } else if(is2 && cutie.index() == old2) {
               // Swap with old2
               selection.write(slot2, old);
               selection.write(slot, old2);
               alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
+              cc.menu.restate();
               return;
             }
 
@@ -565,6 +611,7 @@
             // It's fine!
             alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', color, '#fff');
             selection.write(slot, cutie.index());
+            cc.menu.restate();
           });
         break;
 
@@ -719,6 +766,7 @@
           // Remove selection if cutie isn't ecchi
           if(!cutie.isEcchi() && cutie.selected('menu') > 0) {
             cutie.select('menu');
+            cc.menu.restate();
           }
         break;
 
