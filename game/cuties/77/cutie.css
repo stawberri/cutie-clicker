@@ -16,3 +16,12 @@
   background: url(cutie.png) center center no-repeat;
   background-size: contain;
 }
+
+/* Cutie Menu */
+#menu-cuties-list .cutie-77 .visible-button .cutie-pic {
+  background-image: url(cutie.png);
+  width: 475px; height: 650px;
+  transform-origin: 0 0;
+  top: 10px; left: -20px;
+  transform: scale(.4);
+}

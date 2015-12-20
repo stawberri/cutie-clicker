@@ -499,6 +499,9 @@
         var cutieElement = cutieTemplate();
         cutie.renderCutieCard(cutieElement, 'menu-cuties-list-button');
 
+        // Get CSS
+        cc.util.getcss('cuties/' + cutie.cutie + '/cutie.css');
+
         // Store cutie object on cutieElement
         cutieElement.data('cutie', cutie);
 

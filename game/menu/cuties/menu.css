@@ -110,6 +110,11 @@
         pointer-events: none;
       }
 
+        .menu-script-cuties .menu-cuties-list-button .visible-button .cutie-pic {
+          position: absolute;
+          opacity: .1;
+        }
+
         .menu-script-cuties .menu-cuties-list-button .visible-button .sort-data {
           position: absolute;
           width: 64px; height: 32px;
