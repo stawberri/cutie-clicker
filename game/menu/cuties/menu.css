@@ -115,6 +115,16 @@
           transform: scale(.3);
         }
 
+        @keyframes menu-script-cuties-menu-cuties-list-button-highlighted-cutie-card {
+          100% {
+            box-shadow: 0 0 36px #fff, 0 0 69px #fff, 0 0 128px #fff;
+          }
+        }
+
+        .menu-script-cuties .menu-cuties-list-button.highlighted .cutie-card {
+          animation: .3s menu-script-cuties-menu-cuties-list-button-highlighted-cutie-card infinite alternate;
+        }
+
       .menu-script-cuties .menu-cuties-list-button .visible-button {
         position: absolute;
         top: 16px; left: 16px;

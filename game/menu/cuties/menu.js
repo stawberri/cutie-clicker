@@ -763,6 +763,9 @@
 
       var stateR = cc.menu.state();
 
+      // Remove highlights
+      cutieElement.removeClass('highlighted');
+
       // Sorting stuff
       var sortIndex = cutie.index();
       var lastIndex = cutieElement.data('lastIndex');
@@ -813,6 +816,10 @@
               cutieElement.find('.info-2').html(infoTwo);
             }
           } else {
+            if(cutie.selected('menu') < 0 && cutie.love() == 0) {
+              cutieElement.addClass('highlighted');
+            }
+
             var cooldown = String(cutie.cutieLootCooldown());
             var infoTwo = '<span class="fa fa-user-plus"></span> <span class="cv-countdown" data-direction="down" data-time="' + cooldown + '" data-after=\'<span class="fa fa-check-circle-o"></span>\'></span>';
             var infoTwoRegex = new RegExp('data-time="' + cooldown + '"');

@@ -345,6 +345,13 @@
 
       $.when.apply($, defers).done(function() {
         notificationBadge('#menu-top-cuties', noloves);
+
+        // Update equip menu badge while we're at it
+        $('#menu-cuties-pane-equip .badge').html(function() {
+          if(noloves) {
+            return noloves;
+          }
+        });
       });
   });
     // Helper function
