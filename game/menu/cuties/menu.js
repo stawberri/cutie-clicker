@@ -261,7 +261,7 @@
             // Clear giftee button
             $('#menu-cuties-pane-giftee').click(function() {
               cc.cuties.selection('menu', true);
-              cc.menu.state({substate: {gifting: false}})
+              cc.menu.state({substate: {gifting: false}});
             });
 
             // This was copied off of delete and modified to fit
@@ -667,9 +667,17 @@
         case 'gift':
           if(stateR.substate.gifting) {
             if(cutie.selected('menu') === 0) {
-              // No selecting giftee
-              alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', 'fa fa-exclamation-triangle', '#000', '#ff007f');
-              return
+              // Was there anything else selected?
+              if(cc.cuties.selection('menu').length == 1) {
+                // Remove giftee
+                cc.cuties.selection('menu', true);
+                cc.menu.state({substate: {gifting: false}});
+                return;
+              } else {
+                // No selecting giftee
+                alertifyButton(cutieElement, '<span class="fa fa-birthday-cake"></span>', 'fa fa-exclamation-triangle', '#000', '#ff007f');
+                return
+              }
             }
 
             // Can't select more than 16 cards
