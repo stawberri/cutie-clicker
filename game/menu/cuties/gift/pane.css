@@ -26,6 +26,10 @@
   flex: 0 0 auto;
 }
 
+  .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-giftee:disabled {
+    display: none;
+  }
+
   .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-giftee:not([disabled]):active {
     margin-top: -2px;
     height: 102px;
@@ -51,4 +55,24 @@
 
     .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-giftee:disabled #menu-cuties-pane-giftee-ecchi {
       display: none;
+    }
+
+  .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-gift-main {
+    overflow: auto;
+    flex: 1 1 auto;
+    overflow: auto;
+    position: relative;
+  }
+
+    @keyframes menu-script-cuties-menu-cuties-mode-gift-menu-cuties-pane-gift-guide {
+      100% {
+        background-position: 0 0, 0 -2089px;
+      }
+    }
+
+    .menu-script-cuties .menu-cuties-mode-gift #menu-cuties-pane-gift-guide {
+      width: 100%; height: 100%;
+      background: linear-gradient(to right, transparent 90%, #f8f8f8) 0 0, url(guide.jpg) 0 0;
+      background-size: auto, 100%;
+      animation: 30s menu-script-cuties-menu-cuties-mode-gift-menu-cuties-pane-gift-guide linear infinite;
     }
