@@ -320,4 +320,59 @@
       }
     }
   });
+
+  // Menu notification badges
+  cc.loop.tick(function(now) {
+    // Cuties menu badge
+      var noloves = 0;
+      var defers = [];
+
+      $.each(cc.cuties.list(), function(index, value) {
+        var defer = $.Deferred();
+        defers.push(defer);
+
+        cc.cuties(index, function(cutie) {
+          if(cutie.love() < 1) {
+            noloves++;
+          }
+          defer.resolve();
+        });
+      });
+
+      $.when.apply($, defers).done(function() {
+        notificationBadge('#menu-top-cuties', noloves);
+      });
+
+    // Store menu badge
+      notificationBadge('#menu-top-store', function() {
+        if(cc.util.rhanum(cc.ls.d, 'dailyShopCutie') > $.now()) {
+          // Cooldown
+          return;
+        } else {
+          // No cooldown
+          return 1;
+        }
+      });
+  });
+    // Helper function
+    function notificationBadge(element, message) {
+      var notificationElement = $(element).find('.menu-top-badge');
+
+      if(!notificationElement.length) {
+        // No such button
+        return;
+      }
+
+      if($.isFunction(message)) {
+        message = message();
+      }
+
+      if(!message) {
+        // Empty message
+        notificationElement.removeClass('yes').empty();
+        return;
+      }
+
+      notificationElement.html(message).addClass('yes');
+    }
 }();
