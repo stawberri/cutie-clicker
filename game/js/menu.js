@@ -326,8 +326,12 @@
     // Cuties menu badge
       var noloves = 0;
       var defers = [];
-
+      var middle = cc.cuties.m();
       $.each(cc.cuties.list(), function(index, value) {
+        if(index === middle) {
+          return;
+        }
+
         var defer = $.Deferred();
         defers.push(defer);
 
@@ -341,17 +345,6 @@
 
       $.when.apply($, defers).done(function() {
         notificationBadge('#menu-top-cuties', noloves);
-      });
-
-    // Store menu badge
-      notificationBadge('#menu-top-store', function() {
-        if(cc.util.rhanum(cc.ls.d, 'dailyShopCutie') > $.now()) {
-          // Cooldown
-          return;
-        } else {
-          // No cooldown
-          return 1;
-        }
       });
   });
     // Helper function
