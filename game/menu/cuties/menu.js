@@ -694,6 +694,7 @@
             if(cutie.selected('menu') > -1) {
               alertifyButton(cutieElement, '<span class="fa fa-gift"></span>', 'fa fa-check-circle', '#ff7f00', '#fff');
             }
+            cc.menu.restate();
           } else {
             // Can't select lv 0 cuties
             if(cutie.love() == 0) {
