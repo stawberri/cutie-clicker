@@ -215,10 +215,10 @@
                     // Check index overlap
                     if(cutieL.index() != cutieM.index()) {
                       // Check type overlap
-                      if(cutieL.cutie != cutieM.cutie) {
+                      // if(cutieL.cutie != cutieM.cutie) {
                         // Set cutie
                         cc.cuties.l(selection[1]);
-                      }
+                      // }
                     }
                   }
                 } else {
@@ -229,9 +229,9 @@
                 if(isR) {
                   if(cutieR.isEcchi()) {
                     if(cutieR.index() != cutieM.index() && (!isL || cutieR.index() != cutieL.index())) {
-                      if(cutieR.cutie != cutieM.cutie && (!isL || cutieR.cutie != cutieL.cutie)) {
+                      // if(cutieR.cutie != cutieM.cutie && (!isL || cutieR.cutie != cutieL.cutie)) {
                         cc.cuties.r(selection[2]);
-                      }
+                      // }
                     }
                   }
                 } else {
@@ -641,15 +641,15 @@
               return;
             }
 
-            if(is1 && cutie.cutie == cutie1.cutie) {
-              // Blocked by cutie 1
-              alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie1.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
-              return
-            } else if(is2 && cutie.cutie == cutie2.cutie) {
-              // Blocked by cutie 2
-              alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie2.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color2);
-              return
-            }
+            // if(is1 && cutie.cutie == cutie1.cutie) {
+            //   // Blocked by cutie 1
+            //   alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie1.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
+            //   return
+            // } else if(is2 && cutie.cutie == cutie2.cutie) {
+            //   // Blocked by cutie 2
+            //   alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie2.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color2);
+            //   return
+            // }
 
             // Ecchi check last (don't encourage people to get ecchi if what they wanted doesn't work)
             if(slot !== 0 && !cutie.isEcchi()) {
