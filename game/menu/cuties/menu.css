@@ -49,8 +49,8 @@
       right: 9px; top: 9px;
       width: 190px; height: 69px;
       color: #000;
-      background: #f9f9f9;
-      border: none; outline: none;
+      background: rgba(255, 255, 255, .8);
+      border: 1px #fff solid; outline: none;
       border-radius: 5px;
       font-size: 3rem;
       padding: 2px 0;
@@ -76,7 +76,7 @@
       }
 
       .menu-script-cuties #menu-cuties-pane-action-button:disabled {
-        background: rgba(221, 221, 221, .69);
+        border-color: rgba(221, 221, 221, .8);
       }
 
 .menu-script-cuties #menu-cuties-main {

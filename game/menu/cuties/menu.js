@@ -643,11 +643,11 @@
 
             if(is1 && cutie.cutie == cutie1.cutie) {
               // Blocked by cutie 1
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
+              alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie1.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color1);
               return
             } else if(is2 && cutie.cutie == cutie2.cutie) {
               // Blocked by cutie 2
-              alertifyButton(cutieElement, '<span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color2);
+              alertifyButton(cutieElement, '<span style="font-size:.5em;line-height:2.5em;">' + cutie2.htmlGlyph + '</span><span class="fa fa-street-view"></span>', 'fa fa-exclamation-triangle', '#000', color2);
               return
             }
 
