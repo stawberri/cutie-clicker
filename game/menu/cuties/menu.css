@@ -117,7 +117,9 @@
 
         @keyframes menu-script-cuties-menu-cuties-list-button-highlighted-cutie-card {
           100% {
-            box-shadow: 0 0 36px #fff, 0 0 69px #fff, 0 0 128px #fff;
+            box-shadow: 0 0 36px #fff, 0 0 69px #fff, 0 0 128px #fff,
+                        0 0 36px #fff, 0 0 69px #fff, 0 0 128px #fff,
+                        0 0 36px #fff, 0 0 69px #fff, 0 0 128px #fff;
           }
         }
 
