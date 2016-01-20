@@ -102,15 +102,14 @@ $load-cancel .on 'click' ->
 $load-go .on 'click' ->
   return unless load-data-ok
 
-  data = loading-data
-  return unless data?
+  return unless loading-data?
 
   $html.add-class 'processing'
 
   try
     local-storage.clear!
 
-    for key, value of data
+    for key, value of loading-data
       local-storage.set-item key, value
 
     window.location = '/'
