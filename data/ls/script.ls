@@ -76,18 +76,16 @@ load-data-ok = ->
   $load-data.has-class 'ok'
 
 $load-data .on 'input' ->
-  $this = $ @
-
-  if find-data-string $this.val!
+  if find-data-string $load-data.val!
     try
       data = JSON.parse LZString.decompress-from-base64 that.1
 
   if data? and not $.is-empty-object data
-    $this
+    $load-data
       ..add-class 'ok'
       ..data 'data' data
   else
-    $this
+    $load-data
       ..remove-class 'ok'
       ..data 'data' {}
 
