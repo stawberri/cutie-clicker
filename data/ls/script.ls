@@ -102,12 +102,19 @@ $load-go .on 'click' ->
   data = $load-data.data 'data'
   return unless data? and not $.is-empty-object data
 
+  $html.add-class 'processing'
+
   local-storage.clear!
 
-  for key, value of data
-    local-storage.set-item key, value
+  try
+    for key, value of data
+      local-storage.set-item key, value
 
-  window.location = '/'
+    window.location = '/'
+  catch err
+    $ '#processing'
+      ..css 'font-size' '1.2rem'
+      ..text err
 
 $ '#button-back' .on 'click' ->
   window.location = '/'
