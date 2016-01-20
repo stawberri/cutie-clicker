@@ -7,8 +7,8 @@ $load-data = $ '#load-data'
 $load-cancel = $ '#load-cancel'
 $load-go = $ '#load-go'
 
-#if location.protocol + location.host != 'https:cc.aideen.pw'
-#  $html.add-class 'http'
+if location.protocol + location.host != 'https:cc.aideen.pw'
+  $html.add-class 'http'
 
 set-state = (new-state) ->
   clear-interval state-interval if state-interval?
