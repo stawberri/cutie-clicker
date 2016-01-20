@@ -1,0 +1,50 @@
+doctype html
+html.start
+  head
+    title Cutie Clicker - Save Manager
+
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css')
+    link(rel='stylesheet' href='css/style.css')
+  body
+    #menu
+      button#button-back
+        .label back
+      button#button-save
+        span.fa.fa-upload
+        .label save
+      button#button-load
+        span.fa.fa-download
+        .label load
+      button#button-https
+        span.fa.fa-lock
+        .label https
+    #main
+      #main-start
+        #start-normal
+          p Click #[span.fa.fa-upload] to convert your game data into text that you can save.
+          p Click #[span.fa.fa-download] if you would like to import a game that you've previously saved.
+          p Click #[span(style='font-variant:small-caps') back] to go back to Cutie Clicker.
+        #start-http
+          p You need to transfer your data over to https before you can play Cutie Clicker.
+          p Click #[span.fa.fa-upload] to convert your game data into text that you can copy.
+          p Click #[span.fa.fa-lock] to head over to https, where you can load your data.
+          p Click #[a#delete-local-storage(href='') here] if you would like to clear your http data so you stop coming back here. Make sure you've actually successfully transferred your game first, though.
+
+      #main-save
+        textarea#save-data(readonly)
+        p#save-message
+          span.fa.fa-upload
+          | To save your game, select and copy this text, then save it using your favorite method of saving text.
+
+      #main-load
+        textarea#load-data
+        p#load-message
+          span.fa.fa-download
+          | Paste your save data here to load it. This will #[em overwrite] your current game, so you might wannya save it first!
+        #load-buttons
+          button#load-cancel Cancel
+          button#load-go Load and Play
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js')
+    script(src='https://cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js')
+    script(src='js/script.js')

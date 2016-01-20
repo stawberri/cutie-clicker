@@ -1,0 +1,268 @@
+$color-back: #ff007f
+$color-save: #ff7f00
+$color-load: #007fff
+$color-https: #ffcc00
+$margin-size: 16px
+
+html
+  width: 100%
+  height: 100%
+
+  background-color: #333
+
+  font-size: 18px
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif
+
+body
+  $width: 960px
+  $height: 540px
+
+  display: flex
+  flex-flow: row nowrap
+
+  position: absolute
+  top: calc(50% - #{$height / 2})
+  left: calc(50% - #{$width / 2})
+
+  width: $width
+  height: $height
+  margin: 0
+
+  background-color: #fff
+
+#menu
+  display: flex
+  flex-flow: column nowrap
+
+  width: 200px
+
+  button
+    flex: 1 0 auto
+
+    margin: $margin-size
+    border: none
+    outline: none
+    box-sizing: border-box
+
+    color: #fff
+    font-size: 3rem
+
+    &:active
+      transform: scale(0.9) !important
+
+    .label
+      font-variant: small-caps
+
+  =button-exit($color)
+    background: #fff
+
+    border: 1px solid $color
+
+    color: $color
+
+    transform: scale(0.95)
+
+  #button-back
+    flex: 0 0 auto
+
+    margin-bottom: 0
+
+    background-color: $color-back
+
+    .http &
+      display: none
+
+    .label
+      position: relative
+      bottom: 5px
+
+      line-height: 0.7em
+
+  #button-save
+    margin-bottom: $margin-size / 2
+
+    background-color: $color-save
+
+    .save &
+      +button-exit($color-save)
+
+  #button-load
+    margin-top: $margin-size / 2
+
+    background-color: $color-load
+
+    .load &
+      +button-exit($color-load)
+
+  #button-https
+    @extend #button-load
+
+    background-color: $color-https
+
+    display: none
+
+.http
+  #button-load
+    display: none
+
+  #button-https
+    display: block !important
+
+#main
+  flex: 1 0 auto
+
+  position: relative
+
+  margin: $margin-size
+    left: 0
+
+  &>div
+    display: none
+
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+#main-start
+  flex-flow: column nowrap
+  justify-content: center
+
+  color: #555
+  font-size: 1.1rem
+  text-align: center
+  font-style: italic
+
+  .start &
+    display: flex
+
+#start-http
+  display: none
+
+.http
+  #start-normal
+    display: none
+
+  #start-http
+    display: block
+
+#main-save
+  position: relative
+
+  .save &
+    display: block
+
+#save-data
+  position: absolute
+  top: 0
+  left: 0
+
+  width: 100%
+  height: 100%
+  padding: 10px
+  border: none
+  outline: none
+  box-sizing: border-box
+  resize: none
+
+  background-color: $color-save
+
+  color: rgba(255, 255, 255, 0.5)
+  font-family: Hack, Menlo, Consolas, Monaco, "Courier New", Courier, monospace
+  font-size: 0.69rem
+
+  &::selection
+    color: $color-save
+    background: rgba(255, 255, 255, 0.5)
+
+
+#save-message
+  $width: 600px
+
+  position: absolute
+  top: 69px
+  left: calc(50% - #{$width / 2})
+
+  width: $width
+
+  color: #fff
+  font-size: 2rem
+  text-align: center
+  text-shadow: 0 0 18px $color-save
+
+  pointer-events: none
+
+  .fa
+    display: block
+
+    margin-bottom: 18px
+
+    font-size: 2.5em
+    text-shadow: 0 0 20px #fff
+
+#main-load
+  position: relative
+
+  .load &
+    display: block
+
+#load-data
+  @extend #save-data
+
+  background-color: $color-load
+
+  &::selection
+    color: $color-load
+
+  &.ok
+    pointer-events: none
+
+    color: rgba(255, 255, 255, 0.3)
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.85)
+
+#load-message
+  @extend #save-message
+
+  text-shadow: 0 0 18px $color-load
+
+
+#load-buttons
+  display: flex
+  flex-flow: row nowrap
+  justify-content: space-around
+
+  margin: 0 100px
+
+  position: absolute
+  top: 370px
+  left: 0
+  right: 0
+
+  opacity: 0
+  pointer-events: none
+
+  #load-data.ok~&
+    opacity: 1
+    pointer-events: auto
+
+    transition: opacity 0.3s
+
+  button
+    padding: 20px 40px
+    border: none
+    outline: none
+    border-radius: 10px
+    box-sizing: border-box
+
+    font-size: 1.2rem
+
+    &:active
+      transform: scale(0.95)
+
+  #load-go
+    background: #fff
+    box-shadow: 0 0 10px #fff
+
+  #load-cancel
+    background: #ccc
