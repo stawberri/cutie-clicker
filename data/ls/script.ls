@@ -61,6 +61,7 @@ $save-data
 load-data-reset = ->
   $load-data
     ..val ''
+    ..remove-data 'data'
     ..remove-class 'ok'
     ..focus!
 
