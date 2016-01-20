@@ -7,6 +7,9 @@ $load-data = $ '#load-data'
 $load-cancel = $ '#load-cancel'
 $load-go = $ '#load-go'
 
+var loading-data
+var saving-data
+
 if location.protocol + location.host != 'https:cc.aideen.pw'
   $html.add-class 'http'
 
@@ -33,7 +36,7 @@ generate-save-data = ->
   """
   $save-data
     ..val value
-    ..data 'data' data
+  saving-data := data
 
 find-data-string = ->
   # http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
@@ -53,7 +56,7 @@ $ '#button-save' .on 'click' ->
 $save-data
   ..on 'click' save-data-select
   ..on 'input' ->
-    unless (data = find-data-string $save-data.val!) and data.1 == $save-data.data 'data'
+    unless (data = find-data-string $save-data.val!) and data.1 == saving-data
       generate-save-data!
       save-data-select!
 
@@ -61,9 +64,10 @@ $save-data
 load-data-reset = ->
   $load-data
     ..val ''
-    ..remove-data 'data'
     ..remove-class 'ok'
     ..focus!
+
+  loading-data := void
 
 $ '#button-load' .on 'click' ->
   if state == 'load'
@@ -84,11 +88,11 @@ $load-data .on 'input' ->
   if data?
     $load-data
       ..add-class 'ok'
-      ..data 'data' data
+    loading-data := data
   else
     $load-data
       ..remove-class 'ok'
-      ..remove-data 'data'
+    loading-data := void
 
 $load-cancel .on 'click' ->
   return unless load-data-ok
@@ -98,7 +102,7 @@ $load-cancel .on 'click' ->
 $load-go .on 'click' ->
   return unless load-data-ok
 
-  data = $load-data.data 'data'
+  data = loading-data
   return unless data?
 
   $html.add-class 'processing'
