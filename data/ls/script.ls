@@ -102,9 +102,9 @@ $load-go .on 'click' ->
 
   $html.add-class 'processing'
 
-  local-storage.clear!
-
   try
+    local-storage.clear!
+
     for key, value of data
       local-storage.set-item key, value
 
