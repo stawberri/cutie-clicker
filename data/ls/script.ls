@@ -66,7 +66,6 @@ load-data-reset = ->
     ..val ''
     ..remove-class 'ok'
     ..focus!
-
   loading-data := void
 
 $ '#button-load' .on 'click' ->
@@ -101,8 +100,6 @@ $load-cancel .on 'click' ->
 
 $load-go .on 'click' ->
   return unless load-data-ok
-
-  return unless loading-data?
 
   $html.add-class 'processing'
 
