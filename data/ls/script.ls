@@ -7,8 +7,8 @@ $load-data = $ '#load-data'
 $load-cancel = $ '#load-cancel'
 $load-go = $ '#load-go'
 
-if location.protocol + location.host != 'https:cc.aideen.pw'
-  $html.add-class 'http'
+#if location.protocol + location.host != 'https:cc.aideen.pw'
+#  $html.add-class 'http'
 
 set-state = (new-state) ->
   clear-interval state-interval if state-interval?
@@ -62,7 +62,6 @@ load-data-reset = ->
   $load-data
     ..val ''
     ..remove-class 'ok'
-    ..prop 'readonly' false
     ..focus!
 
 $ '#button-load' .on 'click' ->
@@ -85,11 +84,12 @@ $load-data .on 'input' ->
 
   if data? and not $.is-empty-object data
     $this
-      ..prop 'readonly' true
       ..add-class 'ok'
-      ..val ..val!
-
-    $this.data 'data' data
+      ..data 'data' data
+  else
+    $this
+      ..remove-class 'ok'
+      ..data 'data' {}
 
 $load-cancel .on 'click' ->
   return unless load-data-ok
