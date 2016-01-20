@@ -31,7 +31,7 @@ html.start
           p Click #[a#delete-local-storage(href='') here] if you would like to clear your http data so you stop coming back here. Make sure you've actually successfully transferred your game first, though.
 
       #main-save
-        textarea#save-data(readonly)
+        textarea#save-data
         p#save-message
           span.fa.fa-upload
           | To save your game, select and copy this text, then save it using your favorite method of saving text.
@@ -47,4 +47,4 @@ html.start
 
     script(src='https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js')
     script(src='https://cdn.jsdelivr.net/jquery/2.2.0/jquery.min.js')
-    script(src='js/script.js')
+    script(src='js/script.js?_=1')

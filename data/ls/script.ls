@@ -21,33 +21,42 @@ save-data-select = ->
     ..focus!
     ..select!
 
+generate-save-data = ->
+  data = LZString.compress-to-base64 JSON.stringify local-storage
+
+  date = new Date!
+
+  value = """
+    Cutie Clicker Game Data
+    Saved: #date
+    [0|#data]
+  """
+  $save-data
+    ..val value
+    ..data 'data' data
+
+find-data-string = ->
+  # http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
+  it == //\[0\|([a-zA-Z0-9+/=]+)\]//
+
 $ '#button-save' .on 'click' ->
   if state == \save
     set-state \start
   else
-    generate-save-data = (force) ->
-      return if not force and $save-data.is ':focus'
 
-      storage = LZString.compress-to-base64 JSON.stringify local-storage
-
-      date = new Date!
-
-      storage = """
-        Cutie Clicker Game Data
-        Saved: #date
-        [0|#storage]
-      """
-      $save-data.val storage
-
-    generate-save-data true
+    generate-save-data!
 
     set-state \save
 
     save-data-select!
 
-    state-interval = set-interval generate-save-data, 10000
+$save-data
+  ..on 'click' save-data-select
+  ..on 'input' ->
+    unless (data = find-data-string $save-data.val!) and data.1 == $save-data.data 'data'
+      generate-save-data!
+      save-data-select!
 
-$save-data .on 'click' save-data-select
 
 load-data-reset = ->
   $load-data
@@ -70,10 +79,7 @@ load-data-ok = ->
 $load-data .on 'input' ->
   $this = $ @
 
-  # http://stackoverflow.com/questions/475074/regex-to-parse-or-validate-base64-data
-  if $this.val! == //
-    \[0\|((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)\]
-  //
+  if find-data-string $this.val!
     try
       data = JSON.parse LZString.decompress-from-base64 that.1
 
