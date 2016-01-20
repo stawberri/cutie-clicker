@@ -80,14 +80,14 @@ $load-data .on 'input' ->
     try
       data = JSON.parse LZString.decompress-from-base64 that.1
 
-  if data? and not $.is-empty-object data
+  if data?
     $load-data
       ..add-class 'ok'
       ..data 'data' data
   else
     $load-data
       ..remove-class 'ok'
-      ..data 'data' {}
+      ..remove-data 'data'
 
 $load-cancel .on 'click' ->
   return unless load-data-ok
@@ -98,7 +98,7 @@ $load-go .on 'click' ->
   return unless load-data-ok
 
   data = $load-data.data 'data'
-  return unless data? and not $.is-empty-object data
+  return unless data?
 
   $html.add-class 'processing'
 
