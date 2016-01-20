@@ -65,7 +65,7 @@
 
     // Force them to transfer their data if they're not at https
     if(location.protocol + location.host != 'https:cc.aideen.pw' && location.protocol != 'file:') {
-      window.location = '/data'
+      window.location = '/data/'
     }
 
     done();

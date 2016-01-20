@@ -107,7 +107,7 @@ $ '#button-back' .on 'click' ->
   window.location = '/'
 
 $ '#button-https' .on 'click' ->
-  window.location = 'https://cc.aideen.pw/data'
+  window.location = 'https://cc.aideen.pw/data/'
 
 $ '#delete-local-storage' .on 'click' ->
   it.preventDefault!
